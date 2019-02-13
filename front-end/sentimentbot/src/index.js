@@ -8,7 +8,7 @@ import App from '../src/Components/App';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-// const store = createStore(whatever, applyMiddleware(thunk, logger));
+// const store = createStore(whatever, applyMiddleware(thunk, logger))
 
 ReactDOM.render(<Provider store={store}><Router><App /></Router></Provider>, document.getElementById('root'));
 
