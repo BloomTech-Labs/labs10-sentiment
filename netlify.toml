@@ -1,7 +1,6 @@
 
 [build]
-
-base    = "./sentimentbot"
-publish = "./sentimentbot/build"
+base    = "front-end/sentimentbot"
+publish = "front-end/sentimentbot/build"
 command = "yarn build" 
 
