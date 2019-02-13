@@ -28,7 +28,8 @@ module.exports = {
     connection: { filename: "./api/database/sentiment.db3" },
     useNullAsDefault: true, // used to avoid warning on console
     migrations: {
-      directory: "./api/database/migrations"
+      directory: "./api/database/migrations",
+      tableName: 'dbmigrations',
     },
     seeds: { directory: "./api/database/seeds" }
   }
