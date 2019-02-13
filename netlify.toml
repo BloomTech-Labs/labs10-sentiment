@@ -6,3 +6,8 @@ ID = "sentimentbot"
 base    = "./sentimentbot"
 publish = "./sentimentbot/build"
 command = "yarn build" 
+
+[[redirects]]
+from = "/*"
+to = "/index.html"
+status = 200
