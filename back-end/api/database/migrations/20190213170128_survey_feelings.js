@@ -1,0 +1,20 @@
+exports.up = function(knex, Promise) {
+  return knex.schema.createTable("survey_feelings", tbl => {
+    tbl.increments();
+
+    tbl
+      .integer("survey_id")
+      .unsigned()
+      .references("id")
+      .inTable("surveys");
+    tbl
+      .integer("feelings_id")
+      .unsigned()
+      .references("id")
+      .inTable("feelings");
+  });
+};
+
+exports.down = function(knex, Promise) {
+  return knex.schema.DropTableIfExists("survey_feelings");
+};
