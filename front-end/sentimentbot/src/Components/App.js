@@ -1,6 +1,6 @@
-export default App;
 import React, { Component } from 'react';
 import {Route, NavLink} from 'react-router-dom';
+import Home from './Home';
 import './App.css';
 
 class App extends Component {
@@ -17,4 +17,5 @@ class App extends Component {
     );
   }
 }
+export default App;
 
