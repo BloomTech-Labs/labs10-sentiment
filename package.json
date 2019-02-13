@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "server": "nodemon index.js",
+    "start": "node index.js",
+    "test": "cross-env jest --watch --verbose"
   },
   "keywords": [],
   "author": "",
