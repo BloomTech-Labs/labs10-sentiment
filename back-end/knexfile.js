@@ -26,12 +26,13 @@ module.exports = {
   development: {
     client: "sqlite3",
     connection: { 
-      filename: "./api/database/sentiment.sqlite3" 
+      filename: "./api/database/sentiment.sqlite3",
+      tableName: 'dbmigrations'
     },
     useNullAsDefault: true, // used to avoid warning on console
     migrations: {
-      directory: "./api/database/migrations"
-      // tableName: "dbmigrations"
+      directory: "./api/database/migrations",
+      tableName: "dbmigrations"
     }
     // seeds: { directory: "./api/database/seeds" }
   }
