@@ -14,13 +14,13 @@ exports.up = function(knex, Promise) {
 
     tbl.string("type", 255).notNullable();
 
-    tbl
-      .integer("team_id")
-      .notNullable()
-      .unsigned()
-      .references("id")
-      .inTable("teams");
-  });
+  //   tbl
+  //     .integer("team_id")
+  //     .notNullable()
+  //     .unsigned()
+  //     .references("id")
+  //     .inTable("teams");
+  // });
 };
 
 exports.down = function(knex, Promise) {

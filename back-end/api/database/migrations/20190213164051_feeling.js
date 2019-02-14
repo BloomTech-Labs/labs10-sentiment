@@ -4,12 +4,12 @@ exports.up = function(knex, Promise) {
 
     tbl.string("feeling_text", 255).notNullable();
     tbl.timestamp("created_at", true).defaultTo(knex.fn.now());
-    tbl
-      .integer("team_member_id")
-      .unsigned()
-      .references("id")
-      .inTable("teamMembers");
-  });
+  //   tbl
+  //     .integer("team_member_id")
+  //     .unsigned()
+  //     .references("id")
+  //     .inTable("teamMembers");
+  // });
 };
 
 exports.down = function(knex, Promise) {

@@ -8,13 +8,13 @@ exports.up = function(knex, Promise) {
 
     tbl.timestamp("created_at", true).defaultTo(knex.fn.now());
 
-    tbl
-      .integer("manager_id")
-      .notNullable()
-      .unsigned()
-      .references("id")
-      .inTable("managers");
-  });
+  //   tbl
+  //     .integer("manager_id")
+  //     .notNullable()
+  //     .unsigned()
+  //     .references("id")
+  //     .inTable("managers");
+  // });
 };
 
 exports.down = function(knex, Promise) {
