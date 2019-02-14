@@ -16,5 +16,5 @@ exports.up = function(knex, Promise) {
 };
 
 exports.down = function(knex, Promise) {
-  return knex.schema.DropTableIfExists("survey_feelings");
+  return knex.schema.dropTableIfExists("survey_feelings");
 };
