@@ -2,10 +2,10 @@
   "name": "back-end",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./back-end/index.js",
   "scripts": {
-    "server": "nodemon index.js",
-    "start": "node index.js",
+    "server": "nodemon ./back-end/index.js",
+    "start": "node ./back-end/index.js",
     "test": "cross-env jest --watch --verbose"
   },
   "keywords": [],
