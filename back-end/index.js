@@ -4,7 +4,7 @@ const server = require("./api/server.js");
 let port;
 
 if (process.env.DB_ENV === "development") {
-  port = 5000;
+  port = 5001;
 } else if (process.env.DB_ENV === "production") {
   port = process.env.PORT;
 }
