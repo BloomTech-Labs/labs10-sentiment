@@ -9,7 +9,7 @@ exports.up = function(knex, Promise) {
   //     .unsigned()
   //     .references("id")
   //     .inTable("teamMembers");
-  // });
+  });
 };
 
 exports.down = function(knex, Promise) {

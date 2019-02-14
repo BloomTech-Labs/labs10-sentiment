@@ -14,7 +14,7 @@ exports.up = function(knex, Promise) {
   //     .unsigned()
   //     .references("id")
   //     .inTable("managers");
-  // });
+  });
 };
 
 exports.down = function(knex, Promise) {

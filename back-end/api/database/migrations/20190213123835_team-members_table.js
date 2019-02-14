@@ -20,7 +20,7 @@ exports.up = function(knex, Promise) {
   //     .unsigned()
   //     .references("id")
   //     .inTable("teams");
-  // });
+  });
 };
 
 exports.down = function(knex, Promise) {
