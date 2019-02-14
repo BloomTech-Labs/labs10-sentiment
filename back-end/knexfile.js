@@ -1,4 +1,4 @@
-/// Update with your config settings.s//
+/// Update with your config settings.s///
 require("dotenv").config();
 
 const localPg = {
