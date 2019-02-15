@@ -50,14 +50,42 @@ server.get("/api/surveys", (req, res) => {
     .catch(serverErrorGet(res));
 });
 
-server.get("/api/test", (req, res) => {
-  surveyDB("surveys")
-    .then(data=>{
-      console.log(data);
-    })
-    .catch(err=>{
-      res.status(500).json(err);
-    });
+server.post("/api/managers", (req, res) => {
+  const postInfo = req.body;
+  surveyDB("managers")
+    .insert(postInfo)
+    .then(postSuccess(res))
+    .catch(serverErrorPost(res));
 });
+
+server.get("/api/managers", (req, res) => {
+  surveyDB("managers")
+    .then(getSuccess(res))
+    .catch(serverErrorGet(res));
+});
+
+server.post("/api/teams", (req, res) => {
+  const postInfo = req.body;
+  surveyDB("teams")
+    .insert(postInfo)
+    .then(postSuccess(res))
+    .catch(serverErrorPost(res));
+});
+
+server.get("/api/teams", (req, res) => {
+  surveyDB("teams")
+    .then(getSuccess(res))
+    .catch(serverErrorGet(res));
+});
+
+// server.get("/api/test", (req, res) => {
+//   surveyDB("surveys")
+//     .then(data=>{
+//       console.log(data);
+//     })
+//     .catch(err=>{
+//       res.status(500).json(err);
+//     });
+// });
 
 module.exports = server;
