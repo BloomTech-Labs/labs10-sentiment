@@ -1,11 +1,23 @@
 import React from "react";
 
-function Survey(props) {
+function accountSettings(props) {
   return (
     <div>
-      <p> Survey Page </p>
+      <form className="account-form">
+        <h3> Account Settings </h3>
+        <input
+          type=""
+          placeholder=""
+          name=""
+          value={}
+          onChange={}
+        />
+        <button className="submit-btn" onClick={}>
+          Submit
+        </button>
+      </form>
     </div>
   );
 }
 
-export default Survey;
+export default accountSettings;
