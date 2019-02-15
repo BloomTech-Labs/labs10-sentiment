@@ -50,3 +50,5 @@ module.exports = {
   //   }
   // }
 };
+
+// heroku run knex --knexfile=./back-end/knexfile.js  migrate:latest -a botsentiment
