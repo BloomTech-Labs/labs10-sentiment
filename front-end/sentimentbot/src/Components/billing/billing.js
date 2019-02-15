@@ -1,11 +1,11 @@
 import React from "react";
 
-function Survey(props) {
+function Billing(props) {
   return (
     <div>
-      <p> Survey Page </p>
+      <p> Billing Page </p>
     </div>
   );
 }
 
-export default Survey;
+export default Billing;
