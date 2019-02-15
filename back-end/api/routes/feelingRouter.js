@@ -14,4 +14,12 @@ router.post("/", (req, res) => {
     });
 });
 
+router.get("/", (req, res) => {
+  db("feelings")
+    .then(data => {
+      res.status(200).send(data);
+    })
+    .catch(() => res.status(500).send("error"));
+});
+
 module.exports = router;
