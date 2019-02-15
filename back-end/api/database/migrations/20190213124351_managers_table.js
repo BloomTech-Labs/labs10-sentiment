@@ -1,6 +1,6 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable("managers", tbl => {
-    tbl.increments("id").primary();
+    tbl.increments("id");
 
     tbl.string("firstName", 255).notNullable();
 
