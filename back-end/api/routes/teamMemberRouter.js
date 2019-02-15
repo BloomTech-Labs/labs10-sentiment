@@ -8,5 +8,13 @@ router.get('/', (req, res) => {
         .then(getSuccess(res))
         .catch(serverErrorGet(res));
     });
+//knex create
+router.post('/', (req, res) => {
+    const team_members = req.body;
+    db.insert(team_members)
+    .into('team_members')
+    .then(postSuccess(res))
+    .catch(serverErrorPost(res));
+});
 
-  module.exports = router;
+module.exports = router;
