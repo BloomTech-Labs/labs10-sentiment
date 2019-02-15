@@ -1,6 +1,6 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable("teamMembers", tbl => {
-    tbl.increments();
+    tbl.increments("id");
 
     tbl.string("firstName", 255).notNullable();
 
@@ -14,12 +14,12 @@ exports.up = function(knex, Promise) {
 
     tbl.string("type", 255).notNullable();
 
-    tbl
-      .integer("team_id")
-      .notNullable()
-      .unsigned()
-      .references("id")
-      .inTable("teams");
+  //   tbl
+  //     .integer("team_id")
+  //     .notNullable()
+  //     .unsigned()
+  //     .references("id")
+  //     .inTable("teams");
   });
 };
 
