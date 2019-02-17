@@ -14,6 +14,8 @@ exports.up = function(knex, Promise) {
 
     tbl.string("type", 255).notNullable();
 
+    tbl.integer("team_id").notNullable();
+
     // tbl
     //   .integer("team_id")
     //   .notNullable()

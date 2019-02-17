@@ -1,7 +1,9 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable("survey_feelings", tbl => {
     tbl.increments("id");
-
+    tbl.integer("survey_id").notNullable();
+    tbl.integer("feelings_id").notNullable();
+    
     // tbl
     //   .integer("survey_id")
     //   .unsigned()

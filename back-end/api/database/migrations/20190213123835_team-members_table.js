@@ -14,12 +14,12 @@ exports.up = function(knex, Promise) {
 
     tbl.string("type", 255).notNullable();
 
-    tbl
-      .integer("team_id")
+    tbl.integer("team_id").notNullable();
+    
       // .notNullable()
       // .unsigned()
-      .references("id")
-      .inTable("teams");
+      // .references("id")
+      // .inTable("teams");
   });
 };
 
