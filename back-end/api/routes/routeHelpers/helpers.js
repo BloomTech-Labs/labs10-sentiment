@@ -11,24 +11,31 @@ module.exports = {
   serverErrorGet: res => err => {
     res.status(500).json(err);
   },
-  serverErrorDelete404: (res, type, id) => () => {
+  serverErrorGetID: (res, type, id) => err => {
+    res.status(404).json({ message: `The ${type} with the specified ${id} does not exist.`, err: err });
+  },
+  serverErrorDelete404: (res, type, id) => err => {
     res.status(404).json({
-      message: `The ${type} with the specified ${id} does not exist.`
+      message: `The ${type} with the specified ${id} does not exist.`,
+      err: err
     });
   },
-  serverErrorDelete500: (res, type) => () => {
+  serverErrorDelete500: (res, type) => err => {
     res.status(500).json({
-      error: `The ${type} could not be removed.`
+      error: `The ${type} could not be removed.`,
+      err: err
     });
   },
   serverErrorUpdate404: (res, type, id) => () => {
     res.status(404).json({
-      message: `The ${type} with the specified ${id} does not exist.`
+      message: `The ${type} with the specified ${id} does not exist.`,
+      err: err
     });
   },
   serverErrorUpdate500: (res, type) => () => {
     res.status(500).json({
-      error: `The ${type} information could not be modified.`
+      error: `The ${type} information could not be modified.`,
+      err: err
     });
   }
 };

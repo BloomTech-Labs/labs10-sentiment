@@ -6,6 +6,7 @@ const {
   serverErrorPost,
   getSuccess,
   serverErrorGet,
+  serverErrorGetID,
   serverErrorDelete404,
   serverErrorDelete500,
   serverErrorUpdate404,
@@ -31,7 +32,7 @@ router.get("/:id", (req, res) => {
   const { id } = req.params;
   db.getID(id)
     .then(getSuccess(res))
-    .catch(serverErrorGet(res));
+    .catch(serverErrorGetID(res, type, id));
 });
 
 router.delete("/:id", (req, res) => {
