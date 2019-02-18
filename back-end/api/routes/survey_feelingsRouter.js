@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const db = require("../database/helpers/managersDb");
+const db = require("../database/dbConfig");
 
 const {
   postSuccess,
@@ -13,7 +13,7 @@ const {
   serverErrorUpdate500
 } = require("./routeHelpers/helpers.js");
 
-const type = "manager";
+const type = "survey_feeling";
 
 router.post("/", (req, res) => {
   const postInfo = req.body;
