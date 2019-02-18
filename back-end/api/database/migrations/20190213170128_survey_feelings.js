@@ -1,17 +1,8 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable("survey_feelings", tbl => {
     tbl.increments("id");
-
-    // tbl
-    //   .integer("survey_id")
-    //   .unsigned()
-    //   .references("id")
-    //   .inTable("surveys");
-    // tbl
-    //   .integer("feelings_id")
-    //   .unsigned()
-    //   .references("id")
-    //   .inTable("feelings");
+    tbl.integer("survey_id").notNullable();
+    tbl.integer("feelings_id").notNullable();
   });
 };
 
