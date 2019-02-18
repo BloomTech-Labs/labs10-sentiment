@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const db = require("../database/dbConfig");
+const db = require("../database/helpers/surveysFeelingsDb");
 
 const {
   postSuccess,
