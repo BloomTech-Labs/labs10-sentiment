@@ -6,8 +6,12 @@ import "./App.css";
 import history from './history'
 
 class App extends Component {
+  getProfile() {
+    this.props.auth.getProfile()
+  }
 
   render() {
+
     return (
       <Router history={history}>
       <div className="App">
