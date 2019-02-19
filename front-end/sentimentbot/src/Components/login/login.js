@@ -1,9 +1,19 @@
 import React from "react";
 
-function Login(props) {
+// function Login(props) {
+class Login extends React.Component {
+  login() {
+    this.props.auth.login()
+  }
+    
+render() {
   return (
-    <form>
-      <div>
+    // <form>
+    <div>
+      {/* login() {
+      this.props.auth.login()
+    } */}
+      {/* <div>
         <label>Username</label>
         <input
           name="username"
@@ -20,12 +30,14 @@ function Login(props) {
           // onChange={this.handleInputChange}
           type="password"
         />
-      </div>
+      </div> */}
       <div>
-        <button type="submit">login</button>
+        <button type="submit" onClick={this.login.bind(this)}>login</button>
       </div>
-    </form>
-  );
+      </div>
+    // </form>
+    )};
 }
+
 
 export default Login;
