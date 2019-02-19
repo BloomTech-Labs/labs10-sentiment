@@ -1,28 +1,26 @@
 import React, { Component } from "react";
-import { Route, NavLink } from "react-router-dom";
+import { Route, NavLink, Router } from "react-router-dom";
 import Home from "./Home";
-import Login from "./login/login";
 import "./App.css";
-import Auth from "../Components/Auth/auth";
+// import Auth from "../Components/Auth/auth";
+import history from './history'
 
 class App extends Component {
 
   render() {
-    const auth = new Auth();
-
     return (
+      <Router history={history}>
       <div className="App">
         <div className="navBar">
           <div className="navButton">
-            <NavLink exact to="/">
+            <NavLink exact to="/home">
               Home
             </NavLink>
-
-            <Login auth={auth} />
           </div>
         </div>
-        <Route exact path="/" component={Home} />
+        <Route exact path="/home" component={Home} />
       </div>
+      </Router>
     );
   }
 }

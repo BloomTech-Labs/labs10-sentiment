@@ -1,16 +1,18 @@
-import React from 'react';
+// import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from '../src/Components/App';
+// import App from '../src/Components/App';
+import { makeMainRoutes } from './Components/routes';
 // import thunk from 'redux-think';
 // import logger from 'redux-logger';
 // import { createStore, applyMiddleware } from 'redux'
 // import { Provider } from 'react-redux';
-import { BrowserRouter as Router } from 'react-router-dom';
+// import { BrowserRouter as Router } from 'react-router-dom';
+const routes = makeMainRoutes();
 
 // const store = createStore(whatever, applyMiddleware(thunk, logger))
 
-ReactDOM.render(<Router><App /></Router>, document.getElementById('root'));
+ReactDOM.render(routes, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

@@ -1,4 +1,5 @@
 import auth0 from "auth0-js";
+import history from '../history'
 
 export default class Auth {
   accessToken;
@@ -8,7 +9,7 @@ export default class Auth {
   auth0 = new auth0.WebAuth({
     domain: "bikbik.auth0.com",
     clientID: "BnXSvU6tE4W8WGMt3gDWra24hXr8qY0e",
-    redirectUri: "http://localhost:3000/",
+    redirectUri: "http://localhost:3000/callback",
     responseType: "token id_token",
     scope: "openid"
   });
@@ -32,7 +33,7 @@ export default class Auth {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
       } else if (err) {
-        // history.replace("/home");
+        history.replace("/home");
         console.log(err);
         alert(`Error: ${err.error}. Check the console for further details.`);
       }
@@ -58,7 +59,7 @@ export default class Auth {
     this.expiresAt = expiresAt;
 
     // navigate to the home route
-    // history.replace("/home");
+    history.replace("/home");
   }
 
   renewSession() {
@@ -85,7 +86,7 @@ export default class Auth {
     localStorage.removeItem("isLoggedIn");
 
     // navigate to the home route
-    // history.replace("/home");
+    history.replace("/home");
   }
 
   isAuthenticated() {
