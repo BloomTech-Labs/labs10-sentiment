@@ -3,9 +3,15 @@ import { Route, NavLink } from "react-router-dom";
 import Home from "./Home";
 import Login from "./login/login";
 import "./App.css";
+// import Auth from './Auth/auth.js';
+
 
 class App extends Component {
+  
+ 
   render() {
+    // const auth = new Auth()
+    // auth.login(); 
     return (
       <div className="App">
         <div className="navBar">
@@ -13,7 +19,7 @@ class App extends Component {
             <NavLink exact to="/">
               Home
             </NavLink>
-            <Login />
+            <Login login={this.login} />
           </div>
         </div>
         <Route exact path="/" component={Home} />
