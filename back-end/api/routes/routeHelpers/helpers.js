@@ -14,6 +14,9 @@ module.exports = {
   serverErrorGetID: (res, type, id) => err => {
     res.status(404).json({ message: `The ${type} with the specified ${id} does not exist.`, err: err });
   },
+  serverErrorGetEmail: (res, type, email) => err => {
+    res.status(404).json({ message: `The ${type} with the specified ${email} does not exist.`, err: err });
+  },
   serverErrorDelete404: (res, type, id) => err => {
     res.status(404).json({
       message: `The ${type} with the specified ${id} does not exist.`,

@@ -9,6 +9,9 @@ module.exports = {
   getID: function(id) {
     return db(table).where("id", id);
   },
+  getEmail: function(email) {
+    return db(table).where("email", email);
+  },
   insert: function(post) {
     return db(table)
       .insert(post)
