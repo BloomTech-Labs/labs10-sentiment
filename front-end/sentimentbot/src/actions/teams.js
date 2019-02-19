@@ -14,7 +14,7 @@ export const EDIT_TEAMS_SUCCESS = "EDIT_TEAMS_SUCCESS";
 export const EDIT_TEAMS_FAILURE = "EDIT_TEAMS_FAILURE";
 export const SINGLE_TEAMS_START = "SINGLE_TEAMS_START";
 export const SINGLE_TEAMS_SUCCESS = "SINGLE_TEAMS_SUCCESS";
-export const SINGLE_TEAMS_FAILURE = "SINGLE_TEAM";
+export const SINGLE_TEAMS_FAILURE = "SINGLE_TEAM_FAILURE";
 
 export const getTeams = () => {
   dispatchEvent({ type: FETCH_TEAMS_START });
