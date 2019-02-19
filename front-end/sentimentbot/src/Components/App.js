@@ -1,32 +1,15 @@
 import React, { Component } from "react";
 import { Route, NavLink } from "react-router-dom";
 import Home from "./Home";
-// import Login from "./login/login";
+import Login from "./login/login";
 import "./App.css";
-// import Auth from './Auth/auth.js';
+import Auth from "../Components/Auth/auth";
 
 class App extends Component {
-  login() {
-    this.props.auth.login();
-  }
-
-  logout() {
-    this.props.auth.logout();
-  }
-
-  componentDidMount() {
-    const { renewSession } = this.props.auth;
-
-    if (localStorage.getItem("isLoggedIn") === "true") {
-      renewSession();
-    }
-  }
 
   render() {
-    // const auth = new Auth()
-    // auth.login();
+    const auth = new Auth();
 
-    // const { isAuthenticated } = this.props.auth;
     return (
       <div className="App">
         <div className="navBar">
@@ -34,11 +17,8 @@ class App extends Component {
             <NavLink exact to="/">
               Home
             </NavLink>
-            <button onClick={this.login.bind(this)}>Log In</button>
 
-            <button onClick={this.logout.bind(this)}>Log Out</button>
-
-            {/* <Login login={this.login} /> */}
+            <Login auth={auth} />
           </div>
         </div>
         <Route exact path="/" component={Home} />
