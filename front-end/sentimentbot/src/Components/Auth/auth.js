@@ -11,7 +11,7 @@ export default class Auth {
     clientID: "BnXSvU6tE4W8WGMt3gDWra24hXr8qY0e",
     redirectUri: "https://sentimentbot.netlify.com/callback",
     responseType: "token id_token",
-    scope: "openid"
+    scope: "openid profile email"
   });
 
   constructor() {
@@ -22,6 +22,7 @@ export default class Auth {
     this.getAccessToken = this.getAccessToken.bind(this);
     this.getIdToken = this.getIdToken.bind(this);
     this.renewSession = this.renewSession.bind(this);
+    this.getProfile = this.getProfile.bind(this);
   }
 
   login() {
@@ -69,12 +70,18 @@ export default class Auth {
       } else if (err) {
         this.logout();
         console.log(err);
-        alert(
-          `Could not get a new token (${err.error}: ${err.error_description}).`
-        );
       }
     });
   }
+
+  getProfile(cb) {
+    this.auth0.client.userInfo(this.accessToken, (err, profile) => {
+      if (profile) {
+        this.userProfile = profile;
+      }
+      cb(err, profile);
+    });
+  };
 
   logout() {
     // Remove tokens and expiry time
