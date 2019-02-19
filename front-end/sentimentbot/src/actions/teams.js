@@ -65,3 +65,4 @@ export const getSingleTeam = id => dispatch => {
     })
     .catch(err => dispatch({ type: SINGLE_TEAMS_FAILURE, payload: err }));
 };
+// actions fils for teams
