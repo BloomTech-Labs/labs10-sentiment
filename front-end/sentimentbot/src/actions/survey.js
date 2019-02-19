@@ -1,0 +1,67 @@
+import axios from 'axios';
+
+export const FETCH_SURVEY_START = 'FETCH_SURVEY_START';
+export const FETCH_SURVEY_SUCCESS = 'FETCH_SURVEY_SUCCESS';
+export const FETCH_SURVEY_FAILURE = 'FETCH_SURVEY_FAILURE';
+export const ADD_SURVEY_START = 'ADD_SURVEY_START';
+export const ADD_SURVEY_SUCCESS = 'ADD_SURVEY_SUCCESS';
+export const ADD_SURVEY_FAILURE = 'ADD_SURVEY_FAILURE';
+export const DELETE_SURVEY_START = 'DELETE_SURVEY_START';
+export const DELETE_SURVEY_SUCCESS = 'DELETE_SURVEY_SUCCESS';
+export const DELETE_SURVEY_FAILURE = 'DELETE_SURVEY_FAILURE';
+export const EDIT_SURVEY_START = 'EDIT_SURVEY_START';
+export const EDIT_SURVEY_SUCCESS = 'EDIT_SURVEY_SUCCESS';
+export const EDIT_SURVEY_FAILURE = 'EDIT_SURVEY_FAILURE';
+export const SINGLE_SURVEY_START = 'SINGLE_SURVEY_START';
+export const SINGLE_SURVEY_SUCCESS = 'SINGLE_SURVEY_SUCCESS';
+export const SINGLE_SURVEY_FAILURE = 'SINGLE_SURVEY_FAILURE';
+
+export const getSurvey = () => {
+    dispatchEvent({ type: FETCH_SURVEY_START });
+    axios
+    .get('https://botsentiment.herokuapp.com/api/feelings')
+    .then(response => {
+        dispatchEvent({ type: FETCH_SURVEY_SUCCESS, payload: response.data })
+    })
+    .catch(err => dispatchEvent({ type: FETCH_SURVEY_FAILURE, payload: err }))
+}
+
+export const addSurvey = note => dispatch => {
+    dispatch({ type: ADD_SURVEY_START });
+    axios
+        .post("https://botsentiment.herokuapp.com/api/feelings", note)
+        .then(response => {
+            dispatch({ type: ADD_SURVEY_SUCCESS, payload: response.data });
+        })
+        .catch(err => dispatch({ type: ADD_SURVEY_FAILURE, payload: err }));
+};
+
+export const editSurvey = (id, note) => dispatch => {
+    dispatch({ type: EDIT_SURVEY_START });
+    axios
+        .put(`https://botsentiment.herokuapp.com/api/feelings/${id}`, note)
+        .then(response => {
+            dispatch({ type: EDIT_SURVEY_SUCCESS, payload: response.data });
+        })
+        .catch(err => dispatch({ type: EDIT_SURVEY_FAILURE, payload: err }));
+};
+
+export const deleteSurvey = id => dispatch => {
+    dispatch({ type: DELETE_SURVEY_START });
+    axios
+        .delete(`https://botsentiment.herokuapp.com/api/feelings/${id}`)
+        .then(response => {
+            dispatch({ type: DELETE_SURVEY_SUCCESS, payload: response.data })
+        })
+        .catch(err => dispatch({ type: DELETE_SURVEY_FAILURE, payload: err }));
+};
+
+export const fetchSingleSurvey = id => dispatch => {
+    dispatch({ type: SINGLE_SURVEY_START });
+    axios
+        .get(`https://botsentiment.herokuapp.com/api/feelings/${id}`)
+        .then(response => {
+            dispatch({ type: SINGLE_SURVEY_SUCCESS, payload: response.data })
+        })
+        .catch(err => dispatch({ type: SINGLE_SURVEY_FAILURE, payload: err }));
+};
