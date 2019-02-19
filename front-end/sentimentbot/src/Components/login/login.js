@@ -1,43 +1,54 @@
 import React from "react";
 
-// function Login(props) {
+
 class Login extends React.Component {
   login() {
-    this.props.auth.login()
+    this.props.auth.login();
   }
-    
-render() {
-  return (
-    // <form>
-    <div>
-      {/* login() {
-      this.props.auth.login()
-    } */}
-      {/* <div>
-        <label>Username</label>
-        <input
-          name="username"
-          // value={this.state.username}
-          // onChange={this.handleInputChange}
-          type="text"
-        />
-      </div>
-      <div>
-        <label>Password</label>
-        <input
-          name="password"
-          // value={this.state.password}
-          // onChange={this.handleInputChange}
-          type="password"
-        />
-      </div> */}
-      <div>
-        <button type="submit" onClick={this.login.bind(this)}>login</button>
-      </div>
-      </div>
-    // </form>
-    )};
-}
 
+  logout() {
+    this.props.auth.logout();
+  }
+
+  componentDidMount() {
+    const { renewSession } = this.props.auth;
+
+    if (localStorage.getItem('isLoggedIn') === 'true') {
+      renewSession();
+    }
+  }
+
+  render() {
+    const { isAuthenticated } = this.props.auth;
+    return (
+      <>
+      {
+        !isAuthenticated() && (
+            <button
+              id="qsLoginBtn"
+              bsStyle="primary"
+              className="btn-margin"
+              onClick={this.login.bind(this)}
+            >
+              Log In
+            </button>
+          )
+      }
+      {
+        isAuthenticated() && (
+            <button
+              id="qsLogoutBtn"
+              bsStyle="primary"
+              className="btn-margin"
+              onClick={this.logout.bind(this)}
+            >
+              Log Out
+            </button>
+          )
+      }
+      </>
+    );
+  }
+}
 
 export default Login;
