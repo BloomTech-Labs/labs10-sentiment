@@ -33,7 +33,7 @@ export const addFeelings = note => dispatch => {
         .then(response => {
             dispatch({ type: ADD_FEELINGS_SUCCESS, payload: response.data });
         })
-        .catch(err => dispatch({ type: ADD_NOTE_FAILURE, payload: err }));
+        .catch(err => dispatch({ type: ADD_FEELINGS_FAILURE, payload: err }));
 };
 
 export const editFeelings = (id, note) => dispatch => {
