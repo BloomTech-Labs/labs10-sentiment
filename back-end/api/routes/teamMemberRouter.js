@@ -9,6 +9,7 @@ const {
   getSuccess,
   serverErrorGet,
   serverErrorGetID,
+  serverErrorGetEmail,
   serverErrorDelete404,
   serverErrorDelete500,
   serverErrorUpdate404,
@@ -21,26 +22,38 @@ const type2 = "team";
 router.post("/", (req, res) => {
   const postInfo = req.body;
 
-  teamdb
-    .get()
-    .where("id", postInfo.team_id)
-    .then(data => {
-      if (data.length === 0) {
-        res
-          .status(404)
-          .json({
-            message: `${type2} with ID ${postInfo.team_id} does not exist.`
-          });
-      }
-    });
+  // teamdb
+  //   .get()
+  //   .where("id", postInfo.team_id)
+  //   .then(data => {
+  //     if (data.length === 0) {
+  //       res
+  //         .status(404)
+  //         .json({
+  //           message: `${type2} with ID ${postInfo.team_id} does not exist.`
+  //         });
+  //     }
+  //   });
+  // db.get()
+  //   .where("team_id", postInfo.team_id)
+  //   .then(data => {
+  //     if (data.length > 0) {
+  //       res
+  //         .status(406)
+  //         .json({
+  //           message: `${type2} with ID ${postInfo.team_id} contains a ${type}.`
+  //         });
+  //     }
+  //   });
+
   db.get()
-    .where("team_id", postInfo.team_id)
+    .where("email", postInfo.email)
     .then(data => {
       if (data.length > 0) {
         res
           .status(406)
           .json({
-            message: `${type2} with ID ${postInfo.team_id} contains a ${type}.`
+            message: `${type} with Email ${postInfo.email} already exists.`
           });
       }
     });
@@ -61,6 +74,13 @@ router.get("/:id", (req, res) => {
   db.getID(id)
     .then(getSuccess(res))
     .catch(serverErrorGetID(res, type, id));
+});
+
+router.get("/Email/:email", (req, res) => {
+  const { email } = req.params;
+  db.getEmail(email)
+    .then(getSuccess(res))
+    .catch(serverErrorGetEmail(res, type, email));
 });
 
 router.delete(`/:id`, (req, res) => {
