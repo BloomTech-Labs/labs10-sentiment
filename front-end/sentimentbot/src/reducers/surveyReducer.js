@@ -17,10 +17,10 @@ import {
 } from '../actions/index';
 
 const initialState = {
-    managers: [],
+    survey: [],
     isFetching: false,
     error: null,
-    singleManagers: [],
+    singleSurvey: [],
   };
   
   const surveyReducer = (state = initialState, action) => {
@@ -34,7 +34,7 @@ const initialState = {
         return {
           ...state,
           isFetching: false,
-          managers: action.payload,
+          survey: action.payload,
           error: null
         };
       case FETCH_SURVEY_FAILURE:
@@ -100,13 +100,13 @@ const initialState = {
         return {
           ...state,
           isFetching: false,
-          singleManagers: action.payload
+          singleSurvey: action.payload
         };
       case SINGLE_SURVEY_FAILURE:
         return {
           ...state,
           isFetching: false,
-          singleManagers: [],
+          singleSurvey: [],
           error: action.payload
         };
       default:
