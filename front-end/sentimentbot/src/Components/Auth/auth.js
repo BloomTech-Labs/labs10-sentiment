@@ -9,7 +9,7 @@ export default class Auth {
   auth0 = new auth0.WebAuth({
     domain: "bikbik.auth0.com",
     clientID: "BnXSvU6tE4W8WGMt3gDWra24hXr8qY0e",
-    redirectUri: "http://localhost:3000/callback",
+    redirectUri: "https://sentimentbot.netlify.com/callback",
     responseType: "token id_token",
     scope: "openid"
   });
@@ -31,11 +31,11 @@ export default class Auth {
   handleAuthentication() {
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
+        console.log(authResult)
         this.setSession(authResult);
       } else if (err) {
         history.replace("/home");
         console.log(err);
-        alert(`Error: ${err.error}. Check the console for further details.`);
       }
     });
   }
