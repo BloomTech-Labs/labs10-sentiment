@@ -21,10 +21,14 @@ class App extends Component {
             <NavLink exact to="/home">
               Home
             </NavLink>
+            <NavLink exact to="/billing">
+              Billing
+            </NavLink>
           </div>
         </div>
         <Route exact path="/home" component={Home} />
-        <Billing />
+        <Route path="/billing" component={Billing} />
+        {/* <Billing /> */}
       </div>
       </Router>
     );

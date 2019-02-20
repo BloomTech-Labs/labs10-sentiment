@@ -9,7 +9,7 @@ import {
   editTeamMembers,
   getSingleTeam
 } from "../../actions/index";
-import axios from "axios";
+// import axios from "axios";
 
 class Profile extends React.Component {
   constructor() {
