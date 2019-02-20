@@ -33,11 +33,10 @@ export default class Auth {
   handleAuthentication() {
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
-        console.log(authResult)
         localStorage.setItem("email", authResult.idTokenPayload.email);
         this.setSession(authResult);
       } else if (err) {
-        history.replace("/home");
+        history.replace("/");
         console.log(err);
       }
     });
@@ -93,9 +92,9 @@ export default class Auth {
 
     // Remove isLoggedIn flag from localStorage
     localStorage.removeItem("isLoggedIn");
-
+    localStorage.removeItem("email");
     // navigate to the home route
-    history.replace("/home");
+    history.replace("/");
   }
 
   isAuthenticated() {
