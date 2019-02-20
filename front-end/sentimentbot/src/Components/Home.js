@@ -55,7 +55,7 @@ class Home extends React.Component {
   render() {
     console.log(this.state.code);
     return (
-      <div className="homeContent">
+      <div className="home-container">
         <h1 className="welcomeText">Welcome to Mood</h1>
         <p>Hello World</p>
         <a
@@ -70,6 +70,7 @@ class Home extends React.Component {
             srcSet="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x"
           />
         </a>
+        <br/>
         <Link to="/authorization">Enter</Link>
       </div>
     );
