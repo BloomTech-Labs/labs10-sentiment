@@ -4,6 +4,7 @@ import Home from "./Home";
 import "./App.css";
 // import Auth from "../Components/Auth/auth";
 import history from './history'
+import Billing from './billing/billing';
 
 class App extends Component {
   getProfile() {
@@ -23,6 +24,7 @@ class App extends Component {
           </div>
         </div>
         <Route exact path="/home" component={Home} />
+        <Billing />
       </div>
       </Router>
     );
