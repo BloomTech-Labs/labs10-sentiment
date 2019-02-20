@@ -5,6 +5,7 @@ import Login from './login/login';
 import Callback from './callback/callback';
 import Auth from './Auth/auth';
 import history from './history';
+import Authorization from './Authorization/authorization';
 
 const auth = new Auth();
 
@@ -23,6 +24,10 @@ export const makeMainRoutes = () => {
           <Route path="/callback" render={(props) => {
             handleAuthentication(props);
             return <Callback {...props} /> 
+          }}/>
+          <Route path="/authorization" render={(props) => {
+            handleAuthentication(props);
+            return <Authorization {...props} /> 
           }}/>
         </div>
       </Router>
