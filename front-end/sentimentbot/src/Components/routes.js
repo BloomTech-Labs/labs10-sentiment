@@ -6,6 +6,11 @@ import Callback from './callback/callback';
 import Auth from './Auth/auth';
 import history from './history';
 import Authorization from './Authorization/authorization';
+import thunk from 'redux-thunk';
+import logger from 'redux-logger';
+import { createStore, applyMiddleware, compose } from 'redux'
+import { Provider } from 'react-redux';
+import rootReducer from '../reducers/index'
 
 const auth = new Auth();
 
@@ -15,8 +20,13 @@ const handleAuthentication = ({location}) => {
   }
 }
 
+const reduxDevHook = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+
+const store = createStore(rootReducer, compose(applyMiddleware(thunk, logger), reduxDevHook));
+
 export const makeMainRoutes = () => {
   return (
+    <Provider store={store}>
       <Router history={history}>
         <div>
           <Route path="/" render={(props) => <Login auth={auth} {...props} />} />
@@ -31,5 +41,6 @@ export const makeMainRoutes = () => {
           }}/>
         </div>
       </Router>
+      </Provider>
   );
 }
