@@ -3,11 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 // import App from '../src/Components/App';
 import { makeMainRoutes } from './Components/routes';
-// import thunk from 'redux-think';
-// import logger from 'redux-logger';
-// import { createStore, applyMiddleware } from 'redux'
-// import { Provider } from 'react-redux';
-// import { BrowserRouter as Router } from 'react-router-dom';
+
 const routes = makeMainRoutes();
 
 // const store = createStore(whatever, applyMiddleware(thunk, logger))

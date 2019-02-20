@@ -49,7 +49,7 @@ export const editTeam = id => dispatch => {
 export const deleteTeam = id => dispatch => {
   dispatch({ type: DELETE_TEAMS_START });
   axios
-    .put(`https://botsentiment.herokuapp.com/api/teams/${id}`)
+    .delete(`https://botsentiment.herokuapp.com/api/teams/${id}`)
     .then(response => {
       dispatch({ type: DELETE_TEAMS_SUCCESS, payload: response.data });
     })
@@ -59,7 +59,7 @@ export const deleteTeam = id => dispatch => {
 export const getSingleTeam = id => dispatch => {
   dispatch({ type: SINGLE_TEAMS_START });
   axios
-    .put(`https://botsentiment.herokuapp.com/api/teams/${id}`)
+    .get(`https://botsentiment.herokuapp.com/api/teams/${id}`)
     .then(response => {
       dispatch({ type: SINGLE_TEAMS_SUCCESS, payload: response.data });
     })
