@@ -7,6 +7,7 @@ const teamRouter = require("./routes/teamRouter.js");
 const surveyRouter = require("./routes/surveyRouter.js");
 const feelingRouter = require("./routes/feelingRouter.js");
 const surveyFeelingRouter = require("./routes/survey_feelingsRouter");
+const stripeRouter = require('./routes/stripeRouter')
 
 const stripe = require('stripe')('sk_test_jHycy56d9VhQBFxJSQq5PCUy');
 const bodyParser = require('body-parser');
@@ -29,13 +30,14 @@ server.use('/api/teams', teamRouter);
 server.use('/api/surveys', surveyRouter);
 server.use('/api/feelings', feelingRouter);
 server.use('/api/survey_feelings', surveyFeelingRouter);
+server.use('/api/stripe', stripeRouter);
 
 server.get("/", (req, res) => {
   res.status(200).json("Sanity Check ITS WORKING");
   console.log("Sanity Check ITS WORKING!!!");
 });
 
-var request = require("request");
+// var request = require("request");
 
 // var options = { method: 'GET',
 //   url: 'https://bikbik.auth0.com/api/v2/users',
@@ -51,7 +53,7 @@ var request = require("request");
 server.post("/charge", async (req, res) => {
   try {
     let {status} = await stripe.charges.create({
-      amount: 2000,
+      amount: 1000,
       currency: "usd",
       description: "An example charge",
       source: req.body

@@ -36,10 +36,10 @@ export const addTeam = team => dispatch => {
     .catch(err => dispatch({ type: ADD_TEAMS_FAILURE, payload: err }));
 };
 
-export const editTeam = id => dispatch => {
+export const editTeam = (id, note) => dispatch => {
   dispatch({ type: EDIT_TEAMS_START });
   axios
-    .put(`https://botsentiment.herokuapp.com/api/teams/${id}`)
+    .put(`https://botsentiment.herokuapp.com/api/teams/${id}`, note)
     .then(response => {
       dispatch({ type: EDIT_TEAMS_SUCCESS, payload: response.data });
     })
