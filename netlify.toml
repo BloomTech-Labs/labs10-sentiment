@@ -6,6 +6,6 @@ command = "yarn build"
 
 [[redirects]]
 from = "/*"
-to = "front-end/sentimentbot/public/index.html"
+to = "/index.html"
 status = 200
 
