@@ -22,29 +22,29 @@ const type2 = "team";
 router.post("/", (req, res) => {
   const postInfo = req.body;
 
-  // teamdb
-  //   .get()
-  //   .where("id", postInfo.team_id)
-  //   .then(data => {
-  //     if (data.length === 0) {
-  //       res
-  //         .status(404)
-  //         .json({
-  //           message: `${type2} with ID ${postInfo.team_id} does not exist.`
-  //         });
-  //     }
-  //   });
-  // db.get()
-  //   .where("team_id", postInfo.team_id)
-  //   .then(data => {
-  //     if (data.length > 0) {
-  //       res
-  //         .status(406)
-  //         .json({
-  //           message: `${type2} with ID ${postInfo.team_id} contains a ${type}.`
-  //         });
-  //     }
-  //   });
+  teamdb
+    .get()
+    .where("id", postInfo.team_id)
+    .then(data => {
+      if (data.length === 0) {
+        res
+          .status(404)
+          .json({
+            message: `${type2} with ID ${postInfo.team_id} does not exist.`
+          });
+      }
+    });
+  db.get()
+    .where("team_id", postInfo.team_id)
+    .then(data => {
+      if (data.length > 0) {
+        res
+          .status(406)
+          .json({
+            message: `${type2} with ID ${postInfo.team_id} contains a ${type}.`
+          });
+      }
+    });
 
   db.get()
     .where("email", postInfo.email)
@@ -62,6 +62,7 @@ router.post("/", (req, res) => {
     .then(postSuccess(res))
     .catch(serverErrorPost(res));
 });
+
 
 router.get("/", (req, res) => {
   db.get()

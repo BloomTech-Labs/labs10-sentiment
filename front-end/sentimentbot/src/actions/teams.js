@@ -30,7 +30,7 @@ export const addTeam = team => dispatch => {
   dispatch({ type: ADD_TEAMS_START });
   axios
     .post("https://botsentiment.herokuapp.com/api/teams", team)
-    .then(response => {
+    .then(response => { 
       dispatch({ type: ADD_TEAMS_SUCCESS, payload: response.data });
     })
     .catch(err => dispatch({ type: ADD_TEAMS_FAILURE, payload: err }));

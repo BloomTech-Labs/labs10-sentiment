@@ -4,7 +4,10 @@ import {
   getSingleTeamMembers,
   addTeamMembers,
   getTeamMembers,
-  addTeam
+  addTeam,
+  getTeams,
+  editTeamMembers,
+  getSingleTeam
 } from "../../actions/index";
 import axios from "axios";
 
@@ -13,7 +16,8 @@ class Profile extends React.Component {
     super();
     this.state = {
       view: "",
-      name: ""
+      name: "",
+      team_code: 0
     };
   }
   componentDidMount() {
@@ -60,24 +64,47 @@ class Profile extends React.Component {
   createTeam = event => {
     event.preventDefault();
     // const single = this.props.singleTeamMembers[0];
-    // const team = {
-    //   name: this.state.name
-    // }
-    // this.props.addTeam();
-    // const endpoint = `https://botsentiment.herokuapp.com/api/team_members/:${
-    //   single.id
-    // }`;
-    // const changes = {};
-    // axios
-    //   .put(endpoint, changes)
-    //   .then(response => {
-    //     // this.setState(() => ({ movie: response.data }));
-    //     console.log("response", response);
-    //   })
-    //   .catch(error => {
-    //     console.error(error);
-    //   });
+    const team = {
+      name: this.state.name
+    };
+    this.props.addTeam(team);
+    this.editManager();
   };
+
+  addCodeToMember = event => {
+    event.preventDefault();
+
+    const code = this.state.team_code;
+    let teams = this.props.getTeams();
+    let teamID = teams.map(item=>{if(item.team_code === code){
+      return item.id;
+    }})
+
+    let member = this.props.singleTeamMembers[0];
+
+    member.team_id = teamID;
+    member.type = "team_member";
+
+    console.log(member);
+
+    this.props.editTeamMembers(member.id, member);
+  };
+
+  editManager = () => {
+    let teams = this.props.getTeams();
+    let newTeam = teams[teams.length - 1];
+
+    let member = this.props.singleTeamMembers[0];
+
+    member.team_id = newTeam.id;
+    member.type = "manager";
+
+    console.log(member);
+
+    this.props.editTeamMembers(member.id, member);
+  };
+
+  
 
   handleChange = event => {
     this.setState({
@@ -112,18 +139,22 @@ class Profile extends React.Component {
           </a>
           <div>
             <button
-              onClick={()=>{this.setState({
-                ...this.state,
-                view: "join"
-              })}}
+              onClick={() => {
+                this.setState({
+                  ...this.state,
+                  view: "join"
+                });
+              }}
             >
               Join a Team
             </button>
             <button
-              onClick={()=>{this.setState({
-                ...this.state,
-                view: "create"
-              })}}
+              onClick={() => {
+                this.setState({
+                  ...this.state,
+                  view: "create"
+                });
+              }}
             >
               Create a Team
             </button>
@@ -133,6 +164,15 @@ class Profile extends React.Component {
     } else if (view === "create") {
       return (
         <div>
+        <a href="https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645">
+            <img
+              alt="Add to Slack"
+              height="40"
+              width="139"
+              src="https://platform.slack-edge.com/img/add_to_slack.png"
+              srcSet="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x"
+            />
+          </a>
           <form onSubmit={this.submitHandler} autoComplete="nope">
             <input
               autoComplete="off"
@@ -142,11 +182,47 @@ class Profile extends React.Component {
               placeholder="Add Team Name"
               value={this.state.name}
             />
-            <button onClick={this.createTeam}>Submit Team Tile</button>
+            <button
+              onClick={() => {
+                this.createTeam();
+              }}
+            >
+              Submit Team Title
+            </button>
           </form>
         </div>
       );
     } else if (view === "join") {
+      return (
+        <div>
+          <a href="https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645">
+            <img
+              alt="Add to Slack"
+              height="40"
+              width="139"
+              src="https://platform.slack-edge.com/img/add_to_slack.png"
+              srcSet="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x"
+            />
+          </a>
+          <form onSubmit={this.submitHandler} autoComplete="nope">
+            <input
+              autoComplete="off"
+              type="text"
+              onChange={this.handleChange}
+              name="team_code"
+              placeholder="Add Team Code"
+              value={this.state.team_code}
+            />
+            <button
+              onClick={() => {
+                this.addCodeToMember();
+              }}
+            >
+              Submit Team Code
+            </button>
+          </form>
+        </div>
+      );
     }
   }
 }
@@ -162,5 +238,13 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { getSingleTeamMembers, addTeamMembers, getTeamMembers, addTeam }
+  {
+    getSingleTeamMembers,
+    addTeamMembers,
+    getTeamMembers,
+    addTeam,
+    getTeams,
+    editTeamMembers,
+    getSingleTeam
+  }
 )(Profile);

@@ -15,12 +15,33 @@ const {
 
 const type = "team";
 
+// router.post("/", (req, res) => {
+//   const postInfo = req.body;
+//   db.insert(postInfo)
+//     .then(postSuccess(res))
+//     .catch(serverErrorPost(res));
+// });
+
 router.post("/", (req, res) => {
-  const postInfo = req.body;
+  let postInfo = req.body;
+  db.get().then(team => {
+    if (team.length === 0) {
+      postInfo.team_code = 10000;
+    } else if (team.length > 0) {
+      let num = 0;
+      for(let i = 0; i < team.length;i++){
+        if(num < team[i].team_code){
+          num = team[i].team_code;
+        }
+      }
+      num ++;
+      postInfo.team_code = num;
+    }
+  });
   db.insert(postInfo)
     .then(postSuccess(res))
     .catch(serverErrorPost(res));
-});
+}); 
 
 router.get("/", (req, res) => {
   db.get()
