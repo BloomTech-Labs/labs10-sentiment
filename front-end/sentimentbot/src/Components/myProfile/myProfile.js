@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 import {
   getSingleTeamMembers,
   addTeamMembers,
-  getTeamMembers
+  getTeamMembers,
+  addTeam
 } from "../../actions/index";
 import axios from "axios";
 
@@ -58,16 +59,11 @@ class Profile extends React.Component {
 
   createTeam = event => {
     event.preventDefault();
-
-    // const postEndPoint = `https://botsentiment.herokuapp.com/api/teams`;
-    // let postInfo = {};
-    // axios
-    //   .post()
-    //   .then()
-    //   .catch();
-
     // const single = this.props.singleTeamMembers[0];
-
+    // const team = {
+    //   name: this.state.name
+    // }
+    // this.props.addTeam();
     // const endpoint = `https://botsentiment.herokuapp.com/api/team_members/:${
     //   single.id
     // }`;
@@ -115,7 +111,6 @@ class Profile extends React.Component {
             />
           </a>
           <div>
-            {/* <p>{this.props.singleTeamMembers[0].id}</p> */}
             <button
               onClick={()=>{this.setState({
                 ...this.state,
@@ -167,5 +162,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { getSingleTeamMembers, addTeamMembers, getTeamMembers }
+  { getSingleTeamMembers, addTeamMembers, getTeamMembers, addTeam }
 )(Profile);
