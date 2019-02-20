@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 class Home extends React.Component {
   constructor(props) {
@@ -9,10 +10,37 @@ class Home extends React.Component {
     };
   }
 
-  componentDidUpdate(previousProps) {
+  componentDidMount() {
+    // change this line to grab the id passed on the URL
     const code = this.props.match.params.code;
     console.log(code);
+    if (code) {
+      this.fetchAuth(code);
+    }
   }
+
+  componentDidUpdate(prev) {
+    const code = this.props.match.params.code;
+    console.log(code);
+    if (code !== prev.match.params.code) {
+      this.fetchAuth(code);
+    }
+  }
+
+  fetchAuth = code => {
+    axios
+      .post(
+        `https://slack.com/api/oauth.access`,
+        `client_id=555765331446.554661112789&client_secret=65618f3ce7feca293e1abae74cae7afc&code=${code}&redirect_uri=https://sentimentbot.netlify.com/&single_channel=false`
+      )
+      .then(response => {
+        // this.setState(() => ({ movie: response.data }));
+        console.log("response", response);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  };
 
   handleSubmit(event) {
     event.preventDefault();
