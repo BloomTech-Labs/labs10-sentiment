@@ -12,6 +12,7 @@ import { createStore, applyMiddleware, compose } from "redux";
 import { Provider } from "react-redux";
 import rootReducer from "../reducers/index";
 import Profile from "./myProfile/myProfile";
+import Billing from './billing/billing';
 
 const auth = new Auth();
 
@@ -54,6 +55,7 @@ export const makeMainRoutes = () => {
             render={props => <Authorization {...props} />}
           />
           <Route path="/profile" render={props => <Profile {...props} />} />
+          <Route path="/billing" render={props => <Billing {...props} />} />
         </div>
       </Router>
     </Provider>
