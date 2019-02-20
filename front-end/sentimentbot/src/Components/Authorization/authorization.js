@@ -23,11 +23,11 @@ class Authorization extends React.Component {
     this.props.getTeamMembers()
   }
 
-  componentDidUpdate(prevProps) {
-    if(this.props.teamMembers.length !== prevProps.teamMembers.length) {
-      getSingleTeamMembers(localStorage.getItem('email'))
-    }
-  }
+  // componentDidUpdate(prevProps) {
+  //   if(this.props.teamMembers.length !== prevProps.teamMembers.length) {
+  //     getSingleTeamMembers(localStorage.getItem('email'))
+  //   }
+  // }
 
   handleChange = event => {
     this.setState({
@@ -38,7 +38,6 @@ class Authorization extends React.Component {
   submitHandler = event => {
     event.preventDefault();
     this.props.addTeamMembers(this.state);
-    this.props.getTeamMembers()
     this.setState({
       firstName: "",
       lastName: "",
@@ -47,6 +46,7 @@ class Authorization extends React.Component {
       type: "",
       team_id: 0
     });
+    history.push('/profile')
   };
 
   render() {
