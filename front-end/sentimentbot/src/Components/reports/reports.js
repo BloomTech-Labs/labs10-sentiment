@@ -1,12 +1,13 @@
 import React from "react";
+import "../App.css";
 
-function Survey(props) {
+function Reports(props) {
   return (
-    <div>
-      <p> Survey Page </p>
-      <button>Sign Out</button>
+    <div className="report-container">
+      <h2>Report Page</h2>
+      <p>Input Graph</p>
     </div>
   );
 }
 
-export default Survey;
+export default Reports;

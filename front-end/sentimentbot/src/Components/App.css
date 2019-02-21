@@ -12,6 +12,47 @@
   border: 1px solid black;
   padding: 10px;
 }
+/* Survey */
+.survey-container {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 500px;
+  width: 100%;
+  border: 1px solid black;
+  padding: 10px;
+}
+.survey-calendar {
+  max-width: 300px;
+
+  border: 1px solid black;
+}
+.survey-feelings {
+  max-width: 300px;
+  border: 1px solid black;
+}
+
+/* Team List */
+.teamlist-container {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 500px;
+  width: 100%;
+  border: 1px solid black;
+  padding: 10px;
+}
+
+/* Report */
+.report-container {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 500px;
+  width: 100%;
+  border: 1px solid black;
+  padding: 10px;
+}
 
 /* Billing */
 .billing-container {
@@ -29,7 +70,7 @@
   padding: 10px;
   margin: 10px;
 }
-/* Checkout/ Purchase */
+/* Billing Checkout/ Purchase */
 .checkout {
   min-width: 100px;
   width: 100%;
@@ -42,4 +83,15 @@
 }
 .card-elements {  
   border: 1px solid black;
+}
+
+/* Account Settings */
+.account-container {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 500px;
+  width: 100%;
+  border: 1px solid black;
+  padding: 10px;
 }
