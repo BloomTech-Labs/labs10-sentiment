@@ -60,7 +60,7 @@ router.get("/", (req, res) => {
       "&client_secret=" +
       "934d342145ffd799890140ec512feac3" +
       "&redirect_uri=" +
-      "hhttps://botsentiment.herokuapp.com/api/slackauth",
+      "https://botsentiment.herokuapp.com/api/slackauth",
     method: "GET"
   };
   request(options, (error, response, body) => {
@@ -91,7 +91,7 @@ router.get("/teammember", (req, res) => {
       "&client_secret=" +
       "934d342145ffd799890140ec512feac3" +
       "&redirect_uri=" +
-      "hhttps://botsentiment.herokuapp.com/api/slackauth/teammember",
+      "https://botsentiment.herokuapp.com/api/slackauth/teammember",
     method: "GET"
   };
   request(options, (error, response, body) => {
