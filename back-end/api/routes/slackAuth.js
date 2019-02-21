@@ -1,5 +1,8 @@
+require("dotenv").config();
 const express = require("express");
 const router = express.Router();
+const request = require("request");
+const axios = require("axios");
 const db = require("../database/helpers/slackAuthDb");
 const {
   postSuccess,
@@ -24,16 +27,86 @@ const type = "team";
 
 router.post("/slackAuth", (req, res) => {
   let postInfo = req.body;
-  
+
   db.insert(postInfo)
     .then(postSuccess(res))
     .catch(serverErrorPost(res));
-}); 
+});
 
-router.get("/slackAuth", (req, res) => {
-  db.get()
-    .then(getSuccess(res))
-    .catch(serverErrorGet(res));
+// router.get("/slackAuth", (req, res) => {
+//   db.get()
+//     .then(getSuccess(res))
+//     .catch(serverErrorGet(res));
+// });
+
+// router.get("/button", (req, res) => {
+//   axios
+//     .get(
+//       `https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645&redirect_uri=http://localhost:5002/api/slackAuth`
+//     )
+//     .then(data => {
+//       console.log(data);
+//     });
+// });
+
+router.get("/", (req, res) => {
+  console.log(req.query.code);
+  const options = {
+    uri:
+      "https://slack.com/api/oauth.access?code=" +
+      req.query.code +
+      "&client_id=" +
+      "553324377632.554405336645" +
+      "&client_secret=" +
+      "934d342145ffd799890140ec512feac3" +
+      "&redirect_uri=" +
+      "http://localhost:5002/api/slackAuth",
+    method: "GET"
+  };
+  request(options, (error, response, body) => {
+    let JSONresponse = JSON.parse(body);
+    if (!JSONresponse.ok) {
+      console.log(JSONresponse);
+      res
+        .send("Error encountered: \n" + JSON.stringify(JSONresponse))
+        .status(200)
+        .end();
+    } else {
+      console.log(JSONresponse);
+      res.send("Success!");
+    }
+  });
+});
+
+// https://slack.com/oauth/authorize?scope=commands&client_id=553324377632.554405336645&redirect_uri=http://localhost:5002/api/slackAuth/teamMember
+
+router.get("/teamMember", (req, res) => {
+  console.log(req.query.code);
+  const options = {
+    uri:
+      "https://slack.com/api/oauth.access?code=" +
+      req.query.code +
+      "&client_id=" +
+      "553324377632.554405336645" +
+      "&client_secret=" +
+      "934d342145ffd799890140ec512feac3" +
+      "&redirect_uri=" +
+      "http://localhost:5002/api/slackAuth/teamMember",
+    method: "GET"
+  };
+  request(options, (error, response, body) => {
+    let JSONresponse = JSON.parse(body);
+    if (!JSONresponse.ok) {
+      console.log(JSONresponse);
+      res
+        .send("Error encountered: \n" + JSON.stringify(JSONresponse))
+        .status(200)
+        .end();
+    } else {
+      console.log(JSONresponse);
+      res.send("Success!");
+    }
+  });
 });
 
 router.get("/slackAuth/:id", (req, res) => {

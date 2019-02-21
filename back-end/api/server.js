@@ -7,11 +7,12 @@ const teamRouter = require("./routes/teamRouter.js");
 const surveyRouter = require("./routes/surveyRouter.js");
 const feelingRouter = require("./routes/feelingRouter.js");
 const surveyFeelingRouter = require("./routes/survey_feelingsRouter");
-const stripeRouter = require('./routes/stripeRouter')
+const stripeRouter = require("./routes/stripeRouter");
 const slashRouter = require("./routes/slashRouter");
+const slackAuth = require("./routes/slackAuth.js");
 
-const stripe = require('stripe')('sk_test_jHycy56d9VhQBFxJSQq5PCUy');
-const bodyParser = require('body-parser');
+const stripe = require("stripe")("sk_test_jHycy56d9VhQBFxJSQq5PCUy");
+const bodyParser = require("body-parser");
 // const exphbs = require('express-handlebars');
 const server = express();
 configureMiddleware(server);
@@ -25,14 +26,15 @@ configureMiddleware(server);
 server.use(bodyParser.text());
 // server.use(bodyParser.urlencoded({extended:false}));
 
-server.use('/api/managers', managerRouter);
-server.use('/api/team_members', teamMemberRouter);
-server.use('/api/teams', teamRouter);
-server.use('/api/surveys', surveyRouter);
-server.use('/api/feelings', feelingRouter);
-server.use('/api/survey_feelings', surveyFeelingRouter);
-server.use('/api/stripe', stripeRouter);
-server.use('/api/slash', slashRouter);
+server.use("/api/managers", managerRouter);
+server.use("/api/team_members", teamMemberRouter);
+server.use("/api/teams", teamRouter);
+server.use("/api/surveys", surveyRouter);
+server.use("/api/feelings", feelingRouter);
+server.use("/api/survey_feelings", surveyFeelingRouter);
+server.use("/api/stripe", stripeRouter);
+server.use("/api/slash", slashRouter);
+server.use("/api/slackAuth", slackAuth);
 
 server.get("/", (req, res) => {
   res.status(200).json("Sanity Check ITS WORKING");
@@ -54,17 +56,17 @@ server.get("/", (req, res) => {
 
 server.post("/charge", async (req, res) => {
   try {
-    let {status} = await stripe.charges.create({
+    let { status } = await stripe.charges.create({
       amount: 1000,
       currency: "usd",
       description: "An example charge",
       source: req.body
     });
 
-    res.json({status});
+    res.json({ status });
   } catch (err) {
     res.status(500).end();
   }
-})
+});
 
 module.exports = server;
