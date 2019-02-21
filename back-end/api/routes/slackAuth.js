@@ -60,7 +60,7 @@ router.get("/", (req, res) => {
       "&client_secret=" +
       "934d342145ffd799890140ec512feac3" +
       "&redirect_uri=" +
-      "hhttps://botsentiment.herokuapp.com/api/slackAuth",
+      "https://botsentiment.herokuapp.com/api/slackauth",
     method: "GET"
   };
   request(options, (error, response, body) => {
@@ -73,12 +73,12 @@ router.get("/", (req, res) => {
         .end();
     } else {
       console.log(JSONresponse);
-      res.send("Success!");
+      res.send("Success!: \n" + JSON.stringify(JSONresponse));
     }
   });
 });
 
-// https://slack.com/oauth/authorize?scope=commands&client_id=553324377632.554405336645&redirect_uri=hhttps://botsentiment.herokuapp.com/api/slackAuth/teamMember
+// https://slack.com/oauth/authorize?scope=commands&client_id=553324377632.554405336645&redirect_uri=hhttps://botsentiment.herokuapp.com/api/slackauth/teammember
 
 router.get("/teammember", (req, res) => {
   console.log(req.query.code);
@@ -91,7 +91,7 @@ router.get("/teammember", (req, res) => {
       "&client_secret=" +
       "934d342145ffd799890140ec512feac3" +
       "&redirect_uri=" +
-      "hhttps://botsentiment.herokuapp.com/api/slackAuth/teammember",
+      "https://botsentiment.herokuapp.com/api/slackauth/teammember",
     method: "GET"
   };
   request(options, (error, response, body) => {
