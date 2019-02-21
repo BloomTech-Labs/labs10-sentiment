@@ -1,5 +1,6 @@
 const express = require("express");
 const configureMiddleware = require("./middleware/middleware.js");
+require('dotenv').config();
 
 const managerRouter = require("./routes/managerRouter.js");
 const teamMemberRouter = require("./routes/teamMemberRouter.js");
