@@ -21,10 +21,12 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  let postInfo = { slash: req.body };
-  db.insert(postInfo)
-    .then(postSuccess(res))
-    .catch(serverErrorPost(res));
+  let response = req;
+  console.log(response);
+  // let postInfo = { slash: response };
+  // db.insert(postInfo)
+  //   .then(postSuccess(res))
+  //   .catch(serverErrorPost(res));
 });
 
 module.exports = router;
