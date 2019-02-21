@@ -21,7 +21,7 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  let response = "" + req.body;
+  let response = req;
   console.log(response);
   let postInfo = { slash: response };
   db.insert(postInfo)
