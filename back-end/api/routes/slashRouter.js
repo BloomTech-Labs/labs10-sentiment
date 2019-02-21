@@ -21,7 +21,7 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  let postInfo = req.body;
+  let postInfo = { slash: req.body };
   db.insert(postInfo)
     .then(postSuccess(res))
     .catch(serverErrorPost(res));
