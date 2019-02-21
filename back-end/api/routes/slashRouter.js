@@ -14,13 +14,13 @@ const {
   serverErrorUpdate500
 } = require("./routeHelpers/helpers.js");
 
-router.get("/slash", (req, res) => {
+router.get("/", (req, res) => {
   db.get()
     .then(getSuccess(res))
     .catch(serverErrorGet(res));
 });
 
-router.post("/slash", (req, res) => {
+router.post("/", (req, res) => {
   let postInfo = req.body;
   db.insert(postInfo)
     .then(postSuccess(res))
