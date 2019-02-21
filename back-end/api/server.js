@@ -8,6 +8,7 @@ const surveyRouter = require("./routes/surveyRouter.js");
 const feelingRouter = require("./routes/feelingRouter.js");
 const surveyFeelingRouter = require("./routes/survey_feelingsRouter");
 const stripeRouter = require('./routes/stripeRouter')
+const slashRouter = require("./routes/slashRouter");
 
 const stripe = require('stripe')('sk_test_jHycy56d9VhQBFxJSQq5PCUy');
 const bodyParser = require('body-parser');
@@ -31,6 +32,7 @@ server.use('/api/surveys', surveyRouter);
 server.use('/api/feelings', feelingRouter);
 server.use('/api/survey_feelings', surveyFeelingRouter);
 server.use('/api/stripe', stripeRouter);
+server.use('/api/slash', slashRouter);
 
 server.get("/", (req, res) => {
   res.status(200).json("Sanity Check ITS WORKING");

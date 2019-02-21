@@ -9,7 +9,7 @@ import {
   editTeamMembers,
   getSingleTeam
 } from "../../actions/index";
-// import axios from "axios";
+import axios from "axios";
 
 class Profile extends React.Component {
   constructor() {
@@ -24,10 +24,11 @@ class Profile extends React.Component {
     this.props.getSingleTeamMembers(localStorage.getItem("email"));
     this.props.getTeamMembers();
 
-    // const code = this.props.match.params.code;
-    // console.log(code);
-    // if (code) {
-    //   this.fetchAuth(code);
+    const code = this.props.match.params.code;
+    console.log(code);
+    if (code) {
+      this.fetchAuth(code);
+    }
   }
 
   // this.props.teamMembers.length !== prevProps.teamMembers.length
@@ -39,27 +40,26 @@ class Profile extends React.Component {
     // }
     // this.props.getSingleTeamMembers(localStorage.getItem("email"));
     // this.props.getTeamMembers();
-    // const code = this.props.match.params.code;
-    // console.log(code);
-    // if (code !== prev.match.params.code) {
-    //   this.fetchAuth(code);
-    // }
+    const code = this.props.match.params.code;
+    console.log(code);
+    if (code !== prevProps.match.params.code) {
+      this.fetchAuth(code);
+    }
   }
 
-  // fetchAuth = code => {
-  //   axios
-  //     .post(
-  //       `https://slack.com/api/oauth.access`,
-  //       `client_id=555765331446.554661112789&client_secret=65618f3ce7feca293e1abae74cae7afc&code=${code}&redirect_uri=https://sentimentbot.netlify.com/home&single_channel=false`
-  //     )
-  //     .then(response => {
-  //       // this.setState(() => ({ movie: response.data }));
-  //       console.log("response", response);
-  //     })
-  //     .catch(error => {
-  //       console.error(error);
-  //     });
-  // };
+  fetchAuth = code => {
+    const uri = "https://sentimentbot.netlify.com/profile";
+    axios
+      .get(
+        `https://slack.com/api/oauth.access?code=${code}&client_id=555765331446.554661112789&client_secret=65618f3ce7feca293e1abae74cae7afc&redirect_uri=${uri}&state=2ndstate`
+      )
+      .then(response => {
+        console.log("response", response);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  };
 
   createTeam = event => {
     event.preventDefault();
@@ -76,9 +76,11 @@ class Profile extends React.Component {
 
     const code = this.state.team_code;
     let teams = this.props.getTeams();
-    let teamID = teams.map(item=>{if(item.team_code === code){
-      return item.id;
-    }})
+    let teamID = teams.map(item => {
+      if (item.team_code === code) {
+        return item.id;
+      }
+    });
 
     let member = this.props.singleTeamMembers[0];
 
@@ -104,8 +106,6 @@ class Profile extends React.Component {
     this.props.editTeamMembers(member.id, member);
   };
 
-  
-
   handleChange = event => {
     this.setState({
       [event.target.name]: event.target.value
@@ -124,19 +124,12 @@ class Profile extends React.Component {
 
   render() {
     const view = this.state.view;
+    const uri = "https://sentimentbot.netlify.com/profile";
+    // const uri = "http://localhost:3000//profile";
     console.log(view);
     if (view === "") {
       return (
         <div>
-          <a href="https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645">
-            <img
-              alt="Add to Slack"
-              height="40"
-              width="139"
-              src="https://platform.slack-edge.com/img/add_to_slack.png"
-              srcSet="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x"
-            />
-          </a>
           <div>
             <button
               onClick={() => {
@@ -164,13 +157,15 @@ class Profile extends React.Component {
     } else if (view === "create") {
       return (
         <div>
-        <a href="https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645">
+          <a
+            href={`https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645&redirect_uri=${uri}&state=teststate`}
+          >
             <img
               alt="Add to Slack"
               height="40"
               width="139"
               src="https://platform.slack-edge.com/img/add_to_slack.png"
-              srcSet="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x"
+              srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x"
             />
           </a>
           <form onSubmit={this.submitHandler} autoComplete="nope">
@@ -195,13 +190,13 @@ class Profile extends React.Component {
     } else if (view === "join") {
       return (
         <div>
-          <a href="https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645">
+          <a href={`https://slack.com/oauth/authorize?scope=commands&client_id=553324377632.554405336645&redirect_uri=${uri}&state=teststate`}>
             <img
               alt="Add to Slack"
               height="40"
               width="139"
               src="https://platform.slack-edge.com/img/add_to_slack.png"
-              srcSet="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x"
+              srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x"
             />
           </a>
           <form onSubmit={this.submitHandler} autoComplete="nope">
@@ -248,3 +243,7 @@ export default connect(
     getSingleTeam
   }
 )(Profile);
+
+// https://bikbik.auth0.com/login?state=g6Fo2SA3bW56SjVmbko1X3dYSWo4UUl5bjRRU08xRlVLTTdCb6N0aWTZIFF2anJoSFJheG5aV3N1N3NyR21TRzE2ZkQ4bUI4ZnR0o2NpZNkgQm5YU3ZVNnRFNFc4V0dNdDNnRFdyYTI0aFhyOHFZMGU&client=BnXSvU6tE4W8WGMt3gDWra24hXr8qY0e&protocol=oauth2&response_type=token%20id_token&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fcallback&scope=openid%20profile%20email&nonce=ns7LGAhEZ5rqXoXMSra~MoODQHn~pEOc&auth0Client=eyJuYW1lIjoiYXV0aDAuanMiLCJ2ZXJzaW9uIjoiOS4xMC4wIn0%3D
+
+// http://localhost:3000/callback#access_token=5YgbYYAujg1LoygaBq-z9NQIzZFTlvi-&expires_in=7200&token_type=Bearer&state=JC0g6LRhgFkT8aaIJT-F11s7HCC.G5dd&id_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6Ik1qVkJPRGhHTURjM1JUWTBRVGt4TkRrM1JURXpRek5HUVVRd01ERXhOVGhFUmpBMU1FRkJPUSJ9.eyJnaXZlbl9uYW1lIjoiVGhvbWFzIiwiZmFtaWx5X25hbWUiOiJDbGF5ZG9uIiwibmlja25hbWUiOiJ0b21jbGF5ZG9uMTAyIiwibmFtZSI6IlRob21hcyBDbGF5ZG9uIiwicGljdHVyZSI6Imh0dHBzOi8vbGg0Lmdvb2dsZXVzZXJjb250ZW50LmNvbS8tbUJ4Wm9jZXRSMkkvQUFBQUFBQUFBQUkvQUFBQUFBQUFBQUEvQUNldm9RUEpfbmZqUXQwTXFXNnF4UTBDQzVXbjJyQi1ldy9tby9waG90by5qcGciLCJnZW5kZXIiOiJtYWxlIiwibG9jYWxlIjoiZW4iLCJ1cGRhdGVkX2F0IjoiMjAxOS0wMi0yMVQwNDoxMjo1My4zMDFaIiwiZW1haWwiOiJ0b21jbGF5ZG9uMTAyQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJpc3MiOiJodHRwczovL2Jpa2Jpay5hdXRoMC5jb20vIiwic3ViIjoiZ29vZ2xlLW9hdXRoMnwxMDc5NDU2NDA3OTk2MDk3NzIyODIiLCJhdWQiOiJCblhTdlU2dEU0VzhXR010M2dEV3JhMjRoWHI4cVkwZSIsImlhdCI6MTU1MDcyMjM3MywiZXhwIjoxNTUwODA4NzczLCJhdF9oYXNoIjoiaEhfSzg2Z0xGWjZlZkhHbF9YSktPUSIsIm5vbmNlIjoiWkhkdEkyS1gyVFFUa2owcWFUWUtoSkVxekZpZnMtdEMifQ.AGLlaFrG9ZoyIHHBNub3ZkpSDJR7WgVp6XrpXo9L2I-x0bYz_ic2G71mvAGKBzXFCsWhU47MZ6Qf4BLtwsHZS_C13huljVJDJoEzYklM5mQxUIfCaOTPGsIx_3zninyU-nZ9HqIqRl4fyHKehQjZReXKI0mp_08oi3k-4cyfNhi2aztYoVksswojYSnFEBklwwRQaInDKX8R4oHCstY71JUSkX91jpjPagW5-sQ_iM_N5eRE1tT9J5i0exOCu64Bsa6LjGmBMenpV_6dFG_bzUjAgwh611rS5r6not1WsmqJPhXQ8_suUjT99g30vk1iXBqgN64UIQbqOrMkGPOT9A
