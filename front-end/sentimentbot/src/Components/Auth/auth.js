@@ -65,16 +65,16 @@ export default class Auth {
     //changed from home to profile
   }
 
-  renewSession() {
-    this.auth0.checkSession({}, (err, authResult) => {
-      if (authResult && authResult.accessToken && authResult.idToken) {
-        this.setSession(authResult);
-      } else if (err) {
-        this.logout();
-        console.log(err);
-      }
-    });
-  }
+  // renewSession() {
+  //   this.auth0.checkSession({}, (err, authResult) => {
+  //     if (authResult && authResult.accessToken && authResult.idToken) {
+  //       this.setSession(authResult);
+  //     } else if (err) {
+  //       this.logout();
+  //       console.log(err);
+  //     }
+  //   });
+  // }
 
   getProfile(cb) {
     this.auth0.client.userInfo(this.accessToken, (err, profile) => {

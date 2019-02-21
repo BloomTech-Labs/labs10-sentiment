@@ -12,7 +12,7 @@ class CheckoutForm extends Component {
 
   async submit(ev) {
     let { token } = await this.props.stripe.createToken({ name: "Name" });
-    let response = await fetch("https://botsentiment.herokuapp.com/charge", {
+    let response = await fetch("https://botsentiment.herokuapp.com/stripe/charge", {
       method: "POST",
       headers: { "Content-Type": "text/plain" },
       body: token.id

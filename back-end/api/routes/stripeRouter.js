@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+require('dotenv').config();
 const stripe = require('stripe')('sk_test_jHycy56d9VhQBFxJSQq5PCUy');
 
 const {
@@ -14,7 +15,11 @@ const {
     serverErrorUpdate500
   } = require("./routeHelpers/helpers.js");
 
-router.post('/customer', async (req, res) => {
+  // customer needs to be created. the customer id needs to be sent back and kept on state.
+  // two subscription options. i think we need two buttons. one for 10 and one for 50. 
+  // once i figure out how to implement subscriptions we can just create two routes. one at /10 and one at /50
+
+router.post('/customer', (req, res) => {
     const details = req.body
     try {
     let customer = stripe.customers.create({
@@ -26,7 +31,7 @@ router.post('/customer', async (req, res) => {
 }
 })
 
-router.post('/subscribe10', async (req, res) => {
+router.post('/subscribe10', (req, res) => {
     const details = req.body
     try {
     let subscription = stripe.subscriptions.create({
