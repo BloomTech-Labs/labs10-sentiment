@@ -104,7 +104,7 @@ router.get("/teammember", (req, res) => {
         .end();
     } else {
       console.log(JSONresponse);
-      res.send("Success!");
+      res.send("Success!: \n" + JSON.stringify(JSONresponse));
     }
   });
 });
