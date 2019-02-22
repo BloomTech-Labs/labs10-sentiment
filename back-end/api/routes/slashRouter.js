@@ -25,6 +25,7 @@ router.use(bodyParser.urlencoded({ extended: true }));
 router.post("/", function(req, res, next) {
   let userName = req.body.user_name;
   let botPayload = {
+    response_type: 'in_channel'
     text: `Hello ${userName}, welcome to the Moodbot Slack channel!!`
   };
 
