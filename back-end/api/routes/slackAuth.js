@@ -2,7 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const router = express.Router();
 const request = require("request");
-const axios = require("axios");
+// const axios = require("axios");
 const db = require("../database/helpers/slackAuthDb");
 const {
   postSuccess,
@@ -42,7 +42,7 @@ router.post("/slackAuth", (req, res) => {
 // router.get("/button", (req, res) => {
 //   axios
 //     .get(
-//       `https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645&redirect_uri=https://botsentiment.herokuapp.com/api/slackauth`
+//       `https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645&redirect_uri=https://botsentiment.herokuapp.com/api/slackauth&state=id`
 //     )
 //     .then(data => {
 //       console.log(data);
