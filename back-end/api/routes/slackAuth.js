@@ -39,15 +39,15 @@ router.post("/slackAuth", (req, res) => {
 //     .catch(serverErrorGet(res));
 // });
 
-// router.get("/button", (req, res) => {
-//   axios
-//     .get(
-//       `https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645&redirect_uri=https://botsentiment.herokuapp.com/api/slackauth&state=id`
-//     )
-//     .then(data => {
-//       console.log(data);
-//     });
-// });
+
+// https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645&redirect_uri=https://botsentiment.herokuapp.com/api/slackauth&state=id`
+// https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645&redirect_uri=http://localhost:5002/api/slackauth&state=id
+let uri;
+if(process.env.DB_ENV === "development"){
+  uri = 'http://localhost:5002/api/slackauth';
+}else if(process.env.DB_ENV === "production"){
+  uri = "https://botsentiment.herokuapp.com/api/slackauth";
+}
 
 router.get("/", (req, res) => {
   console.log(req.query.code);
@@ -60,7 +60,7 @@ router.get("/", (req, res) => {
       "&client_secret=" +
       "934d342145ffd799890140ec512feac3" +
       "&redirect_uri=" +
-      "https://botsentiment.herokuapp.com/api/slackauth",
+      uri,
     method: "GET"
   };
   request(options, (error, response, body) => {
@@ -92,7 +92,7 @@ router.get("/teammember", (req, res) => {
       "&client_secret=" +
       "934d342145ffd799890140ec512feac3" +
       "&redirect_uri=" +
-      "https://botsentiment.herokuapp.com/api/slackauth/teammember",
+      uri,
     method: "GET"
   };
   request(options, (error, response, body) => {
