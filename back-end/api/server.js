@@ -1,6 +1,6 @@
 const express = require("express");
 const configureMiddleware = require("./middleware/middleware.js");
-require('dotenv').config();
+require("dotenv").config();
 
 const managerRouter = require("./routes/managerRouter.js");
 const teamMemberRouter = require("./routes/teamMemberRouter.js");
@@ -11,6 +11,7 @@ const surveyFeelingRouter = require("./routes/survey_feelingsRouter");
 const stripeRouter = require("./routes/stripeRouter");
 const slashRouter = require("./routes/slashRouter");
 const slackAuth = require("./routes/slackAuth.js");
+const moodbot = require("./routes/moodbot.js");
 
 const stripe = require("stripe")("sk_test_jHycy56d9VhQBFxJSQq5PCUy");
 const bodyParser = require("body-parser");
@@ -36,12 +37,12 @@ server.use("/api/survey_feelings", surveyFeelingRouter);
 server.use("/api/stripe", stripeRouter);
 server.use("/api/slash", slashRouter);
 server.use("/api/slackAuth", slackAuth);
+server.use("/api/moodbot", moodbot);
 
 server.get("/", (req, res) => {
   res.status(200).json("Sanity Check ITS WORKING");
   console.log("Sanity Check ITS WORKING!!!");
 });
-
 
 server.post("/charge", async (req, res) => {
   try {
@@ -58,12 +59,11 @@ server.post("/charge", async (req, res) => {
   }
 });
 
-
 // server.post('/changepw', (req, res) => {
 //   let email = req.body
 //   let options = {
 //     headers: { 'content-type': 'application/json' },
-//     body: 
+//     body:
 //      { client_id: 'BnXSvU6tE4W8WGMt3gDWra24hXr8qY0e',
 //        email: email,
 //        connection: 'Username-Password-Authentication' },
@@ -75,10 +75,6 @@ server.post("/charge", async (req, res) => {
 //   })
 //   .catch(() => res.status(500).send('error'))
 
-
-
-
 // })
-
 
 module.exports = server;

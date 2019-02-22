@@ -1,38 +1,23 @@
 require("dotenv").config();
 const express = require("express");
-const request = require("request");
+const SlackBot = require("slackbots");
 const router = express.Router();
 
-router.get("/profile", (req, res) => {
-  res.sendFile(__dirname + "/test.html");
+router.get("/", function(req, res) {
+  res.status(200).send("Hello World");
 });
 
-router.get("/home", (req, res) => {
-  const options = {
-    uri:
-      "https://slack.com/api/oauth.access?code=" +
-      req.query.code +
-      "&client_id=" +
-      process.env.CLIENT_ID +
-      "&client_secret=" +
-      process.env.CLIENT_SECRET +
-      "&redirect_uri=" +
-      process.env.REDIRECT_URI,
-    method: "GET"
-  };
-  request(options, (error, response, body) => {
-    let JSONresponse = JSON.parse(body);
-    if (!JSONresponse.ok) {
-      console.log(JSONresponse);
-      res
-        .send("Error encountered: \n" + JSON.stringify(JSONresponse))
-        .status(200)
-        .end();
-    } else {
-      console.log(JSONresponse);
-      res.send("Success!");
-    }
-  });
-});
+// let bot = new SlackBot({
+//   token: "xoxb-553324377632-553511725281-WNAzkmfvQwuwJ3kAiLqUb5uG",
+//   name: "Moodbot"
+// });
+
+// bot.on("message", function() {
+//   let params = {
+//     icon_emoji: ":moodawe:"
+//   };
+
+//   bot.postMessageToUser("general", "meow", params);
+// });
 
 module.exports = router;
