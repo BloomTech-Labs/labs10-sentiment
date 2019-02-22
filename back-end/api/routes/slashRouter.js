@@ -16,13 +16,14 @@ const {
   serverErrorUpdate500
 } = require("./routeHelpers/helpers.js");
 
+router.use(bodyParser.urlencoded({ extended: true }));
+
 router.get("/", (req, res) => {
   db.get()
     .then(getSuccess(res))
     .catch(serverErrorGet(res));
 });
 
-router.use(bodyParser.urlencoded({ extended: true }));
 
 router.post("/", (req, res) => {
   // let response = req;
