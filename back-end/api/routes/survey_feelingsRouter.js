@@ -20,6 +20,8 @@ const type = "survey_feeling";
 const type2 = "survey";
 const type3 = "feeling";
 
+//Routes for the custom emoji's (feelings) that managers will use to gauge feedback with//
+
 router.post("/", (req, res) => {
   const postInfo = req.body;
   surveysdb
