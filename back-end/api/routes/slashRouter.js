@@ -31,6 +31,7 @@ router.post("/", (req, res) => {
   //     res.status(422).json(err);
   //   });
   let userName = req.body.user_name;
+  console.log(req.body);
   let botPayload = {
     response_type: "in_channel",
     text: `Hello ${userName}, welcome to the Moodbot Slack channel!!`
