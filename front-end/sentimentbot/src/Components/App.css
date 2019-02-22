@@ -1,8 +1,10 @@
 .App {
   text-align: center;
   display: flex;
-  justify-content: center;
   align-items: inherit;
+  justify-content: center;
+  background-color: whitesmoke;
+  
 }
 
 /* Home */
