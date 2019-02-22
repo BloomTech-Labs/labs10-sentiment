@@ -40,15 +40,13 @@ router.post("/slackAuth", (req, res) => {
 // });
 
 
-// https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645&redirect_uri=https://botsentiment.herokuapp.com/api/slackauth&state=id2`
+// https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645&redirect_uri=https://botsentiment.herokuapp.com/api/slackauth&state=id2
 // https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645&redirect_uri=http://localhost:5002/api/slackauth&state=id
 
-// let uri;
-// if(process.env.DB_ENV === "development"){
-//   uri = 'http://localhost:5002/api/slackauth';
-// }else if(process.env.DB_ENV === "production"){
-  let uri = "https://botsentiment.herokuapp.com/api/slackauth";
-// }
+
+// let uri = 'http://localhost:5002/api/slackauth';
+let uri = "https://botsentiment.herokuapp.com/api/slackauth";
+
 
 router.get("/", (req, res) => {
   console.log(req.query.code);
