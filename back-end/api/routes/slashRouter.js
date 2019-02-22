@@ -28,8 +28,9 @@ router.post("/", (req, res) => {
   db.insert(postInfo)
     .then(postSuccess(res))
     .catch(err => {
-      res.status(422).json({ error: err, response: response });
+      res.status(422).json( response );
     });
 });
 
+// error: err, 
 module.exports = router;
