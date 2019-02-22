@@ -47,7 +47,7 @@ router.post("/slackAuth", (req, res) => {
 // if(process.env.DB_ENV === "development"){
 //   uri = 'http://localhost:5002/api/slackauth';
 // }else if(process.env.DB_ENV === "production"){
-  uri = "https://botsentiment.herokuapp.com/api/slackauth";
+  let uri = "https://botsentiment.herokuapp.com/api/slackauth";
 // }
 
 router.get("/", (req, res) => {
