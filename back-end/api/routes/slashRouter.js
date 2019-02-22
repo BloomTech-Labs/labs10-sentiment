@@ -2,6 +2,7 @@
 const express = require("express");
 const router = express.Router();
 const db = require("../database/helpers/slashDb");
+const bodyParser = require("body-parser");
 
 const {
   postSuccess,
@@ -20,6 +21,8 @@ router.get("/", (req, res) => {
     .then(getSuccess(res))
     .catch(serverErrorGet(res));
 });
+
+router.use(bodyParser.urlencoded({ extended: true }));
 
 router.post("/", (req, res) => {
   // let response = req;
