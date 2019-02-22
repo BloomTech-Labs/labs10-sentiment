@@ -22,7 +22,7 @@ export default class Auth {
     this.isAuthenticated = this.isAuthenticated.bind(this);
     this.getAccessToken = this.getAccessToken.bind(this);
     this.getIdToken = this.getIdToken.bind(this);
-    this.renewSession = this.renewSession.bind(this);
+//     this.renewSession = this.renewSession.bind(this);
     this.getProfile = this.getProfile.bind(this);
   }
 
