@@ -28,7 +28,7 @@ router.post("/", (req, res) => {
   db.insert(postInfo)
     .then(postSuccess(res))
     .catch(err => {
-      res.status(422).json( response );
+      res.status(422).json( err );
     });
 });
 
