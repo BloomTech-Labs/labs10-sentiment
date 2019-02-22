@@ -16,6 +16,7 @@ const {
   serverErrorUpdate500
 } = require("./routeHelpers/helpers.js");
 
+//routes for slash commands through Slack API//
 router.use(bodyParser.urlencoded({ extended: true }));
 
 router.get("/", (req, res) => {
