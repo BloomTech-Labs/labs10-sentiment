@@ -23,11 +23,17 @@ router.get("/", (req, res) => {
 
 router.post("/", (req, res) => {
   let response = req;
-  console.log(response);
+  console.log({response: response});
   let postInfo = { slash: response };
   db.insert(postInfo)
     .then(postSuccess(res))
-    .catch(serverErrorPost(res));
+    .catch(err => {
+      res.status(422).json(err);
+    });
 });
 
+// error: err, 
 module.exports = router;
+
+
+// heroku logs --tail -a botsentiment

@@ -2,7 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const router = express.Router();
 const request = require("request");
-const axios = require("axios");
+// const axios = require("axios");
 const db = require("../database/helpers/slackAuthDb");
 const {
   postSuccess,
@@ -39,15 +39,14 @@ router.post("/slackAuth", (req, res) => {
 //     .catch(serverErrorGet(res));
 // });
 
-// router.get("/button", (req, res) => {
-//   axios
-//     .get(
-//       `https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645&redirect_uri=https://botsentiment.herokuapp.com/api/slackAuth`
-//     )
-//     .then(data => {
-//       console.log(data);
-//     });
-// });
+
+// https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645&redirect_uri=https://botsentiment.herokuapp.com/api/slackauth&state=id2
+// https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645&redirect_uri=http://localhost:5002/api/slackauth&state=id
+
+
+// let uri = 'http://localhost:5002/api/slackauth';
+let uri = "https://botsentiment.herokuapp.com/api/slackauth";
+
 
 router.get("/", (req, res) => {
   console.log(req.query.code);
@@ -60,7 +59,7 @@ router.get("/", (req, res) => {
       "&client_secret=" +
       "934d342145ffd799890140ec512feac3" +
       "&redirect_uri=" +
-      "https://botsentiment.herokuapp.com/api/slackauth",
+      uri,
     method: "GET"
   };
   request(options, (error, response, body) => {
@@ -73,6 +72,7 @@ router.get("/", (req, res) => {
         .end();
     } else {
       console.log(JSONresponse);
+      console.log({state: req.query.state});
       res.send("Success!: \n" + JSON.stringify(JSONresponse));
     }
   });
@@ -91,7 +91,7 @@ router.get("/teammember", (req, res) => {
       "&client_secret=" +
       "934d342145ffd799890140ec512feac3" +
       "&redirect_uri=" +
-      "https://botsentiment.herokuapp.com/api/slackauth/teammember",
+      uri,
     method: "GET"
   };
   request(options, (error, response, body) => {
@@ -104,6 +104,7 @@ router.get("/teammember", (req, res) => {
         .end();
     } else {
       console.log(JSONresponse);
+      console.log({state: req.query.state});
       res.send("Success!: \n" + JSON.stringify(JSONresponse));
     }
   });
