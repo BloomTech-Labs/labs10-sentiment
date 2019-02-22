@@ -42,7 +42,7 @@ router.post("/slackAuth", (req, res) => {
 // router.get("/button", (req, res) => {
 //   axios
 //     .get(
-//       `https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645&redirect_uri=https://botsentiment.herokuapp.com/api/slackAuth`
+//       `https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645&redirect_uri=https://botsentiment.herokuapp.com/api/slackauth`
 //     )
 //     .then(data => {
 //       console.log(data);
@@ -73,6 +73,7 @@ router.get("/", (req, res) => {
         .end();
     } else {
       console.log(JSONresponse);
+      console.log({state: req.query.state});
       res.send("Success!: \n" + JSON.stringify(JSONresponse));
     }
   });
@@ -104,6 +105,7 @@ router.get("/teammember", (req, res) => {
         .end();
     } else {
       console.log(JSONresponse);
+      console.log({state: req.query.state});
       res.send("Success!: \n" + JSON.stringify(JSONresponse));
     }
   });
