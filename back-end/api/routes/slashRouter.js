@@ -100,6 +100,11 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
       actionJSONPayload.actions[0].name,
     replace_original: false
   };
+  console.log(
+    actionJSONPayload.user.name +
+      " clicked: " +
+      actionJSONPayload.actions[0].name
+  );
   sendMessageToSlackResponseURL(actionJSONPayload.response_url, message);
 });
 
