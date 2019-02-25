@@ -25,7 +25,7 @@ class App extends Component {
                 Home
               </NavLink>
               &nbsp;|&nbsp;
-              <NavLink to="/teamlist">
+              <NavLink to="/profile">
                 Profile
               </NavLink>
               &nbsp;|&nbsp;

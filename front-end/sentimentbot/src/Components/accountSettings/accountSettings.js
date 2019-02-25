@@ -3,6 +3,9 @@ import { Route, Link } from 'react-router-dom';
 import Home from '../Home';
 
 function accountSettings(props) {
+  if(!localStorage.getItem('email')){
+    props.history.push('/home')
+  }
   return (
     <div>
       <nav>
