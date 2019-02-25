@@ -1,4 +1,5 @@
 //
+require("dotenv").config();
 const express = require("express");
 const router = express.Router();
 const db = require("../database/helpers/slashDb");
@@ -48,7 +49,7 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
   var reqBody = req.body;
   var responseURL = reqBody.response_url;
   console.log(responseURL);
-  if (reqBody.token != VdZKXvoW7STZpRztGb8t8dxF) {
+  if (reqBody.token != process.env.VERIFCATION_TOKEN) {
     res.status(403).end("Access forbidden");
   } else {
     var message = {
