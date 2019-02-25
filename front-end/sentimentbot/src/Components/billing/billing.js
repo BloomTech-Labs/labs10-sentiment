@@ -56,6 +56,10 @@ class Billing extends React.Component {
   }
 
   render() {
+    if(!localStorage.getItem('email')){
+      this.props.history.push('/home')
+    }
+
     if (this.state.complete) {
       return (
         <>

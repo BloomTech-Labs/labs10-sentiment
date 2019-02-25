@@ -126,6 +126,9 @@ class Profile extends React.Component {
   // };
 
   render() {
+    if(!localStorage.getItem('email')){
+      this.props.history.push('/home')
+    }
     const view = this.state.view;
     const uri = "https://sentimentbot.netlify.com/profile";
     // const uri = "http://localhost:3000//profile";
