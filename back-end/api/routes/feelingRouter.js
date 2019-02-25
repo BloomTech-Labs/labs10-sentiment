@@ -50,6 +50,13 @@ router.get("/:id", (req, res) => {
     .catch(serverErrorGetID(res, type, id));
 });
 
+router.get("/:team_id", (req, res) => {
+  const { team_id } = req.params;
+  db.getByTeamId(team_id)
+    .then(getSuccess(res))
+    .catch(serverErrorGetID(res, type, id));
+});
+
 router.delete(`/:id`, (req, res) => {
   const { id } = req.params;
   db.getID(id)
