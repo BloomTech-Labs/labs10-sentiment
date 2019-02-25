@@ -57,29 +57,29 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
       text: "This is your first interactive message",
       attachments: [
         {
-          text: "Building buttons is easy right?",
+          text: "How are you feeling about this week?",
           fallback: "Shame... buttons aren't supported in this land",
           callback_id: "button_tutorial",
           color: "#3AA3E3",
           attachment_type: "default",
           actions: [
             {
-              name: "yes",
-              text: "yes",
+              name: "Happy :moodawe:",
+              text: "Happy :moodawe:",
               type: "button",
-              value: "yes"
+              value: "Happy :moodawe:"
             },
             {
-              name: "no",
-              text: "no",
+              name: "Sad :moodsad:",
+              text: "Sad :moodsad:",
               type: "button",
-              value: "no"
+              value: "Sad :moodsad:"
             },
             {
-              name: "maybe",
-              text: "maybe",
+              name: "Mad :moodmad:",
+              text: "Mad :moodmad:",
               type: "button",
-              value: "maybe",
+              value: "Mad :moodmad:",
               style: "danger"
             }
           ]
