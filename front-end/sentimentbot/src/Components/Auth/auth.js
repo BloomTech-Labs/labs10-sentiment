@@ -1,5 +1,5 @@
 import auth0 from "auth0-js";
-import history from '../history'
+import history from "../history";
 
 export default class Auth {
   accessToken;
@@ -83,7 +83,7 @@ export default class Auth {
       }
       cb(err, profile);
     });
-  };
+  }
 
   logout() {
     // Remove tokens and expiry time

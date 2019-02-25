@@ -1,7 +1,9 @@
 const express = require("express");
 const router = express.Router();
 require('dotenv').config();
+
 const stripe = require('stripe')(process.env.SECRETKEY);
+
 
 const {
     postSuccess,
@@ -14,6 +16,7 @@ const {
     serverErrorUpdate404,
     serverErrorUpdate500
   } = require("./routeHelpers/helpers.js");
+
 
   router.post('/subscribe50', (req, res) => {
     const stripeToken = req.body.stripeToken;

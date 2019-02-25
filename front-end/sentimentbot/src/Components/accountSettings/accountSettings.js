@@ -5,7 +5,7 @@ function accountSettings(props) {
     <div>
       <form className="account-form">
         <h3> Account Settings </h3>
-        <input
+        {/* <input
           type=""
           placeholder=""
           name=""
@@ -14,7 +14,7 @@ function accountSettings(props) {
         />
         <button className="submit-btn" onClick={}>
           Submit
-        </button>
+        </button> */}
       </form>
     </div>
   );
