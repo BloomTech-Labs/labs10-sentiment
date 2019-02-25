@@ -9,6 +9,7 @@ import Survey from './Survey/survey';
 import Reports from './reports/reports';
 import AccountSettings from './accountSettings/accountSettings';
 import Profile from "./myProfile/myProfile";
+import NavBar from './NavBar/NavBar';
 
 class App extends Component {
   getProfile() {
@@ -19,33 +20,7 @@ class App extends Component {
     return (
       <Router history={history}>
         <div className="App">
-          <div className="navBar">
-            <div className="navButton">
-              <NavLink exact to="/home">
-                Home
-              </NavLink>
-              &nbsp;|&nbsp;
-              <NavLink to="/profile">
-                Profile
-              </NavLink>
-              &nbsp;|&nbsp;
-              <NavLink to="/survey">
-                Survey
-              </NavLink>
-              &nbsp;|&nbsp;
-              <NavLink to="/reports">
-                Reports
-              </NavLink>
-              &nbsp;|&nbsp;
-              <NavLink to="/billing">
-                Billing
-              </NavLink>
-              &nbsp;|&nbsp;
-              <NavLink to="/accountset">
-                Account Settings
-              </NavLink>
-            </div>
-          </div>
+         <NavBar />
           <Route exact path="/home" component={Home} />
           <Route path="/billing" component={Billing} />
           <Route path="/profile" component={Profile} />

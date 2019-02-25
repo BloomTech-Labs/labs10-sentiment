@@ -10,8 +10,7 @@ import {
   getSingleTeam
 } from "../../actions/index";
 import axios from "axios";
-import { Route, Link } from 'react-router-dom';
-import Home from '../Home';
+import NavBar from '../NavBar/NavBar'
 
 class Profile extends React.Component {
   constructor() {
@@ -136,10 +135,7 @@ class Profile extends React.Component {
     if (view === "") {
       return (
         <div>
-          <nav>
-            <Link to={`/home`}>Home</Link>   
-            <Route path="/home" render={props => <Home {...props}  />} />
-          </nav>
+<NavBar />
           <div>
             <button
               onClick={() => {
@@ -167,6 +163,7 @@ class Profile extends React.Component {
     } else if (view === "create") {
       return (
         <div>
+                  <NavBar />
           <a
             href={`https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645&redirect_uri=${uri}&state=teststate`}
           >
@@ -200,6 +197,7 @@ class Profile extends React.Component {
     } else if (view === "join") {
       return (
         <div>
+          <NavBar />
           <a href={`https://slack.com/oauth/authorize?scope=commands&client_id=553324377632.554405336645&redirect_uri=${uri}&state=teststate`}>
             <img
               alt="Add to Slack"

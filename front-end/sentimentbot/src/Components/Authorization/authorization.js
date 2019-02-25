@@ -7,6 +7,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { getSingleTeamMembers, addTeamMembers, getTeamMembers } from "../../actions/index";
 import history from "../history";
+import NavBar from '../NavBar/NavBar'
 
 class Authorization extends React.Component {
   state = {
@@ -50,6 +51,11 @@ class Authorization extends React.Component {
   };
 
   render() {
+    if(!localStorage.getItem('email')){
+      this.props.history.push('/home')
+    } else if (localStorage.getItem('email')) {
+      this.props.history.push('/profile')
+    }
     const makeInput = name => (
       <textarea
         autoComplete="off"
@@ -63,6 +69,7 @@ class Authorization extends React.Component {
     if (this.props.singleTeamMembers.length < 1) {
       return (
         <>
+        <NavBar />
           <form onSubmit={this.submitHandler} autoComplete="nope">
             {makeInput('firstName')}
              {makeInput('lastName')} {makeInput('email')}
