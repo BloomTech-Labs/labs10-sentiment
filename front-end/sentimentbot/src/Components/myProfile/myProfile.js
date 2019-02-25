@@ -17,7 +17,8 @@ class Profile extends React.Component {
     this.state = {
       view: "",
       name: "",
-      team_code: 0
+      team_code: 0,
+      team_id: 0
     };
   }
   componentDidMount() {
@@ -47,23 +48,23 @@ class Profile extends React.Component {
     }
   }
 
-  fetchAuth = code => {
-    const uri = "https://sentimentbot.netlify.com/profile";
-    axios
-      .get(
-        `https://slack.com/api/oauth.access?code=${code}&client_id=555765331446.554661112789&client_secret=65618f3ce7feca293e1abae74cae7afc&redirect_uri=${uri}&state=2ndstate`
-      )
-      .then(response => {
-        console.log("response", response);
-      })
-      .catch(error => {
-        console.error(error);
-      });
-  };
+  // fetchAuth = code => {
+  //   const uri = "https://sentimentbot.netlify.com/profile";
+  //   axios
+  //     .get(
+  //       `https://slack.com/api/oauth.access?code=${code}&client_id=555765331446.554661112789&client_secret=65618f3ce7feca293e1abae74cae7afc&redirect_uri=${uri}&state=2ndstate`
+  //     )
+  //     .then(response => {
+  //       console.log("response", response);
+  //     })
+  //     .catch(error => {
+  //       console.error(error);
+  //     });
+  // };
 
   createTeam = event => {
     event.preventDefault();
-    // const single = this.props.singleTeamMembers[0];
+    const single = this.props.singleTeamMembers[0];
     const team = {
       name: this.state.name
     };

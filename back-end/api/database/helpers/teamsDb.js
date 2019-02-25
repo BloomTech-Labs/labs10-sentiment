@@ -9,6 +9,9 @@ module.exports = {
   getID: function(id) {
     return db(table).where("id", id);
   },
+  getTeamCode: function(teamCode) {
+    return db(table).where("team_code", teamCode);
+  },
   insert: function(post) {
     return db(table)
       .insert(post)

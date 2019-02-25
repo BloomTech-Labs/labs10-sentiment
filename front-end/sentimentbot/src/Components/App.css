@@ -1,5 +1,10 @@
 .App {
   text-align: center;
+  display: flex;
+  align-items: inherit;
+  justify-content: center;
+  background-color: whitesmoke;
+  
 }
 
 /* Home */
