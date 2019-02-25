@@ -43,9 +43,7 @@ const {
                         serverErrorPost(res)
                     )
                 } else {
-                    res.send(
-                        getSuccess(res)
-                    )
+                    res.status(200).json({subscription})
                 }
             })
         }
@@ -77,7 +75,7 @@ router.post('/subscribe10', (req, res) => {
                         serverErrorPost(res)
                     )
                 } else {
-                    getSuccess(res)
+                    res.status(200).json({subscription})
                         
                     
                 }
