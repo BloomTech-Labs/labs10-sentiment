@@ -12,7 +12,7 @@ const stripeRouter = require("./routes/stripeRouter");
 const slashRouter = require("./routes/slashRouter");
 const slackAuth = require("./routes/slackAuth.js");
 
-const stripe = require("stripe")("sk_test_jHycy56d9VhQBFxJSQq5PCUy");
+const stripe = require("stripe")(process.env.SECRETKEY);
 const bodyParser = require("body-parser");
 // const exphbs = require('express-handlebars');
 const server = express();
