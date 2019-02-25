@@ -5,6 +5,7 @@ const router = express.Router();
 const db = require("../database/helpers/slashDb");
 const bodyParser = require("body-parser");
 let urlencodedParser = bodyParser.urlencoded({ extended: false });
+const request = require("request");
 
 const {
   postSuccess,
