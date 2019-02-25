@@ -3,6 +3,7 @@ const express = require("express");
 const router = express.Router();
 const db = require("../database/helpers/slashDb");
 const bodyParser = require("body-parser");
+let urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 const {
   postSuccess,
@@ -23,6 +24,67 @@ router.get("/", (req, res) => {
   db.get()
     .then(getSuccess(res))
     .catch(serverErrorGet(res));
+});
+
+function sendMessageToSlackResponseURL(responseURL, JSONmessage) {
+  var postOptions = {
+    uri: responseURL,
+    method: "POST",
+    headers: {
+      "Content-type": "application/json"
+    },
+    json: JSONmessage
+  };
+  request(postOptions, (error, response, body) => {
+    if (error) {
+      // handle errors as you see fit
+      res.json({ error: "Error." });
+    }
+  });
+}
+
+app.post("/send-me-buttons", urlencodedParser, (req, res) => {
+  res.status(200).end(); // best practice to respond with empty 200 status code
+  var reqBody = req.body;
+  var responseURL = reqBody.response_url;
+  if (reqBody.token != YOUR_APP_VERIFICATION_TOKEN) {
+    res.status(403).end("Access forbidden");
+  } else {
+    var message = {
+      text: "This is your first interactive message",
+      attachments: [
+        {
+          text: "Building buttons is easy right?",
+          fallback: "Shame... buttons aren't supported in this land",
+          callback_id: "button_tutorial",
+          color: "#3AA3E3",
+          attachment_type: "default",
+          actions: [
+            {
+              name: "yes",
+              text: "yes",
+              type: "button",
+              value: "yes"
+            },
+            {
+              name: "no",
+              text: "no",
+              type: "button",
+              value: "no"
+            },
+            {
+              name: "maybe",
+              text: "maybe",
+              type: "button",
+              value: "maybe",
+              style: "danger"
+            }
+          ]
+        }
+      ]
+    };
+    sendMessageToSlackResponseURL(responseURL, message);
+  }
 });
 
 router.post("/", (req, res) => {
