@@ -47,7 +47,7 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
   res.status(200).end(); // best practice to respond with empty 200 status code
   var reqBody = req.body;
   var responseURL = reqBody.response_url;
-  if (reqBody.token != YOUR_APP_VERIFICATION_TOKEN) {
+  if (reqBody.token != VdZKXvoW7STZpRztGb8t8dxF) {
     res.status(403).end("Access forbidden");
   } else {
     var message = {
