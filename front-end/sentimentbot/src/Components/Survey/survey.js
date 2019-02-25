@@ -1,6 +1,5 @@
 import React from "react";
-import { Route, Link } from 'react-router-dom';
-import Home from '../Home';
+import NavBar from '../NavBar/NavBar'
 
 function Survey(props) {
   if(!localStorage.getItem('email')){
@@ -8,10 +7,7 @@ function Survey(props) {
   }
   return (
     <div>
-      <nav>
-        <Link to={`/home`}>Home</Link>   
-        <Route path="/home" render={props => <Home {...props}  />} />
-      </nav>
+      <NavBar />
       <p> Survey Page </p>
     </div>
   );

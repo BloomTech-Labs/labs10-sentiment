@@ -2,8 +2,7 @@ import React from "react";
 import { Elements, StripeProvider } from "react-stripe-elements";
 import CheckoutForm from "../stripe/checkoutForm";
 import StripeCheckout from "react-stripe-checkout";
-import { Route, Link } from "react-router-dom";
-import Home from "../Home";
+import NavBar from '../NavBar/NavBar';
 import "../App.css";
 
 class Billing extends React.Component {
@@ -63,10 +62,7 @@ class Billing extends React.Component {
     if (this.state.complete) {
       return (
         <>
-          <nav>
-            <Link to={`/home`}>Home</Link>
-            <Route path="/home" render={props => <Home {...props} />} />
-          </nav>
+        <NavBar />
 
           <div className="purchase-complete billing-container">
             <h1>Purchase Complete</h1>
@@ -76,10 +72,7 @@ class Billing extends React.Component {
     } else {
       return (
         <>
-          <nav>
-            <Link to={`/home`}>Home</Link>
-            <Route path="/home" render={props => <Home {...props} />} />
-          </nav>
+        <NavBar />
           
           <div className="billing-container">
             <p className="billing-title"> Billing Page </p>

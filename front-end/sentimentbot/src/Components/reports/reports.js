@@ -1,6 +1,6 @@
 import React from "react";
-import { Route, Link } from 'react-router-dom';
-import Home from '../Home';
+import PieChart from "./chart";
+import NavBar from '../NavBar/NavBar';
 
 function Survey(props) {
 
@@ -9,11 +9,9 @@ function Survey(props) {
   }
   return (
     <div>
-      <nav>
-        <Link to={`/home`}>Home</Link>   
-        <Route path="/home" render={props => <Home {...props}  />} />
-      </nav>
+     <NavBar />
       <p> Reports </p>
+      <PieChart />
     </div>
   );
 }
