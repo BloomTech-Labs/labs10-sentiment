@@ -10,6 +10,8 @@ import {
   getSingleTeam
 } from "../../actions/index";
 import axios from "axios";
+import { Route, Link } from 'react-router-dom';
+import Home from '../Home';
 
 class Profile extends React.Component {
   constructor() {
@@ -131,6 +133,10 @@ class Profile extends React.Component {
     if (view === "") {
       return (
         <div>
+          <nav>
+            <Link to={`/home`}>Home</Link>   
+            <Route path="/home" render={props => <Home {...props}  />} />
+          </nav>
           <div>
             <button
               onClick={() => {
