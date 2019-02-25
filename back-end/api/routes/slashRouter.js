@@ -64,22 +64,22 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
           attachment_type: "default",
           actions: [
             {
-              name: "Happy :moodawe:",
-              text: "Happy :moodawe:",
+              name: "Happy",
+              text: "Happy",
               type: "button",
-              value: "Happy :moodawe:"
+              value: "Happy"
             },
             {
-              name: "Sad :moodsad:",
-              text: "Sad :moodsad:",
+              name: "Sad",
+              text: "Sad",
               type: "button",
-              value: "Sad :moodsad:"
+              value: "Sad"
             },
             {
-              name: "Mad :moodmad:",
-              text: "Mad :moodmad:",
+              name: "Mad",
+              text: "Mad",
               type: "button",
-              value: "Mad :moodmad:",
+              value: "Mad",
               style: "danger"
             }
           ]
@@ -100,11 +100,6 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
       actionJSONPayload.actions[0].name,
     replace_original: false
   };
-  console.log(
-    actionJSONPayload.user.name +
-      " clicked: " +
-      actionJSONPayload.actions[0].name
-  );
   sendMessageToSlackResponseURL(actionJSONPayload.response_url, message);
 });
 
