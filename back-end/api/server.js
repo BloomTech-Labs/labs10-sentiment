@@ -35,13 +35,12 @@ server.use("/api/feelings", feelingRouter);
 server.use("/api/survey_feelings", surveyFeelingRouter);
 server.use("/api/stripe", stripeRouter);
 server.use("/api/slash", slashRouter);
-server.use("/api/slackAuth", slackAuth);
+server.use("/api/slackauth", slackAuth);
 
 server.get("/", (req, res) => {
   res.status(200).json("Sanity Check ITS WORKING");
   console.log("Sanity Check ITS WORKING!!!");
 });
-
 
 server.post("/charge", async (req, res) => {
   try {
