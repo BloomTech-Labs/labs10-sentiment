@@ -30,42 +30,42 @@ const type = "team";
 // https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645&redirect_uri=https://botsentiment.herokuapp.com/api/slackauth&state=id2
 // https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645&redirect_uri=http://localhost:5002/api/slackauth&state=id
 
-let uri = "http://localhost:5002/api/slackauth";
-let uri2 = "http://localhost:5002/api/slackauth/slack-btn/";
-// let uri = "https://botsentiment.herokuapp.com/api/slackauth";
+// let uri = "http://localhost:5002/api/slackauth";
+// let uri2 = "http://localhost:5002/api/slackauth/slack-btn/";
+let uri = "https://botsentiment.herokuapp.com/api/slackauth";
 
-router.get("/slackbtn/:id", (req, res) => {
-  // console.log(req.query.code);
-  const { id } = req.params;
-  console.log(id);
-  const options = {
-    uri:
-      "https://slack.com/oauth/authorize?" +
-      "scope=" +
-      "commands,bot" +
-      "&client_id=" +
-      "553324377632.554405336645" +
-      "&redirect_uri=" +
-      uri +
-      "&state=" +
-      id,
-    method: "GET"
-  };
-  request(options, (error, response, body) => {
-    // let JSONresponse = JSON.parse(body);
-    // if (!JSONresponse.ok) {
-    //   console.log(JSONresponse);
-    //   res
-    //     .send("Error encountered: \n" + JSON.stringify(JSONresponse))
-    //     .status(200)
-    //     .end();
-    // } else {
-    console.log("response", body);
-    // console.log({ state: req.query.state });
-    // const memberID = req.query.state;
-    // }
-  });
-});
+// router.get("/slackbtn/:id", (req, res) => {
+//   // console.log(req.query.code);
+//   const { id } = req.params;
+//   console.log(id);
+//   const options = {
+//     uri:
+//       "https://slack.com/oauth/authorize?" +
+//       "scope=" +
+//       "commands,bot" +
+//       "&client_id=" +
+//       "553324377632.554405336645" +
+//       "&redirect_uri=" +
+//       uri +
+//       "&state=" +
+//       id,
+//     method: "GET"
+//   };
+//   request(options, (error, response, body) => {
+//     // let JSONresponse = JSON.parse(body);
+//     // if (!JSONresponse.ok) {
+//     //   console.log(JSONresponse);
+//     //   res
+//     //     .send("Error encountered: \n" + JSON.stringify(JSONresponse))
+//     //     .status(200)
+//     //     .end();
+//     // } else {
+//     console.log("response", body);
+//     // console.log({ state: req.query.state });
+//     // const memberID = req.query.state;
+//     // }
+//   });
+// });
 
 router.get("/", (req, res) => {
   console.log(req.query.code);
