@@ -52,7 +52,7 @@ function postMessage(JSONmessage, token) {
     method: "POST",
     headers: {
       "Content-type": "application/json",
-      Authorization: `Bearer ${token}` 
+      'Authorization': `Bearer ${token}` 
     },
     json: JSONmessage
   };
@@ -154,7 +154,8 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
         message = {
           // token: botToken,
           channel: "CG9EQ53QR",
-          text: "Survey question from Mood Bot:"
+          text: "Survey question from Mood Bot:",
+          as_user: false
           // attachments: [
           //   {
           //     title: "How do you feel?",
