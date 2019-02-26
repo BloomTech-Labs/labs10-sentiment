@@ -11,7 +11,21 @@ function accountSettings(props) {
       <h3>Settings</h3>
       <form className="account-form">
         <label>Email:</label>
-        <input type="email" placeholder="johndoe@yahoo.com" name="email" />
+        <input
+          className="form-input"
+          type="email"
+          placeholder="johndoe@yahoo.com"
+          name="email"
+        />
+        <br />
+        <label>Phone:</label>
+        <input
+          className="form-input"
+          type="text"
+          placeholder="Phone"
+          name="phone"
+        />
+        <br />
 
         <button className="submit-btn">Submit</button>
       </form>
