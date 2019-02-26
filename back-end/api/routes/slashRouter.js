@@ -52,7 +52,7 @@ function postMessage(JSONmessage, token) {
     method: "POST",
     headers: {
       "Content-type": "application/json",
-      Authorization: token 
+      Authorization: `Bearer ${token}` 
     },
     json: JSONmessage
   };
