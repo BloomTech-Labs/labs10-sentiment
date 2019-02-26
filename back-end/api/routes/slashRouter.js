@@ -6,6 +6,7 @@ const db = require("../database/helpers/slashDb");
 const bodyParser = require("body-parser");
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
 const request = require("request");
+const dbAuth = require("../database/helpers/slackAuthDb");
 
 const {
   postSuccess,
@@ -45,14 +46,36 @@ function sendMessageToSlackResponseURL(responseURL, JSONmessage) {
   });
 }
 
-function postMessage(JSONmessage) {
-  let postOptions = {
-    uri: `https://slack.com/api/chat.postMessage`,
-    method: "POST",
-    headers: {
-      "Content-type": "application/json"
-    },
-    json: JSONmessage
+// function postMessage(JSONmessage) {
+//   let postOptions = {
+//     uri: `https://slack.com/api/chat.postMessage`,
+//     method: "POST",
+//     headers: {
+//       "Content-type": "application/json",
+//     },
+//     json: JSONmessage
+//   };
+//   request(postOptions, (error, response, body) => {
+//     if (error) {
+//       // handle errors as you see fit
+//       res.json({ error: "Error." });
+//     }
+//   });
+// }
+
+
+function postMessage(botToken) {
+  const postOptions = {
+    uri:
+      "https://slack.com/api/chat.postMessage?token=" +
+      botToken +
+      "&channel=" +
+      "CG9EQ53QR" +
+      "&text=" +
+      "Testing" +
+      "&as_user=" +
+      "false",
+    method: "POST"
   };
   request(postOptions, (error, response, body) => {
     if (error) {
@@ -61,6 +84,8 @@ function postMessage(JSONmessage) {
     }
   });
 }
+
+// https://slack.com/api/chat.postMessage?token=xoxb-553324377632-553511725281-WtIU01FxATAkavAPlFn6BPz2&channel=CG9EQ53QR&text=Test
 
 router.post("/send-me-buttons", urlencodedParser, (req, res) => {
   console.log("send me buttons");
@@ -120,46 +145,54 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
     console.log(actionJSONPayload);
     sendMessageToSlackResponseURL(actionJSONPayload.response_url, message);
   } else if (reqBody.message === true) {
-    message = {
-      token: "",
-      channel: "CG9EQ53QR",
-      text: "Survey question from Mood Bot:"
-      // attachments: [
-      //   {
-      //     title: "How do you feel?",
-      //     actions: [
-      //       {
-      //         name: "feelings_list",
-      //         type: "select",
-      //         text: "Add a Feeling...",
-      //         data_source: "static",
-      //         options: [
-      //           {
-      //             text: "Launch Blocking",
-      //             value: "launch-blocking"
-      //           },
-      //           {
-      //             text: "Enhancement",
-      //             value: "enhancement"
-      //           },
-      //           {
-      //             text: "Bug",
-      //             value: "bug"
-      //           }
-      //         ]
-      //       },
-      //       {
-      //         name: "action",
-      //         type: "button",
-      //         text: "Submit",
-      //         style: "",
-      //         value: "complete"
-      //       }
-      //     ]
-      //   }
-      // ]
-    };
-    postMessage(message);
+    dbAuth
+      .getByMemberId(reqBody.member_id)
+      .then(data => {
+        console.log(data)
+        const botToken = data[0].bot_access_token;
+        console.log(botToken)
+        message = {
+          token: botToken,
+          channel: 'CG9EQ53QR',
+          text: "Survey question from Mood Bot:"
+          // attachments: [
+          //   {
+          //     title: "How do you feel?",
+          //     actions: [
+          //       {
+          //         name: "feelings_list",
+          //         type: "select",
+          //         text: "Add a Feeling...",
+          //         data_source: "static",
+          //         options: [
+          //           {
+          //             text: "Launch Blocking",
+          //             value: "launch-blocking"
+          //           },
+          //           {
+          //             text: "Enhancement",
+          //             value: "enhancement"
+          //           },
+          //           {
+          //             text: "Bug",
+          //             value: "bug"
+          //           }
+          //         ]
+          //       },
+          //       {
+          //         name: "action",
+          //         type: "button",
+          //         text: "Submit",
+          //         style: "",
+          //         value: "complete"
+          //       }
+          //     ]
+          //   }
+          // ]
+        };
+        postMessage(botToken);
+      })
+      .catch(err => err);
   }
 });
 

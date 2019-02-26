@@ -31,7 +31,7 @@ const type = "team";
 // https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645&redirect_uri=http://localhost:5002/api/slackauth&state=id
 
 // let uri = "http://localhost:5002/api/slackauth";
-// let uri2 = "http://localhost:5002/api/slackauth/slack-btn/";
+// let uri2 = "http://localhost:5002/api/slackauth/slack-btn/1";
 let uri = "https://botsentiment.herokuapp.com/api/slackauth";
 
 // router.get("/slackbtn/:id", (req, res) => {
@@ -52,18 +52,18 @@ let uri = "https://botsentiment.herokuapp.com/api/slackauth";
 //     method: "GET"
 //   };
 //   request(options, (error, response, body) => {
-//     // let JSONresponse = JSON.parse(body);
-//     // if (!JSONresponse.ok) {
-//     //   console.log(JSONresponse);
-//     //   res
-//     //     .send("Error encountered: \n" + JSON.stringify(JSONresponse))
-//     //     .status(200)
-//     //     .end();
-//     // } else {
-//     console.log("response", body);
-//     // console.log({ state: req.query.state });
-//     // const memberID = req.query.state;
-//     // }
+//     let JSONresponse = JSON.parse(body);
+//     if (!JSONresponse.ok) {
+//       console.log(JSONresponse);
+//       res
+//         .send("Error encountered: \n" + JSON.stringify(JSONresponse))
+//         .status(200)
+//         .end();
+//       // } else {
+//       console.log("response", body);
+//       // console.log({ state: req.query.state });
+//       // const memberID = req.query.state;
+//     }
 //   });
 // });
 
@@ -92,7 +92,9 @@ router.get("/", (req, res) => {
     } else {
       console.log(JSONresponse);
       console.log({ state: req.query.state });
-      const memberID = req.query.state;
+      let memberID = req.query.state;
+      memberID = Number(memberID);
+      console.log(memberID);
       db.getByMemberId(memberID)
         .then(data => {
           if (!data[0]) {
@@ -110,11 +112,9 @@ router.get("/", (req, res) => {
               .then(postSuccess(res))
               .catch(serverErrorPost(res));
           } else {
-            res
-              .status(400)
-              .json({
-                error: `Member with Id ${memberID} is already authorized`
-              });
+            res.status(400).json({
+              error: `Member with Id ${memberID} is already authorized`
+            });
           }
         })
         .catch();
