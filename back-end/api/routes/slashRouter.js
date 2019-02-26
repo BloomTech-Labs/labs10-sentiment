@@ -72,7 +72,9 @@ function postMessage(botToken) {
       "&channel=" +
       "CG9EQ53QR" +
       "&text=" +
-      "Testing",
+      "Testing" +
+      "&as_user=" +
+      "false",
     method: "POST"
   };
   request(postOptions, (error, response, body) => {
