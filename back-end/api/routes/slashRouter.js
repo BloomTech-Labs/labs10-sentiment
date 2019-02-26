@@ -149,7 +149,7 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
       .getByMemberId(reqBody.member_id)
       .then(data => {
         console.log(data);
-        const botToken = data[0].bot_access_token;
+        const botToken = data[0].access_token;
         console.log(botToken);
         message = {
           // token: botToken,
