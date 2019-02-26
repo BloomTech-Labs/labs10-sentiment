@@ -45,6 +45,23 @@ function sendMessageToSlackResponseURL(responseURL, JSONmessage) {
   });
 }
 
+function postMessage(JSONmessage) {
+  let postOptions = {
+    uri: `https://slack.com/api/chat.postMessage`,
+    method: "POST",
+    headers: {
+      "Content-type": "application/json"
+    },
+    json: JSONmessage
+  };
+  request(postOptions, (error, response, body) => {
+    if (error) {
+      // handle errors as you see fit
+      res.json({ error: "Error." });
+    }
+  });
+}
+
 router.post("/send-me-buttons", urlencodedParser, (req, res) => {
   console.log("send me buttons");
   res.status(200).end(); // best practice to respond with empty 200 status code
@@ -56,7 +73,7 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
       res.status(403).end("Access forbidden");
     } else {
       var message = {
-        text: "This is your first interactive message",
+        text: "Please respond with how you are feeling below.",
         attachments: [
           {
             text: "How are you feeling about this week?",
@@ -90,7 +107,7 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
       };
       sendMessageToSlackResponseURL(responseURL, message);
     }
-  } else {
+  } else if (reqBody.callback_id === "button_tutorial") {
     res.status(200).end(); // best practice to respond with 200 status
     var actionJSONPayload = JSON.parse(req.body.payload); // parse URL-encoded payload JSON string
     var message = {
@@ -102,6 +119,46 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
     };
     console.log(actionJSONPayload);
     sendMessageToSlackResponseURL(actionJSONPayload.response_url, message);
+  } else if (reqBody.message === true) {
+    let message = {
+      token: "xoxb-553324377632-553511725281-K35gpSdumrvX0lOq5CqpHYdq",
+      channel: "mood-bot",
+      text: "Survey question from Mood Bot:",
+      attachments: [
+        {
+          title: "How do you feel?",
+          actions: [
+            {
+              name: "feelings_list",
+              type: "select",
+              text: "Add a Feeling...",
+              data_source: "static",
+              options: [
+                {
+                  text: "Launch Blocking",
+                  value: "launch-blocking"
+                },
+                {
+                  text: "Enhancement",
+                  value: "enhancement"
+                },
+                {
+                  text: "Bug",
+                  value: "bug"
+                }
+              ]
+            },
+            {
+              name: "action",
+              type: "button",
+              text: "Submit",
+              style: "",
+              value: "complete"
+            }
+          ]
+        }
+      ]
+    };
   }
 });
 
