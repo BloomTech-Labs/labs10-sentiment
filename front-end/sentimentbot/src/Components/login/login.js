@@ -25,12 +25,12 @@ class Login extends React.Component {
     const { isAuthenticated } = this.props.auth;
 
     return (
-      <div>
+      <div className="login-container">
             {
               !isAuthenticated() && (
                   <button
                     onClick={this.login.bind(this)}
-                  >
+                  className="login-button">
                     Log In
                   </button>
                 )
@@ -39,7 +39,7 @@ class Login extends React.Component {
               isAuthenticated() && (
                   <button
                     onClick={this.logout.bind(this)}
-                  >
+                  className="login-button">
                     Log Out
                   </button>
                 )
