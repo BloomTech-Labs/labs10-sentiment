@@ -1,4 +1,4 @@
-///
+////
 require("dotenv").config();
 const express = require("express");
 const router = express.Router();
@@ -198,6 +198,10 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
         postMessage(message, botToken);
       })
       .catch(err => err);
+  }else if(reqBody.payload){
+    console.log(reqBody);
+    console.log(reqBody.payload);
+    console.log("payload interactive");
   }
 });
 
