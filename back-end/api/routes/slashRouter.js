@@ -46,13 +46,12 @@ function sendMessageToSlackResponseURL(responseURL, JSONmessage) {
   });
 }
 
-function postMessage(JSONmessage, botToken) {
+function postMessage(JSONmessage) {
   let postOptions = {
     uri: `https://slack.com/api/chat.postMessage`,
     method: "POST",
     headers: {
       "Content-type": "application/json",
-      "Authorization": botToken
     },
     json: JSONmessage
   };
@@ -125,9 +124,12 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
     dbAuth
       .getByMemberId(reqBody.member_id)
       .then(data => {
-        const botToken = data.bot_access_token;
+        console.log(data)
+        const botToken = data[0].bot_access_token;
+        console.log(botToken)
         message = {
-          channel: data[0].team_id,
+          token: botToken,
+          channel: 'CG9EQ53QR',
           text: "Survey question from Mood Bot:"
           // attachments: [
           //   {
@@ -164,7 +166,7 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
           //   }
           // ]
         };
-        postMessage(message, botToken);
+        postMessage(message);
       })
       .catch(err => err);
   }
