@@ -2,17 +2,18 @@ const express = require("express");
 const configureMiddleware = require("./middleware/middleware.js");
 require('dotenv').config();
 
-const managerRouter = require("./routes/managerRouter.js");
+// const managerRouter = require("./routes/managerRouter.js");
 const teamMemberRouter = require("./routes/teamMemberRouter.js");
 const teamRouter = require("./routes/teamRouter.js");
 const surveyRouter = require("./routes/surveyRouter.js");
 const feelingRouter = require("./routes/feelingRouter.js");
-const surveyFeelingRouter = require("./routes/survey_feelingsRouter");
-const stripeRouter = require("./routes/stripeRouter");
+const preFeelingRouter = require("./routes/preFeelingRouter");
+// const surveyFeelingRouter = require("./routes/survey_feelingsRouter");
+// const stripeRouter = require("./routes/stripeRouter");
 const slashRouter = require("./routes/slashRouter");
 const slackAuth = require("./routes/slackAuth.js");
 
-const stripe = require("stripe")(process.env.SECRETKEY);
+// const stripe = require("stripe")(process.env.SECRETKEY);
 const bodyParser = require("body-parser");
 // const exphbs = require('express-handlebars');
 const server = express();
@@ -27,13 +28,14 @@ configureMiddleware(server);
 server.use(bodyParser.text());
 // server.use(bodyParser.urlencoded({extended:false}));
 
-server.use("/api/managers", managerRouter);
+// server.use("/api/managers", managerRouter);
 server.use("/api/team_members", teamMemberRouter);
 server.use("/api/teams", teamRouter);
 server.use("/api/surveys", surveyRouter);
 server.use("/api/feelings", feelingRouter);
-server.use("/api/survey_feelings", surveyFeelingRouter);
-server.use("/api/stripe", stripeRouter);
+server.use("/api/pre-set-feelings", preFeelingRouter);
+// server.use("/api/survey_feelings", surveyFeelingRouter);
+// server.use("/api/stripe", stripeRouter);
 server.use("/api/slash", slashRouter);
 server.use("/api/slackauth", slackAuth);
 
