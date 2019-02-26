@@ -6,6 +6,7 @@ const db = require("../database/helpers/slashDb");
 const bodyParser = require("body-parser");
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
 const request = require("request");
+const dbAuth = require("../database/helpers/slackAuthDb");
 
 const {
   postSuccess,
@@ -45,12 +46,13 @@ function sendMessageToSlackResponseURL(responseURL, JSONmessage) {
   });
 }
 
-function postMessage(JSONmessage) {
+function postMessage(JSONmessage, botToken) {
   let postOptions = {
     uri: `https://slack.com/api/chat.postMessage`,
     method: "POST",
     headers: {
-      "Content-type": "application/json"
+      "Content-type": "application/json",
+      "Authorization": botToken
     },
     json: JSONmessage
   };
@@ -120,46 +122,51 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
     console.log(actionJSONPayload);
     sendMessageToSlackResponseURL(actionJSONPayload.response_url, message);
   } else if (reqBody.message === true) {
-    message = {
-      token: "",
-      channel: "CG9EQ53QR",
-      text: "Survey question from Mood Bot:"
-      // attachments: [
-      //   {
-      //     title: "How do you feel?",
-      //     actions: [
-      //       {
-      //         name: "feelings_list",
-      //         type: "select",
-      //         text: "Add a Feeling...",
-      //         data_source: "static",
-      //         options: [
-      //           {
-      //             text: "Launch Blocking",
-      //             value: "launch-blocking"
-      //           },
-      //           {
-      //             text: "Enhancement",
-      //             value: "enhancement"
-      //           },
-      //           {
-      //             text: "Bug",
-      //             value: "bug"
-      //           }
-      //         ]
-      //       },
-      //       {
-      //         name: "action",
-      //         type: "button",
-      //         text: "Submit",
-      //         style: "",
-      //         value: "complete"
-      //       }
-      //     ]
-      //   }
-      // ]
-    };
-    postMessage(message);
+    dbAuth
+      .getByMemberId(reqBody.member_id)
+      .then(data => {
+        const botToken = data.bot_access_token;
+        message = {
+          channel: data[0].team_id,
+          text: "Survey question from Mood Bot:"
+          // attachments: [
+          //   {
+          //     title: "How do you feel?",
+          //     actions: [
+          //       {
+          //         name: "feelings_list",
+          //         type: "select",
+          //         text: "Add a Feeling...",
+          //         data_source: "static",
+          //         options: [
+          //           {
+          //             text: "Launch Blocking",
+          //             value: "launch-blocking"
+          //           },
+          //           {
+          //             text: "Enhancement",
+          //             value: "enhancement"
+          //           },
+          //           {
+          //             text: "Bug",
+          //             value: "bug"
+          //           }
+          //         ]
+          //       },
+          //       {
+          //         name: "action",
+          //         type: "button",
+          //         text: "Submit",
+          //         style: "",
+          //         value: "complete"
+          //       }
+          //     ]
+          //   }
+          // ]
+        };
+        postMessage(message, botToken);
+      })
+      .catch(err => err);
   }
 });
 
