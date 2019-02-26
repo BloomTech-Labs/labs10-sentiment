@@ -46,14 +46,34 @@ function sendMessageToSlackResponseURL(responseURL, JSONmessage) {
   });
 }
 
-function postMessage(JSONmessage) {
-  let postOptions = {
-    uri: `https://slack.com/api/chat.postMessage`,
-    method: "POST",
-    headers: {
-      "Content-type": "application/json",
-    },
-    json: JSONmessage
+// function postMessage(JSONmessage) {
+//   let postOptions = {
+//     uri: `https://slack.com/api/chat.postMessage`,
+//     method: "POST",
+//     headers: {
+//       "Content-type": "application/json",
+//     },
+//     json: JSONmessage
+//   };
+//   request(postOptions, (error, response, body) => {
+//     if (error) {
+//       // handle errors as you see fit
+//       res.json({ error: "Error." });
+//     }
+//   });
+// }
+
+
+function postMessage(botToken) {
+  const postOptions = {
+    uri:
+      "https://slack.com/api/chat.postMessage?token=" +
+      botToken +
+      "&channel=" +
+      "CG9EQ53QR" +
+      "&text=" +
+      "Testing",
+    method: "POST"
   };
   request(postOptions, (error, response, body) => {
     if (error) {
@@ -62,6 +82,8 @@ function postMessage(JSONmessage) {
     }
   });
 }
+
+// https://slack.com/api/chat.postMessage?token=xoxb-553324377632-553511725281-WtIU01FxATAkavAPlFn6BPz2&channel=CG9EQ53QR&text=Test
 
 router.post("/send-me-buttons", urlencodedParser, (req, res) => {
   console.log("send me buttons");
@@ -166,7 +188,7 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
           //   }
           // ]
         };
-        postMessage(message);
+        postMessage(botToken);
       })
       .catch(err => err);
   }
