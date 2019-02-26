@@ -46,14 +46,13 @@ function sendMessageToSlackResponseURL(responseURL, JSONmessage) {
 }
 
 router.post("/send-me-buttons", urlencodedParser, (req, res) => {
+  console.log("send me buttons");
   res.status(200).end(); // best practice to respond with empty 200 status code
   var reqBody = req.body;
   var responseURL = reqBody.response_url;
-  console.log(responseURL);
   if (reqBody.token != process.env.VERIFCATION_TOKEN) {
     res.status(403).end("Access forbidden");
   } else {
-    console.log(reqBody);
     var message = {
       text: "This is your first interactive message",
       attachments: [
