@@ -1,4 +1,6 @@
 import React from "react";
+import { connect } from 'react-redux';
+import { getSingleSurveys, getSurveyFeelings } from '../../actions/index';
 import { Pie } from "react-chartjs-2";
 
 const data = {
@@ -12,11 +14,13 @@ const data = {
   ]
 };
 
+// MVP use pie chart to show average feelings over the last 7 days.
+
 class PieChart extends React.Component {
   render() {
     return (
       <div className="pie-chart">
-        <h2>Pie Example</h2>
+        <h2>Summary of Survey Response</h2>
         <Pie
           data={data}
           width={50}
