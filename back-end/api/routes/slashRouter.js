@@ -4,7 +4,7 @@ const express = require("express");
 const router = express.Router();
 const db = require("../database/helpers/slashDb");
 const bodyParser = require("body-parser");
-let urlencodedParser = bodyParser.urlencoded({ extended: false });
+const urlencodedParser = bodyParser.urlencoded({ extended: false });
 const request = require("request");
 
 const {
@@ -29,7 +29,7 @@ router.get("/", (req, res) => {
 });
 
 function sendMessageToSlackResponseURL(responseURL, JSONmessage) {
-  var postOptions = {
+  let postOptions = {
     uri: responseURL,
     method: "POST",
     headers: {
@@ -65,14 +65,14 @@ function postMessage(JSONmessage) {
 router.post("/send-me-buttons", urlencodedParser, (req, res) => {
   console.log("send me buttons");
   res.status(200).end(); // best practice to respond with empty 200 status code
-  var reqBody = req.body;
+  let reqBody = req.body;
   console.log(reqBody);
   if (reqBody.command === "/send-me-buttons") {
-    var responseURL = reqBody.response_url;
+    let responseURL = reqBody.response_url;
     if (reqBody.token != process.env.VERIFCATION_TOKEN) {
       res.status(403).end("Access forbidden");
     } else {
-      var message = {
+      let message = {
         text: "Please respond with how you are feeling below.",
         attachments: [
           {
@@ -109,8 +109,8 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
     }
   } else if (reqBody.callback_id === "button_tutorial") {
     res.status(200).end(); // best practice to respond with 200 status
-    var actionJSONPayload = JSON.parse(req.body.payload); // parse URL-encoded payload JSON string
-    var message = {
+    let actionJSONPayload = JSON.parse(req.body.payload); // parse URL-encoded payload JSON string
+    let message = {
       text:
         actionJSONPayload.user.name +
         " clicked: " +
@@ -121,43 +121,44 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
     sendMessageToSlackResponseURL(actionJSONPayload.response_url, message);
   } else if (reqBody.message === true) {
     message = {
-      token: "xoxb-553324377632-553511725281-GHcD3nzGVgwMZVrhHrbUoGLT",
-      channel: "mood-bot",
-      text: "Survey question from Mood Bot:",
-      attachments: [
-        {
-          title: "How do you feel?",
-          actions: [
-            {
-              name: "feelings_list",
-              type: "select",
-              text: "Add a Feeling...",
-              data_source: "static",
-              options: [
-                {
-                  text: "Launch Blocking",
-                  value: "launch-blocking"
-                },
-                {
-                  text: "Enhancement",
-                  value: "enhancement"
-                },
-                {
-                  text: "Bug",
-                  value: "bug"
-                }
-              ]
-            },
-            {
-              name: "action",
-              type: "button",
-              text: "Submit",
-              style: "",
-              value: "complete"
-            }
-          ]
-        }
-      ]
+      token:
+        "xoxp-553324377632-555511337846-555337506023-281fa3129a1ea9527599d54cabe88934",
+      channel: "CG9EQ53QR",
+      text: "Survey question from Mood Bot:"
+      // attachments: [
+      //   {
+      //     title: "How do you feel?",
+      //     actions: [
+      //       {
+      //         name: "feelings_list",
+      //         type: "select",
+      //         text: "Add a Feeling...",
+      //         data_source: "static",
+      //         options: [
+      //           {
+      //             text: "Launch Blocking",
+      //             value: "launch-blocking"
+      //           },
+      //           {
+      //             text: "Enhancement",
+      //             value: "enhancement"
+      //           },
+      //           {
+      //             text: "Bug",
+      //             value: "bug"
+      //           }
+      //         ]
+      //       },
+      //       {
+      //         name: "action",
+      //         type: "button",
+      //         text: "Submit",
+      //         style: "",
+      //         value: "complete"
+      //       }
+      //     ]
+      //   }
+      // ]
     };
     postMessage(message);
   }
