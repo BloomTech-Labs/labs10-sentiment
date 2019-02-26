@@ -91,19 +91,19 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
   }
 });
 
-router.post("/send-me-buttons", urlencodedParser, (req, res) => {
-  res.status(200).end(); // best practice to respond with 200 status
-  var actionJSONPayload = JSON.parse(req.body.payload); // parse URL-encoded payload JSON string
-  var message = {
-    text:
-      actionJSONPayload.user.name +
-      " clicked: " +
-      actionJSONPayload.actions[0].name,
-    replace_original: false
-  };
-  console.log(actionJSONPayload);
-  sendMessageToSlackResponseURL(actionJSONPayload.response_url, message);
-});
+// router.post("/send-me-buttons", urlencodedParser, (req, res) => {
+//   res.status(200).end(); // best practice to respond with 200 status
+//   var actionJSONPayload = JSON.parse(req.body.payload); // parse URL-encoded payload JSON string
+//   var message = {
+//     text:
+//       actionJSONPayload.user.name +
+//       " clicked: " +
+//       actionJSONPayload.actions[0].name,
+//     replace_original: false
+//   };
+//   console.log(actionJSONPayload);
+//   sendMessageToSlackResponseURL(actionJSONPayload.response_url, message);
+// });
 
 router.post("/", (req, res) => {
   // let response = req;
