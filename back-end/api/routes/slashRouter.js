@@ -207,11 +207,20 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
   } else if (reqBody.payload) {
     console.log(reqBody);
     console.log(reqBody.payload);
-    console.log(reqBody.payload.actions);
-    console.log(reqBody.payload.actions[0]);
-    console.log(reqBody.payload.actions[0].selected_options);
-    console.log(reqBody.payload.actions[0].selected_options[0]);
-    console.log(reqBody.payload.actions[0].selected_options[0].value);
+    console.log("reqBody.payload.actions", reqBody.payload.actions);
+    console.log("reqBody.payload.actions[0]", reqBody.payload.actions[0]);
+    console.log(
+      "reqBody.payload.actions[0].selected_options",
+      reqBody.payload.actions[0].selected_options
+    );
+    console.log(
+      "reqBody.payload.actions[0].selected_options[0]",
+      reqBody.payload.actions[0].selected_options[0]
+    );
+    console.log(
+      "reqBody.payload.actions[0].selected_options[0].value",
+      reqBody.payload.actions[0].selected_options[0].value
+    );
     console.log("payload interactive");
 
     let postFeel = {
@@ -228,7 +237,9 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
             .then(getSuccess(res))
             .catch(serverErrorPost(res));
         } else {
-          res.status(400).json({error: 'Feeling Exists for Team Member and Survey'});
+          res
+            .status(400)
+            .json({ error: "Feeling Exists for Team Member and Survey" });
         }
       })
       .catch(serverErrorGet(res));
