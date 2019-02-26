@@ -1,25 +1,19 @@
 import React from "react";
-import NavBar from '../NavBar/NavBar';
+import NavBar from "../NavBar/NavBar";
 
 function accountSettings(props) {
-  if(!localStorage.getItem('email')){
-    props.history.push('/home')
+  if (!localStorage.getItem("email")) {
+    props.history.push("/home");
   }
   return (
     <div>
       <NavBar />
+      <h3>Settings</h3>
       <form className="account-form">
-        <h3> Account Settings </h3>
-        {/* <input
-          type=""
-          placeholder=""
-          name=""
-          value={}
-          onChange={}
-        />
-        <button className="submit-btn" onClick={}>
-          Submit
-        </button> */}
+        <label>Email:</label>
+        <input type="email" placeholder="johndoe@yahoo.com" name="email" />
+
+        <button className="submit-btn">Submit</button>
       </form>
     </div>
   );
