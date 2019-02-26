@@ -50,44 +50,58 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
   res.status(200).end(); // best practice to respond with empty 200 status code
   var reqBody = req.body;
   console.log(reqBody);
-  var responseURL = reqBody.response_url;
-  if (reqBody.token != process.env.VERIFCATION_TOKEN) {
-    res.status(403).end("Access forbidden");
+  if (reqBody.command === "/send-me-buttons") {
+    var responseURL = reqBody.response_url;
+    if (reqBody.token != process.env.VERIFCATION_TOKEN) {
+      res.status(403).end("Access forbidden");
+    } else {
+      var message = {
+        text: "This is your first interactive message",
+        attachments: [
+          {
+            text: "How are you feeling about this week?",
+            fallback: "Shame... buttons aren't supported in this land",
+            callback_id: "button_tutorial",
+            color: "#3AA3E3",
+            attachment_type: "default",
+            actions: [
+              {
+                name: "Happy",
+                text: "Happy",
+                type: "button",
+                value: "Happy"
+              },
+              {
+                name: "Sad",
+                text: "Sad",
+                type: "button",
+                value: "Sad"
+              },
+              {
+                name: "Mad",
+                text: "Mad",
+                type: "button",
+                value: "Mad",
+                style: "danger"
+              }
+            ]
+          }
+        ]
+      };
+      sendMessageToSlackResponseURL(responseURL, message);
+    }
   } else {
+    res.status(200).end(); // best practice to respond with 200 status
+    var actionJSONPayload = JSON.parse(req.body.payload); // parse URL-encoded payload JSON string
     var message = {
-      text: "This is your first interactive message",
-      attachments: [
-        {
-          text: "How are you feeling about this week?",
-          fallback: "Shame... buttons aren't supported in this land",
-          callback_id: "button_tutorial",
-          color: "#3AA3E3",
-          attachment_type: "default",
-          actions: [
-            {
-              name: "Happy",
-              text: "Happy",
-              type: "button",
-              value: "Happy"
-            },
-            {
-              name: "Sad",
-              text: "Sad",
-              type: "button",
-              value: "Sad"
-            },
-            {
-              name: "Mad",
-              text: "Mad",
-              type: "button",
-              value: "Mad",
-              style: "danger"
-            }
-          ]
-        }
-      ]
+      text:
+        actionJSONPayload.user.name +
+        " clicked: " +
+        actionJSONPayload.actions[0].name,
+      replace_original: false
     };
-    sendMessageToSlackResponseURL(responseURL, message);
+    console.log(actionJSONPayload);
+    sendMessageToSlackResponseURL(actionJSONPayload.response_url, message);
   }
 });
 
