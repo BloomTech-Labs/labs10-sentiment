@@ -53,6 +53,7 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
   if (reqBody.token != process.env.VERIFCATION_TOKEN) {
     res.status(403).end("Access forbidden");
   } else {
+    console.log(reqBody);
     var message = {
       text: "This is your first interactive message",
       attachments: [
