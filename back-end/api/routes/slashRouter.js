@@ -190,6 +190,7 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
           //   }
           // ]
         };
+        console.log(message);
         postMessage(message, botToken);
       })
       .catch(err => err);
