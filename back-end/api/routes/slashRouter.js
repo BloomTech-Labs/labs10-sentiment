@@ -198,6 +198,8 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
         postMessage(message, botToken);
       })
       .catch(err => err);
+  }else if(reqBody.payload.type === "interactive_message"){
+    console.log("payload interactive");
   }
 });
 
