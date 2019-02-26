@@ -121,7 +121,7 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
     sendMessageToSlackResponseURL(actionJSONPayload.response_url, message);
   } else if (reqBody.message === true) {
     message = {
-      token: "xoxb-553324377632-553511725281-K35gpSdumrvX0lOq5CqpHYdq",
+      token: "xoxb-553324377632-553511725281-GHcD3nzGVgwMZVrhHrbUoGLT",
       channel: "mood-bot",
       text: "Survey question from Mood Bot:",
       attachments: [
