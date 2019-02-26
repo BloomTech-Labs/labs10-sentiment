@@ -120,7 +120,7 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
     console.log(actionJSONPayload);
     sendMessageToSlackResponseURL(actionJSONPayload.response_url, message);
   } else if (reqBody.message === true) {
-    let message = {
+    message = {
       token: "xoxb-553324377632-553511725281-K35gpSdumrvX0lOq5CqpHYdq",
       channel: "mood-bot",
       text: "Survey question from Mood Bot:",
@@ -159,6 +159,7 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
         }
       ]
     };
+    postMessage(message);
   }
 });
 
