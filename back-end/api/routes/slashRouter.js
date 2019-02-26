@@ -1,4 +1,4 @@
-//
+///
 require("dotenv").config();
 const express = require("express");
 const router = express.Router();
@@ -46,36 +46,15 @@ function sendMessageToSlackResponseURL(responseURL, JSONmessage) {
   });
 }
 
-// function postMessage(JSONmessage) {
-//   let postOptions = {
-//     uri: `https://slack.com/api/chat.postMessage`,
-//     method: "POST",
-//     headers: {
-//       "Content-type": "application/json",
-//     },
-//     json: JSONmessage
-//   };
-//   request(postOptions, (error, response, body) => {
-//     if (error) {
-//       // handle errors as you see fit
-//       res.json({ error: "Error." });
-//     }
-//   });
-// }
-
-
-function postMessage(botToken) {
-  const postOptions = {
-    uri:
-      "https://slack.com/api/chat.postMessage?token=" +
-      botToken +
-      "&channel=" +
-      "CG9EQ53QR" +
-      "&text=" +
-      "Testing" +
-      "&as_user=" +
-      "false",
-    method: "POST"
+function postMessage(JSONmessage, token) {
+  let postOptions = {
+    uri: `https://slack.com/api/chat.postMessage`,
+    method: "POST",
+    headers: {
+      "Content-type": "application/json",
+      'Authorization': `Bearer ${token}` 
+    },
+    json: JSONmessage
   };
   request(postOptions, (error, response, body) => {
     if (error) {
@@ -84,6 +63,27 @@ function postMessage(botToken) {
     }
   });
 }
+
+// function postMessage(botToken) {
+//   const postOptions = {
+//     uri:
+//       "https://slack.com/api/chat.postMessage?token=" +
+//       botToken +
+//       "&channel=" +
+//       "CG9EQ53QR" +
+//       "&text=" +
+//       "Testing" +
+//       "&as_user=" +
+//       "false",
+//     method: "POST"
+//   };
+//   request(postOptions, (error, response, body) => {
+//     if (error) {
+//       // handle errors as you see fit
+//       res.json({ error: "Error." });
+//     }
+//   });
+// }
 
 // https://slack.com/api/chat.postMessage?token=xoxb-553324377632-553511725281-WtIU01FxATAkavAPlFn6BPz2&channel=CG9EQ53QR&text=Test
 
@@ -148,13 +148,14 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
     dbAuth
       .getByMemberId(reqBody.member_id)
       .then(data => {
-        console.log(data)
-        const botToken = data[0].bot_access_token;
-        console.log(botToken)
+        console.log(data);
+        const botToken = data[0].access_token;
+        console.log(botToken);
         message = {
-          token: botToken,
-          channel: 'CG9EQ53QR',
-          text: "Survey question from Mood Bot:"
+          // token: botToken,
+          channel: "CG9EQ53QR",
+          text: "Survey question from Mood Bot:",
+          as_user: false
           // attachments: [
           //   {
           //     title: "How do you feel?",
@@ -190,7 +191,8 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
           //   }
           // ]
         };
-        postMessage(botToken);
+        console.log(message);
+        postMessage(message, botToken);
       })
       .catch(err => err);
   }
