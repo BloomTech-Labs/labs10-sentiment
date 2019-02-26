@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route, NavLink, Router } from "react-router-dom";
+import { Route, Router } from "react-router-dom";
 import "./App.css";
 // import Auth from "../Components/Auth/auth";
 import Home from "./Home";

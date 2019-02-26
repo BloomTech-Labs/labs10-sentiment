@@ -1,6 +1,9 @@
 import React from "react";
 import PieChart from "./chart";
+import Line from './linegraph';
+import Bar from './barGraph'
 import NavBar from '../NavBar/NavBar';
+import './report.css'
 
 function Survey(props) {
 
@@ -8,10 +11,14 @@ function Survey(props) {
     props.history.push('/home')
   }
   return (
-    <div>
+    <div className="container">
      <NavBar />
+     <div className="reports-container">
       <p> Reports </p>
       <PieChart />
+      <Line />
+      <Bar />
+      </div>
     </div>
   );
 }
