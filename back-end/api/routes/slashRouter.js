@@ -52,7 +52,7 @@ function postMessage(JSONmessage, token) {
     method: "POST",
     headers: {
       "Content-type": "application/json",
-      "Authorization": `Bearer ${token}`
+      auth: { bearer: token }
     },
     json: JSONmessage
   };
@@ -63,7 +63,6 @@ function postMessage(JSONmessage, token) {
     }
   });
 }
-
 
 // function postMessage(botToken) {
 //   const postOptions = {
@@ -149,12 +148,12 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
     dbAuth
       .getByMemberId(reqBody.member_id)
       .then(data => {
-        console.log(data)
+        console.log(data);
         const botToken = data[0].bot_access_token;
-        console.log(botToken)
+        console.log(botToken);
         message = {
           // token: botToken,
-          channel: 'CG9EQ53QR',
+          channel: "CG9EQ53QR",
           text: "Survey question from Mood Bot:"
           // attachments: [
           //   {
