@@ -52,7 +52,7 @@ function postMessage(JSONmessage, token) {
     method: "POST",
     headers: {
       "Content-type": "application/json",
-      'Authorization': `Bearer ${token}` 
+      'Authorization': `Bearer ${token}`
     },
     json: JSONmessage
   };
@@ -155,41 +155,44 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
           // token: botToken,
           channel: "CG9EQ53QR",
           text: "Survey question from Mood Bot:",
-          as_user: false
-          // attachments: [
-          //   {
-          //     title: "How do you feel?",
-          //     actions: [
-          //       {
-          //         name: "feelings_list",
-          //         type: "select",
-          //         text: "Add a Feeling...",
-          //         data_source: "static",
-          //         options: [
-          //           {
-          //             text: "Launch Blocking",
-          //             value: "launch-blocking"
-          //           },
-          //           {
-          //             text: "Enhancement",
-          //             value: "enhancement"
-          //           },
-          //           {
-          //             text: "Bug",
-          //             value: "bug"
-          //           }
-          //         ]
-          //       },
-          //       {
-          //         name: "action",
-          //         type: "button",
-          //         text: "Submit",
-          //         style: "",
-          //         value: "complete"
-          //       }
-          //     ]
-          //   }
-          // ]
+          as_user: false,
+          attachments: [
+            {
+              "text": "Choose a feeling",
+              "fallback": "If you could read this message, you'd be picking a feeling right now.",
+              "color": "#3AA3E3",
+              "attachment_type": "default",
+              "callback_id": "feeling_menu",
+              actions: [
+                {
+                  "name": "feeling_list",
+                  "text": "Pick a feeling...",
+                  "type": "select",
+                  options: [
+                    {
+                      text: "Happy",
+                      value: "happy"
+                    },
+                    {
+                      text: "Sad",
+                      value: "sad"
+                    },
+                    {
+                      text: "Mad",
+                      value: "mad"
+                    }
+                  ]
+                }
+                // {
+                //   name: "action",
+                //   type: "button",
+                //   text: "Submit",
+                //   style: "",
+                //   value: "complete"
+                // }
+              ]
+            }
+          ]
         };
         console.log(message);
         postMessage(message, botToken);
