@@ -20,7 +20,7 @@ class BarGraph extends React.Component {
     render() {
       return (
         <div className="pie-chart">
-          <h2>Bar Example</h2>
+          <h2>Comparing survey results against each other</h2>
           <Bar
             data={data}
             width={50}

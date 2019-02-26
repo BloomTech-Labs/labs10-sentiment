@@ -5,7 +5,7 @@ import Bar from './barGraph'
 import NavBar from '../NavBar/NavBar';
 import './report.css'
 
-function Survey(props) {
+function Reports(props) {
 
   if(!localStorage.getItem('email')){
     props.history.push('/home')
@@ -23,4 +23,4 @@ function Survey(props) {
   );
 }
 
-export default Survey;
+export default Reports;

@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const db = require("../database/helpers/surveysDb");
 const managersdb = require("../database/helpers/managersDb");
+// const feelingsdb = require('../database/helpers/surveysFeelingsDb');
 
 const {
   postSuccess,
@@ -42,6 +43,18 @@ router.get("/", (req, res) => {
     .then(getSuccess(res))
     .catch(serverErrorGet(res));
 });
+
+// router.get("/:id", (req, res) => {
+//   const { id } = req.params;
+//   feelingsdb.get().where({ survey_id: id }).then(data => {
+//     db.getID(id)
+//     .then(response => {
+//       res.status(200).json({ response, data})
+//     })
+//     .catch(serverErrorGetID(res, type, id));
+//   })
+
+// });
 
 router.get("/:id", (req, res) => {
   const { id } = req.params;
