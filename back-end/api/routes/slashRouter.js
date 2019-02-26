@@ -7,6 +7,7 @@ const bodyParser = require("body-parser");
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
 const request = require("request");
 const dbAuth = require("../database/helpers/slackAuthDb");
+const dbFeelings = require("../database/helpers/feelingsDb");
 
 const {
   postSuccess,
@@ -52,7 +53,7 @@ function postMessage(JSONmessage, token) {
     method: "POST",
     headers: {
       "Content-type": "application/json",
-      'Authorization': `Bearer ${token}`
+      Authorization: `Bearer ${token}`
     },
     json: JSONmessage
   };
@@ -92,6 +93,8 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
   res.status(200).end(); // best practice to respond with empty 200 status code
   let reqBody = req.body;
   console.log(reqBody);
+  let surveyId = null;
+  let memberId = null;
   if (reqBody.command === "/send-me-buttons") {
     let responseURL = reqBody.response_url;
     if (reqBody.token != process.env.VERIFCATION_TOKEN) {
@@ -151,6 +154,8 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
         console.log(data);
         const botToken = data[0].access_token;
         console.log(botToken);
+        memberId = reqBody.member_id;
+        surveyId = reqBody.survey_id;
         message = {
           // token: botToken,
           channel: "CG9EQ53QR",
@@ -158,16 +163,17 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
           as_user: false,
           attachments: [
             {
-              "text": "Choose a feeling",
-              "fallback": "If you could read this message, you'd be picking a feeling right now.",
-              "color": "#3AA3E3",
-              "attachment_type": "default",
-              "callback_id": "feeling_menu",
+              text: "Choose a feeling",
+              fallback:
+                "If you could read this message, you'd be picking a feeling right now.",
+              color: "#3AA3E3",
+              attachment_type: "default",
+              callback_id: "feeling_menu",
               actions: [
                 {
-                  "name": "feeling_list",
-                  "text": "Pick a feeling...",
-                  "type": "select",
+                  name: "feeling_list",
+                  text: "Pick a feeling...",
+                  type: "select",
                   options: [
                     {
                       text: "Happy",
@@ -198,10 +204,29 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
         postMessage(message, botToken);
       })
       .catch(err => err);
-  }else if(reqBody.payload){
+  } else if (reqBody.payload) {
     console.log(reqBody);
     console.log(reqBody.payload);
     console.log("payload interactive");
+
+    let postFeel = {
+      feeling_text: reqBody.payload.actions[0].selected_options[0].value,
+      team_member_id: memberId,
+      survey_id: surveyId
+    };
+    dbFeelings
+      .getByMemberAndSurveyId(memberId, surveyId)
+      .then(data => {
+        if (!data[0]) {
+          dbFeelings
+            .insert(postFeel)
+            .then(getSuccess(res))
+            .catch(serverErrorPost(res));
+        } else {
+          res.status(400).json({error: 'Feeling Exists for Team Member and Survey'});
+        }
+      })
+      .catch(serverErrorGet(res));
   }
 });
 

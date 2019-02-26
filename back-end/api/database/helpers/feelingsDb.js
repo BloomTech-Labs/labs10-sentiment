@@ -9,6 +9,9 @@ module.exports = {
   getID: function(id) {
     return db(table).where("id", id);
   },
+  getByMemberAndSurveyId: function(memberId, surveyId) {
+    return db(table).where({ survey_id: surveyId, team_member_id: memberId });
+  },
   insert: function(post) {
     return db(table)
       .insert(post)
