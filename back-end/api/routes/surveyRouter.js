@@ -44,16 +44,23 @@ router.get("/", (req, res) => {
     .catch(serverErrorGet(res));
 });
 
+// router.get("/:id", (req, res) => {
+//   const { id } = req.params;
+//   feelingsdb.get().where({ survey_id: id }).then(data => {
+//     db.getID(id)
+//     .then(response => {
+//       res.status(200).json({ response, data})
+//     })
+//     .catch(serverErrorGetID(res, type, id));
+//   })
+
+// });
+
 router.get("/:id", (req, res) => {
   const { id } = req.params;
-  feelingsdb.get().where({ survey_id: id }).then(data => {
-    db.getID(id)
-    .then(response => {
-      res.status(200).json({ response, data})
-    })
+  db.getID(id)
+    .then(getSuccess(res))
     .catch(serverErrorGetID(res, type, id));
-  })
-
 });
 
 router.delete(`/:id`, (req, res) => {
