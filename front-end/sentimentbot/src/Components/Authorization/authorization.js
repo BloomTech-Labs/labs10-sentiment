@@ -22,7 +22,6 @@ class Authorization extends React.Component {
   componentDidMount() {
     this.props.getSingleTeamMembers(localStorage.getItem("email"));
     this.props.getTeamMembers()
-    this.props.getSurvey()
   }
 
   // componentDidUpdate(prevProps) {
