@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const db = require("../database/helpers/surveysFeelingsDb");
 const surveysdb = require("../database/helpers/surveysDb");
-const feelingsdb = require("../database/helpers/feelingsDb");
+const feelingsdb = require("../database/helpers/preFeelingsDb");
 
 const {
   postSuccess,
@@ -43,12 +43,20 @@ router.post("/", (req, res) => {
         res.status(404).json({
           message: `${type3} with ID ${postInfo.feelings_id} does not exist.`
         });
+      } else {
+        db.getSurveyAndFeelingID(postInfo.survey_id, postInfo.feelings_id)
+          .then(data => {
+            if (data.length > 0) {
+              res.status(400).json({error: `Pre Set Feeling with Id: ${postInfo.feelings_id} is already associated with Survey Id ${postInfo.survey_id}`});
+            } else {
+              db.insert(postInfo)
+                .then(postSuccess(res))
+                .catch(serverErrorPost(res));
+            }
+          })
+          .catch(serverErrorGet(res));
       }
     });
-
-  db.insert(postInfo)
-    .then(postSuccess(res))
-    .catch(serverErrorPost(res));
 });
 
 router.get("/", (req, res) => {

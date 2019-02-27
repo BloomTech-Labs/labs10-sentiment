@@ -167,7 +167,7 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
         actionJSONPayload.actions[0].name,
       replace_original: false
     };
-    console.log("actionJSONPayload", actionJSONPayload);
+    // console.log("actionJSONPayload", actionJSONPayload);
     sendMessageToSlackResponseURL(actionJSONPayload.response_url, message);
   } else if (reqBody.message === true) {
     let surveyId = reqBody.servey_id;
@@ -176,7 +176,6 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
       .then(data => {
         const botToken = data[0].access_token;
         message = {
-          // token: botToken,
           channel: "CG9EQ53QR",
           text: "Survey question from Mood Bot:",
           as_user: false,
