@@ -220,10 +220,10 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
     //   "reqBody.payload.actions[0].selected_options[0]",
     //   reqBody.payload.actions[0].selected_options[0]
     // );
-    // console.log(
-    //   "reqBody.payload.actions[0].selected_options[0].value",
-    //   reqBody.payload.actions[0].selected_options[0].value
-    // );
+    console.log(
+      "reqBody.payload.actions[0].selected_options[0].value",
+      jsonPayload.actions[0].selected_options[0].value
+    );
     console.log("payload interactive");
 
     let postFeel = {
