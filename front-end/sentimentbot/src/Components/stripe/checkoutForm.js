@@ -25,7 +25,7 @@ class CheckoutForm extends Component {
       this.setState({
         complete: true
       });
-    console.log("Purchase Complete!");
+
   }
 
   render() {

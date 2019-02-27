@@ -7,7 +7,8 @@ import {
   addTeam,
   getTeams,
   editTeamMembers,
-  getSingleTeam
+  getSingleTeam,
+  fetchSingleSurvey
 } from "../../actions/index";
 import axios from "axios";
 import NavBar from '../NavBar/NavBar'
@@ -46,6 +47,9 @@ class Profile extends React.Component {
     console.log(code);
     if (code !== prevProps.match.params.code) {
       this.fetchAuth(code);
+    }
+    if (this.props.isFetching === false && this.props.singleSurvey.length < 1) {
+      this.props.fetchSingleSurvey(this.props.survey[0].id)
     }
   }
 
@@ -127,7 +131,8 @@ class Profile extends React.Component {
   render() {
     if(!localStorage.getItem('email')){
       this.props.history.push('/home')
-    }
+    } 
+
     const view = this.state.view;
     const uri = "https://sentimentbot.netlify.com/profile";
     // const uri = "http://localhost:3000//profile";
@@ -233,9 +238,11 @@ class Profile extends React.Component {
 function mapStateToProps(state) {
   return {
     singleTeamMembers: state.teamMembersReducer.singleTeamMembers,
-    isFetching: state.teamMembersReducer.isFetching,
     error: state.teamMembersReducer.error,
-    teamMembers: state.teamMembersReducer.teamMembers
+    teamMembers: state.teamMembersReducer.teamMembers,
+    survey: state.surveyReducer.survey,
+    isFetching: state.surveyReducer.isFetching,
+    singleSurvey: state.surveyReducer.singleSurvey
   };
 }
 
@@ -248,7 +255,8 @@ export default connect(
     addTeam,
     getTeams,
     editTeamMembers,
-    getSingleTeam
+    getSingleTeam,
+    fetchSingleSurvey
   }
 )(Profile);
 

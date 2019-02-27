@@ -31,7 +31,6 @@ class Billing extends React.Component {
       this.setState({
         complete: true
       });
-    console.log("Purchase Complete!");
   }
 
   async onToken2(token) {
