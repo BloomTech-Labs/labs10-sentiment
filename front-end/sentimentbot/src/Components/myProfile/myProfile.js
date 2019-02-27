@@ -48,7 +48,9 @@ class Profile extends React.Component {
     if (code !== prevProps.match.params.code) {
       this.fetchAuth(code);
     }
-    if (this.props.isFetching === false && this.props.singleSurvey.length < 1) {
+    if (this.props.survey.length === 0) {
+      return
+    } else if (this.props.isFetching === false && this.props.singleSurvey.length < 1) {
       this.props.fetchSingleSurvey(this.props.survey[0].id)
     }
   }
@@ -135,7 +137,7 @@ class Profile extends React.Component {
 
     const view = this.state.view;
     const uri = "https://sentimentbot.netlify.com/profile";
-    // const uri = "http://localhost:3000//profile";
+    // const uri = "http://localhost:3000/profile";
     console.log(view);
     if (view === "") {
       return (

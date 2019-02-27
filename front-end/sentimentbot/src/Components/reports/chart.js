@@ -32,6 +32,8 @@ class PieChart extends React.Component {
     this.response4 = ''
     this.complete = false
 
+
+    if(this.props.singleSurvey.length > 0) {
     const responses = this.props.singleSurvey.data.map(response => {
       count += 1;
     });
@@ -59,6 +61,7 @@ class PieChart extends React.Component {
         this.complete = true
       }
     }
+  }
 
     this.responseArray = []
     for (let i = 0; i<count; i++) {
@@ -92,9 +95,12 @@ class PieChart extends React.Component {
   // }
 
   render() {
+    if (this.props.singleSurvey === 0) {
+      return 
+    }
     if (!this.state.complete === true || this.props.isFetching === true) {
       return (
-        <p> Loading... </p>
+        <p>Make surveys to display data</p>
       )
     }
     const data = {
