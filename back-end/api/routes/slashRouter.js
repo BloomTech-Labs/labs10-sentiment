@@ -207,7 +207,7 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
   } else if (reqBody.payload) {
     console.log(reqBody);
     console.log(reqBody.payload);
-    console.log("reqBody.payload.actions", reqBody.payload.actions);
+    console.log("reqBody.payload.actions", reqBody.payload["actions"]);
     console.log("reqBody.payload.actions[0]", reqBody.payload.actions[0]);
     console.log(
       "reqBody.payload.actions[0].selected_options",
