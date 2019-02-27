@@ -59,7 +59,7 @@ router.post("/", (req, res) => {
       db.insert(teamInsert)
         .then(() => {
           // get newly created team by team code
-          db.getTeamCode(num)
+          db.getTeamCode(postInfo.team_code) //// team code ///////////////////////////////////////////////////////////////////
             .then(data => {
               // team id
               const teamID = data[0].id;
