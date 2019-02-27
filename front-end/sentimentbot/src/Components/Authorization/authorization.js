@@ -5,7 +5,7 @@
 
 import React from "react";
 import { connect } from "react-redux";
-import { getSingleTeamMembers, addTeamMembers, getTeamMembers } from "../../actions/index";
+import { getSingleTeamMembers, addTeamMembers, getTeamMembers, fetchSingleSurvey, getSurvey } from "../../actions/index";
 import history from "../history";
 import NavBar from '../NavBar/NavBar'
 
@@ -22,6 +22,7 @@ class Authorization extends React.Component {
   componentDidMount() {
     this.props.getSingleTeamMembers(localStorage.getItem("email"));
     this.props.getTeamMembers()
+    this.props.getSurvey()
   }
 
   // componentDidUpdate(prevProps) {
@@ -55,7 +56,8 @@ class Authorization extends React.Component {
       this.props.history.push('/home')
     } else if (localStorage.getItem('email')) {
       this.props.history.push('/profile')
-    }
+    } 
+    
     const makeInput = name => (
       <textarea
         autoComplete="off"
@@ -95,11 +97,12 @@ function mapStateToProps(state) {
     isFetching: state.teamMembersReducer.isFetching,
     error: state.teamMembersReducer.error,
     teamMembers: state.teamMembersReducer.teamMembers,
-
+    survey: state.surveyReducer.survey,
+    singleSurvey: state.surveyReducer.singleSurvey
   };
 }
 
 export default connect(
   mapStateToProps,
-  { getSingleTeamMembers, addTeamMembers, getTeamMembers }
+  { getSingleTeamMembers, addTeamMembers, getTeamMembers, fetchSingleSurvey, getSurvey }
 )(Authorization);

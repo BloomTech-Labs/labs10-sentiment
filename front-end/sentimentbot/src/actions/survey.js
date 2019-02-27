@@ -16,14 +16,14 @@ export const SINGLE_SURVEY_START = 'SINGLE_SURVEY_START';
 export const SINGLE_SURVEY_SUCCESS = 'SINGLE_SURVEY_SUCCESS';
 export const SINGLE_SURVEY_FAILURE = 'SINGLE_SURVEY_FAILURE';
 
-export const getSurvey = () => {
-    dispatchEvent({ type: FETCH_SURVEY_START });
+export const getSurvey = () => dispatch => {
+    dispatch({ type: FETCH_SURVEY_START });
     axios
     .get('https://botsentiment.herokuapp.com/api/surveys')
     .then(response => {
-        dispatchEvent({ type: FETCH_SURVEY_SUCCESS, payload: response.data })
+        dispatch({ type: FETCH_SURVEY_SUCCESS, payload: response.data })
     })
-    .catch(err => dispatchEvent({ type: FETCH_SURVEY_FAILURE, payload: err }))
+    .catch(err => dispatch({ type: FETCH_SURVEY_FAILURE, payload: err }))
 }
 
 export const addSurvey = note => dispatch => {
@@ -59,7 +59,7 @@ export const deleteSurvey = id => dispatch => {
 export const fetchSingleSurvey = id => dispatch => {
     dispatch({ type: SINGLE_SURVEY_START });
     axios
-        .get(`http://localhost:5002/api/surveys/${id}`)
+        .get(`https://botsentiment.herokuapp.com/api/surveys${id}`)
         .then(response => {
             dispatch({ type: SINGLE_SURVEY_SUCCESS, payload: response.data })
         })

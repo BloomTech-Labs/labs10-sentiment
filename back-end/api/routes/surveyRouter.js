@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const db = require("../database/helpers/surveysDb");
-const managersdb = require("../database/helpers/managersDb");
-// const feelingsdb = require('../database/helpers/surveysFeelingsDb');
+// const managersdb = require("../database/helpers/managersDb");
+const feelingsdb = require('../database/helpers/feelingsDb');
 
 const {
   postSuccess,
@@ -22,16 +22,16 @@ const type2 = "manager";
 router.post("/", (req, res) => {
   const postInfo = req.body;
 
-  managersdb
-    .get()
-    .where("id", postInfo.manager_id)
-    .then(data => {
-      if (data.length === 0) {
-        res.status(404).json({
-          message: `${type2} with ID ${postInfo.manager_id} does not exist.`
-        });
-      }
-    });
+  // managersdb
+  //   .get()
+  //   .where("id", postInfo.manager_id)
+  //   .then(data => {
+  //     if (data.length === 0) {
+  //       res.status(404).json({
+  //         message: `${type2} with ID ${postInfo.manager_id} does not exist.`
+  //       });
+  //     }
+  //   });
 
   db.insert(postInfo)
     .then(postSuccess(res))
@@ -58,9 +58,14 @@ router.get("/", (req, res) => {
 
 router.get("/:id", (req, res) => {
   const { id } = req.params;
-  db.getID(id)
-    .then(getSuccess(res))
+  feelingsdb.get().where({ survey_id: id }).then(data => {
+    db.getID(id)
+    .then(response => {
+      res.status(200).json({ response, data})
+    })
     .catch(serverErrorGetID(res, type, id));
+  })
+
 });
 
 router.delete(`/:id`, (req, res) => {
