@@ -216,6 +216,7 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
           team_member_id: memberId,
           survey_id: surveyId
         };
+        console.log('postFeel', postFeel);
         dbFeelings
           .getByMemberAndSurveyId(memberId, surveyId)
           .then(data => {
