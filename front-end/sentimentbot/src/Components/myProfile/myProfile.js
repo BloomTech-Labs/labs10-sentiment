@@ -8,7 +8,8 @@ import {
   getTeams,
   editTeamMembers,
   getSingleTeam,
-  fetchSingleSurvey
+  fetchSingleSurvey,
+  getSurvey
 } from "../../actions/index";
 import axios from "axios";
 import NavBar from '../NavBar/NavBar'
@@ -32,6 +33,7 @@ class Profile extends React.Component {
     if (code) {
       this.fetchAuth(code);
     }
+    this.props.getSurvey(this.props.singleTeamMembers[0].id)
   }
 
   // this.props.teamMembers.length !== prevProps.teamMembers.length
@@ -51,7 +53,7 @@ class Profile extends React.Component {
     if (this.props.survey.length === 0) {
       return
     } else if (this.props.isFetching === false && this.props.singleSurvey.length < 1) {
-      this.props.fetchSingleSurvey(this.props.survey[0].id)
+      this.props.fetchSingleSurvey(this.props.survey[0].survey_time_stamp)
     }
   }
 
@@ -258,7 +260,8 @@ export default connect(
     getTeams,
     editTeamMembers,
     getSingleTeam,
-    fetchSingleSurvey
+    fetchSingleSurvey,
+    getSurvey
   }
 )(Profile);
 

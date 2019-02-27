@@ -38,8 +38,9 @@ router.post("/", (req, res) => {
     .catch(serverErrorPost(res));
 });
 
-router.get("/", (req, res) => {
-  db.get()
+router.get("/manager/:id", (req, res) => {
+  const {id} = req.params
+  db.get().where({ manager_id: id })
     .then(getSuccess(res))
     .catch(serverErrorGet(res));
 });
@@ -58,7 +59,7 @@ router.get("/", (req, res) => {
 
 router.get("/:id", (req, res) => {
   const { id } = req.params;
-  feelingsdb.get().where({ survey_id: id }).then(data => {
+  feelingsdb.get().where({ survey_time_stamp: id }).then(data => {
     db.getID(id)
     .then(response => {
       res.status(200).json({ response, data})
