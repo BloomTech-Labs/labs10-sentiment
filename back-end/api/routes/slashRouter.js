@@ -220,7 +220,7 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
           .getByMemberAndSurveyId(memberId, surveyId)
           .then(data => {
             console.log('data mem sur', data);
-            if (!data) {
+            if (data.length === 0) {
               dbFeelings
                 .insert(postFeel)
                 .then(getSuccess(res))
