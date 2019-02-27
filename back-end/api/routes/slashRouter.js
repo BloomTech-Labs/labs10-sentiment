@@ -61,6 +61,9 @@ function postMessage(JSONmessage, token) {
     if (error) {
       // handle errors as you see fit
       res.json({ error: "Error." });
+    }else{
+      console.log('response', response);
+      console.log('body', body);
     }
   });
 }
