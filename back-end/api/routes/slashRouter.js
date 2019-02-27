@@ -89,10 +89,9 @@ function postMessage(JSONmessage, token) {
 // https://slack.com/api/chat.postMessage?token=xoxb-553324377632-553511725281-WtIU01FxATAkavAPlFn6BPz2&channel=CG9EQ53QR&text=Test
 
 router.post("/send-me-buttons", urlencodedParser, (req, res) => {
-  console.log("send me buttons");
   res.status(200).end(); // best practice to respond with empty 200 status code
   let reqBody = req.body;
-  console.log(reqBody);
+  console.log('reqBody',reqBody);
   let surveyId = null;
   let memberId = null;
   if (reqBody.command === "/send-me-buttons") {
@@ -145,16 +144,14 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
         actionJSONPayload.actions[0].name,
       replace_original: false
     };
-    console.log(actionJSONPayload);
+    console.log('actionJSONPayload',actionJSONPayload);
     sendMessageToSlackResponseURL(actionJSONPayload.response_url, message);
   } else if (reqBody.message === true) {
     dbAuth
       .getByMemberId(reqBody.member_id)
       .then(data => {
-        console.log(data);
         const botToken = data[0].access_token;
-        console.log(botToken);
-        memberId = reqBody.member_id;
+        // memberId = reqBody.member_id;
         surveyId = reqBody.survey_id;
         message = {
           // token: botToken,
@@ -200,50 +197,39 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
             }
           ]
         };
-        console.log(message);
         postMessage(message, botToken);
       })
       .catch(err => err);
   } else if (reqBody.payload) {
-    console.log(reqBody);
-    console.log(reqBody.payload);
     let jsonPayload = JSON.parse(reqBody.payload);
-    console.log(jsonPayload);
-    console.log("reqBody.payload.actions", jsonPayload["actions"]);
-    console.log("reqBody.payload.actions", jsonPayload.actions);
-    console.log("reqBody.payload.actions[0]", jsonPayload.actions[0]);
-    // console.log(
-    //   "reqBody.payload.actions[0].selected_options",
-    //   reqBody.payload.actions[0].selected_options
-    // );
-    // console.log(
-    //   "reqBody.payload.actions[0].selected_options[0]",
-    //   reqBody.payload.actions[0].selected_options[0]
-    // );
-    console.log(
-      "reqBody.payload.actions[0].selected_options[0].value",
-      jsonPayload.actions[0].selected_options[0].value
-    );
-    console.log("payload interactive");
-
-    let postFeel = {
-      feeling_text: reqBody.payload.actions[0].selected_options[0].value,
-      team_member_id: memberId,
-      survey_id: surveyId
-    };
-    dbFeelings
-      .getByMemberAndSurveyId(memberId, surveyId)
+    console.log('jsonPayload',jsonPayload);
+    let userIdSlack = jsonPayload.user.id;
+    dbAuth
+      .getBySlackUserId(userIdSlack)
       .then(data => {
-        if (!data[0]) {
-          dbFeelings
-            .insert(postFeel)
-            .then(getSuccess(res))
-            .catch(serverErrorPost(res));
-        } else {
-          res
-            .status(400)
-            .json({ error: "Feeling Exists for Team Member and Survey" });
-        }
+        console.log('data slack user id', data[0]);
+        memberId = data[0].member_id;
+        let postFeel = {
+          feeling_text: jsonPayload.actions[0].selected_options[0].value,
+          team_member_id: memberId,
+          survey_id: surveyId
+        };
+        dbFeelings
+          .getByMemberAndSurveyId(memberId, surveyId)
+          .then(data => {
+            console.log('data mem sur', data[0]);
+            if (!data[0]) {
+              dbFeelings
+                .insert(postFeel)
+                .then(getSuccess(res))
+                .catch(serverErrorPost(res));
+            } else {
+              res
+                .status(400)
+                .json({ error: "Feeling Exists for Team Member and Survey" });
+            }
+          })
+          .catch(serverErrorGet(res));
       })
       .catch(serverErrorGet(res));
   }
