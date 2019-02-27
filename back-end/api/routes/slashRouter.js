@@ -8,6 +8,7 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false });
 const request = require("request");
 const dbAuth = require("../database/helpers/slackAuthDb");
 const dbFeelings = require("../database/helpers/feelingsDb");
+const dbSurveys = require("../database/helpers/surveysDb");
 
 const {
   postSuccess,
@@ -47,7 +48,7 @@ function sendMessageToSlackResponseURL(responseURL, JSONmessage) {
   });
 }
 
-function postMessage(JSONmessage, token) {
+function postMessage(JSONmessage, token, surveyId) {
   let postOptions = {
     uri: `https://slack.com/api/chat.postMessage`,
     method: "POST",
@@ -61,12 +62,33 @@ function postMessage(JSONmessage, token) {
     if (error) {
       // handle errors as you see fit
       res.json({ error: "Error." });
-    }else{
-      console.log('response', response);
-      console.log('body', body);
-    }
+    } 
+    // else {
+      // console.log("body", body);
+      // console.log("body time stamp", body.message.ts);
+    //   ///////////// put to servey add survey_time_stamp
+    //   dbSurveys
+    //     .getID(surveyId)
+    //     .then(data => {
+    //       if (data.length > 0) {
+    //         let putInfo = {
+    //           survey_time_stamp: body.message.ts
+    //         };
+    //         dbSurveys
+    //           .update(surveyId, putInfo)
+    //           .then(getSuccess(res))
+    //           .catch(serverErrorUpdate404(res, "survey", surveyId));
+    //       } else {
+    //         res.status(404).json({error: 'survey does not exist'});
+    //       }
+    //     })
+    //     .catch(serverErrorGet(res));
+    // }
   });
 }
+
+// '1551240654.863992',
+//  message_ts: '1551240449.011400',
 
 // function postMessage(botToken) {
 //   const postOptions = {
@@ -91,12 +113,10 @@ function postMessage(JSONmessage, token) {
 
 // https://slack.com/api/chat.postMessage?token=xoxb-553324377632-553511725281-WtIU01FxATAkavAPlFn6BPz2&channel=CG9EQ53QR&text=Test
 
-
-
 router.post("/send-me-buttons", urlencodedParser, (req, res) => {
   res.status(200).end(); // best practice to respond with empty 200 status code
   let reqBody = req.body;
-  console.log('reqBody',reqBody);
+  console.log("reqBody", reqBody);
   if (reqBody.command === "/send-me-buttons") {
     let responseURL = reqBody.response_url;
     if (reqBody.token != process.env.VERIFCATION_TOKEN) {
@@ -147,11 +167,10 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
         actionJSONPayload.actions[0].name,
       replace_original: false
     };
-    console.log('actionJSONPayload',actionJSONPayload);
+    console.log("actionJSONPayload", actionJSONPayload);
     sendMessageToSlackResponseURL(actionJSONPayload.response_url, message);
   } else if (reqBody.message === true) {
-    let surveyId = reqBody.survey_id;
-    console.log('surveyId', surveyId);
+    let surveyId = reqBody.servey_id;
     dbAuth
       .getByMemberId(reqBody.member_id)
       .then(data => {
@@ -160,7 +179,6 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
           // token: botToken,
           channel: "CG9EQ53QR",
           text: "Survey question from Mood Bot:",
-          "id": surveyId,
           as_user: false,
           attachments: [
             {
@@ -190,39 +208,33 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                     }
                   ]
                 }
-                // {
-                //   name: "action",
-                //   type: "button",/
-                //   text: "Submit",
-                //   style: "",
-                //   value: "complete"
-                // }
               ]
             }
           ]
         };
-        postMessage(message, botToken);
+        postMessage(message, botToken, surveyId);
       })
       .catch(err => err);
   } else if (reqBody.payload) {
     let jsonPayload = JSON.parse(reqBody.payload);
-    console.log('jsonPayload',jsonPayload);
+    console.log("jsonPayload", jsonPayload);
     let userIdSlack = jsonPayload.user.id;
+    let survey_time_stamp = jsonPayload.message_ts
     dbAuth
       .getBySlackUserId(userIdSlack)
       .then(data => {
-        console.log('data slack user id', data[0]);
-        memberId = data[0].member_id;
+        console.log("data slack user id", data[0]);
+        let team_member_id = data[0].member_id;
         let postFeel = {
           feeling_text: jsonPayload.actions[0].selected_options[0].value,
-          team_member_id: memberId,
-          survey_id: surveyId
+          team_member_id: team_member_id,
+          survey_time_stamp: survey_time_stamp
         };
-        console.log('postFeel', postFeel);
+        console.log("postFeel", postFeel);
         dbFeelings
-          .getByMemberAndSurveyId(memberId, surveyId)
+          .getByMemberAndSurveyTimeStamp(team_member_id, survey_time_stamp)
           .then(data => {
-            console.log('data mem sur', data);
+            console.log("data mem sur", data);
             if (data.length === 0) {
               dbFeelings
                 .insert(postFeel)

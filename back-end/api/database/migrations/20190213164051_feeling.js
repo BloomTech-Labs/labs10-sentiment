@@ -4,7 +4,7 @@ exports.up = function(knex, Promise) {
     tbl.string("feeling_text", 255).notNullable();
     tbl.timestamp("created_at", true).defaultTo(knex.fn.now());
     tbl.integer("team_member_id").notNullable();
-    tbl.integer("survey_id").notNullable();
+    tbl.float("survey_time_stamp").notNullable();
   });
 };
 
