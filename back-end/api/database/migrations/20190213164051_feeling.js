@@ -1,3 +1,4 @@
+//
 exports.up = function(knex, Promise) {
   return knex.schema.createTable("feelings", tbl => {
     tbl.increments("id");
