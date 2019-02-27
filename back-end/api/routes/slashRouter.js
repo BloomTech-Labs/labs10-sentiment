@@ -88,6 +88,8 @@ function postMessage(JSONmessage, token) {
 
 // https://slack.com/api/chat.postMessage?token=xoxb-553324377632-553511725281-WtIU01FxATAkavAPlFn6BPz2&channel=CG9EQ53QR&text=Test
 
+
+
 router.post("/send-me-buttons", urlencodedParser, (req, res) => {
   res.status(200).end(); // best practice to respond with empty 200 status code
   let reqBody = req.body;
@@ -151,7 +153,7 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
       .getByMemberId(reqBody.member_id)
       .then(data => {
         const botToken = data[0].access_token;
-        // memberId = reqBody.member_id;
+        // provide message:true
         surveyId = reqBody.survey_id;
         message = {
           // token: botToken,
@@ -217,8 +219,8 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
         dbFeelings
           .getByMemberAndSurveyId(memberId, surveyId)
           .then(data => {
-            console.log('data mem sur', data[0]);
-            if (!data[0]) {
+            console.log('data mem sur', data);
+            if (!data) {
               dbFeelings
                 .insert(postFeel)
                 .then(getSuccess(res))
