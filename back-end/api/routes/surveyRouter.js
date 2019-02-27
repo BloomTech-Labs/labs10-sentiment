@@ -3,10 +3,13 @@ const router = express.Router();
 const request = require("request");
 const schedule = require("node-schedule");
 const db = require("../database/helpers/surveysDb");
+
 const teamMembersDb = require("../database/helpers/teamMembersDb");
 const surveyDb = require("../database/helpers/surveysDb");
 const surveyFeelingsDb = require("../database/helpers/surveysFeelingsDb");
 const preFeelingsDb = require("../database/helpers/preFeelingsDb");
+const feelingsdb = require('../database/helpers/feelingsDb');
+
 
 const {
   postSuccess,
@@ -167,6 +170,7 @@ router.post("/", (req, res) => {
   const postInfo = req.body;
   // body = manager_id/ description/ title / time values
 
+
   teamMembersDb
     .get()
     .where("id", postInfo.manager_id)
@@ -218,19 +222,38 @@ router.post("/", (req, res) => {
           .catch(serverErrorPost(res));
       }
     });
+
 });
 
-router.get("/", (req, res) => {
-  db.get()
+router.get("/manager/:id", (req, res) => {
+  const {id} = req.params
+  db.get().where({ manager_id: id })
     .then(getSuccess(res))
     .catch(serverErrorGet(res));
 });
 
+// router.get("/:id", (req, res) => {
+//   const { id } = req.params;
+//   feelingsdb.get().where({ survey_id: id }).then(data => {
+//     db.getID(id)
+//     .then(response => {
+//       res.status(200).json({ response, data})
+//     })
+//     .catch(serverErrorGetID(res, type, id));
+//   })
+
+// });
+
 router.get("/:id", (req, res) => {
   const { id } = req.params;
-  db.getID(id)
-    .then(getSuccess(res))
+  feelingsdb.get().where({ survey_time_stamp: id }).then(data => {
+    db.getID(id)
+    .then(response => {
+      res.status(200).json({ response, data})
+    })
     .catch(serverErrorGetID(res, type, id));
+  })
+
 });
 
 router.delete(`/:id`, (req, res) => {

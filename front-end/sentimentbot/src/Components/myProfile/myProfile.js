@@ -7,7 +7,9 @@ import {
   addTeam,
   getTeams,
   editTeamMembers,
-  getSingleTeam
+  getSingleTeam,
+  fetchSingleSurvey,
+  getSurvey
 } from "../../actions/index";
 import axios from "axios";
 import NavBar from '../NavBar/NavBar'
@@ -31,6 +33,7 @@ class Profile extends React.Component {
     if (code) {
       this.fetchAuth(code);
     }
+    this.props.getSurvey(this.props.singleTeamMembers[0].id)
   }
 
   // this.props.teamMembers.length !== prevProps.teamMembers.length
@@ -46,6 +49,11 @@ class Profile extends React.Component {
     console.log(code);
     if (code !== prevProps.match.params.code) {
       this.fetchAuth(code);
+    }
+    if (this.props.survey.length === 0) {
+      return
+    } else if (this.props.isFetching === false && this.props.singleSurvey.length < 1) {
+      this.props.fetchSingleSurvey(this.props.survey[0].survey_time_stamp)
     }
   }
 
@@ -127,10 +135,11 @@ class Profile extends React.Component {
   render() {
     if(!localStorage.getItem('email')){
       this.props.history.push('/home')
-    }
+    } 
+
     const view = this.state.view;
     const uri = "https://sentimentbot.netlify.com/profile";
-    // const uri = "http://localhost:3000//profile";
+    // const uri = "http://localhost:3000/profile";
     console.log(view);
     if (view === "") {
       return (
@@ -233,9 +242,11 @@ class Profile extends React.Component {
 function mapStateToProps(state) {
   return {
     singleTeamMembers: state.teamMembersReducer.singleTeamMembers,
-    isFetching: state.teamMembersReducer.isFetching,
     error: state.teamMembersReducer.error,
-    teamMembers: state.teamMembersReducer.teamMembers
+    teamMembers: state.teamMembersReducer.teamMembers,
+    survey: state.surveyReducer.survey,
+    isFetching: state.surveyReducer.isFetching,
+    singleSurvey: state.surveyReducer.singleSurvey
   };
 }
 
@@ -248,7 +259,9 @@ export default connect(
     addTeam,
     getTeams,
     editTeamMembers,
-    getSingleTeam
+    getSingleTeam,
+    fetchSingleSurvey,
+    getSurvey
   }
 )(Profile);
 

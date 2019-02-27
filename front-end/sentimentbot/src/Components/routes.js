@@ -16,6 +16,7 @@ import Billing from './billing/billing';
 import Survey from './Survey/survey';
 import Reports from './reports/reports';
 import AccountSettings from './accountSettings/accountSettings';
+import GenerateReport from './reports/generateReport'
 
 const auth = new Auth();
 
@@ -62,6 +63,7 @@ export const makeMainRoutes = () => {
           <Route path="/survey" render={props => <Survey {...props} />} />
           <Route path="/reports" render={props => <Reports {...props} />} />
           <Route path="/accountset" render={props => <AccountSettings {...props} />} />
+          <Route path="/generatereport" render={props => <GenerateReport {...props} />} />
         </div>
       </Router>
     </Provider>

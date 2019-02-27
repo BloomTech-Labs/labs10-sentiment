@@ -29,7 +29,7 @@ router.post("/", (req, res) => {
     if(data.length > 0){
       res.status(406).json({message: `${type2} with ID ${postInfo.team_id} contains a ${type}.`});
     }
-  });
+    });
   db.insert(postInfo)
     .then(postSuccess(res))
     .catch(serverErrorPost(res));

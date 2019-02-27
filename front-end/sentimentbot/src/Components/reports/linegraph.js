@@ -32,7 +32,7 @@ class LineGraph extends React.Component {
     render() {
       return (
         <div className="pie-chart">
-          <h2>Line Example</h2>
+          <h2>Line graph tracking this employee's feelings</h2>
           <Line
             data={data}
             width={50}
