@@ -54,9 +54,7 @@ class Authorization extends React.Component {
   render() {
     if(!localStorage.getItem('email')){
       this.props.history.push('/home')
-    } else if (localStorage.getItem('email')) {
-      this.props.history.push('/profile')
-    } 
+    }
     
     const makeInput = name => (
       <textarea
