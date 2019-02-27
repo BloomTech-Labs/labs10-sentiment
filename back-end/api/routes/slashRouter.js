@@ -170,7 +170,8 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
     // console.log("actionJSONPayload", actionJSONPayload);
     sendMessageToSlackResponseURL(actionJSONPayload.response_url, message);
   } else if (reqBody.message === true) {
-    let surveyId = reqBody.servey_id;
+
+    let surveyId = reqBody.survey_id;
     console.log('surveyId', surveyId);
     let title = reqBody.title;
     let description = reqBody.description;
@@ -179,11 +180,12 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
     let arrayOptions = [];
     for(let i = 0; i < options.length; i++){
       let value = {
-        text: options[i].feeling_text,
-        value: options[i].feeling_text
+        text: options[i],
+        value: options[i]
       }
       console.log(value);
-      arrayOptions.push(value);
+      arrayOptions.push('value',value);
+      console.log('arrayOptions', arrayOptions);
     } 
 
 
