@@ -94,8 +94,7 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
   res.status(200).end(); // best practice to respond with empty 200 status code
   let reqBody = req.body;
   console.log('reqBody',reqBody);
-  let surveyId = null;
-  let memberId = null;
+  let surveyId;
   if (reqBody.command === "/send-me-buttons") {
     let responseURL = reqBody.response_url;
     if (reqBody.token != process.env.VERIFCATION_TOKEN) {
@@ -149,12 +148,11 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
     console.log('actionJSONPayload',actionJSONPayload);
     sendMessageToSlackResponseURL(actionJSONPayload.response_url, message);
   } else if (reqBody.message === true) {
+    surveyId = reqBody.survey_id;
     dbAuth
       .getByMemberId(reqBody.member_id)
       .then(data => {
         const botToken = data[0].access_token;
-        // provide message:true
-        surveyId = reqBody.survey_id;
         message = {
           // token: botToken,
           channel: "CG9EQ53QR",
