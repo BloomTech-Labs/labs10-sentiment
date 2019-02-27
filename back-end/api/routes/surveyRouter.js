@@ -67,7 +67,7 @@ const surveyScheduler = (timeInfo, postInfo) => {
   }
 
   if (timeInfo.dailyWeeklyMonthly === "daily") {
-    exTime = `56 ${hour} * * *`; //////////////////////////////////////////////////////////////////////////////
+    exTime = `43 ${hour} * * *`; //////////////////////////////////////////////////////////////////////////////
   } else if (timeInfo.dailyWeeklyMonthly === "weekly") {
     exTime = `0 ${hour} * * 5`;
   } else if (timeInfo.dailyWeeklyMonthly === "monthly") {
@@ -121,22 +121,22 @@ const surveyScheduler = (timeInfo, postInfo) => {
                     console.log("botInfo", botInfo);
 
                     schedule.scheduleJob(exTime, function() {
-                      // let postOptions = {
-                      //   uri:
-                      //     "https://botsentiment.herokuapp.com/api/slash/send-me-buttons",
-                      //   method: "POST",
-                      //   headers: {
-                      //     "Content-type": "application/json"
-                      //   },
-                      //   json: botInfo
-                      // };
-                      // request(postOptions, (error, response, body) => {
-                      //   if (error) {
-                      //     // handle errors as you see fit
-                      //     res.json({ error: "Error." });
-                      //   }
-                      // });
-                      console.log("It processed time");
+                      console.log("Schedule Processed");
+                      let postOptions = {
+                        uri:
+                          "https://botsentiment.herokuapp.com/api/slash/send-me-buttons",
+                        method: "POST",
+                        headers: {
+                          "Content-type": "application/json"
+                        },
+                        json: botInfo
+                      };
+                      request(postOptions, (error, response, body) => {
+                        if (error) {
+                          // handle errors as you see fit
+                          res.json({ error: "Error." });
+                        }
+                      });
                     });
                   }
                 })

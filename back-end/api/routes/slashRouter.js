@@ -63,27 +63,27 @@ function postMessage(JSONmessage, token, surveyId) {
       // handle errors as you see fit
       res.json({ error: "Error." });
     } 
-    // else {
-      // console.log("body", body);
-      // console.log("body time stamp", body.message.ts);
-    //   ///////////// put to servey add survey_time_stamp
-    //   dbSurveys
-    //     .getID(surveyId)
-    //     .then(data => {
-    //       if (data.length > 0) {
-    //         let putInfo = {
-    //           survey_time_stamp: body.message.ts
-    //         };
-    //         dbSurveys
-    //           .update(surveyId, putInfo)
-    //           .then(getSuccess(res))
-    //           .catch(serverErrorUpdate404(res, "survey", surveyId));
-    //       } else {
-    //         res.status(404).json({error: 'survey does not exist'});
-    //       }
-    //     })
-    //     .catch(serverErrorGet(res));
-    // }
+    else {
+      console.log("body", body);
+      console.log("body time stamp", body.message.ts);
+      ///////////// put to servey add survey_time_stamp
+      dbSurveys
+        .getID(surveyId)
+        .then(data => {
+          if (data.length > 0) {
+            let putInfo = {
+              survey_time_stamp: body.message.ts
+            };
+            dbSurveys
+              .update(surveyId, putInfo)
+              .then(getSuccess(res))
+              .catch(serverErrorUpdate404(res, "survey", surveyId));
+          } else {
+            res.status(404).json({error: 'survey does not exist'});
+          }
+        })
+        .catch(serverErrorGet(res));
+    }
   });
 }
 
@@ -171,17 +171,33 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
     sendMessageToSlackResponseURL(actionJSONPayload.response_url, message);
   } else if (reqBody.message === true) {
     let surveyId = reqBody.servey_id;
+    console.log('surveyId', surveyId);
+    let title = reqBody.title;
+    let description = reqBody.description;
+    let options = reqBody.options;
+    console.log('options', options);
+    let arrayOptions = [];
+    for(let i = 0; i < options.length; i++){
+      let value = {
+        text: options[i].feeling_text,
+        value: options[i].feeling_text
+      }
+      console.log(value);
+      arrayOptions.push(value);
+    } 
+
+
     dbAuth
       .getByMemberId(reqBody.member_id)
       .then(data => {
         const botToken = data[0].access_token;
         message = {
           channel: "CG9EQ53QR",
-          text: "Survey question from Mood Bot:",
+          text: `${title}`,
           as_user: false,
           attachments: [
             {
-              text: "Choose a feeling",
+              text: `${description}`,
               fallback:
                 "If you could read this message, you'd be picking a feeling right now.",
               color: "#3AA3E3",
@@ -192,25 +208,27 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                   name: "feeling_list",
                   text: "Pick a feeling...",
                   type: "select",
-                  options: [
-                    {
-                      text: "Happy",
-                      value: "happy"
-                    },
-                    {
-                      text: "Sad",
-                      value: "sad"
-                    },
-                    {
-                      text: "Mad",
-                      value: "mad"
-                    }
-                  ]
+                  options: arrayOptions
+                  // [
+                  //   {
+                  //     text: "Happy",
+                  //     value: "happy"
+                  //   },
+                  //   {
+                  //     text: "Sad",
+                  //     value: "sad"
+                  //   },
+                  //   {
+                  //     text: "Mad",
+                  //     value: "mad"
+                  //   }
+                  // ]
                 }
               ]
             }
           ]
         };
+        console.log(message);
         postMessage(message, botToken, surveyId);
       })
       .catch(err => err);
