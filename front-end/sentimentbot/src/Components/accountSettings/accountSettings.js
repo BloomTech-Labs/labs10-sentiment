@@ -1,6 +1,8 @@
 import React from "react";
 import NavBar from "../NavBar/NavBar";
 import axios from "axios";
+import {editTeamMembers} from "../../actions/index"
+import {connect} from "react-redux"
 
 class accountSettings extends React.Component {
   constructor(props) {
@@ -52,6 +54,19 @@ class accountSettings extends React.Component {
       password: "",
     });
   };
+
+  handleLeaveTeam() {
+    const firstName = this.props.singleTeamMembers[0].firstName
+    const lastName = this.props.singleTeamMembers[0].lastName
+    const email = this.props.singleTeamMembers[0].email
+    const phone = this.props.singleTeamMembers[0].phone
+    const type = null
+    const team_id = null
+    const id = this.props.singleTeamMembers[0].id
+    const combine = {firstName: firstName, lastName: lastName, email: email, phone:phone, type:type, team_id:team_id}
+  editTeamMembers (id, combine)
+  };
+  
 
   render() {
     // if (!localStorage.getItem("email")) {
@@ -108,6 +123,7 @@ class accountSettings extends React.Component {
                 Submit
               </button>
             </form>
+            <button onClick={() => this.handleLeaveTeam() } > Leave Team </button> 
           </>
         )}
       </div>
@@ -115,4 +131,11 @@ class accountSettings extends React.Component {
   }
 }
 
-export default accountSettings;
+function mapStateToProps(state) {
+  return { singleTeamMembers: state.teamMembersReducer.singleTeamMembers };
+}
+
+export default connect(
+  mapStateToProps,
+  { editTeamMembers }
+)(accountSettings);
