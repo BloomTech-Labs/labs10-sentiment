@@ -66,7 +66,7 @@ const surveyScheduler = (timeInfo, postInfo) => {
   }
 
   if (timeInfo.dailyWeeklyMonthly === "daily") {
-    exTime = `17 ${hour} * * *`; /////////////////////////////////////////////
+    exTime = `21 ${hour} * * *`; /////////////////////////////////////////////
   } else if (timeInfo.dailyWeeklyMonthly === "weekly") {
     exTime = `0 ${hour} * * 5`;
   } else if (timeInfo.dailyWeeklyMonthly === "monthly") {
@@ -205,7 +205,7 @@ router.post("/", (req, res) => {
                 console.log("survey manager", data);
                 for (let i = 0; i < preFeelingIdsArray.length; i++) {
                   let post = {
-                    survey_id: data[0].id,
+                    survey_id: data[data.length - 1].id,
                     feelings_id: preFeelingIdsArray[i]
                   };
                   surveyFeelingsDb
