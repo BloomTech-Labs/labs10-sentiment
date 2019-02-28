@@ -189,7 +189,7 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                                       .catch(err => console.log(err));
                                   }
 
-                                  console.log(feelingTextArray);
+                                  console.log("feelingTextArray",feelingTextArray);
 
                                   let arrayOptions = [];
                                   for (
@@ -198,10 +198,10 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                                     i++
                                   ) {
                                     let value = {
-                                      text: feelingTextArray[i],
-                                      value: feelingTextArray[i],
                                       name: feelingTextArray[i],
-                                      type: "button"
+                                      text: feelingTextArray[i],
+                                      type: "button",
+                                      value: feelingTextArray[i]
                                     };
                                     console.log("value", value);
                                     arrayOptions.push(value);
