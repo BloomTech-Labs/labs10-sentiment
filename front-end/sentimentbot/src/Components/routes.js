@@ -12,7 +12,7 @@ import { Provider } from "react-redux";
 import rootReducer from "../reducers/index";
 import Profile from "./myProfile/myProfile";
 import Billing from './billing/billing';
-import Survey from './Survey/survey';
+import NewSurvey from './Survey/newsurvey';
 import Reports from './reports/reports';
 import AccountSettings from './accountSettings/accountSettings';
 import GenerateReport from './reports/generateReport'
@@ -58,6 +58,7 @@ export const makeMainRoutes = () => {
             path="/authorization"
             render={props => <Authorization {...props} />}
           />
+
           <Route path="/profile" render={props => <Profile {...props} auth={auth} />} />
           <Route path="/billing" render={props => <Billing {...props} auth={auth}/>} />
           <Route path="/survey" render={props => <Survey {...props} auth={auth} />} />
@@ -65,6 +66,7 @@ export const makeMainRoutes = () => {
           <Route path="/accountset" render={props => <AccountSettings {...props} auth={auth} />} />
           <Route path="/generatereport" render={props => <GenerateReport {...props} auth={auth} />} />
           <Route path="/teamlist" render={props => <TeamList {...props} auth={auth} />} />
+
         </div>
       </Router>
     </Provider>
