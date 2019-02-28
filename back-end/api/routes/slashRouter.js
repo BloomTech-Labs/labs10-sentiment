@@ -185,8 +185,9 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
       }
       console.log('value',value);
       arrayOptions.push(value);
-      console.log('arrayOptions', arrayOptions);
+      
     } 
+    console.log('arrayOptions', arrayOptions);
 
 
     dbAuth

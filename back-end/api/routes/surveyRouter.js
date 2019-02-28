@@ -66,7 +66,7 @@ const surveyScheduler = (timeInfo, postInfo) => {
   }
 
   if (timeInfo.dailyWeeklyMonthly === "daily") {
-    exTime = `10 ${hour} * * *`; /////////////////////////////////////////////
+    exTime = `16 ${hour} * * *`; /////////////////////////////////////////////
   } else if (timeInfo.dailyWeeklyMonthly === "weekly") {
     exTime = `0 ${hour} * * 5`;
   } else if (timeInfo.dailyWeeklyMonthly === "monthly") {
