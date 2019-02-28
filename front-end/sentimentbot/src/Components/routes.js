@@ -13,7 +13,7 @@ import { Provider } from "react-redux";
 import rootReducer from "../reducers/index";
 import Profile from "./myProfile/myProfile";
 import Billing from './billing/billing';
-import Survey from './Survey/survey';
+import NewSurvey from './Survey/newsurvey';
 import Reports from './reports/reports';
 import AccountSettings from './accountSettings/accountSettings';
 import GenerateReport from './reports/generateReport'
@@ -60,7 +60,7 @@ export const makeMainRoutes = () => {
           />
           <Route path="/profile" render={props => <Profile {...props} />} />
           <Route path="/billing" render={props => <Billing {...props} />} />
-          <Route path="/survey" render={props => <Survey {...props} />} />
+          <Route path="/survey" render={props => <NewSurvey {...props} />} />
           <Route path="/reports" render={props => <Reports {...props} />} />
           <Route path="/accountset" render={props => <AccountSettings {...props} />} />
           <Route path="/generatereport" render={props => <GenerateReport {...props} />} />
