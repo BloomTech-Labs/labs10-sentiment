@@ -122,7 +122,7 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
   res.status(200).end(); // best practice to respond with empty 200 status code
   let reqBody = req.body;
   console.log("reqBody", reqBody);
-  
+
   if (reqBody.command === "/send-me-buttons") {
     let responseURL = reqBody.response_url;
     if (reqBody.token != process.env.VERIFCATION_TOKEN) {
@@ -359,70 +359,176 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
 
     console.log("jsonPayload time stamp", jsonPayload.message_ts);
     console.log("surveyIdDep", surveyIdDep);
+    let callbackIDSlash = jsonPayload.callback_id;
     dbSurveys
       .getID(surveyIdDep)
       .then(data => {
+        let putInfo;
         if (data.length > 0) {
-          let putInfo = {
-            survey_time_stamp: jsonPayload.message_ts
-          };
-          dbSurveys
-            .update(surveyIdDep, putInfo)
-            .then(() => {
-              ////////////////////////////////
-              let userIdSlack = jsonPayload.user.id;
-              let survey_time_stamp = jsonPayload.message_ts;
-              let callbackIDSlash = jsonPayload.callback_id;
+          if (callbackIDSlash === "'feeling_menu'") {
+            putInfo = {
+              survey_time_stamp: jsonPayload.message_ts
+            };
 
-              dbAuth
-                .getBySlackUserId(userIdSlack)
-                .then(data => {
-                  console.log("data slack user id", data[0]);
-                  let team_member_id = data[0].member_id;
-                  console.log("team_member_id", team_member_id);
-                  let postFeel;
-                  if (callbackIDSlash === "button_tutorial") {
-                    postFeel = {
-                      feeling_text: jsonPayload.actions[0].value,
-                      team_member_id: team_member_id,
-                      survey_time_stamp: survey_time_stamp
-                    };
-                  } else {
+            dbSurveys
+              .update(surveyIdDep, putInfo)
+              .then(() => {
+                ////////////////////////////////
+                let userIdSlack = jsonPayload.user.id;
+                let survey_time_stamp = jsonPayload.message_ts;
+
+                dbAuth
+                  .getBySlackUserId(userIdSlack)
+                  .then(data => {
+                    console.log("data slack user id", data[0]);
+                    let team_member_id = data[0].member_id;
+                    console.log("team_member_id", team_member_id);
+                    let postFeel;
+                    // if (callbackIDSlash === "button_tutorial") {
+                    //   postFeel = {
+                    //     feeling_text: jsonPayload.actions[0].value,
+                    //     team_member_id: team_member_id,
+                    //     survey_time_stamp: survey_time_stamp
+                    //   };
+                    // } else {
                     postFeel = {
                       feeling_text:
                         jsonPayload.actions[0].selected_options[0].value,
                       team_member_id: team_member_id,
                       survey_time_stamp: survey_time_stamp
                     };
-                  }
+                    // }
 
-                  console.log("postFeel", postFeel);
-                  dbFeelings
-                    .getByMemberAndSurveyTimeStamp(
-                      team_member_id,
-                      survey_time_stamp
-                    )
-                    .then(data => {
-                      console.log("data mem sur", data);
-                      if (data.length === 0) {
-                        dbFeelings
-                          .insert(postFeel)
-                          .then(getSuccess(res))
-                          .catch(serverErrorPost(res));
-                      } else {
-                        res
-                          .status(400)
-                          .json({
+                    console.log("postFeel", postFeel);
+                    dbFeelings
+                      .getByMemberAndSurveyTimeStamp(
+                        team_member_id,
+                        survey_time_stamp
+                      )
+                      .then(data => {
+                        console.log("data mem sur", data);
+                        if (data.length === 0) {
+                          dbFeelings
+                            .insert(postFeel)
+                            .then(getSuccess(res))
+                            .catch(serverErrorPost(res));
+                        } else {
+                          res.status(400).json({
                             error: "Feeling Exists for Team Member and Survey"
                           });
-                      }
-                    })
-                    .catch(serverErrorGet(res));
-                })
-                .catch(serverErrorGet(res));
+                        }
+                      })
+                      .catch(serverErrorGet(res));
+                  })
+                  .catch(serverErrorGet(res));
                 ////////////////////////////////
-            })
-            .catch(err => console.log(err));
+              })
+              .catch(err => console.log(err));
+          } else {
+            ///////////////////////
+            dbSurveys
+              .getID(surveyIdDep)
+              .then(data => {
+                let surveyTimeStamp = data[0].survey_time_stamp;
+
+                dbAuth
+                  .getBySlackUserId(userIdSlack)
+                  .then(data => {
+                    console.log("data slack user id", data[0]);
+                    let team_member_Id = data[0].member_id;
+                    console.log("team_member_id", team_member_Id);
+                    let postFeel;
+                    // if (callbackIDSlash === "button_tutorial") {
+                    postFeel = {
+                      feeling_text: jsonPayload.actions[0].value,
+                      team_member_id: team_member_Id,
+                      survey_time_stamp: surveyTimeStamp
+                    };
+                    // }
+
+                    console.log("postFeel", postFeel);
+                    dbFeelings
+                      .getByMemberAndSurveyTimeStamp(
+                        team_member_Id,
+                        surveyTimeStamp
+                      )
+                      .then(data => {
+                        console.log("data mem sur", data);
+                        if (data.length === 0) {
+                          dbFeelings
+                            .insert(postFeel)
+                            .then(getSuccess(res))
+                            .catch(serverErrorPost(res));
+                        } else {
+                          res.status(400).json({
+                            error: "Feeling Exists for Team Member and Survey"
+                          });
+                        }
+                      })
+                      .catch(serverErrorGet(res));
+                  })
+                  .catch(serverErrorGet(res));
+                //////////////////////
+              })
+              .catch(serverErrorGet(res));
+          }
+
+          // dbSurveys
+          //   .update(surveyIdDep, putInfo)
+          //   .then(() => {
+          //     ////////////////////////////////
+          //     let userIdSlack = jsonPayload.user.id;
+          //     let survey_time_stamp = jsonPayload.message_ts;
+
+          //     dbAuth
+          //       .getBySlackUserId(userIdSlack)
+          //       .then(data => {
+          //         console.log("data slack user id", data[0]);
+          //         let team_member_id = data[0].member_id;
+          //         console.log("team_member_id", team_member_id);
+          //         let postFeel;
+          //         if (callbackIDSlash === "button_tutorial") {
+          //           postFeel = {
+          //             feeling_text: jsonPayload.actions[0].value,
+          //             team_member_id: team_member_id,
+          //             survey_time_stamp: survey_time_stamp
+          //           };
+          //         } else {
+          //           postFeel = {
+          //             feeling_text:
+          //               jsonPayload.actions[0].selected_options[0].value,
+          //             team_member_id: team_member_id,
+          //             survey_time_stamp: survey_time_stamp
+          //           };
+          //         }
+
+          //         console.log("postFeel", postFeel);
+          //         dbFeelings
+          //           .getByMemberAndSurveyTimeStamp(
+          //             team_member_id,
+          //             survey_time_stamp
+          //           )
+          //           .then(data => {
+          //             console.log("data mem sur", data);
+          //             if (data.length === 0) {
+          //               dbFeelings
+          //                 .insert(postFeel)
+          //                 .then(getSuccess(res))
+          //                 .catch(serverErrorPost(res));
+          //             } else {
+          //               res
+          //                 .status(400)
+          //                 .json({
+          //                   error: "Feeling Exists for Team Member and Survey"
+          //                 });
+          //             }
+          //           })
+          //           .catch(serverErrorGet(res));
+          //       })
+          //       .catch(serverErrorGet(res));
+          //       ////////////////////////////////
+          //   })
+          //   .catch(err => console.log(err));
         } else {
           console.log({ error: "survey does not exist" });
         }
