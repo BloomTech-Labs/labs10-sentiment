@@ -40,6 +40,7 @@ const type2 = "Team Member";
 
 const surveyScheduler = (timeInfo, postInfo) => {
   let hour;
+  let min = timeInfo.min;
   let exTime = "";
   let manager_id = postInfo.manager_id;
   let title = postInfo.title;
@@ -69,11 +70,11 @@ const surveyScheduler = (timeInfo, postInfo) => {
   }
 
   if (timeInfo.dailyWeeklyMonthly === "daily") {
-    exTime = `29 ${hour} * * *`; /////////////////////////////////////////////
+    exTime = `${min} ${hour} * * *`; /////////////////////////////////////////////
   } else if (timeInfo.dailyWeeklyMonthly === "weekly") {
-    exTime = `0 ${hour} * * 5`;
+    exTime = `${min} ${hour} * * 5`;
   } else if (timeInfo.dailyWeeklyMonthly === "monthly") {
-    exTime = `0 ${hour} 1 * *`;
+    exTime = `${min} ${hour} 1 * *`;
   }
 
   console.log("exTime", exTime);
@@ -192,7 +193,8 @@ router.post("/", (req, res) => {
           dailyWeeklyMonthly: postInfo.dailyWeeklyMonthly,
           hour: postInfo.hour,
           amPm: postInfo.amPm,
-          timeZone: postInfo.timeZone
+          timeZone: postInfo.timeZone,
+          min: postInfo.min
         };
 
         let preFeelingIdsArray = postInfo.preFeelingIdsArray;
