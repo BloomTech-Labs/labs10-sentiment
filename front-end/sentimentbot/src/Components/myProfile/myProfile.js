@@ -25,6 +25,7 @@ class Profile extends React.Component {
       team_id: 0,
       loaded: false,
       jointeam: '',
+      min: 0
     };
   }
   componentDidMount() {

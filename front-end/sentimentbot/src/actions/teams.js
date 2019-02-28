@@ -22,7 +22,6 @@ export const FETCH_TEAMS_MEMBERS_START = "FETCH_TEAMS_MEMBERS_START";
 export const FETCH_TEAMS_MEMBERS_SUCCESS = "FETCH_TEAMS_MEMBERS_SUCCESS";
 export const FETCH_TEAMS_MEMBERS_FAILURE = "FETCH_TEAMS_MEMBERS_FAILURE";
 
-
 export const getTeams = () => dispatch => {
   dispatch({ type: FETCH_TEAMS_START });
   axios
@@ -37,7 +36,6 @@ export const joinTeam = (id, team_code) => dispatch => {
   dispatch({ type: EDIT_TEAMS_START });
   axios
     .put(`https://botsentiment.herokuapp.com/api/team_members/${id}/join`, team_code)
-
     .then(response => {
       dispatch({ type: EDIT_TEAMS_SUCCESS, payload: response.team_code });
     })
