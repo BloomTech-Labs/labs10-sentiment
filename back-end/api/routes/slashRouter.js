@@ -149,6 +149,8 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                         });
                       } else {
                         let manager_id = data[0].id;
+                        let feelingTextArray = [];
+                        let arrayOptions = [];
                         dbSurveys
                           .getManagerID(manager_id)
                           .then(data => {
@@ -168,7 +170,6 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                                     "survey feeling array slash",
                                     data
                                   );
-                                  let feelingTextArray = [];
 
                                   for (let j = 0; j < data.length; j++) {
                                     let { feelings_id } = data[j];
@@ -189,14 +190,13 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                                       })
                                       .catch(err => console.log(err));
                                   }
-
+                                })
+                                .then(() => {
                                   console.log(
                                     "feelingTextArray",
                                     feelingTextArray
                                   );
-                                })
-                                .then(() => {
-                                  let arrayOptions = [];
+
                                   for (
                                     let t = 0;
                                     t < feelingTextArray.length;

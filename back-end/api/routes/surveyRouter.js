@@ -56,6 +56,9 @@ const surveyScheduler = (timeInfo, postInfo) => {
     }
   } else if (timeInfo.timeZone === "EST") {
     if (timeInfo.amPm === "AM") {
+      if(timeInfo.hour === 12){
+        timeInfo.hour = 0;
+      }
       hour = timeInfo.hour + 5;
     } else if (timeInfo.amPm === "PM") {
       hour = timeInfo.hour + 12 + 5;
@@ -66,7 +69,7 @@ const surveyScheduler = (timeInfo, postInfo) => {
   }
 
   if (timeInfo.dailyWeeklyMonthly === "daily") {
-    exTime = `4 ${hour} * * *`; /////////////////////////////////////////////
+    exTime = `11 ${hour} * * *`; /////////////////////////////////////////////
   } else if (timeInfo.dailyWeeklyMonthly === "weekly") {
     exTime = `0 ${hour} * * 5`;
   } else if (timeInfo.dailyWeeklyMonthly === "monthly") {
