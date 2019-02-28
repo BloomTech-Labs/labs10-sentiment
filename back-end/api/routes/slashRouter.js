@@ -352,15 +352,17 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
       .getBySlackUserId(userIdSlack)
       .then(data => {
         console.log("data slack user id", data[0]);
-        let team_member_id = data[0].member_id; ////////////////
+        let team_member_id = data[0].member_id; 
+        console.log("team_member_id", team_member_id)
+        let postFeel;
         if(callbackIDSlash === 'button_tutorial'){
-          let postFeel = {
+          postFeel = {
             feeling_text: jsonPayload.actions[0].value,
             team_member_id: team_member_id,
             survey_time_stamp: survey_time_stamp
           };
         }else{
-          let postFeel = {
+          postFeel = {
             feeling_text: jsonPayload.actions[0].selected_options[0].value,
             team_member_id: team_member_id,
             survey_time_stamp: survey_time_stamp
