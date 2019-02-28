@@ -163,103 +163,90 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                             } else {
                               surveyFeelingsDb
                                 .getSurveyID(survey_id)
-                                .then(
-                                  data => {
-                                    console.log(
-                                      "survey feeling array slash",
-                                      data
-                                    );
-                                    let feelingTextArray = [];
+                                .then(data => {
+                                  console.log(
+                                    "survey feeling array slash",
+                                    data
+                                  );
+                                  let feelingTextArray = [];
 
-                                    for (let j = 0; j < data.length; j++) {
-                                      let { feelings_id } = data[j];
-                                      console.log("feelings_id", feelings_id);
-                                      preFeelingsDb
-                                        .getID(feelings_id)
-                                        .then(data => {
-                                          console.log(
-                                            "pre feeling array",
-                                            data
-                                          );
-                                          if (data.length === 0) {
-                                            // res.status(404).json({
-                                            console.log({
-                                              error: `Pre Feeling with Id: ${feelings_id} does not exist.`
-                                            });
-                                          } else {
-                                            let { feeling_text } = data[0];
-                                            feelingTextArray.push(feeling_text);
-                                          }
-                                        })
-                                        .catch(err => console.log(err));
-                                    }
-
-                                    console.log(
-                                      "feelingTextArray",
-                                      feelingTextArray
-                                    );
-
-                                    let arrayOptions = [];
-                                    for (
-                                      let t = 0;
-                                      t < feelingTextArray.length;
-                                      t++
-                                    ) {
-                                      let value = {
-                                        name: feelingTextArray[t],
-                                        text: feelingTextArray[t],
-                                        type: "button",
-                                        value: feelingTextArray[t]
-                                      };
-                                      console.log("value", value);
-                                      arrayOptions.push(value);
-                                    }
-                                    console.log("arrayOptions", arrayOptions);
-
-                                    let message = {
-                                      text: `${title}`,
-                                      attachments: [
-                                        {
-                                          text: `${description}`,
-                                          fallback:
-                                            "Shame... buttons aren't supported in this land",
-                                          callback_id: "button_tutorial",
-                                          color: "#3AA3E3",
-                                          attachment_type: "default",
-                                          actions: arrayOptions
-                                          // [
-                                          //   {
-                                          //     name: "Happy",
-                                          //     text: "Happy",
-                                          //     type: "button",
-                                          //     value: "Happy"
-                                          //   },
-                                          //   {
-                                          //     name: "Sad",
-                                          //     text: "Sad",
-                                          //     type: "button",
-                                          //     value: "Sad"
-                                          //   },
-                                          //   {
-                                          //     name: "Mad",
-                                          //     text: "Mad",
-                                          //     type: "button",
-                                          //     value: "Mad",
-                                          //     style: "danger"
-                                          //   }
-                                          // ]
+                                  for (let j = 0; j < data.length; j++) {
+                                    let { feelings_id } = data[j];
+                                    console.log("feelings_id", feelings_id);
+                                    preFeelingsDb
+                                      .getID(feelings_id)
+                                      .then(data => {
+                                        console.log("pre feeling array", data);
+                                        if (data.length === 0) {
+                                          // res.status(404).json({
+                                          console.log({
+                                            error: `Pre Feeling with Id: ${feelings_id} does not exist.`
+                                          });
+                                        } else {
+                                          let { feeling_text } = data[0];
+                                          feelingTextArray.push(feeling_text);
                                         }
-                                      ]
-                                    };
-                                  },
-                                  () => {
-                                    console.log("message", message);
-                                    sendMessageToSlackResponseURL(
-                                      responseURL,
-                                      message
-                                    );
+                                      })
+                                      .catch(err => console.log(err));
                                   }
-                                )
+
+                                  console.log("feelingTextArray",feelingTextArray);
+
+                                  let arrayOptions = [];
+                                  for (
+                                    let t = 0;
+                                    t < feelingTextArray.length;
+                                    t++
+                                  ) {
+                                    let value = {
+                                      name: feelingTextArray[t],
+                                      text: feelingTextArray[t],
+                                      type: "button",
+                                      value: feelingTextArray[t]
+                                    };
+                                    console.log("value", value);
+                                    arrayOptions.push(value);
+                                  }
+                                  console.log("arrayOptions", arrayOptions);
+
+                                  let message = {
+                                    text: `${title}`,
+                                    attachments: [
+                                      {
+                                        text: `${description}`,
+                                        fallback: "Shame... buttons aren't supported in this land",
+                                        callback_id: "button_tutorial",
+                                        color: "#3AA3E3",
+                                        attachment_type: "default",
+                                        actions: arrayOptions
+                                        // [
+                                        //   {
+                                        //     name: "Happy",
+                                        //     text: "Happy",
+                                        //     type: "button",
+                                        //     value: "Happy"
+                                        //   },
+                                        //   {
+                                        //     name: "Sad",
+                                        //     text: "Sad",
+                                        //     type: "button",
+                                        //     value: "Sad"
+                                        //   },
+                                        //   {
+                                        //     name: "Mad",
+                                        //     text: "Mad",
+                                        //     type: "button",
+                                        //     value: "Mad",
+                                        //     style: "danger"
+                                        //   }
+                                        // ]
+                                      }
+                                    ]
+                                  };
+                                  sendMessageToSlackResponseURL(responseURL, message);
+
+                                  console.log("message", message);
+                                })
                                 .catch(err => console.log(err));
                             }
                           })
