@@ -19,7 +19,7 @@ export const SINGLE_TEAMMEMBERS_FAILURE = "SINGLE_TEAMMEMBERS_FAILURE";
 export const getTeamMembers = () => dispatch => {
   dispatch({ type: FETCH_TEAMMEMBERS_START });
   axios
-    .get("http://localhost:5002/api/team_members")
+    .get("https://botsentiment.herokuapp.com/api/team_members")
     .then(response => {
       dispatch({ type: FETCH_TEAMMEMBERS_SUCCESS, payload: response.data });
     })
@@ -39,7 +39,7 @@ export const addTeamMembers = team => dispatch => {
 export const editTeamMembers = (id, body) => dispatch => {
   dispatch({ type: EDIT_TEAMMEMBERS_START });
   axios
-    .put(`http://locatlhost:5002/api/team_members/${id}`, body)
+    .put(`https://botsentiment.herokuapp.com/api/team_members/${id}`, body)
     .then(response => {
       dispatch({ type: EDIT_TEAMMEMBERS_SUCCESS, payload: response.data });
     })
@@ -59,7 +59,7 @@ export const deleteTeamMembers = id => dispatch => {
 export const getSingleTeamMembers = email => dispatch => {
   dispatch({ type: SINGLE_TEAMMEMBERS_START });
   axios
-    .get(`http://localhost:5002/api/team_members/Email/${email}`)
+    .get(`https://botsentiment.herokuapp.com/api/team_members/Email/${email}`)
     .then(response => {
       dispatch({ type: SINGLE_TEAMMEMBERS_SUCCESS, payload: response.data });
     })
