@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getTeamsMembers, editTeamMembers } from '../../actions/index';
 import './teamlist.css';
-import axios from 'axios';
 
 class TeamList extends React.Component {
 
