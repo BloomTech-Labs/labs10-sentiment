@@ -126,7 +126,6 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
       res.status(403).end("Access forbidden");
     } else {
       let user_id = reqBody.user_id;
-
       dbAuth
         .getBySlackUserId(user_id)
         .then(data => {
@@ -209,17 +208,43 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                                   }
                                   console.log("arrayOptions", arrayOptions);
 
-                                  // let botInfo = {
-                                  //   message: true,
-                                  //   member_id: manager_id,
-                                  //   survey_id: survey_id,
-                                  //   title: title,
-                                  //   description: description,
-                                  //   // channelID:
-                                  //   options: feelingTextArray
-                                  // };
+                                  let message = {
+                                    text: `${title}`,
+                                    attachments: [
+                                      {
+                                        text: `${description}`,
+                                        fallback: "Shame... buttons aren't supported in this land",
+                                        callback_id: "button_tutorial",
+                                        color: "#3AA3E3",
+                                        attachment_type: "default",
+                                        actions: arrayOptions
+                                        // [
+                                        //   {
+                                        //     name: "Happy",
+                                        //     text: "Happy",
+                                        //     type: "button",
+                                        //     value: "Happy"
+                                        //   },
+                                        //   {
+                                        //     name: "Sad",
+                                        //     text: "Sad",
+                                        //     type: "button",
+                                        //     value: "Sad"
+                                        //   },
+                                        //   {
+                                        //     name: "Mad",
+                                        //     text: "Mad",
+                                        //     type: "button",
+                                        //     value: "Mad",
+                                        //     style: "danger"
+                                        //   }
+                                        // ]
+                                      }
+                                    ]
+                                  };
+                                  sendMessageToSlackResponseURL(responseURL, message);
 
-                                  console.log("botInfo", botInfo);
+                                  console.log("message", message);
                                 })
                                 .catch(err => console.log(err));
                             }
@@ -234,42 +259,6 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
           }
         })
         .catch(err => console.log(err));
-
-      let message = {
-        text: `${title}`,
-        attachments: [
-          {
-            text: `${description}`,
-            fallback: "Shame... buttons aren't supported in this land",
-            callback_id: "button_tutorial",
-            color: "#3AA3E3",
-            attachment_type: "default",
-            actions: arrayOptions
-            // [
-            //   {
-            //     name: "Happy",
-            //     text: "Happy",
-            //     type: "button",
-            //     value: "Happy"
-            //   },
-            //   {
-            //     name: "Sad",
-            //     text: "Sad",
-            //     type: "button",
-            //     value: "Sad"
-            //   },
-            //   {
-            //     name: "Mad",
-            //     text: "Mad",
-            //     type: "button",
-            //     value: "Mad",
-            //     style: "danger"
-            //   }
-            // ]
-          }
-        ]
-      };
-      sendMessageToSlackResponseURL(responseURL, message);
     }
   } else if (reqBody.callback_id === "button_tutorial") {
     res.status(200).end(); // best practice to respond with 200 status
