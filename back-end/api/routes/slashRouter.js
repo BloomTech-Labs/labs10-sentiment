@@ -194,7 +194,8 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
       .getByMemberId(reqBody.member_id)
       .then(data => {
         const botToken = data[0].access_token;
-        message = {
+        console.log("botToken", botToken);
+        let message = {
           channel: "CG9EQ53QR",
           text: `${title}`,
           as_user: false,
