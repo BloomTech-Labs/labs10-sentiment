@@ -7,9 +7,12 @@ import {
   addTeam,
   getTeams,
   editTeamMembers,
-  getSingleTeam
+  getSingleTeam,
+  fetchSingleSurvey,
+  getSurvey
 } from "../../actions/index";
 import axios from "axios";
+import NavBar from "../NavBar/NavBar";
 
 class Profile extends React.Component {
   constructor() {
@@ -17,18 +20,25 @@ class Profile extends React.Component {
     this.state = {
       view: "",
       name: "",
-      team_code: 0
+      team_code: 0,
+      team_id: 0,
+      loaded: false
     };
   }
   componentDidMount() {
-    this.props.getSingleTeamMembers(localStorage.getItem("email"));
-    this.props.getTeamMembers();
+    // this.props.getSingleTeamMembers(localStorage.getItem("email"));
 
-    const code = this.props.match.params.code;
-    console.log(code);
-    if (code) {
-      this.fetchAuth(code);
-    }
+
+    // const code = this.props.match.params.code;
+    // console.log(code);
+    // if (code) {
+    //   this.fetchAuth(code);
+    // }
+
+    this.props.getSurvey(this.props.singleTeamMembers[0].id);
+    this.setState({
+      loaded: true
+    })
   }
 
   // this.props.teamMembers.length !== prevProps.teamMembers.length
@@ -40,30 +50,37 @@ class Profile extends React.Component {
     // }
     // this.props.getSingleTeamMembers(localStorage.getItem("email"));
     // this.props.getTeamMembers();
-    const code = this.props.match.params.code;
-    console.log(code);
-    if (code !== prevProps.match.params.code) {
-      this.fetchAuth(code);
+    // const code = this.props.match.params.code;
+    // console.log(code);
+    // if (code !== prevProps.match.params.code) {
+    //   this.fetchAuth(code);
+    // }
+    if (this.props.isFetching === false && this.props.survey.length > 0 && this.state.loaded === true) {
+    this.props.fetchSingleSurvey(this.props.survey[0].survey_time_stamp);
+    this.setState({ 
+      loaded: false
+    })
     }
+    
   }
 
-  fetchAuth = code => {
-    const uri = "https://sentimentbot.netlify.com/profile";
-    axios
-      .get(
-        `https://slack.com/api/oauth.access?code=${code}&client_id=555765331446.554661112789&client_secret=65618f3ce7feca293e1abae74cae7afc&redirect_uri=${uri}&state=2ndstate`
-      )
-      .then(response => {
-        console.log("response", response);
-      })
-      .catch(error => {
-        console.error(error);
-      });
-  };
+  // fetchAuth = code => {
+  //   const uri = "https://sentimentbot.netlify.com/profile";
+  //   axios
+  //     .get(
+  //       `https://slack.com/api/oauth.access?code=${code}&client_id=555765331446.554661112789&client_secret=65618f3ce7feca293e1abae74cae7afc&redirect_uri=${uri}&state=2ndstate`
+  //     )
+  //     .then(response => {
+  //       console.log("response", response);
+  //     })
+  //     .catch(error => {
+  //       console.error(error);
+  //     });
+  // };
 
   createTeam = event => {
     event.preventDefault();
-    // const single = this.props.singleTeamMembers[0];
+    const single = this.props.singleTeamMembers[0];
     const team = {
       name: this.state.name
     };
@@ -123,13 +140,18 @@ class Profile extends React.Component {
   // };
 
   render() {
+    // if(!localStorage.getItem('email')){
+    //   this.props.history.push('/home')
+    // }
+
     const view = this.state.view;
     const uri = "https://sentimentbot.netlify.com/profile";
-    // const uri = "http://localhost:3000//profile";
+    // const uri = "http://localhost:3000/profile";
     console.log(view);
     if (view === "") {
       return (
         <div>
+          <NavBar />
           <div>
             <button
               onClick={() => {
@@ -157,6 +179,7 @@ class Profile extends React.Component {
     } else if (view === "create") {
       return (
         <div>
+          <NavBar />
           <a
             href={`https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645&redirect_uri=${uri}&state=teststate`}
           >
@@ -190,7 +213,10 @@ class Profile extends React.Component {
     } else if (view === "join") {
       return (
         <div>
-          <a href={`https://slack.com/oauth/authorize?scope=commands&client_id=553324377632.554405336645&redirect_uri=${uri}&state=teststate`}>
+          <NavBar />
+          <a
+            href={`https://slack.com/oauth/authorize?scope=commands&client_id=553324377632.554405336645&redirect_uri=${uri}&state=teststate`}
+          >
             <img
               alt="Add to Slack"
               height="40"
@@ -225,9 +251,11 @@ class Profile extends React.Component {
 function mapStateToProps(state) {
   return {
     singleTeamMembers: state.teamMembersReducer.singleTeamMembers,
-    isFetching: state.teamMembersReducer.isFetching,
     error: state.teamMembersReducer.error,
-    teamMembers: state.teamMembersReducer.teamMembers
+    teamMembers: state.teamMembersReducer.teamMembers,
+    survey: state.surveyReducer.survey,
+    isFetching: state.surveyReducer.isFetching,
+    singleSurvey: state.surveyReducer.singleSurvey
   };
 }
 
@@ -240,7 +268,9 @@ export default connect(
     addTeam,
     getTeams,
     editTeamMembers,
-    getSingleTeam
+    getSingleTeam,
+    fetchSingleSurvey,
+    getSurvey
   }
 )(Profile);
 

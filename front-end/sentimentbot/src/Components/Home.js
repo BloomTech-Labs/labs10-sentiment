@@ -1,6 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import NavBar from './NavBar/NavBar'
+import Login from './login/login'
+import Auth from "./Auth/auth";
 
 class Home extends React.Component {
   constructor(props) {
@@ -54,8 +57,11 @@ class Home extends React.Component {
 
   render() {
     console.log(this.state.code);
+    const auth = new Auth();
     return (
       <div className="home-container">
+      <Login auth={auth}/>
+
         <h1 className="welcomeText">Welcome to Mood</h1>
         <p>Hello World</p>
         <a

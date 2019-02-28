@@ -9,6 +9,9 @@ module.exports = {
   getID: function(id) {
     return db(table).where("id", id);
   },
+  getByTeamId: function(team_id) {
+    return db(table).where("team_id", team_id);
+  },
   getEmail: function(email) {
     return db(table).where("email", email);
   },

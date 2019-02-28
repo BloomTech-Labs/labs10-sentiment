@@ -2,8 +2,10 @@ require("dotenv").config();
 const express = require("express");
 const router = express.Router();
 const request = require("request");
-// const axios = require("axios");
+const axios = require("axios");
 const db = require("../database/helpers/slackAuthDb");
+const teamMembersDb = require("../database/helpers/teamMembersDb");
+
 const {
   postSuccess,
   serverErrorPost,
@@ -25,28 +27,45 @@ const type = "team";
 //     .catch(serverErrorPost(res));
 // });
 
-router.post("/slackAuth", (req, res) => {
-  let postInfo = req.body;
-
-  db.insert(postInfo)
-    .then(postSuccess(res))
-    .catch(serverErrorPost(res));
-});
-
-// router.get("/slackAuth", (req, res) => {
-//   db.get()
-//     .then(getSuccess(res))
-//     .catch(serverErrorGet(res));
-// });
-
-
 // https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645&redirect_uri=https://botsentiment.herokuapp.com/api/slackauth&state=id2
 // https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645&redirect_uri=http://localhost:5002/api/slackauth&state=id
 
-
-// let uri = 'http://localhost:5002/api/slackauth';
+// let uri = "http://localhost:5002/api/slackauth";
+// let uri2 = "http://localhost:5002/api/slackauth/slack-btn/1";
 let uri = "https://botsentiment.herokuapp.com/api/slackauth";
 
+// router.get("/slackbtn/:id", (req, res) => {
+//   // console.log(req.query.code);
+//   const { id } = req.params;
+//   console.log(id);
+//   const options = {
+//     uri:
+//       "https://slack.com/oauth/authorize?" +
+//       "scope=" +
+//       "commands,bot" +
+//       "&client_id=" +
+//       "553324377632.554405336645" +
+//       "&redirect_uri=" +
+//       uri +
+//       "&state=" +
+//       id,
+//     method: "GET"
+//   };
+//   request(options, (error, response, body) => {
+//     let JSONresponse = JSON.parse(body);
+//     if (!JSONresponse.ok) {
+//       console.log(JSONresponse);
+//       res
+//         .send("Error encountered: \n" + JSON.stringify(JSONresponse))
+//         .status(200)
+//         .end();
+//       // } else {
+//       console.log("response", body);
+//       // console.log({ state: req.query.state });
+//       // const memberID = req.query.state;
+//     }
+//   });
+// });
 
 router.get("/", (req, res) => {
   console.log(req.query.code);
@@ -72,45 +91,44 @@ router.get("/", (req, res) => {
         .end();
     } else {
       console.log(JSONresponse);
-      console.log({state: req.query.state});
-      res.send("Success!: \n" + JSON.stringify(JSONresponse));
+      console.log({ state: req.query.state });
+      let memberID = req.query.state;
+      memberID = Number(memberID);
+      console.log(memberID);
+      db.getByMemberId(memberID)
+        .then(data => {
+          if (!data[0]) {
+            let postInfo = {
+              access_token: JSONresponse.access_token,
+              user_id: JSONresponse.user_id,
+              team_name: JSONresponse.team_name,
+              team_id: JSONresponse.team_id,
+              bot_user_id: JSONresponse.bot.bot_user_id,
+              bot_access_token: JSONresponse.bot.bot_access_token,
+              member_id: memberID
+            };
+
+            db.insert(postInfo)
+              .then(postSuccess(res))
+              .catch(serverErrorPost(res));
+          } else {
+            res.status(400).json({
+              error: `Member with Id ${memberID} is already authorized`
+            });
+          }
+        })
+        .catch();
     }
   });
 });
 
-// https://slack.com/oauth/authorize?scope=commands&client_id=553324377632.554405336645&redirect_uri=https://botsentiment.herokuapp.com/api/slackauth/teammember
-
-router.get("/teammember", (req, res) => {
-  console.log(req.query.code);
-  const options = {
-    uri:
-      "https://slack.com/api/oauth.access?code=" +
-      req.query.code +
-      "&client_id=" +
-      "553324377632.554405336645" +
-      "&client_secret=" +
-      "934d342145ffd799890140ec512feac3" +
-      "&redirect_uri=" +
-      uri,
-    method: "GET"
-  };
-  request(options, (error, response, body) => {
-    let JSONresponse = JSON.parse(body);
-    if (!JSONresponse.ok) {
-      console.log(JSONresponse);
-      res
-        .send("Error encountered: \n" + JSON.stringify(JSONresponse))
-        .status(200)
-        .end();
-    } else {
-      console.log(JSONresponse);
-      console.log({state: req.query.state});
-      res.send("Success!: \n" + JSON.stringify(JSONresponse));
-    }
-  });
+router.get("/all", (req, res) => {
+  db.get()
+    .then(getSuccess(res))
+    .catch(serverErrorGet(res));
 });
 
-router.get("/slackAuth/:id", (req, res) => {
+router.get("/:id", (req, res) => {
   const { id } = req.params;
   db.getID(id)
     .then(getSuccess(res))

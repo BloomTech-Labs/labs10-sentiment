@@ -1,9 +1,6 @@
 import React from "react";
 
 class Login extends React.Component {
-  goTo(route) {
-    this.props.history.replace(`/${route}`)
-  }
 
   login() {
     this.props.auth.login();
@@ -25,25 +22,14 @@ class Login extends React.Component {
     const { isAuthenticated } = this.props.auth;
 
     return (
-      <div>
-            {
-              !isAuthenticated() && (
+      <div className="login-container">
+            
                   <button
                     onClick={this.login.bind(this)}
-                  >
+                  className="login-button">
                     Log In
                   </button>
-                )
-            }
-            {
-              isAuthenticated() && (
-                  <button
-                    onClick={this.logout.bind(this)}
-                  >
-                    Log Out
-                  </button>
-                )
-            }
+
 
 
       </div>

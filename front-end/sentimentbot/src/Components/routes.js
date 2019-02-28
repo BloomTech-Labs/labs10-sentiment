@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Router } from "react-router-dom";
 import App from "./App";
-import Login from "./login/login";
+import Home from './Home'
 import Callback from "./callback/callback";
 import Auth from "./Auth/auth";
 import history from "./history";
@@ -13,6 +13,10 @@ import { Provider } from "react-redux";
 import rootReducer from "../reducers/index";
 import Profile from "./myProfile/myProfile";
 import Billing from './billing/billing';
+import Survey from './Survey/survey';
+import Reports from './reports/reports';
+import AccountSettings from './accountSettings/accountSettings';
+import GenerateReport from './reports/generateReport'
 
 const auth = new Auth();
 
@@ -38,10 +42,10 @@ export const makeMainRoutes = () => {
     <Provider store={store}>
       <Router history={history}>
         <div>
-          <Route path="/" render={props => <Login auth={auth} {...props} />} />
+          <Route exact path="/" render={props => <Home auth={auth} {...props} />} />
           <Route
             path="/home"
-            render={props => <App auth={auth} {...props} />}
+            render={props => <Home auth={auth} {...props} />}
           />
           <Route
             path="/callback"
@@ -56,6 +60,10 @@ export const makeMainRoutes = () => {
           />
           <Route path="/profile" render={props => <Profile {...props} />} />
           <Route path="/billing" render={props => <Billing {...props} />} />
+          <Route path="/survey" render={props => <Survey {...props} />} />
+          <Route path="/reports" render={props => <Reports {...props} />} />
+          <Route path="/accountset" render={props => <AccountSettings {...props} />} />
+          <Route path="/generatereport" render={props => <GenerateReport {...props} />} />
         </div>
       </Router>
     </Provider>

@@ -1,5 +1,5 @@
 import auth0 from "auth0-js";
-import history from '../history'
+import history from "../history";
 
 export default class Auth {
   accessToken;
@@ -22,7 +22,7 @@ export default class Auth {
     this.isAuthenticated = this.isAuthenticated.bind(this);
     this.getAccessToken = this.getAccessToken.bind(this);
     this.getIdToken = this.getIdToken.bind(this);
-//     this.renewSession = this.renewSession.bind(this);
+    this.renewSession = this.renewSession.bind(this);
     this.getProfile = this.getProfile.bind(this);
   }
 
@@ -65,16 +65,16 @@ export default class Auth {
     //changed from home to profile
   }
 
-  // renewSession() {
-  //   this.auth0.checkSession({}, (err, authResult) => {
-  //     if (authResult && authResult.accessToken && authResult.idToken) {
-  //       this.setSession(authResult);
-  //     } else if (err) {
-  //       this.logout();
-  //       console.log(err);
-  //     }
-  //   });
-  // }
+  renewSession() {
+    this.auth0.checkSession({}, (err, authResult) => {
+      if (authResult && authResult.accessToken && authResult.idToken) {
+        this.setSession(authResult);
+      } else if (err) {
+        this.logout();
+        console.log(err);
+      }
+    });
+  }
 
   getProfile(cb) {
     this.auth0.client.userInfo(this.accessToken, (err, profile) => {
@@ -83,7 +83,7 @@ export default class Auth {
       }
       cb(err, profile);
     });
-  };
+  }
 
   logout() {
     // Remove tokens and expiry time
@@ -95,7 +95,7 @@ export default class Auth {
     localStorage.removeItem("isLoggedIn");
     localStorage.removeItem("email");
     // navigate to the home route
-    history.replace("/");
+    history.replace("/home");
   }
 
   isAuthenticated() {

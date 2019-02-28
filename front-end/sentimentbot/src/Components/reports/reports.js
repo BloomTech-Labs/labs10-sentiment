@@ -1,12 +1,28 @@
 import React from "react";
+import PieChart from "./chart";
+// import Line from './linegraph';
+// import Bar from './barGraph'
+import NavBar from '../NavBar/NavBar';
+import './report.css'
 
-function Survey(props) {
+function Reports(props) {
+
+  if(!localStorage.getItem('email')){
+    props.history.push('/home')
+  }
   return (
-    <div>
-      <p> Survey Page </p>
-      <button>Sign Out</button>
+    <div className="container">
+     <NavBar />
+     <div className="reports-container">
+     
+      <p> Generate a new report: </p>
+      <button onClick={() => props.history.push('/generatereport')}>Here</button>
+      <PieChart history={props.history} />
+      {/* <Line />
+      <Bar /> */}
+      </div>
     </div>
   );
 }
 
-export default Survey;
+export default Reports;

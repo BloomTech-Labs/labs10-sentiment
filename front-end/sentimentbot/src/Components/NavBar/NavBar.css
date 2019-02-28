@@ -1,0 +1,19 @@
+/* .navBar {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    position: relative;
+    border: 1px solid black;
+    width: 15%;
+}
+
+.navButton {
+    display: flex;
+    flex-direction: column;
+}
+
+@media (max-width: 400px) {
+    .navButton {
+        flex-direction: column;
+    }
+} */
