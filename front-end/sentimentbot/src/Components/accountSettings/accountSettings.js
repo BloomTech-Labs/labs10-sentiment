@@ -45,9 +45,6 @@ class accountSettings extends React.Component {
           response: response.status
         })
       });
-
-    // axios.post('http://localhost:5002/changepw', data)
-    console.log(data);
     this.setState({
       isEmail: false,
       isText: false,
