@@ -9,13 +9,13 @@
 
 /* Home */
 .home-container {
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 500px;
-  width: 100%;
-  border: 1px solid black;
-  padding: 10px;
+ text-align: center;
+ margin-left: auto;
+ margin-right: auto;
+ max-width: 900px;
+ width: 95%;
+ border: 1px solid black;
+ padding: 10px;
 }
 
 /* Billing */
