@@ -76,13 +76,13 @@ function postMessage(JSONmessage, token, surveyId) {
             };
             dbSurveys
               .update(surveyId, putInfo)
-              .then(getSuccess(res))
-              .catch(serverErrorUpdate404(res, "survey", surveyId));
+              .then(data=>console.log(data))
+              .catch(err=>console.log(err));
           } else {
-            res.status(404).json({error: 'survey does not exist'});
+            console.log({error: 'survey does not exist'});
           }
         })
-        .catch(serverErrorGet(res));
+        .catch(err=>console.log(err));
     }
   });
 }
