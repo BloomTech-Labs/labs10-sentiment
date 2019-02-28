@@ -183,8 +183,8 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
         text: options[i],
         value: options[i]
       }
-      console.log(value);
-      arrayOptions.push('value',value);
+      console.log('value',value);
+      arrayOptions.push(value);
       console.log('arrayOptions', arrayOptions);
     } 
 
