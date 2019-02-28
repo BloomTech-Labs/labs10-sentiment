@@ -10,7 +10,9 @@ import {
   addTeamMembers,
   getTeamMembers,
   fetchSingleSurvey,
-  getSurvey
+  getSurvey,
+  getTeams,
+  getSingleTeam,
 } from "../../actions/index";
 import history from "../history";
 import NavBar from "../NavBar/NavBar";
@@ -26,8 +28,10 @@ class Authorization extends React.Component {
   };
 
   componentDidMount() {
-    this.props.getSingleTeamMembers(localStorage.getItem("email"));
-    this.props.getTeamMembers();
+    this.props.getTeams
+    this.props.getSingleTeam
+    this.props.getSingleTeamMembers(localStorage.getItem("email"))
+    this.props.getTeamMembers()
     this.submit = false
   }
 
@@ -103,7 +107,9 @@ function mapStateToProps(state) {
     error: state.teamMembersReducer.error,
     teamMembers: state.teamMembersReducer.teamMembers,
     survey: state.surveyReducer.survey,
-    singleSurvey: state.surveyReducer.singleSurvey
+    singleSurvey: state.surveyReducer.singleSurvey,
+    teams: state.teamsReducer.teams,
+    singleTeams: state.teamsReducer.singleTeams
   };
 }
 
@@ -114,6 +120,8 @@ export default connect(
     addTeamMembers,
     getTeamMembers,
     fetchSingleSurvey,
-    getSurvey
+    getSurvey,
+    getTeams,
+    getSingleTeam
   }
 )(Authorization);
