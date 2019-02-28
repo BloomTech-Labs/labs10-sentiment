@@ -179,7 +179,7 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                                       .getID(feelings_id)
                                       .then(data => {
                                         console.log("pre feeling array", data);
-                                        if (data.length === 0) {                             
+                                        if (data.length === 0) {
                                           console.log({
                                             error: `Pre Feeling with Id: ${feelings_id} does not exist.`
                                           });
@@ -253,13 +253,16 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                                       })
                                       .catch(err => console.log(err));
                                   }
-                            //     })
-                            //     .then(data => {
-                            //       // console.log("data", data);
-                            //     })
-                            //     .then(() => {})
-                            //     .catch(err => console.log(err));
-                            // }
+                                  //     })
+                                  //     .then(data => {
+                                  //       // console.log("data", data);
+                                  //     })
+                                  //     .then(() => {})
+                                  //     .catch(err => console.log(err));
+                                  // }
+                                })
+                                .catch(err => console.log(err));
+                            }
                           })
                           .catch(err => console.log(err));
                       }
