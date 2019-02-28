@@ -190,8 +190,12 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                                       .catch(err => console.log(err));
                                   }
 
-                                  console.log("feelingTextArray",feelingTextArray);
-
+                                  console.log(
+                                    "feelingTextArray",
+                                    feelingTextArray
+                                  );
+                                })
+                                .then(() => {
                                   let arrayOptions = [];
                                   for (
                                     let t = 0;
@@ -208,13 +212,15 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                                     arrayOptions.push(value);
                                   }
                                   console.log("arrayOptions", arrayOptions);
-
+                                })
+                                .then(() => {
                                   let message = {
                                     text: `${title}`,
                                     attachments: [
                                       {
                                         text: `${description}`,
-                                        fallback: "Shame... buttons aren't supported in this land",
+                                        fallback:
+                                          "Shame... buttons aren't supported in this land",
                                         callback_id: "button_tutorial",
                                         color: "#3AA3E3",
                                         attachment_type: "default",
@@ -243,7 +249,10 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                                       }
                                     ]
                                   };
-                                  sendMessageToSlackResponseURL(responseURL, message);
+                                  sendMessageToSlackResponseURL(
+                                    responseURL,
+                                    message
+                                  );
 
                                   console.log("message", message);
                                 })
