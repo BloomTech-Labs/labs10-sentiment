@@ -22,7 +22,8 @@ class Profile extends React.Component {
       name: "",
       team_code: 0,
       team_id: 0,
-      loaded: false
+      loaded: false,
+      jointeam: '',
     };
   }
   componentDidMount() {
@@ -79,13 +80,26 @@ class Profile extends React.Component {
   // };
 
   createTeam = event => {
+    // event.preventDefault();
+    // const single = this.props.singleTeamMembers[0];
+    // const team = {
+    //   name: this.state.name
+    // };
+    // this.props.addTeam(team);
+    // this.editManager();
     event.preventDefault();
-    const single = this.props.singleTeamMembers[0];
-    const team = {
-      name: this.state.name
-    };
-    this.props.addTeam(team);
-    this.editManager();
+    const name = this.state.name;
+    const memberId = this.props.singleTeamMembers[0].id
+    const combine = {name: name, memberId: memberId}
+    this.props.addTeam(combine)
+    console.log(this.state.createteam)
+      this.setState({
+        ...this.state,
+        view: "create",
+        name: '',
+    })
+    this.props.getSingleTeam(this.props.singleTeamMembers[0].id)
+
   };
 
   addCodeToMember = event => {
@@ -103,20 +117,6 @@ class Profile extends React.Component {
 
     member.team_id = teamID;
     member.type = "team_member";
-
-    console.log(member);
-
-    this.props.editTeamMembers(member.id, member);
-  };
-
-  editManager = () => {
-    let teams = this.props.getTeams();
-    let newTeam = teams[teams.length - 1];
-
-    let member = this.props.singleTeamMembers[0];
-
-    member.team_id = newTeam.id;
-    member.type = "manager";
 
     console.log(member);
 
@@ -145,14 +145,15 @@ class Profile extends React.Component {
     // }
 
     const view = this.state.view;
-    const uri = "https://sentimentbot.netlify.com/profile";
-    // const uri = "http://localhost:3000/profile";
+    // const uri = "https://sentimentbot.netlify.com/authorization";
+    const uri = "http://localhost:3000/authorization";
     console.log(view);
     if (view === "") {
       return (
         <div>
           <NavBar />
           <div>
+            <input handleChange={this.handleChange} name="jointeam" placeholder="0000"></input>
             <button
               onClick={() => {
                 this.setState({
@@ -162,14 +163,9 @@ class Profile extends React.Component {
               }}
             >
               Join a Team
-            </button>
-            <button
-              onClick={() => {
-                this.setState({
-                  ...this.state,
-                  view: "create"
-                });
-              }}
+            </button><br/><br/>
+            <input handleChange={this.handleChange} name="name" placeholder="Your Team Name"></input>
+            <button onClick={this.createTeam}
             >
               Create a Team
             </button>
@@ -181,14 +177,14 @@ class Profile extends React.Component {
         <div>
           <NavBar />
           <a
-            href={`https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645&redirect_uri=${uri}&state=teststate`}
+            href={`https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645&redirect_uri=${uri}&state=${this.props.singleTeamMembers[0].id}`}
           >
             <img
               alt="Add to Slack"
               height="40"
               width="139"
               src="https://platform.slack-edge.com/img/add_to_slack.png"
-              srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x"
+              srcSet="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x"
             />
           </a>
           <form onSubmit={this.submitHandler} autoComplete="nope">
@@ -215,14 +211,14 @@ class Profile extends React.Component {
         <div>
           <NavBar />
           <a
-            href={`https://slack.com/oauth/authorize?scope=commands&client_id=553324377632.554405336645&redirect_uri=${uri}&state=teststate`}
+            href={`https://slack.com/oauth/authorize?scope=commands&client_id=553324377632.554405336645&redirect_uri=${uri}&state=${this.props.getSingleTeamMembers[0].id}`}
           >
             <img
               alt="Add to Slack"
               height="40"
               width="139"
               src="https://platform.slack-edge.com/img/add_to_slack.png"
-              srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x"
+              srcSet="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x"
             />
           </a>
           <form onSubmit={this.submitHandler} autoComplete="nope">
@@ -255,7 +251,7 @@ function mapStateToProps(state) {
     teamMembers: state.teamMembersReducer.teamMembers,
     survey: state.surveyReducer.survey,
     isFetching: state.surveyReducer.isFetching,
-    singleSurvey: state.surveyReducer.singleSurvey
+    singleSurvey: state.surveyReducer.singleSurvey,
   };
 }
 
