@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import NavBar from './NavBar/NavBar'
 import Login from './login/login'
 import Auth from "./Auth/auth";
 

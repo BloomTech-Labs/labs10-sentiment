@@ -78,6 +78,13 @@ router.get("/:id", (req, res) => {
     .catch(serverErrorGetID(res, type, id));
 });
 
+router.get("/team_member/:id", (req, res) => {
+  const { id } = req.params;
+  db.get().where({ team_id: id })
+    .then(getSuccess(res))
+    .catch(serverErrorGetID(res, type, id));
+});
+
 router.get("/Email/:email", (req, res) => {
   const { email } = req.params;
   db.getEmail(email)

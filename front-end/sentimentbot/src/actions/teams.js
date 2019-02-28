@@ -15,22 +15,38 @@ export const EDIT_TEAMS_FAILURE = "EDIT_TEAMS_FAILURE";
 export const SINGLE_TEAMS_START = "SINGLE_TEAMS_START";
 export const SINGLE_TEAMS_SUCCESS = "SINGLE_TEAMS_SUCCESS";
 export const SINGLE_TEAMS_FAILURE = "SINGLE_TEAM_FAILURE";
+export const JOIN_TEAM_START = "JOIN_TEAM_START";
+export const JOIN_TEAM_SUCCESS = "JOIN_TEAM_SUCCESS";
+export const JOIN_TEAM_FAILURE = "JOIN_TEAM_FAILURE";
+export const FETCH_TEAMS_MEMBERS_START = "FETCH_TEAMS_MEMBERS_START";
+export const FETCH_TEAMS_MEMBERS_SUCCESS = "FETCH_TEAMS_MEMBERS_SUCCESS";
+export const FETCH_TEAMS_MEMBERS_FAILURE = "FETCH_TEAMS_MEMBERS_FAILURE";
 
-export const getTeams = () => {
-  dispatchEvent({ type: FETCH_TEAMS_START });
+export const getTeams = () => dispatch => {
+  dispatch({ type: FETCH_TEAMS_START });
   axios
-    .get("https://botsentiment.herokuapp.com/api/teams")
+    .get("http://localhost:5002/api/teams")
     .then(response => {
-      dispatchEvent({ type: FETCH_TEAMS_SUCCESS, payload: response.data });
+      dispatch({ type: FETCH_TEAMS_SUCCESS, payload: response.data });
     })
-    .catch(err => dispatchEvent({ type: FETCH_TEAMS_FAILURE, payload: err }));
+    .catch(err => dispatch({ type: FETCH_TEAMS_FAILURE, payload: err }));
 };
 
-export const addTeam = team => dispatch => {
+export const joinTeam = (id, team_code) => dispatch => {
+  dispatch({ type: EDIT_TEAMS_START });
+  axios
+    .put(`http://localhost:5002/api/team_members/${id}/join`, team_code)
+    .then(response => {
+      dispatch({ type: EDIT_TEAMS_SUCCESS, payload: response.team_code });
+    })
+    .catch(err => dispatch({ type: EDIT_TEAMS_FAILURE, payload: err }));
+};
+
+export const addTeam = data => dispatch => {
   dispatch({ type: ADD_TEAMS_START });
   axios
-    .post("https://botsentiment.herokuapp.com/api/teams", team)
-    .then(response => { 
+    .post("http://localhost:5002/api/teams", data)
+    .then(response => {
       dispatch({ type: ADD_TEAMS_SUCCESS, payload: response.data });
     })
     .catch(err => dispatch({ type: ADD_TEAMS_FAILURE, payload: err }));
@@ -59,10 +75,19 @@ export const deleteTeam = id => dispatch => {
 export const getSingleTeam = id => dispatch => {
   dispatch({ type: SINGLE_TEAMS_START });
   axios
-    .get(`https://botsentiment.herokuapp.com/api/teams/${id}`)
+    .get(`http://localhost:5002/api/teams/${id}`)
     .then(response => {
       dispatch({ type: SINGLE_TEAMS_SUCCESS, payload: response.data });
     })
     .catch(err => dispatch({ type: SINGLE_TEAMS_FAILURE, payload: err }));
 };
-// actions fils for teams
+
+export const getTeamsMembers = id => dispatch => {
+  dispatch({ type: FETCH_TEAMS_MEMBERS_START });
+  axios
+    .get(`http://localhost:5002/api/team_members/team_member/${id}`)
+    .then(response => {
+      dispatch({ type: FETCH_TEAMS_MEMBERS_SUCCESS, payload: response.data });
+    })
+    .catch(err => dispatch({ type: FETCH_TEAMS_MEMBERS_FAILURE, payload: err }));
+};

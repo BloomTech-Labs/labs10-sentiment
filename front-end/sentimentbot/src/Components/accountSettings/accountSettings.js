@@ -33,7 +33,6 @@ class accountSettings extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    let data = this.state;
     axios
       .post("https://bikbik.auth0.com/dbconnections/change_password", {
         client_id: "BnXSvU6tE4W8WGMt3gDWra24hXr8qY0e",
