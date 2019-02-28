@@ -147,12 +147,12 @@ class Profile extends React.Component {
     // }
 
     const view = this.state.view;
-    // const uri = "https://sentimentbot.netlify.com/authorization";
-    const uri = "http://localhost:3000/authorization";
+    const uri = "https://sentimentbot.netlify.com/authorization";
+    // const uri = "http://localhost:3000/authorization";
     console.log(view);
     if (view === "") {
       return (
-        <div className="container1">
+        <div className="container">
           <NavBar />
           <div>
 
@@ -174,7 +174,7 @@ class Profile extends React.Component {
       );
     } else if (view === "create") {
       return (
-        <div className="container1">
+        <div className="container">
           <NavBar />
           <a
             href={`https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645&redirect_uri=${uri}&state=${this.props.singleTeamMembers[0].id}`}
@@ -208,7 +208,7 @@ class Profile extends React.Component {
       );
     } else if (view === "join") {
       return (
-        <div className="container1">
+        <div className="container">
           <NavBar />
           <a
             href={`https://slack.com/oauth/authorize?scope=commands&client_id=553324377632.554405336645&redirect_uri=${uri}&state=${this.props.singleTeamMembers[0].id}`}

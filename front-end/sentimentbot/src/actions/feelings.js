@@ -16,14 +16,14 @@ export const SINGLE_FEELINGS_START = 'SINGLE_FEELINGS_START';
 export const SINGLE_FEELINGS_SUCCESS = 'SINGLE_FEELINGS_SUCCESS';
 export const SINGLE_FEELINGS_FAILURE = 'SINGLE_FEELINGS_FAILURE';
 
-export const getFeelings = () => {
-    dispatchEvent({ type: FETCH_FEELINGS_START });
+export const getFeelings = () => dispatch => {
+    dispatch({ type: FETCH_FEELINGS_START });
     axios
     .get('https://botsentiment.herokuapp.com/api/feelings')
     .then(response => {
-        dispatchEvent({ type: FETCH_FEELINGS_SUCCESS, payload: response.data })
+        dispatch({ type: FETCH_FEELINGS_SUCCESS, payload: response.data })
     })
-    .catch(err => dispatchEvent({ type: FETCH_FEELINGS_FAILURE, payload: err }))
+    .catch(err => dispatch({ type: FETCH_FEELINGS_FAILURE, payload: err }))
 }
 
 export const addFeelings = note => dispatch => {

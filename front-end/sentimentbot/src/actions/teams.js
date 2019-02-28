@@ -19,20 +19,20 @@ export const JOIN_TEAM_START = "JOIN_TEAM_START";
 export const JOIN_TEAM_SUCCESS = "JOIN_TEAM_SUCCESS";
 export const JOIN_TEAM_FAILURE = "JOIN_TEAM_FAILURE";
 
-export const getTeams = () => {
-  dispatchEvent({ type: FETCH_TEAMS_START });
+export const getTeams = () => dispatch => {
+  dispatch({ type: FETCH_TEAMS_START });
   axios
     .get("https://botsentiment.herokuapp.com/api/teams")
     .then(response => {
-      dispatchEvent({ type: FETCH_TEAMS_SUCCESS, payload: response.data });
+      dispatch({ type: FETCH_TEAMS_SUCCESS, payload: response.data });
     })
-    .catch(err => dispatchEvent({ type: FETCH_TEAMS_FAILURE, payload: err }));
+    .catch(err => dispatch({ type: FETCH_TEAMS_FAILURE, payload: err }));
 };
 
 export const joinTeam = (id, team_code) => dispatch => {
   dispatch({ type: EDIT_TEAMS_START });
   axios
-    .put(`http://localhost:5002/api/team_members/${id}/join`, team_code)
+    .put(`https://botsentiment.herokuapp.com/api/team_members/${id}/join`, team_code)
     .then(response => {
       dispatch({ type: EDIT_TEAMS_SUCCESS, payload: response.team_code });
     })
