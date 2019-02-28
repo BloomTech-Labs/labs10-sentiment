@@ -16,14 +16,14 @@ export const SINGLE_MANAGERS_START = 'SINGLE_MANAGERS_START';
 export const SINGLE_MANAGERS_SUCCESS = 'SINGLE_MANAGERS_SUCCESS';
 export const SINGLE_MANAGERS_FAILURE = 'SINGLE_MANAGERS_FAILURE';
 
-export const getManagers = () => {
-    dispatchEvent({ type: FETCH_MANAGERS_START });
+export const getManagers = () => dispatch => {
+    dispatch({ type: FETCH_MANAGERS_START });
     axios
     .get('https://botsentiment.herokuapp.com/api/managers')
     .then(response => {
-        dispatchEvent({ type: FETCH_MANAGERS_SUCCESS, payload: response.data })
+        dispatch({ type: FETCH_MANAGERS_SUCCESS, payload: response.data })
     })
-    .catch(err => dispatchEvent({ type: FETCH_MANAGERS_FAILURE, payload: err }))
+    .catch(err => dispatch({ type: FETCH_MANAGERS_FAILURE, payload: err }))
 }
 
 export const addManager = note => dispatch => {
