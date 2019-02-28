@@ -329,20 +329,6 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                   text: "Pick a feeling...",
                   type: "select",
                   options: arrayOptions
-                  // [
-                  //   {
-                  //     text: "Happy",
-                  //     value: "happy"
-                  //   },
-                  //   {
-                  //     text: "Sad",
-                  //     value: "sad"
-                  //   },
-                  //   {
-                  //     text: "Mad",
-                  //     value: "mad"
-                  //   }
-                  // ]
                 }
               ]
             }
@@ -355,18 +341,32 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
   } else if (reqBody.payload) {
     let jsonPayload = JSON.parse(reqBody.payload);
     console.log("jsonPayload", jsonPayload);
+
+
+
     let userIdSlack = jsonPayload.user.id;
     let survey_time_stamp = jsonPayload.message_ts;
+    let callbackIDSlash = jsonPayload.callback_id;
+
     dbAuth
       .getBySlackUserId(userIdSlack)
       .then(data => {
         console.log("data slack user id", data[0]);
         let team_member_id = data[0].member_id; ////////////////
-        let postFeel = {
-          feeling_text: jsonPayload.actions[0].selected_options[0].value,
-          team_member_id: team_member_id,
-          survey_time_stamp: survey_time_stamp
-        };
+        if(callbackIDSlash === 'button_tutorial'){
+          let postFeel = {
+            feeling_text: jsonPayload.actions[0].value,
+            team_member_id: team_member_id,
+            survey_time_stamp: survey_time_stamp
+          };
+        }else{
+          let postFeel = {
+            feeling_text: jsonPayload.actions[0].selected_options[0].value,
+            team_member_id: team_member_id,
+            survey_time_stamp: survey_time_stamp
+          };
+        }
+        
         console.log("postFeel", postFeel);
         dbFeelings
           .getByMemberAndSurveyTimeStamp(team_member_id, survey_time_stamp)
