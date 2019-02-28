@@ -18,6 +18,9 @@ export const SINGLE_TEAMS_FAILURE = "SINGLE_TEAM_FAILURE";
 export const JOIN_TEAM_START = "JOIN_TEAM_START";
 export const JOIN_TEAM_SUCCESS = "JOIN_TEAM_SUCCESS";
 export const JOIN_TEAM_FAILURE = "JOIN_TEAM_FAILURE";
+export const FETCH_TEAMS_MEMBERS_START = "FETCH_TEAMS_MEMBERS_START";
+export const FETCH_TEAMS_MEMBERS_SUCCESS = "FETCH_TEAMS_MEMBERS_SUCCESS";
+export const FETCH_TEAMS_MEMBERS_FAILURE = "FETCH_TEAMS_MEMBERS_FAILURE";
 
 export const getTeams = () => dispatch => {
   dispatch({ type: FETCH_TEAMS_START });
@@ -39,11 +42,11 @@ export const joinTeam = (id, team_code) => dispatch => {
     .catch(err => dispatch({ type: EDIT_TEAMS_FAILURE, payload: err }));
  };
 
-export const addTeam = team => dispatch => {
+export const addTeam = data => dispatch => {
   dispatch({ type: ADD_TEAMS_START });
   axios
-    .post("https://botsentiment.herokuapp.com/api/teams", team)
-    .then(response => { 
+    .post("https://botsentiment.herokuapp.com/api/teams", data)
+    .then(response => {
       dispatch({ type: ADD_TEAMS_SUCCESS, payload: response.data });
     })
     .catch(err => dispatch({ type: ADD_TEAMS_FAILURE, payload: err }));
@@ -78,4 +81,13 @@ export const getSingleTeam = id => dispatch => {
     })
     .catch(err => dispatch({ type: SINGLE_TEAMS_FAILURE, payload: err }));
 };
-// actions fils for teams
+
+export const getTeamsMembers = id => dispatch => {
+  dispatch({ type: FETCH_TEAMS_MEMBERS_START });
+  axios
+    .get(`https://botsentiment.herokuapp.com/api/team_members/team_member/${id}`)
+    .then(response => {
+      dispatch({ type: FETCH_TEAMS_MEMBERS_SUCCESS, payload: response.data });
+    })
+    .catch(err => dispatch({ type: FETCH_TEAMS_MEMBERS_FAILURE, payload: err }));
+};

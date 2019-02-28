@@ -148,6 +148,7 @@ class Profile extends React.Component {
     // }
 
     const view = this.state.view;
+
     const uri = "https://sentimentbot.netlify.com/authorization";
     // const uri = "http://localhost:3000/authorization";
     console.log(view);
@@ -210,6 +211,7 @@ class Profile extends React.Component {
     } else if (view === "join") {
       return (
         <div className="container">
+
           <NavBar />
           <a
             href={`https://slack.com/oauth/authorize?scope=commands&client_id=553324377632.554405336645&redirect_uri=${uri}&state=${this.props.singleTeamMembers[0].id}`}

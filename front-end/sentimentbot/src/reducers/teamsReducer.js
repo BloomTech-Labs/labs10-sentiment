@@ -13,14 +13,21 @@ import {
   DELETE_TEAMS_FAILURE,
   SINGLE_TEAMS_START,
   SINGLE_TEAMS_SUCCESS,
-  SINGLE_TEAMS_FAILURE
+  SINGLE_TEAMS_FAILURE,
+  JOIN_TEAM_START,
+  JOIN_TEAM_SUCCESS,
+  JOIN_TEAM_FAILURE,
+  FETCH_TEAMS_MEMBERS_START,
+  FETCH_TEAMS_MEMBERS_SUCCESS,
+  FETCH_TEAMS_MEMBERS_FAILURE
 } from "../actions/index";
 
 const initialState = {
   teams: [],
   isFetching: false,
   error: null,
-  singleTeams: []
+  singleTeams: [],
+  teamMembers: [],
 };
 
 const teamsReducer = (state = initialState, action) => {
@@ -107,6 +114,42 @@ const teamsReducer = (state = initialState, action) => {
         ...state,
         isFetching: false,
         singleTeams: [],
+        error: action.payload
+      };
+    case JOIN_TEAM_START:
+      return {
+        ...state,
+        isFetching: true
+      };
+    case JOIN_TEAM_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+        teamMembers: action.payload
+      };
+    case JOIN_TEAM_FAILURE:
+      return {
+        ...state,
+        isFetching: false,
+        teamMembers: [],
+        error: action.payload
+      };
+      case FETCH_TEAMS_MEMBERS_START:
+      return {
+        ...state,
+        isFetching: true
+      };
+    case FETCH_TEAMS_MEMBERS_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+        teamMembers: action.payload,
+        error: null
+      };
+    case FETCH_TEAMS_MEMBERS_FAILURE:
+      return {
+        ...state,
+        isFetching: false,
         error: action.payload
       };
     default:

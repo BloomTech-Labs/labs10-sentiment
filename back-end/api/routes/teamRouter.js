@@ -108,7 +108,7 @@ router.get("/", (req, res) => {
 
 router.get("/:id", (req, res) => {
   const { id } = req.params;
-  db.getID(id)
+  db.get().where({ id: id })
     .then(getSuccess(res))
     .catch(serverErrorGetID(res, type, id));
 });

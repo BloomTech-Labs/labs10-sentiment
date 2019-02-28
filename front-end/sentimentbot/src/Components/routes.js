@@ -1,6 +1,5 @@
 import React from "react";
 import { Route, Router } from "react-router-dom";
-import App from "./App";
 import Home from './Home'
 import Callback from "./callback/callback";
 import Auth from "./Auth/auth";
@@ -13,10 +12,11 @@ import { Provider } from "react-redux";
 import rootReducer from "../reducers/index";
 import Profile from "./myProfile/myProfile";
 import Billing from './billing/billing';
-import NewSurvey from './Survey/newsurvey';
+import Survey from './Survey/newsurvey';
 import Reports from './reports/reports';
 import AccountSettings from './accountSettings/accountSettings';
 import GenerateReport from './reports/generateReport'
+import TeamList from './teamList/teamList';
 
 const auth = new Auth();
 
@@ -51,19 +51,22 @@ export const makeMainRoutes = () => {
             path="/callback"
             render={props => {
               handleAuthentication(props);
-              return <Callback {...props} />;
+              return <Callback {...props} auth={auth}/>;
             }}
           />
           <Route
             path="/authorization"
             render={props => <Authorization {...props} />}
           />
-          <Route path="/profile" render={props => <Profile {...props} />} />
-          <Route path="/billing" render={props => <Billing {...props} />} />
-          <Route path="/survey" render={props => <NewSurvey {...props} />} />
-          <Route path="/reports" render={props => <Reports {...props} />} />
-          <Route path="/accountset" render={props => <AccountSettings {...props} />} />
-          <Route path="/generatereport" render={props => <GenerateReport {...props} />} />
+
+          <Route path="/profile" render={props => <Profile {...props} auth={auth} />} />
+          <Route path="/billing" render={props => <Billing {...props} auth={auth}/>} />
+          <Route path="/survey" render={props => <Survey {...props} auth={auth} />} />
+          <Route path="/reports" render={props => <Reports {...props} auth={auth}/>} />
+          <Route path="/accountset" render={props => <AccountSettings {...props} auth={auth} />} />
+          <Route path="/generatereport" render={props => <GenerateReport {...props} auth={auth} />} />
+          <Route path="/teamlist" render={props => <TeamList {...props} auth={auth} />} />
+
         </div>
       </Router>
     </Provider>
