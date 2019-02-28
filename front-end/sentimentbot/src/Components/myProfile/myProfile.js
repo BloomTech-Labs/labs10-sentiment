@@ -13,7 +13,7 @@ import {
 } from "../../actions/index";
 import axios from "axios";
 import NavBar from "../NavBar/NavBar";
-import GenerateTeams from './generateTeams';
+import GenerateTeams from './GenerateTeams';
 
 class Profile extends React.Component {
   constructor() {

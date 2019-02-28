@@ -15,6 +15,9 @@ export const EDIT_TEAMS_FAILURE = "EDIT_TEAMS_FAILURE";
 export const SINGLE_TEAMS_START = "SINGLE_TEAMS_START";
 export const SINGLE_TEAMS_SUCCESS = "SINGLE_TEAMS_SUCCESS";
 export const SINGLE_TEAMS_FAILURE = "SINGLE_TEAM_FAILURE";
+export const JOIN_TEAM_START = "JOIN_TEAM_START";
+export const JOIN_TEAM_SUCCESS = "JOIN_TEAM_SUCCESS";
+export const JOIN_TEAM_FAILURE = "JOIN_TEAM_FAILURE";
 
 export const getTeams = () => {
   dispatchEvent({ type: FETCH_TEAMS_START });
@@ -25,6 +28,16 @@ export const getTeams = () => {
     })
     .catch(err => dispatchEvent({ type: FETCH_TEAMS_FAILURE, payload: err }));
 };
+
+export const joinTeam = (id, team_code) => dispatch => {
+  dispatch({ type: EDIT_TEAMS_START });
+  axios
+    .put(`http://localhost:5002/api/team_members/${id}/join`, team_code)
+    .then(response => {
+      dispatch({ type: EDIT_TEAMS_SUCCESS, payload: response.team_code });
+    })
+    .catch(err => dispatch({ type: EDIT_TEAMS_FAILURE, payload: err }));
+ };
 
 export const addTeam = team => dispatch => {
   dispatch({ type: ADD_TEAMS_START });
