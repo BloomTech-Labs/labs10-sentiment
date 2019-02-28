@@ -57,7 +57,7 @@ class Home extends React.Component {
     return (
       <div className="home-container">
         <h1 className="welcomeText">Welcome to Mood</h1>
-        <p>Hello World</p>
+        <p>Assembling and analyzing feedback into easily digestable data providing industry professionals the next evolution to interpersonal interraction.</p>
         <a
           href="https://slack.com/oauth/authorize?scope=incoming-webhook,commands,bot&client_id=553324377632.554405336645&redirect_uri=https://sentimentbot.netlify.com/"
           // onClick={this.handleSubmit}
