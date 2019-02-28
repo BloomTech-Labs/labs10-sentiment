@@ -183,10 +183,11 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                                           console.log({
                                             error: `Pre Feeling with Id: ${feelings_id} does not exist.`
                                           });
-                                        } else if (j < max) {
-                                          let { feeling_text } = data[0];
+                                        } else if (data.length !== 0 && j < max) {
+                                          let feeling_text = data[0].feeling_text;
                                           feelingTextArray.push(feeling_text);
-                                        } else if (j === max) {
+                                        } else if (data.length !== 0 && j === max) {
+                                          let feeling_text = data[0].feeling_text;
                                           feelingTextArray.push(feeling_text);
                                           console.log(
                                             "feelingTextArray",
