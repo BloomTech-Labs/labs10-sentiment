@@ -147,8 +147,8 @@ class Profile extends React.Component {
     // }
 
     const view = this.state.view;
-    // const uri = "https://sentimentbot.netlify.com/authorization";
-    const uri = "http://localhost:3000/authorization";
+    const uri = "https://sentimentbot.netlify.com/authorization";
+    // const uri = "http://localhost:3000/authorization";
     console.log(view);
     if (view === "") {
       return (

@@ -32,7 +32,7 @@ export const getTeams = () => {
 export const joinTeam = (id, team_code) => dispatch => {
   dispatch({ type: EDIT_TEAMS_START });
   axios
-    .put(`http://localhost:5002/api/team_members/${id}/join`, team_code)
+    .put(`https://botsentiment.herokuapp.com/api/team_members/${id}/join`, team_code)
     .then(response => {
       dispatch({ type: EDIT_TEAMS_SUCCESS, payload: response.team_code });
     })
