@@ -149,13 +149,13 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                         });
                       } else {
                         let manager_id = data[0].id;
-                        let feelingTextArray = [];
-                        let arrayOptions = [];
                         dbSurveys
                           .getManagerID(manager_id)
                           .then(data => {
                             let survey_id = data[data.length - 1].id;
                             let title = data[data.length - 1].title;
+                            let feelingTextArray = [];
+                            let arrayOptions = [];
                             let description = data[data.length - 1].description;
                             console.log("survey id", survey_id);
                             if (data.length === 0) {
@@ -211,9 +211,9 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                                     console.log("value", value);
                                     arrayOptions.push(value);
                                   }
-                                  console.log("arrayOptions", arrayOptions);
                                 })
                                 .then(() => {
+                                  console.log("arrayOptions", arrayOptions);
                                   let message = {
                                     text: `${title}`,
                                     attachments: [
