@@ -9,6 +9,9 @@ const request = require("request");
 const dbAuth = require("../database/helpers/slackAuthDb");
 const dbFeelings = require("../database/helpers/feelingsDb");
 const dbSurveys = require("../database/helpers/surveysDb");
+const dbTeamMembers = require("../database/helpers/teamMembersDb");
+const surveyFeelingsDb = require("../database/helpers/surveysFeelingsDb");
+const preFeelingsDb = require("../database/helpers/preFeelingsDb");
 
 const {
   postSuccess,
@@ -62,8 +65,7 @@ function postMessage(JSONmessage, token, surveyId) {
     if (error) {
       // handle errors as you see fit
       res.json({ error: "Error." });
-    } 
-    else {
+    } else {
       console.log("body", body);
       console.log("body time stamp", body.message.ts);
       ///////////// put to servey add survey_time_stamp
@@ -76,13 +78,13 @@ function postMessage(JSONmessage, token, surveyId) {
             };
             dbSurveys
               .update(surveyId, putInfo)
-              .then(data=>console.log(data))
-              .catch(err=>console.log(err));
+              .then(data => console.log(data))
+              .catch(err => console.log(err));
           } else {
-            console.log({error: 'survey does not exist'});
+            console.log({ error: "survey does not exist" });
           }
         })
-        .catch(err=>console.log(err));
+        .catch(err => console.log(err));
     }
   });
 }
@@ -117,41 +119,153 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
   res.status(200).end(); // best practice to respond with empty 200 status code
   let reqBody = req.body;
   console.log("reqBody", reqBody);
+
   if (reqBody.command === "/send-me-buttons") {
     let responseURL = reqBody.response_url;
     if (reqBody.token != process.env.VERIFCATION_TOKEN) {
       res.status(403).end("Access forbidden");
     } else {
+      let user_id = reqBody.user_id;
+
+      dbAuth
+        .getBySlackUserId(user_id)
+        .then(data => {
+          if (data.length === 0) {
+            console.log({ error: "User is not Authorized" });
+          } else {
+            let member_id = data[0].member_id;
+            dbTeamMembers
+              .getID(member_id)
+              .then(data => {
+                if (data.length === 0) {
+                  console.log({ error: "User does not exist" });
+                } else {
+                  let team_id = data[0].team_id;
+                  dbTeamMembers
+                    .getManager(team_id)
+                    .then(data => {
+                      if (data.length === 0) {
+                        console.log({
+                          error: "Manager does not exist for this team"
+                        });
+                      } else {
+                        let manager_id = data[0].manager_id;
+                        dbSurveys
+                          .getManagerID(manager_id)
+                          .then(data => {
+                            let survey_id = data[data.length - 1].id;
+                            let title = data[data.length - 1].title;
+                            let description = data[data.length - 1].description;
+                            console.log("survey id", survey_id);
+                            if (data.length === 0) {
+                              console.log({
+                                error: `Survey with Manager Id: ${manager_id} does not exist.`
+                              });
+                            } else {
+                              surveyFeelingsDb
+                                .getSurveyID(survey_id)
+                                .then(data => {
+                                  console.log(
+                                    "survey feeling array slash",
+                                    data
+                                  );
+                                  let feelingTextArray = [];
+
+                                  for (let i = 0; i < data.length; i++) {
+                                    let { feelings_id } = data[i];
+                                    preFeelingsDb
+                                      .getID(feelings_id)
+                                      .then(data => {
+                                        console.log("pre feeling array", data);
+                                        if (data.length === 0) {
+                                          // res.status(404).json({
+                                          console.log({
+                                            error: `Pre Feeling with Id: ${feelings_id} does not exist.`
+                                          });
+                                        } else {
+                                          let { feeling_text } = data[0];
+                                          feelingTextArray.push(feeling_text);
+                                        }
+                                      })
+                                      .catch(err => console.log(err));
+                                  }
+
+                                  console.log(feelingTextArray);
+
+                                  let arrayOptions = [];
+                                  for (
+                                    let i = 0;
+                                    i < feelingTextArray.length;
+                                    i++
+                                  ) {
+                                    let value = {
+                                      text: feelingTextArray[i],
+                                      value: feelingTextArray[i],
+                                      name: feelingTextArray[i],
+                                      type: "button"
+                                    };
+                                    console.log("value", value);
+                                    arrayOptions.push(value);
+                                  }
+                                  console.log("arrayOptions", arrayOptions);
+
+                                  // let botInfo = {
+                                  //   message: true,
+                                  //   member_id: manager_id,
+                                  //   survey_id: survey_id,
+                                  //   title: title,
+                                  //   description: description,
+                                  //   // channelID:
+                                  //   options: feelingTextArray
+                                  // };
+
+                                  console.log("botInfo", botInfo);
+                                })
+                                .catch(err => console.log(err));
+                            }
+                          })
+                          .catch(err => console.log(err));
+                      }
+                    })
+                    .catch(err => console.log(err));
+                }
+              })
+              .catch(err => console.log(err));
+          }
+        })
+        .catch(err => console.log(err));
+
       let message = {
-        text: "Please respond with how you are feeling below.",
+        text: `${title}`,
         attachments: [
           {
-            text: "How are you feeling about this week?",
+            text: `${description}`,
             fallback: "Shame... buttons aren't supported in this land",
             callback_id: "button_tutorial",
             color: "#3AA3E3",
             attachment_type: "default",
-            actions: [
-              {
-                name: "Happy",
-                text: "Happy",
-                type: "button",
-                value: "Happy"
-              },
-              {
-                name: "Sad",
-                text: "Sad",
-                type: "button",
-                value: "Sad"
-              },
-              {
-                name: "Mad",
-                text: "Mad",
-                type: "button",
-                value: "Mad",
-                style: "danger"
-              }
-            ]
+            actions: arrayOptions
+            // [
+            //   {
+            //     name: "Happy",
+            //     text: "Happy",
+            //     type: "button",
+            //     value: "Happy"
+            //   },
+            //   {
+            //     name: "Sad",
+            //     text: "Sad",
+            //     type: "button",
+            //     value: "Sad"
+            //   },
+            //   {
+            //     name: "Mad",
+            //     text: "Mad",
+            //     type: "button",
+            //     value: "Mad",
+            //     style: "danger"
+            //   }
+            // ]
           }
         ]
       };
@@ -170,25 +284,22 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
     // console.log("actionJSONPayload", actionJSONPayload);
     sendMessageToSlackResponseURL(actionJSONPayload.response_url, message);
   } else if (reqBody.message === true) {
-
     let surveyId = reqBody.survey_id;
-    console.log('surveyId', surveyId);
+    console.log("surveyId", surveyId);
     let title = reqBody.title;
     let description = reqBody.description;
     let options = reqBody.options;
-    console.log('options', options);
+    console.log("options", options);
     let arrayOptions = [];
-    for(let i = 0; i < options.length; i++){
+    for (let i = 0; i < options.length; i++) {
       let value = {
         text: options[i],
         value: options[i]
-      }
-      console.log('value',value);
+      };
+      console.log("value", value);
       arrayOptions.push(value);
-      
-    } 
-    console.log('arrayOptions', arrayOptions);
-
+    }
+    console.log("arrayOptions", arrayOptions);
 
     dbAuth
       .getByMemberId(reqBody.member_id)
@@ -240,12 +351,12 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
     let jsonPayload = JSON.parse(reqBody.payload);
     console.log("jsonPayload", jsonPayload);
     let userIdSlack = jsonPayload.user.id;
-    let survey_time_stamp = jsonPayload.message_ts
+    let survey_time_stamp = jsonPayload.message_ts;
     dbAuth
       .getBySlackUserId(userIdSlack)
       .then(data => {
         console.log("data slack user id", data[0]);
-        let team_member_id = data[0].member_id;
+        let team_member_id = data[0].member_id; ////////////////
         let postFeel = {
           feeling_text: jsonPayload.actions[0].selected_options[0].value,
           team_member_id: team_member_id,

@@ -79,10 +79,9 @@ const surveyScheduler = (timeInfo, postInfo) => {
     .getManagerID(manager_id)
     .then(data => {
       console.log("survey data", data);
-      let survey_id = data[0].id;
+      let survey_id = data[data.length -1].id; ///////////////
       console.log("survey id", survey_id);
       if (data.length === 0) {
-        // res.status(404).json({
         console.log({
           error: `Survey with Manager Id: ${manager_id} does not exist.`
         });
