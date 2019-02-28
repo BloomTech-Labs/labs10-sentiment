@@ -8,8 +8,7 @@ const teamMembersDb = require("../database/helpers/teamMembersDb");
 const surveyDb = require("../database/helpers/surveysDb");
 const surveyFeelingsDb = require("../database/helpers/surveysFeelingsDb");
 const preFeelingsDb = require("../database/helpers/preFeelingsDb");
-const feelingsdb = require('../database/helpers/feelingsDb');
-
+const feelingsdb = require("../database/helpers/feelingsDb");
 
 const {
   postSuccess,
@@ -67,7 +66,7 @@ const surveyScheduler = (timeInfo, postInfo) => {
   }
 
   if (timeInfo.dailyWeeklyMonthly === "daily") {
-    exTime = `46 ${hour} * * *`; ///////////////////////////////////////////////////////////////////////////////
+    exTime = `10 ${hour} * * *`; /////////////////////////////////////////////
   } else if (timeInfo.dailyWeeklyMonthly === "weekly") {
     exTime = `0 ${hour} * * 5`;
   } else if (timeInfo.dailyWeeklyMonthly === "monthly") {
@@ -91,8 +90,11 @@ const surveyScheduler = (timeInfo, postInfo) => {
         surveyFeelingsDb
           .getSurveyID(survey_id)
           .then(data => {
+
+
             console.log("survey feeling array", data);
             let feelingTextArray = [];
+
             for (let i = 0; i < data.length; i++) {
               let { feelings_id } = data[i];
               preFeelingsDb
@@ -104,44 +106,45 @@ const surveyScheduler = (timeInfo, postInfo) => {
                     console.log({
                       error: `Pre Feeling with Id: ${feelings_id} does not exist.`
                     });
-                  } else {
+                  }else{
                     let { feeling_text } = data[0];
                     feelingTextArray.push(feeling_text);
-                    console.log(feelingTextArray);
-                    let botInfo = {
-                      message: true,
-                      member_id: manager_id,
-                      survey_id: survey_id,
-                      title: title,
-                      description: description,
-                      // channelID:
-                      options: feelingTextArray
-                    };
-
-                    console.log("botInfo", botInfo);
-
-                    schedule.scheduleJob(exTime, function() {
-                      console.log("Schedule Processed");
-                      let postOptions = {
-                        uri:
-                          "https://botsentiment.herokuapp.com/api/slash/send-me-buttons",
-                        method: "POST",
-                        headers: {
-                          "Content-type": "application/json"
-                        },
-                        json: botInfo
-                      };
-                      request(postOptions, (error, response, body) => {
-                        if (error) {
-                          // handle errors as you see fit
-                          res.json({ error: "Error." });
-                        }
-                      });
-                    });
                   }
                 })
                 .catch(err => console.log(err));
             }
+
+            console.log(feelingTextArray);
+            let botInfo = {
+              message: true,
+              member_id: manager_id,
+              survey_id: survey_id,
+              title: title,
+              description: description,
+              // channelID:
+              options: feelingTextArray
+            };
+
+            console.log("botInfo", botInfo);
+
+            schedule.scheduleJob(exTime, function() {
+              console.log("Schedule Processed");
+              let postOptions = {
+                uri:
+                  "https://botsentiment.herokuapp.com/api/slash/send-me-buttons",
+                method: "POST",
+                headers: {
+                  "Content-type": "application/json"
+                },
+                json: botInfo
+              };
+              request(postOptions, (error, response, body) => {
+                if (error) {
+                  // handle errors as you see fit
+                  res.json({ error: "Error." });
+                }
+              });
+            });
           })
           .catch(err => console.log(err));
       }
@@ -169,7 +172,6 @@ const surveyScheduler = (timeInfo, postInfo) => {
 router.post("/", (req, res) => {
   const postInfo = req.body;
   // body = manager_id/ description/ title / time values
-
 
   teamMembersDb
     .get()
@@ -222,12 +224,12 @@ router.post("/", (req, res) => {
           .catch(serverErrorPost(res));
       }
     });
-
 });
 
 router.get("/manager/:id", (req, res) => {
-  const {id} = req.params
-  db.get().where({ manager_id: id })
+  const { id } = req.params;
+  db.get()
+    .where({ manager_id: id })
     .then(getSuccess(res))
     .catch(serverErrorGet(res));
 });
@@ -246,14 +248,16 @@ router.get("/manager/:id", (req, res) => {
 
 router.get("/:id", (req, res) => {
   const { id } = req.params;
-  feelingsdb.get().where({ survey_time_stamp: id }).then(data => {
-    db.getID(id)
-    .then(response => {
-      res.status(200).json({ response, data})
-    })
-    .catch(serverErrorGetID(res, type, id));
-  })
-
+  feelingsdb
+    .get()
+    .where({ survey_time_stamp: id })
+    .then(data => {
+      db.getID(id)
+        .then(response => {
+          res.status(200).json({ response, data });
+        })
+        .catch(serverErrorGetID(res, type, id));
+    });
 });
 
 router.delete(`/:id`, (req, res) => {
