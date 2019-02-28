@@ -66,7 +66,7 @@ const surveyScheduler = (timeInfo, postInfo) => {
   }
 
   if (timeInfo.dailyWeeklyMonthly === "daily") {
-    exTime = `6 ${hour} * * *`; /////////////////////////////////////////////
+    exTime = `17 ${hour} * * *`; /////////////////////////////////////////////
   } else if (timeInfo.dailyWeeklyMonthly === "weekly") {
     exTime = `0 ${hour} * * 5`;
   } else if (timeInfo.dailyWeeklyMonthly === "monthly") {
@@ -79,7 +79,7 @@ const surveyScheduler = (timeInfo, postInfo) => {
     .getManagerID(manager_id)
     .then(data => {
       console.log("survey data", data);
-      let survey_id = data[data.length -1].id; ///////////////
+      let survey_id = data[data.length - 1].id; ///////////////
       console.log("survey id", survey_id);
       if (data.length === 0) {
         console.log({
@@ -89,8 +89,6 @@ const surveyScheduler = (timeInfo, postInfo) => {
         surveyFeelingsDb
           .getSurveyID(survey_id)
           .then(data => {
-
-
             console.log("survey feeling array", data);
             let feelingTextArray = [];
 
@@ -105,7 +103,7 @@ const surveyScheduler = (timeInfo, postInfo) => {
                     console.log({
                       error: `Pre Feeling with Id: ${feelings_id} does not exist.`
                     });
-                  }else{
+                  } else {
                     let { feeling_text } = data[0];
                     feelingTextArray.push(feeling_text);
                   }
@@ -212,11 +210,11 @@ router.post("/", (req, res) => {
                   };
                   surveyFeelingsDb
                     .insert(post)
-                    .then(getSuccess(res))
+                    .then(() => {
+                      surveyScheduler(timeInfo, insertInfo);
+                    })
                     .catch(serverErrorGet(res));
                 }
-
-                surveyScheduler(timeInfo, insertInfo);
               })
               .catch(serverErrorGet(res));
           })
