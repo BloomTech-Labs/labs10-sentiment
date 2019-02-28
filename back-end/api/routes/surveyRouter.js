@@ -8,8 +8,7 @@ const teamMembersDb = require("../database/helpers/teamMembersDb");
 const surveyDb = require("../database/helpers/surveysDb");
 const surveyFeelingsDb = require("../database/helpers/surveysFeelingsDb");
 const preFeelingsDb = require("../database/helpers/preFeelingsDb");
-const feelingsdb = require('../database/helpers/feelingsDb');
-
+const feelingsdb = require("../database/helpers/feelingsDb");
 
 const {
   postSuccess,
@@ -51,23 +50,26 @@ const surveyScheduler = (timeInfo, postInfo) => {
       hour = timeInfo.hour + 8;
     } else if (timeInfo.amPm === "PM") {
       hour = timeInfo.hour + 12 + 8;
-      if (hour > 24) {
+      if (hour >= 24) {
         hour = hour - 24;
       }
     }
   } else if (timeInfo.timeZone === "EST") {
     if (timeInfo.amPm === "AM") {
+      if(timeInfo.hour === 12){
+        timeInfo.hour = 0;
+      }
       hour = timeInfo.hour + 5;
     } else if (timeInfo.amPm === "PM") {
       hour = timeInfo.hour + 12 + 5;
-      if (hour > 24) {
+      if (hour >= 24) {
         hour = hour - 24;
       }
     }
   }
 
   if (timeInfo.dailyWeeklyMonthly === "daily") {
-    exTime = `56 ${hour} * * *`; //////////////////////////////////////////////////////////////////////////////
+    exTime = `29 ${hour} * * *`; /////////////////////////////////////////////
   } else if (timeInfo.dailyWeeklyMonthly === "weekly") {
     exTime = `0 ${hour} * * 5`;
   } else if (timeInfo.dailyWeeklyMonthly === "monthly") {
@@ -80,10 +82,9 @@ const surveyScheduler = (timeInfo, postInfo) => {
     .getManagerID(manager_id)
     .then(data => {
       console.log("survey data", data);
-      let survey_id = data[0].id;
+      let survey_id = data[data.length - 1].id; ///////////////
       console.log("survey id", survey_id);
       if (data.length === 0) {
-        // res.status(404).json({
         console.log({
           error: `Survey with Manager Id: ${manager_id} does not exist.`
         });
@@ -93,6 +94,7 @@ const surveyScheduler = (timeInfo, postInfo) => {
           .then(data => {
             console.log("survey feeling array", data);
             let feelingTextArray = [];
+
             for (let i = 0; i < data.length; i++) {
               let { feelings_id } = data[i];
               preFeelingsDb
@@ -107,41 +109,42 @@ const surveyScheduler = (timeInfo, postInfo) => {
                   } else {
                     let { feeling_text } = data[0];
                     feelingTextArray.push(feeling_text);
-                    console.log(feelingTextArray);
-                    let botInfo = {
-                      message: true,
-                      member_id: manager_id,
-                      survey_id: survey_id,
-                      title: title,
-                      description: description,
-                      // channelID:
-                      options: feelingTextArray
-                    };
-
-                    console.log("botInfo", botInfo);
-
-                    schedule.scheduleJob(exTime, function() {
-                      // let postOptions = {
-                      //   uri:
-                      //     "https://botsentiment.herokuapp.com/api/slash/send-me-buttons",
-                      //   method: "POST",
-                      //   headers: {
-                      //     "Content-type": "application/json"
-                      //   },
-                      //   json: botInfo
-                      // };
-                      // request(postOptions, (error, response, body) => {
-                      //   if (error) {
-                      //     // handle errors as you see fit
-                      //     res.json({ error: "Error." });
-                      //   }
-                      // });
-                      console.log("It processed time");
-                    });
                   }
                 })
                 .catch(err => console.log(err));
             }
+
+            console.log(feelingTextArray);
+            let botInfo = {
+              message: true,
+              member_id: manager_id,
+              survey_id: survey_id,
+              title: title,
+              description: description,
+              // channelID:
+              options: feelingTextArray
+            };
+
+            console.log("botInfo", botInfo);
+
+            schedule.scheduleJob(exTime, function() {
+              console.log("Schedule Processed");
+              let postOptions = {
+                uri:
+                  "https://botsentiment.herokuapp.com/api/slash/send-me-buttons",
+                method: "POST",
+                headers: {
+                  "Content-type": "application/json"
+                },
+                json: botInfo
+              };
+              request(postOptions, (error, response, body) => {
+                if (error) {
+                  // handle errors as you see fit
+                  res.json({ error: "Error." });
+                }
+              });
+            });
           })
           .catch(err => console.log(err));
       }
@@ -169,7 +172,6 @@ const surveyScheduler = (timeInfo, postInfo) => {
 router.post("/", (req, res) => {
   const postInfo = req.body;
   // body = manager_id/ description/ title / time values
-
 
   teamMembersDb
     .get()
@@ -206,7 +208,7 @@ router.post("/", (req, res) => {
                 console.log("survey manager", data);
                 for (let i = 0; i < preFeelingIdsArray.length; i++) {
                   let post = {
-                    survey_id: data[0].id,
+                    survey_id: data[data.length - 1].id,
                     feelings_id: preFeelingIdsArray[i]
                   };
                   surveyFeelingsDb
@@ -214,7 +216,7 @@ router.post("/", (req, res) => {
                     .then(getSuccess(res))
                     .catch(serverErrorGet(res));
                 }
-
+              }).then(()=>{
                 surveyScheduler(timeInfo, insertInfo);
               })
               .catch(serverErrorGet(res));
@@ -222,12 +224,12 @@ router.post("/", (req, res) => {
           .catch(serverErrorPost(res));
       }
     });
-
 });
 
 router.get("/manager/:id", (req, res) => {
-  const {id} = req.params
-  db.get().where({ manager_id: id })
+  const { id } = req.params;
+  db.get()
+    .where({ manager_id: id })
     .then(getSuccess(res))
     .catch(serverErrorGet(res));
 });
@@ -246,14 +248,16 @@ router.get("/manager/:id", (req, res) => {
 
 router.get("/:id", (req, res) => {
   const { id } = req.params;
-  feelingsdb.get().where({ survey_time_stamp: id }).then(data => {
-    db.getID(id)
-    .then(response => {
-      res.status(200).json({ response, data})
-    })
-    .catch(serverErrorGetID(res, type, id));
-  })
-
+  feelingsdb
+    .get()
+    .where({ survey_time_stamp: id })
+    .then(data => {
+      db.getID(id)
+        .then(response => {
+          res.status(200).json({ response, data });
+        })
+        .catch(serverErrorGetID(res, type, id));
+    });
 });
 
 router.delete(`/:id`, (req, res) => {
