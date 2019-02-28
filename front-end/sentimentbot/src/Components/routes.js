@@ -12,7 +12,7 @@ import { Provider } from "react-redux";
 import rootReducer from "../reducers/index";
 import Profile from "./myProfile/myProfile";
 import Billing from './billing/billing';
-import NewSurvey from './Survey/newsurvey';
+import Survey from './Survey/newsurvey';
 import Reports from './reports/reports';
 import AccountSettings from './accountSettings/accountSettings';
 import GenerateReport from './reports/generateReport'

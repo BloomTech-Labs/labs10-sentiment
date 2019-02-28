@@ -44,7 +44,7 @@ export const joinTeam = (id, team_code) => dispatch => {
     .catch(err => dispatch({ type: EDIT_TEAMS_FAILURE, payload: err }));
  };
 
-export const addTeam = team => dispatch => {
+export const addTeam = data => dispatch => {
   dispatch({ type: ADD_TEAMS_START });
   axios
     .post("https://botsentiment.herokuapp.com/api/teams", data)
