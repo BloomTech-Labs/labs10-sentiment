@@ -148,7 +148,7 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                           error: "Manager does not exist for this team"
                         });
                       } else {
-                        let manager_id = data[0].manager_id;
+                        let manager_id = data[0].id;
                         dbSurveys
                           .getManagerID(manager_id)
                           .then(data => {
