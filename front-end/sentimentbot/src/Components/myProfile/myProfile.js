@@ -13,6 +13,7 @@ import {
 } from "../../actions/index";
 import axios from "axios";
 import NavBar from "../NavBar/NavBar";
+import GenerateTeams from './generateTeams';
 
 class Profile extends React.Component {
   constructor() {
@@ -57,7 +58,9 @@ class Profile extends React.Component {
     //   this.fetchAuth(code);
     // }
     if (this.props.isFetching === false && this.props.survey.length > 0 && this.state.loaded === true) {
-    this.props.fetchSingleSurvey(this.props.survey[0].survey_time_stamp);
+    this.props.fetchSingleSurvey(this.props.survey[0]
+      .survey_time_stamp)
+      this.props.getSingleTeam(this.props.singleTeamMembers[0].team_id);
     this.setState({ 
       loaded: false
     })
@@ -98,7 +101,6 @@ class Profile extends React.Component {
         view: "create",
         name: '',
     })
-    this.props.getSingleTeam(this.props.singleTeamMembers[0].id)
 
   };
 
@@ -150,20 +152,18 @@ class Profile extends React.Component {
     console.log(view);
     if (view === "") {
       return (
-        <div>
+        <div className="container1">
           <NavBar />
           <div>
-            <input handleChange={this.handleChange} name="jointeam" placeholder="0000"></input>
-            <button
-              onClick={() => {
-                this.setState({
-                  ...this.state,
-                  view: "join"
-                });
-              }}
+
+<GenerateTeams />
+<br/><br/>
+<button onClick={() => this.setState({
+  view: "join"
+})}
             >
-              Join a Team
-            </button><br/><br/>
+              Click here to join your team on Slack!
+            </button>
             <input handleChange={this.handleChange} name="name" placeholder="Your Team Name"></input>
             <button onClick={this.createTeam}
             >
@@ -174,7 +174,7 @@ class Profile extends React.Component {
       );
     } else if (view === "create") {
       return (
-        <div>
+        <div className="container1">
           <NavBar />
           <a
             href={`https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645&redirect_uri=${uri}&state=${this.props.singleTeamMembers[0].id}`}
@@ -208,10 +208,10 @@ class Profile extends React.Component {
       );
     } else if (view === "join") {
       return (
-        <div>
+        <div className="container1">
           <NavBar />
           <a
-            href={`https://slack.com/oauth/authorize?scope=commands&client_id=553324377632.554405336645&redirect_uri=${uri}&state=${this.props.getSingleTeamMembers[0].id}`}
+            href={`https://slack.com/oauth/authorize?scope=commands&client_id=553324377632.554405336645&redirect_uri=${uri}&state=${this.props.singleTeamMembers[0].id}`}
           >
             <img
               alt="Add to Slack"
@@ -221,7 +221,7 @@ class Profile extends React.Component {
               srcSet="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x"
             />
           </a>
-          <form onSubmit={this.submitHandler} autoComplete="nope">
+          {/* <form onSubmit={this.submitHandler} autoComplete="nope">
             <input
               autoComplete="off"
               type="text"
@@ -237,7 +237,7 @@ class Profile extends React.Component {
             >
               Submit Team Code
             </button>
-          </form>
+          </form> */}
         </div>
       );
     }
