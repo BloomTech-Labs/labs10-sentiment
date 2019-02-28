@@ -19,7 +19,7 @@ export const SINGLE_SURVEY_FAILURE = 'SINGLE_SURVEY_FAILURE';
 export const getSurvey = id => dispatch => {
     dispatch({ type: FETCH_SURVEY_START });
     axios
-    .get(`http://localhost:5002/api/surveys/manager/${id}`)
+    .get(`https://botsentiment.herokuapp.com/api/surveys/manager/${id}`)
     .then(response => {
         dispatch({ type: FETCH_SURVEY_SUCCESS, payload: response.data })
     })
@@ -59,7 +59,7 @@ export const deleteSurvey = id => dispatch => {
 export const fetchSingleSurvey = id => dispatch => {
     dispatch({ type: SINGLE_SURVEY_START });
     axios
-        .get(`http://localhost:5002/api/surveys/${id}`)
+        .get(`https://botsentiment.herokuapp.com/api/surveys/${id}`)
         .then(response => {
             dispatch({ type: SINGLE_SURVEY_SUCCESS, payload: response.data })
         })
