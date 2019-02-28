@@ -5,9 +5,15 @@
 
 import React from "react";
 import { connect } from "react-redux";
-import { getSingleTeamMembers, addTeamMembers, getTeamMembers, fetchSingleSurvey, getSurvey } from "../../actions/index";
+import {
+  getSingleTeamMembers,
+  addTeamMembers,
+  getTeamMembers,
+  fetchSingleSurvey,
+  getSurvey
+} from "../../actions/index";
 import history from "../history";
-import NavBar from '../NavBar/NavBar'
+import NavBar from "../NavBar/NavBar";
 
 class Authorization extends React.Component {
   state = {
@@ -21,7 +27,8 @@ class Authorization extends React.Component {
 
   componentDidMount() {
     this.props.getSingleTeamMembers(localStorage.getItem("email"));
-    this.props.getTeamMembers()
+    this.props.getTeamMembers();
+    this.submit = false
   }
 
   // componentDidUpdate(prevProps) {
@@ -47,14 +54,15 @@ class Authorization extends React.Component {
       type: null,
       team_id: null
     });
-    history.push('/profile')
+    this.submit = true
+    // history.push('/profile')
   };
 
   render() {
-    if(!localStorage.getItem('email')){
-      this.props.history.push('/home')
+    if (!localStorage.getItem("email")) {
+      this.props.history.push("/home");
     }
-    
+
     const makeInput = name => (
       <textarea
         autoComplete="off"
@@ -65,24 +73,24 @@ class Authorization extends React.Component {
         value={this.state[name]}
       />
     );
-    if (this.props.singleTeamMembers.length < 1) {
-      return (
-        <>
+
+    return (
+      <>
         <NavBar />
+        {this.props.singleTeamMembers.length < 1 || this.submit === true ? (
           <form onSubmit={this.submitHandler} autoComplete="nope">
-            {makeInput('firstName')}
-             {makeInput('lastName')} {makeInput('email')}
-            {makeInput('phone')}
+            {makeInput("firstName")}
+            {makeInput("lastName")} {makeInput("email")}
+            {makeInput("phone")}
             <button>Sign Up</button>
           </form>
-        </>
-      );
-    } else {
-return(
-
-        <button onClick={() => history.replace("/profile")}>Continue To Profile</button>
-)
-    }
+        ) : (
+          <button onClick={() => history.replace("/profile")}>
+            Continue To Profile
+          </button>
+        )}
+      </>
+    );
   }
 }
 
@@ -101,5 +109,11 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { getSingleTeamMembers, addTeamMembers, getTeamMembers, fetchSingleSurvey, getSurvey }
+  {
+    getSingleTeamMembers,
+    addTeamMembers,
+    getTeamMembers,
+    fetchSingleSurvey,
+    getSurvey
+  }
 )(Authorization);

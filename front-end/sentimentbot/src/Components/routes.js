@@ -1,7 +1,6 @@
 import React from "react";
 import { Route, Router } from "react-router-dom";
 import App from "./App";
-import Login from "./login/login";
 import Home from './Home'
 import Callback from "./callback/callback";
 import Auth from "./Auth/auth";

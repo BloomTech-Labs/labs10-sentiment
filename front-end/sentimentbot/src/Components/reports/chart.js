@@ -97,7 +97,7 @@ if(this.props.survey.length < 1) {
   // }
 
   render() {
-    if (this.props.survey.length === 0 && this.props.isFetching === true) {
+    if (this.props.survey.length === 0 && this.props.isFetching === true || this.props.singleSurvey.length === 0) {
       return <p>Make surveys to display data</p>;
     } else {
       const data = {
