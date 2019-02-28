@@ -1,10 +1,17 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom'
+import Logout from '../login/logout';
 import './NavBar.css'
+import Auth from '../Auth/auth';
+
+
+const auth = new Auth();
 
 const NavBar = () => {
     return (
         <>
+
+        <Logout auth={auth} />
         <div className="navBar">
             <div className="navButton">
               <NavLink exact to="/home">

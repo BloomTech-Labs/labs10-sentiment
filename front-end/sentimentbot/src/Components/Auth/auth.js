@@ -95,7 +95,7 @@ export default class Auth {
     localStorage.removeItem("isLoggedIn");
     localStorage.removeItem("email");
     // navigate to the home route
-    history.replace("/");
+    history.replace("/home");
   }
 
   isAuthenticated() {

@@ -12,7 +12,7 @@ import {
   getSurvey
 } from "../../actions/index";
 import axios from "axios";
-import NavBar from '../NavBar/NavBar'
+import NavBar from "../NavBar/NavBar";
 
 class Profile extends React.Component {
   constructor() {
@@ -21,19 +21,24 @@ class Profile extends React.Component {
       view: "",
       name: "",
       team_code: 0,
-      team_id: 0
+      team_id: 0,
+      loaded: false
     };
   }
   componentDidMount() {
-    this.props.getSingleTeamMembers(localStorage.getItem("email"));
-    this.props.getTeamMembers();
+    // this.props.getSingleTeamMembers(localStorage.getItem("email"));
 
-    const code = this.props.match.params.code;
-    console.log(code);
-    if (code) {
-      this.fetchAuth(code);
-    }
-    this.props.getSurvey(this.props.singleTeamMembers[0].id)
+
+    // const code = this.props.match.params.code;
+    // console.log(code);
+    // if (code) {
+    //   this.fetchAuth(code);
+    // }
+
+    this.props.getSurvey(this.props.singleTeamMembers[0].id);
+    this.setState({
+      loaded: true
+    })
   }
 
   // this.props.teamMembers.length !== prevProps.teamMembers.length
@@ -45,16 +50,18 @@ class Profile extends React.Component {
     // }
     // this.props.getSingleTeamMembers(localStorage.getItem("email"));
     // this.props.getTeamMembers();
-    const code = this.props.match.params.code;
-    console.log(code);
-    if (code !== prevProps.match.params.code) {
-      this.fetchAuth(code);
+    // const code = this.props.match.params.code;
+    // console.log(code);
+    // if (code !== prevProps.match.params.code) {
+    //   this.fetchAuth(code);
+    // }
+    if (this.props.isFetching === false && this.props.survey.length > 0 && this.state.loaded === true) {
+    this.props.fetchSingleSurvey(this.props.survey[0].survey_time_stamp);
+    this.setState({ 
+      loaded: false
+    })
     }
-    if (this.props.survey.length === 0) {
-      return
-    } else if (this.props.isFetching === false && this.props.singleSurvey.length < 1) {
-      this.props.fetchSingleSurvey(this.props.survey[0].survey_time_stamp)
-    }
+    
   }
 
   // fetchAuth = code => {
@@ -133,9 +140,9 @@ class Profile extends React.Component {
   // };
 
   render() {
-    if(!localStorage.getItem('email')){
-      this.props.history.push('/home')
-    } 
+    // if(!localStorage.getItem('email')){
+    //   this.props.history.push('/home')
+    // }
 
     const view = this.state.view;
     const uri = "https://sentimentbot.netlify.com/profile";
@@ -144,7 +151,7 @@ class Profile extends React.Component {
     if (view === "") {
       return (
         <div>
-<NavBar />
+          <NavBar />
           <div>
             <button
               onClick={() => {
@@ -172,7 +179,7 @@ class Profile extends React.Component {
     } else if (view === "create") {
       return (
         <div>
-                  <NavBar />
+          <NavBar />
           <a
             href={`https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645&redirect_uri=${uri}&state=teststate`}
           >
@@ -207,7 +214,9 @@ class Profile extends React.Component {
       return (
         <div>
           <NavBar />
-          <a href={`https://slack.com/oauth/authorize?scope=commands&client_id=553324377632.554405336645&redirect_uri=${uri}&state=teststate`}>
+          <a
+            href={`https://slack.com/oauth/authorize?scope=commands&client_id=553324377632.554405336645&redirect_uri=${uri}&state=teststate`}
+          >
             <img
               alt="Add to Slack"
               height="40"

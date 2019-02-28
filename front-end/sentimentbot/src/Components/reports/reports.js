@@ -17,7 +17,7 @@ function Reports(props) {
      
       <p> Generate a new report: </p>
       <button onClick={() => props.history.push('/generatereport')}>Here</button>
-      <PieChart />
+      <PieChart history={props.history} />
       {/* <Line />
       <Bar /> */}
       </div>
