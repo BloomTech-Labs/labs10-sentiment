@@ -51,7 +51,7 @@ const surveyScheduler = (timeInfo, postInfo) => {
       hour = timeInfo.hour + 8;
     } else if (timeInfo.amPm === "PM") {
       hour = timeInfo.hour + 12 + 8;
-      if (hour > 24) {
+      if (hour >= 24) {
         hour = hour - 24;
       }
     }
@@ -60,14 +60,14 @@ const surveyScheduler = (timeInfo, postInfo) => {
       hour = timeInfo.hour + 5;
     } else if (timeInfo.amPm === "PM") {
       hour = timeInfo.hour + 12 + 5;
-      if (hour > 24) {
+      if (hour >= 24) {
         hour = hour - 24;
       }
     }
   }
 
   if (timeInfo.dailyWeeklyMonthly === "daily") {
-    exTime = `6 ${hour} * * *`; ///////////////////////////////////////////////////////////////////////////////
+    exTime = `35 ${hour} * * *`; ///////////////////////////////////////////////////////////////////////////////
   } else if (timeInfo.dailyWeeklyMonthly === "weekly") {
     exTime = `0 ${hour} * * 5`;
   } else if (timeInfo.dailyWeeklyMonthly === "monthly") {
