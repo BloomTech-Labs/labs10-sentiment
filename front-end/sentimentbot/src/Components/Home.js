@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import Login from './login/login'
 import Auth from "./Auth/auth";
 
@@ -46,9 +45,8 @@ class Home extends React.Component {
       <div className="home-container">
       <Login auth={auth}/>
 
-        <h1 className="welcomeText">Welcome to Mood</h1>
-        <p></p>
-        <br/>
+      <h1 className="welcomeText">Mood</h1>
+        <p>Assembling and analyzing feedback into easily digestable data providing industry leaders the next evolution in team-management tools.</p>
       </div>
     );
   }
