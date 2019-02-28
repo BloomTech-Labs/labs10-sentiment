@@ -15,8 +15,8 @@ class Authorization extends React.Component {
     lastName: "",
     email: localStorage.getItem("email"),
     phone: "",
-    type: "",
-    team_id: 0
+    type: null,
+    team_id: null
   };
 
   componentDidMount() {
@@ -44,8 +44,8 @@ class Authorization extends React.Component {
       lastName: "",
       email: localStorage.getItem("email"),
       phone: "",
-      type: "",
-      team_id: 0
+      type: null,
+      team_id: null
     });
     history.push('/profile')
   };

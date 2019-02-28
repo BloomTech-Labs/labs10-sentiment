@@ -28,11 +28,11 @@ class Profile extends React.Component {
     this.props.getSingleTeamMembers(localStorage.getItem("email"));
     this.props.getTeamMembers();
 
-    const code = this.props.match.params.code;
-    console.log(code);
-    if (code) {
-      this.fetchAuth(code);
-    }
+    // const code = this.props.match.params.code;
+    // console.log(code);
+    // if (code) {
+    //   this.fetchAuth(code);
+    // }
     this.props.getSurvey(this.props.singleTeamMembers[0].id)
   }
 
@@ -43,13 +43,13 @@ class Profile extends React.Component {
     //   this.props.getSingleTeamMembers(localStorage.getItem("email"));
     //   console.log(this.props.singleTeamMembers);
     // }
-    // this.props.getSingleTeamMembers(localStorage.getItem("email"));
-    // this.props.getTeamMembers();
-    const code = this.props.match.params.code;
-    console.log(code);
-    if (code !== prevProps.match.params.code) {
-      this.fetchAuth(code);
-    }
+    this.props.getSingleTeamMembers(localStorage.getItem("email"));
+    this.props.getTeamMembers();
+    // const code = this.props.match.params.code;
+    // console.log(code);
+    // if (code !== prevProps.match.params.code) {
+    //   this.fetchAuth(code);
+    // }
     if (this.props.survey.length === 0) {
       return
     } else if (this.props.isFetching === false && this.props.singleSurvey.length < 1) {
@@ -133,9 +133,9 @@ class Profile extends React.Component {
   // };
 
   render() {
-    if(!localStorage.getItem('email')){
-      this.props.history.push('/home')
-    } 
+    // if(!localStorage.getItem('email')){
+    //   this.props.history.push('/home')
+    // } 
 
     const view = this.state.view;
     const uri = "https://sentimentbot.netlify.com/profile";

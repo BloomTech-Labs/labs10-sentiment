@@ -61,23 +61,35 @@ server.post("/charge", async (req, res) => {
 
 
 // server.post('/changepw', (req, res) => {
-//   let email = req.body
-//   let options = {
-//     headers: { 'content-type': 'application/json' },
-//     body: 
-//      { client_id: 'BnXSvU6tE4W8WGMt3gDWra24hXr8qY0e',
-//        email: email,
-//        connection: 'Username-Password-Authentication' },
-//     json: true };
 
-//   axios.post('https://bikbik.auth0.com/dbconnections/change_password', options)
-//   .then(response => {
-//     res.status(200).send(response)
-//   })
-//   .catch(() => res.status(500).send('error'))
+//   let email = req.body.email
+//   console.log(req.body)
 
+//   var options = { method: 'POST',
+//   url: 'https://bikbik.auth0.com/dbconnections/change_password',
+//   headers: { 'content-type': 'application/json' },
+//   body: 
+//    { client_id: "BnXSvU6tE4W8WGMt3gDWra24hXr8qY0e",
+//      email: email,
+//      connection: 'Username-Password-Authentication' },
+//   json: true };
 
+//   res.send('ok')
+  // let options = {
+  //   headers: { 'content-type': 'application/json' },
+  //   body: 
+  //    { client_id: 'BnXSvU6tE4W8WGMt3gDWra24hXr8qY0e',
+  //      email: email,
+  //      connection: 'Username-Password-Authentication' },
+  //   json: true };
 
+  // axios.post('https://bikbik.auth0.com/dbconnections/change_password', options)
+  // .then(response => {
+  //   res.status(200).send(response)
+  // })
+  // .catch(() => res.status(500).send('error'))
+  
+//   console.log(options)
 
 // })
 

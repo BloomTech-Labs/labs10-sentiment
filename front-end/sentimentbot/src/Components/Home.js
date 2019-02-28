@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import NavBar from './NavBar/NavBar'
 
 class Home extends React.Component {
   constructor(props) {
@@ -56,6 +57,7 @@ class Home extends React.Component {
     console.log(this.state.code);
     return (
       <div className="home-container">
+      <NavBar />
         <h1 className="welcomeText">Welcome to Mood</h1>
         <p>Hello World</p>
         <a
