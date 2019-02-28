@@ -1,9 +1,9 @@
 import React from 'react'
 import { connect } from "react-redux";
 import { getSingleTeam } from "../../actions/index";
-import GenerateList from './generateList'
+import GenerateList from './GenerateList'
 
-class GenerateReport extends React.Component {
+class GenerateTeams extends React.Component {
 
 
 
@@ -30,5 +30,4 @@ class GenerateReport extends React.Component {
   export default connect(
     mapStateToProps,
     { getSingleTeam }
-  )(GenerateReport);
-  
+  )(GenerateTeams);
