@@ -16,6 +16,8 @@ export const SINGLE_SURVEY_START = 'SINGLE_SURVEY_START';
 export const SINGLE_SURVEY_SUCCESS = 'SINGLE_SURVEY_SUCCESS';
 export const SINGLE_SURVEY_FAILURE = 'SINGLE_SURVEY_FAILURE';
 
+//these routes relate to the use of our surveys between the managers and the users they are communicating with
+
 export const getSurvey = id => dispatch => {
     dispatch({ type: FETCH_SURVEY_START });
     axios
