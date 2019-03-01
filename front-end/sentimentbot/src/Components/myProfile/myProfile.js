@@ -100,7 +100,6 @@ class Profile extends React.Component {
 
   addCodeToMember = event => {
     event.preventDefault();
-
     const code = this.state.team_code;
     let teams = this.props.getTeams();
     let teamID = teams.map(item => {
