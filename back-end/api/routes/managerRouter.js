@@ -18,6 +18,7 @@ const {
 const type = "manager";
 const type2 = "team";
 
+// POST
 router.post("/", (req, res) => {
   const postInfo = req.body;
   teamdb.get().where("id", postInfo.team_id).then(data=>{
@@ -34,20 +35,20 @@ router.post("/", (req, res) => {
     .then(postSuccess(res))
     .catch(serverErrorPost(res));
 });
-
+// GET
 router.get("/", (req, res) => {
   db.get()
     .then(getSuccess(res))
     .catch(serverErrorGet(res));
 });
-
+// GET ONE
 router.get("/:id", (req, res) => {
   const { id } = req.params;
   db.getID(id)
     .then(getSuccess(res))
     .catch(serverErrorGetID(res, type, id));
 });
-
+// DELETE
 router.delete(`/:id`, (req, res) => {
   const { id } = req.params;
   db.getID(id)
@@ -64,7 +65,7 @@ router.delete(`/:id`, (req, res) => {
       serverErrorDelete500(res, type);
     });
 });
-
+// PUT/UPDATE
 router.put("/:id", (req, res) => {
   const { id } = req.params;
   const changes = req.body;
