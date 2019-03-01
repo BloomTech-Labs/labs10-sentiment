@@ -1,8 +1,8 @@
 import React from "react";
 import NavBar from "../NavBar/NavBar";
 import axios from "axios";
-import {editTeamMembers} from "../../actions/index"
-import {connect} from "react-redux"
+import { editTeamMembers } from "../../actions/index"
+import { connect } from "react-redux"
 
 class accountSettings extends React.Component {
   constructor(props) {
@@ -54,6 +54,7 @@ class accountSettings extends React.Component {
     });
   };
 
+  // Switches type & team_id of person leaving team to null
   handleLeaveTeam() {
     const firstName = this.props.singleTeamMembers[0].firstName
     const lastName = this.props.singleTeamMembers[0].lastName
@@ -62,10 +63,10 @@ class accountSettings extends React.Component {
     const type = null
     const team_id = null
     const id = this.props.singleTeamMembers[0].id
-    const combine = {firstName: firstName, lastName: lastName, email: email, phone:phone, type:type, team_id:team_id}
-  editTeamMembers (id, combine)
+    const combine = { firstName: firstName, lastName: lastName, email: email, phone: phone, type: type, team_id: team_id }
+    editTeamMembers(id, combine)
   };
-  
+
 
   render() {
     // if (!localStorage.getItem("email")) {
@@ -77,54 +78,54 @@ class accountSettings extends React.Component {
         {this.state.response === 200 ? (
           <div>Email will be sent shortly</div>
         ) : (
-          <>
-            <h3>Settings</h3>
-            <form className="account-form" onSubmit={this.handleSubmit}>
-              <label>Email:</label>
-              <input
-                className="form-input"
-                type="email"
-                placeholder="johndoe@yahoo.com"
-                name="email"
-                onChange={this.handleChange}
-              />
-              <br />
-              <label>Phone:</label>
-              <input
-                className="form-input"
-                type="text"
-                placeholder="Phone"
-                name="phone"
-                onChange={this.handleChange}
-              />
-              <br />
-              <label>
-                Emails?
+            <>
+              <h3>Settings</h3>
+              <form className="account-form" onSubmit={this.handleSubmit}>
+                <label>Email:</label>
                 <input
-                  name="isEmail"
-                  type="checkbox"
-                  checked={this.state.isEmail}
-                  onChange={this.handleInputChange}
+                  className="form-input"
+                  type="email"
+                  placeholder="johndoe@yahoo.com"
+                  name="email"
+                  onChange={this.handleChange}
                 />
-              </label>
-              <label>
-                Texts?
+                <br />
+                <label>Phone:</label>
                 <input
-                  name="isText"
-                  type="checkbox"
-                  checked={this.state.isText}
-                  onChange={this.handleInputChange}
+                  className="form-input"
+                  type="text"
+                  placeholder="Phone"
+                  name="phone"
+                  onChange={this.handleChange}
                 />
-              </label>
-              <br />
+                <br />
+                <label>
+                  Emails?
+                <input
+                    name="isEmail"
+                    type="checkbox"
+                    checked={this.state.isEmail}
+                    onChange={this.handleInputChange}
+                  />
+                </label>
+                <label>
+                  Texts?
+                <input
+                    name="isText"
+                    type="checkbox"
+                    checked={this.state.isText}
+                    onChange={this.handleInputChange}
+                  />
+                </label>
+                <br />
 
-              <button className="submit-btn" onSubmit={this.handleSubmit}>
-                Submit
+                <button className="submit-btn" onSubmit={this.handleSubmit}>
+                  Submit
               </button>
-            </form>
-            <button onClick={() => this.handleLeaveTeam() } > Leave Team </button> 
-          </>
-        )}
+              </form>
+              <button onClick={() => this.handleLeaveTeam()} > Leave Team </button>
+            </>
+          )}
       </div>
     );
   }
