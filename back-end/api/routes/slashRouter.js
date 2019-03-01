@@ -116,6 +116,16 @@ function postMessage(JSONmessage, token) {
 
 // https://slack.com/api/chat.postMessage?token=xoxb-553324377632-553511725281-WtIU01FxATAkavAPlFn6BPz2&channel=CG9EQ53QR&text=Test
 
+router.post("/connect-channel-to-survey", urlencodedParser, (req, res) => {
+  res.status(200).end(); // best practice to respond with empty 200 status code
+  let reqBody = req.body;
+  console.log("reqBody", reqBody);
+  
+});
+
+
+
+
 let surveyIdDep;
 
 router.post("/send-me-buttons", urlencodedParser, (req, res) => {
@@ -325,7 +335,7 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
         const botToken = data[0].access_token;
         console.log("botToken", botToken);
         let message = {
-          channel: "CG9EQ53QR",
+          channel: "CG9EQ53QR", //////////////////////////////make dynamic team_id
           text: `${title}`,
           as_user: false,
           attachments: [
