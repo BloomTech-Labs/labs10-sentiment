@@ -66,27 +66,6 @@ function postMessage(JSONmessage, token) {
       // handle errors as you see fit
       res.json({ error: "Error." });
     }
-    // else {
-    //   console.log("body", body);
-    //   console.log("body time stamp", body.message.ts);
-    //   ///////////// put to servey add survey_time_stamp
-    //   dbSurveys
-    //     .getID(surveyId)
-    //     .then(data => {
-    //       if (data.length > 0) {
-    //         let putInfo = {
-    //           survey_time_stamp: body.message.ts
-    //         };
-    //         dbSurveys
-    //           .update(surveyId, putInfo)
-    //           .then(data => console.log(data))
-    //           .catch(err => console.log(err));
-    //       } else {
-    //         console.log({ error: "survey does not exist" });
-    //       }
-    //     })
-    //     .catch(err => console.log(err));
-    // }
   });
 }
 
@@ -114,19 +93,40 @@ function postMessage(JSONmessage, token) {
 //   });
 // }
 
+function sendConnectMessageToSlackResponseURL(responseURL, JSONmessage) {
+  let postOptions = {
+    uri: responseURL,
+    method: "POST",
+    headers: {
+      "Content-type": "application/json"
+    },
+    json: JSONmessage
+  };
+  request(postOptions, (error, response, body) => {
+    if (error) {
+      // handle errors as you see fit
+      res.json({ error: "Error." });
+    }
+  });
+}
+
 // https://slack.com/api/chat.postMessage?token=xoxb-553324377632-553511725281-WtIU01FxATAkavAPlFn6BPz2&channel=CG9EQ53QR&text=Test
 
 router.post("/connect-channel-to-survey", urlencodedParser, (req, res) => {
   res.status(200).end(); // best practice to respond with empty 200 status code
-  let actionJSONBody = JSON.parse(req.body);
-  let actionJSONPayload = JSON.parse(req.body.payload);
-  // let reqBody = req.body;
-  console.log("actionJSONBody", actionJSONBody);
-  console.log("actionJSONPayload", actionJSONPayload);
+  let reqBody = req.body;
+  console.log("reqBody", reqBody);
+
+  // if(){
+
+  // }
+  // let actionJSONBody = JSON.parse(req.body);
+  // let actionJSONPayload = JSON.parse(req.body.payload);
+  // // let reqBody = req.body;
+  // console.log("actionJSONBody", actionJSONBody);
+  // console.log("actionJSONPayload", actionJSONPayload);
+  // sendConnectMessageToSlackResponseURL(responseURL, message);
 });
-
-
-
 
 let surveyIdDep;
 
@@ -134,7 +134,7 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
   res.status(200).end(); // best practice to respond with empty 200 status code
   let reqBody = req.body;
   console.log("reqBody", reqBody);
-  
+
   if (reqBody.command === "/send-me-buttons") {
     let responseURL = reqBody.response_url;
     if (reqBody.token != process.env.VERIFCATION_TOKEN) {
@@ -422,17 +422,15 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                           .then(getSuccess(res))
                           .catch(serverErrorPost(res));
                       } else {
-                        res
-                          .status(400)
-                          .json({
-                            error: "Feeling Exists for Team Member and Survey"
-                          });
+                        res.status(400).json({
+                          error: "Feeling Exists for Team Member and Survey"
+                        });
                       }
                     })
                     .catch(serverErrorGet(res));
                 })
                 .catch(serverErrorGet(res));
-                ////////////////////////////////
+              ////////////////////////////////
             })
             .catch(err => console.log(err));
         } else {
