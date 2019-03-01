@@ -84,13 +84,6 @@ class Profile extends React.Component {
   // };
 
   createTeam = event => {
-    // event.preventDefault();
-    // const single = this.props.singleTeamMembers[0];
-    // const team = {
-    //   name: this.state.name
-    // };
-    // this.props.addTeam(team);
-    // this.editManager();
     event.preventDefault();
     const name = this.state.name;
     const memberId = this.props.singleTeamMembers[0].id
