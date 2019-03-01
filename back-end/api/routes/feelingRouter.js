@@ -18,6 +18,7 @@ const {
 const type = "feeling";
 const type2 = "team member";
 
+// POST
 router.post("/", (req, res) => {
   const postInfo = req.body;
 
@@ -36,27 +37,27 @@ router.post("/", (req, res) => {
     .then(postSuccess(res))
     .catch(serverErrorPost(res));
 });
-
+// GET ALL
 router.get("/", (req, res) => {
   db.get()
     .then(getSuccess(res))
     .catch(serverErrorGet(res));
 });
-
+// GET ONE
 router.get("/:id", (req, res) => {
   const { id } = req.params;
   db.getID(id)
     .then(getSuccess(res))
     .catch(serverErrorGetID(res, type, id));
 });
-
+// GET BY TEAM ID
 router.get("/:team_id", (req, res) => {
   const { team_id } = req.params;
   db.getByTeamId(team_id)
     .then(getSuccess(res))
     .catch(serverErrorGetID(res, type, id));
 });
-
+// DELETE
 router.delete(`/:id`, (req, res) => {
   const { id } = req.params;
   db.getID(id)
@@ -73,7 +74,7 @@ router.delete(`/:id`, (req, res) => {
       serverErrorDelete500(res, type);
     });
 });
-
+// PUT/ UPDATE
 router.put("/:id", (req, res) => {
   const { id } = req.params;
   const changes = req.body;

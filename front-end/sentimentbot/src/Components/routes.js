@@ -16,7 +16,7 @@ import Survey from './Survey/newsurvey';
 import Reports from './reports/reports';
 import AccountSettings from './accountSettings/accountSettings';
 import GenerateReport from './reports/generateReport'
-import TeamList from './teamList/teamList';
+import TeamList from '../Components/teamlist/teamList';
 
 const auth = new Auth();
 
@@ -67,7 +67,7 @@ export const makeMainRoutes = () => {
           <Route path="/generatereport" render={props => <GenerateReport {...props} auth={auth} />} />
           <Route path="/teamlist" render={props => <TeamList {...props} auth={auth} />} />
 
-        </div>
+        </div> 
       </Router>
     </Provider>
   );

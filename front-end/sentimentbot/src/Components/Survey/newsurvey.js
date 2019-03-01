@@ -240,7 +240,7 @@ class NewSurvey extends Component {
             <option value={58}>58</option>
             <option value={59}>59</option>
           </select>
-          <label>Minuet</label>
+          <label>Minute</label>
           </div>
           <div className="group">
           <select id="amPm" onChange={this.onChangeDropDown}>
