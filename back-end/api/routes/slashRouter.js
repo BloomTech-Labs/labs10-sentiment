@@ -118,9 +118,11 @@ function postMessage(JSONmessage, token) {
 
 router.post("/connect-channel-to-survey", urlencodedParser, (req, res) => {
   res.status(200).end(); // best practice to respond with empty 200 status code
-  let reqBody = req.body;
-  console.log("reqBody", reqBody);
-  
+  let actionJSONBody = JSON.parse(req.body);
+  let actionJSONPayload = JSON.parse(req.body.payload);
+  // let reqBody = req.body;
+  console.log("actionJSONBody", actionJSONBody);
+  console.log("actionJSONPayload", actionJSONPayload);
 });
 
 
