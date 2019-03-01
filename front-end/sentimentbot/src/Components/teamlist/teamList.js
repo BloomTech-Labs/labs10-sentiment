@@ -20,7 +20,7 @@ class TeamList extends React.Component {
         return (
             <>
             <div className="container">
-            {/* <p>{this.props.singleTeams[0].name}</p> */}
+            <p>{this.props.singleTeams[0].name}</p>
             <a
             href={`https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645&redirect_uri=${uri}&state=${this.props.singleTeamMembers[0].id}`}
           >
@@ -32,7 +32,7 @@ class TeamList extends React.Component {
               srcSet="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x"
             />
           </a>
-          {/* <p>Team Join Code: {this.props.singleTeams[0].team_code}</p> */}
+          <p>Team Join Code: {this.props.singleTeams[0].team_code}</p>
 
           <h3>Team Members</h3>
           <div className="teamlist-container">
