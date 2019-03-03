@@ -30,7 +30,7 @@ function GenerateList(props) {
 function displayDivs() {
     let divs = [];
     for(let i=0; i<count; i++) {
-        divs.push(<div key={i}><p>{props.survey[i].title} Survey Report</p><button onClick={() => generateReport(i+1)}>Generate</button></div>)
+        divs.push(<div key={i}><p>Survey Title: {props.survey[i].title} Report</p><button onClick={() => generateReport(props.survey[i].survey_time_stamp)}>Generate</button></div>)
     }
     return divs
 }

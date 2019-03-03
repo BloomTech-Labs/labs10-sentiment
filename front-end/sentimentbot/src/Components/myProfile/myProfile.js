@@ -11,9 +11,8 @@ import {
   fetchSingleSurvey,
   getSurvey
 } from "../../actions/index";
-import axios from "axios";
 import NavBar from "../NavBar/NavBar";
-import GenerateTeams from './GenerateTeams';
+import GenerateTeams from "./generateTeams";
 
 class Profile extends React.Component {
   constructor() {
@@ -24,24 +23,23 @@ class Profile extends React.Component {
       team_code: 0,
       team_id: 0,
       loaded: false,
-      jointeam: '',
-      min: 0
+      jointeam: "",
+      createTeam: ""
     };
   }
+
   componentDidMount() {
     // this.props.getSingleTeamMembers(localStorage.getItem("email"));
-
 
     // const code = this.props.match.params.code;
     // console.log(code);
     // if (code) {
     //   this.fetchAuth(code);
     // }
-
     this.props.getSurvey(this.props.singleTeamMembers[0].id);
     this.setState({
       loaded: true
-    })
+    });
   }
 
   // this.props.teamMembers.length !== prevProps.teamMembers.length
@@ -58,15 +56,17 @@ class Profile extends React.Component {
     // if (code !== prevProps.match.params.code) {
     //   this.fetchAuth(code);
     // }
-    if (this.props.isFetching === false && this.props.survey.length > 0 && this.state.loaded === true) {
-    this.props.fetchSingleSurvey(this.props.survey[0]
-      .survey_time_stamp)
+    if (
+      this.props.isFetching === false &&
+      this.props.survey.length > 0 &&
+      this.state.loaded === true
+    ) {
+      this.props.fetchSingleSurvey(this.props.survey[0].survey_time_stamp);
       this.props.getSingleTeam(this.props.singleTeamMembers[0].team_id);
-    this.setState({ 
-      loaded: false
-    })
+      this.setState({
+        loaded: false
+      });
     }
-    
   }
 
   // fetchAuth = code => {
@@ -85,17 +85,16 @@ class Profile extends React.Component {
 
   createTeam = event => {
     event.preventDefault();
-    const name = this.state.name;
-    const memberId = this.props.singleTeamMembers[0].id
-    const combine = {name: name, memberId: memberId}
-    this.props.addTeam(combine)
-    console.log(this.state.createteam)
-      this.setState({
-        ...this.state,
-        view: "create",
-        name: '',
-    })
-
+    const name = this.state.createTeam;
+    const memberId = this.props.singleTeamMembers[0].id;
+    const combine = { name: name, memberId: memberId };
+    this.props.addTeam(combine);
+    console.log(this.state.createTeam);
+    this.setState({
+      ...this.state,
+      view: "create",
+      createTeam: ""
+    });
   };
 
   addCodeToMember = event => {
@@ -144,25 +143,54 @@ class Profile extends React.Component {
     const uri = "https://sentimentbot.netlify.com/authorization";
     // const uri = "http://localhost:3000/authorization";
     console.log(view);
+
+    if (this.props.singleTeamMembers[0].team_id != null) {
+      return (
+        <div className="container">
+          <NavBar />
+          <p>
+            {this.props.singleTeamMembers[0].firstName}{" "}
+            {this.props.singleTeamMembers[0].lastName}
+          </p>
+          <p>{this.props.singleTeams[0].name}</p>
+          <div>
+            <p>List of all your reactions</p>
+            {this.props.feelings.length > 0 ? (<p><GenerateTeams /></p>) : (<p>Oops! You haven't responded to any surveys yet!</p>)}
+          </div>
+        </div>
+      );
+    }
     if (view === "") {
       return (
         <div className="container">
           <NavBar />
           <div>
-
-<GenerateTeams />
-<br/><br/>
-<button onClick={() => this.setState({
-  view: "join"
-})}
+            <br />
+            <br />
+            <input
+              onChange={this.handleChange}
+              name="jointeam"
+              placeholder="Enter Team Code Here"
+            />
+            <br />
+            <button
+              onClick={() =>
+                this.setState({
+                  view: "join"
+                })
+              }
             >
-              Click here to join your team on Slack!
-            </button>
-            <input handleChange={this.handleChange} name="name" placeholder="Your Team Name"></input>
-            <button onClick={this.createTeam}
-            >
-              Create a Team
-            </button>
+              Join with this team code
+            </button>{" "}
+            <br />
+            <br />
+            <input
+              onChange={this.handleChange}
+              name="createTeam"
+              placeholder="Your Team Name"
+            />{" "}
+            <br />
+            <button onClick={this.createTeam}>Create a Team</button> <br />
           </div>
         </div>
       );
@@ -171,7 +199,9 @@ class Profile extends React.Component {
         <div className="container">
           <NavBar />
           <a
-            href={`https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645&redirect_uri=${uri}&state=${this.props.singleTeamMembers[0].id}`}
+            href={`https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645&redirect_uri=${uri}&state=${
+              this.props.singleTeamMembers[0].id
+            }`}
           >
             <img
               alt="Add to Slack"
@@ -203,10 +233,11 @@ class Profile extends React.Component {
     } else if (view === "join") {
       return (
         <div className="container">
-
           <NavBar />
           <a
-            href={`https://slack.com/oauth/authorize?scope=commands&client_id=553324377632.554405336645&redirect_uri=${uri}&state=${this.props.singleTeamMembers[0].id}`}
+            href={`https://slack.com/oauth/authorize?scope=commands&client_id=553324377632.554405336645&redirect_uri=${uri}&state=${
+              this.props.singleTeamMembers[0].id
+            }`}
           >
             <img
               alt="Add to Slack"
@@ -247,6 +278,8 @@ function mapStateToProps(state) {
     survey: state.surveyReducer.survey,
     isFetching: state.surveyReducer.isFetching,
     singleSurvey: state.surveyReducer.singleSurvey,
+    singleTeams: state.teamsReducer.singleTeams,
+    feelings: state.feelingsReducer.feelings
   };
 }
 

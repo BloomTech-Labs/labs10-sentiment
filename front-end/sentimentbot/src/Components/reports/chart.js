@@ -30,10 +30,7 @@ class PieChart extends React.Component {
     this.response4 = "";
     this.complete = false;
 
-if(this.props.survey.length < 1) {
-      return
-
-} else {
+if(this.props.survey.length > 0 && this.props.singleSurvey.length !== 0) {
   const responses = this.props.singleSurvey.data.map(response => {
       count += 1;
     });
