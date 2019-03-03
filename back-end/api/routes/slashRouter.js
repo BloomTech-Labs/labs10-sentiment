@@ -93,39 +93,15 @@ function postMessage(JSONmessage, token) {
 //   });
 // }
 
-function sendConnectMessageToSlackResponseURL(responseURL, JSONmessage) {
-  let postOptions = {
-    uri: responseURL,
-    method: "POST",
-    headers: {
-      "Content-type": "application/json"
-    },
-    json: JSONmessage
-  };
-  request(postOptions, (error, response, body) => {
-    if (error) {
-      // handle errors as you see fit
-      res.json({ error: "Error." });
-    }
-  });
-}
-
 // https://slack.com/api/chat.postMessage?token=xoxb-553324377632-553511725281-WtIU01FxATAkavAPlFn6BPz2&channel=CG9EQ53QR&text=Test
 
 router.post("/connect-channel-to-survey", urlencodedParser, (req, res) => {
   res.status(200).end(); // best practice to respond with empty 200 status code
   let reqBody = req.body;
   console.log("reqBody", reqBody);
+  let { channel_id, user_id } = reqBody;
+  console.log({ channel_id: channel_id, user_id: user_id });
 
-  // if(){
-
-  // }
-  // let actionJSONBody = JSON.parse(req.body);
-  // let actionJSONPayload = JSON.parse(req.body.payload);
-  // // let reqBody = req.body;
-  // console.log("actionJSONBody", actionJSONBody);
-  // console.log("actionJSONPayload", actionJSONPayload);
-  // sendConnectMessageToSlackResponseURL(responseURL, message);
 });
 
 let surveyIdDep;

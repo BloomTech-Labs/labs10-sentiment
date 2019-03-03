@@ -97,7 +97,7 @@ router.get("/", (req, res) => {
       console.log(memberID);
       db.getByMemberId(memberID)
         .then(data => {
-          if (!data[0]) {
+          if (!data[0]) { /////change so will update instead/////////
             let postInfo = {
               access_token: JSONresponse.access_token,
               user_id: JSONresponse.user_id,
@@ -109,11 +109,11 @@ router.get("/", (req, res) => {
             };
 
             db.insert(postInfo)
-              .then(postSuccess(res))
+              .then(postSuccess(res))///// redirect to front end
               .catch(serverErrorPost(res));
           } else {
             res.status(400).json({
-              error: `Member with Id ${memberID} is already authorized`
+              error: `Member with Id ${memberID} is already authorized`  /////change so will update instead/////////
             });
           }
         })
