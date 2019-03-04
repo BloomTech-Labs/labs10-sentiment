@@ -102,6 +102,32 @@ router.post("/connect-channel-to-survey", urlencodedParser, (req, res) => {
   let { channel_id, user_id } = reqBody;
   console.log({ channel_id: channel_id, user_id: user_id });
 
+  dbAuth
+    .getBySlackUserId(user_id)
+    .then(data => {
+      console.log({ data: data });
+      let { id } = data;
+      let post = {
+        channel_id: channel_id
+      };
+      dbAuth
+        .update(id, post)
+        .then(() => {
+          res.status(200).json({
+            message: `Updated Auth ID: ${id} with slack channel ID: ${channel_id}.`
+          });
+        })
+        .catch(serverErrorDelete500(res, "Auth"));
+    })
+    .catch(
+      serverErrorDelete404(() => {
+        res
+          .status(400)
+          .json({
+           error: `Slack User with user_id: ${user_id} does not exist in the database.`
+          });
+      })
+    );
 });
 
 let surveyIdDep;
@@ -123,7 +149,7 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
           if (data.length === 0) {
             console.log({ error: "User is not Authorized" });
           } else {
-            let member_id = data[0].member_id;
+            let member_id = data[0].member_id; ///// team_member_id
             dbTeamMembers
               .getID(member_id)
               .then(data => {
@@ -159,9 +185,7 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                                     "survey feeling array slash",
                                     data
                                   );
-
                                   let feelingTextArray = [];
-
                                   for (let j = 0; j < data.length; j++) {
                                     let { feelings_id } = data[j];
                                     let max = data.length - 1;
@@ -312,8 +336,13 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
       .then(data => {
         const botToken = data[0].access_token;
         console.log("botToken", botToken);
+        const {channel_id} = data[0];
+        console.log("channel_id", channel_id);
+        if(channel_id === null){
+          res.status(404).json("channel id is equall to null");
+        }else{
         let message = {
-          channel: "CG9EQ53QR", //////////////////////////////make dynamic team_id
+          channel: channel_id, //////////////////////////////make dynamic team_id
           text: `${title}`,
           as_user: false,
           attachments: [
@@ -338,6 +367,7 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
         console.log(message);
 
         postMessage(message, botToken);
+      }
       })
       .catch(err => err);
   } else if (reqBody.payload) {

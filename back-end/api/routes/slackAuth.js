@@ -90,14 +90,16 @@ router.get("/", (req, res) => {
         .status(200)
         .end();
     } else {
-      console.log(JSONresponse);
+      console.log("JSONresponse auth", JSONresponse);
       console.log({ state: req.query.state });
       let memberID = req.query.state;
       memberID = Number(memberID);
       console.log(memberID);
       db.getByMemberId(memberID)
         .then(data => {
-          if (!data[0]) { /////change so will update instead/////////
+          let {id} = data[0];
+          if (!data[0]) {
+            /////change so will update instead/////////
             let postInfo = {
               access_token: JSONresponse.access_token,
               user_id: JSONresponse.user_id,
@@ -105,19 +107,33 @@ router.get("/", (req, res) => {
               team_id: JSONresponse.team_id,
               bot_user_id: JSONresponse.bot.bot_user_id,
               bot_access_token: JSONresponse.bot.bot_access_token,
-              member_id: memberID
+              member_id: memberID,
+              channel_id: null
             };
 
             db.insert(postInfo)
-              .then(postSuccess(res))///// redirect to front end
+              .then(postSuccess(res)) ///// redirect to front end
               .catch(serverErrorPost(res));
           } else {
-            res.status(400).json({
-              error: `Member with Id ${memberID} is already authorized`  /////change so will update instead/////////
-            });
+            let post = {
+              access_token: JSONresponse.access_token,
+              user_id: JSONresponse.user_id,
+              team_name: JSONresponse.team_name,
+              team_id: JSONresponse.team_id,
+              bot_user_id: JSONresponse.bot.bot_user_id,
+              bot_access_token: JSONresponse.bot.bot_access_token,
+              member_id: memberID,
+              channel_id: null
+            };
+            db.update(id, post)
+              .then(getSuccess(res))
+              .catch(serverErrorUpdate500(res, "Auth"));
+            // res.status(400).json({
+            //   error: `Member with Id ${memberID} is already authorized`  /////change so will update instead/////////
+            // });
           }
         })
-        .catch();
+        .catch(err=>console.log(err));
     }
   });
 });
