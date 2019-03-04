@@ -39,9 +39,10 @@ const type2 = "Team Member";
 //   manager_id: postInfo.manager_id
 // };
 
-const onServerStartScheduleSurveys = () =>{
-  console.log('on server start');
-};
+const onServerStartScheduleSurveys = () => {
+  console.log("on server start");
+
+}
 
 const deleteSurvey = () => {
   j.cancel();
@@ -66,7 +67,7 @@ const surveyScheduler = (timeInfo, postInfo) => {
     }
   } else if (timeInfo.timeZone === "EST") {
     if (timeInfo.amPm === "AM") {
-      if(timeInfo.hour === 12){
+      if (timeInfo.hour === 12) {
         timeInfo.hour = 0;
       }
       hour = timeInfo.hour + 5;
@@ -84,7 +85,7 @@ const surveyScheduler = (timeInfo, postInfo) => {
     exTime = `${min} ${hour} * * 5`;
   } else if (timeInfo.dailyWeeklyMonthly === "monthly") {
     exTime = `${min} ${hour} 1 * *`;
-  }else if (timeInfo.dailyWeeklyMonthly === "test"){
+  } else if (timeInfo.dailyWeeklyMonthly === "test") {
     exTime = `*/1 * * * *`;
   }
 
@@ -157,6 +158,10 @@ const surveyScheduler = (timeInfo, postInfo) => {
                 }
               });
             });
+
+
+
+            
           })
           .catch(err => console.log(err));
       }
@@ -229,7 +234,8 @@ router.post("/", (req, res) => {
                     .then(getSuccess(res))
                     .catch(serverErrorGet(res));
                 }
-              }).then(()=>{
+              })
+              .then(() => {
                 surveyScheduler(timeInfo, insertInfo);
               })
               .catch(serverErrorGet(res));
@@ -238,18 +244,6 @@ router.post("/", (req, res) => {
       }
     });
 });
-
-
-
-
-
-
-
-
-
-
-
-
 
 router.get("/manager/:id", (req, res) => {
   const { id } = req.params;
@@ -322,4 +316,5 @@ router.put("/:id", (req, res) => {
   });
 });
 
-module.exports = router;
+module.exports = {router, onServerStartScheduleSurveys};
+
