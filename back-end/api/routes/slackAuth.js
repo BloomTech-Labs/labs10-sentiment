@@ -67,6 +67,19 @@ let uri = "https://botsentiment.herokuapp.com/api/slackauth";
 //   });
 // });
 
+function sendToAuthorization() {
+  let postOptions = {
+    uri: "https://sentimentbot.netlify.com/Authorization",
+    method: "GET"
+  };
+  request(postOptions, (error, response, body) => {
+    if (error) {
+      // handle errors as you see fit
+      res.json({ error: "Error." });
+    }
+  });
+}
+
 router.get("/", (req, res) => {
   console.log(req.query.code);
   const options = {
@@ -113,7 +126,9 @@ router.get("/", (req, res) => {
             };
 
             db.insert(postInfo)
-              .then(postSuccess(res)) ///// redirect to front end
+              .then(() => {
+                sendToAuthorization();
+              })
               .catch(serverErrorPost(res));
           } else {
             let { id } = data[0];
@@ -129,7 +144,9 @@ router.get("/", (req, res) => {
               channel_id: ""
             };
             db.update(id, post)
-              .then(getSuccess(res))
+              .then(() => {
+                sendToAuthorization();
+              })
               .catch(serverErrorUpdate500(res, "Auth"));
             // res.status(400).json({
             //   error: `Member with Id ${memberID} is already authorized`  /////change so will update instead/////////
