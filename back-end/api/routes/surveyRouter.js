@@ -37,6 +37,9 @@ const type2 = "Team Member";
 //   description: postInfo.description,
 //   manager_id: postInfo.manager_id
 // };
+const deleteSurvey = () => {
+  j.cancel();
+};
 
 const surveyScheduler = (timeInfo, postInfo) => {
   let hour;
@@ -130,7 +133,7 @@ const surveyScheduler = (timeInfo, postInfo) => {
 
             console.log("botInfo", botInfo);
 
-            schedule.scheduleJob(exTime, function() {
+            var j = schedule.scheduleJob(exTime, function() {
               console.log("Schedule Processed");
               let postOptions = {
                 uri:
@@ -265,20 +268,21 @@ router.get("/:id", (req, res) => {
 });
 
 router.delete(`/:id`, (req, res) => {
-  const { id } = req.params;
-  db.getID(id)
-    .then(data => {
-      if (data) {
-        db.remove(id).then(() => {
-          db.get().then(getSuccess(res));
-        });
-      } else {
-        serverErrorDelete404(res, type, id);
-      }
-    })
-    .catch(() => {
-      serverErrorDelete500(res, type);
-    });
+  // const { id } = req.params;
+  // db.getID(id)
+  //   .then(data => {
+  //     if (data) {
+  //       db.remove(id).then(() => {
+  //         db.get().then(getSuccess(res));
+  //       });
+  //     } else {
+  //       serverErrorDelete404(res, type, id);
+  //     }
+  //   })
+  //   .catch(() => {
+  //     serverErrorDelete500(res, type);
+  //   });
+  deleteSurvey();
 });
 
 router.put("/:id", (req, res) => {
