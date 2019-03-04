@@ -26,8 +26,6 @@ const {
 const type = "survey";
 const type2 = "Team Member";
 
-var j;
-
 // let timeInfo = {
 //   dailyWeeklyMonthly: postInfo.dailyWeeklyMonthly, optional values are = daily/weekly/monthly
 //   hour: postInfo.hour,
@@ -40,13 +38,6 @@ var j;
 //   description: postInfo.description,
 //   manager_id: postInfo.manager_id
 // };
-
-const onDeleteSurvey = (res) = () => {
-  j.cancel();
-  res.json("cancelled?")
-
-
-};
 
 const onServerStartScheduleSurveys = () => {
   console.log("on server start");
@@ -63,8 +54,8 @@ const onServerStartScheduleSurveys = () => {
         ////////////////////////////////////////////////////////////
         for (let t = 0; t < data.length; t++) {
           let survey_id = data[t].id;
-          let {manager_id, title, description, ex_time} = data[t];
-          
+          let { manager_id, title, description, ex_time } = data[t];
+
           surveyFeelingsDb
             .getSurveyID(survey_id)
             .then(data => {
@@ -103,7 +94,7 @@ const onServerStartScheduleSurveys = () => {
 
               console.log("botInfo", botInfo);
 
-              j = schedule.scheduleJob(ex_time, function() {
+              schedule.scheduleJob(survey_id, ex_time, function() {
                 console.log("Schedule Processed");
                 let postOptions = {
                   uri:
@@ -131,8 +122,6 @@ const onServerStartScheduleSurveys = () => {
 
   //////////////////////////////////////////////////////////////
 };
-
-
 
 const surveyScheduler = (timeInfo, postInfo) => {
   let hour;
@@ -232,7 +221,7 @@ const surveyScheduler = (timeInfo, postInfo) => {
 
                 console.log("botInfo", botInfo);
 
-                j = schedule.scheduleJob(exTime, function() {
+                schedule.scheduleJob(survey_id, exTime, function() {
                   console.log("Schedule Processed");
                   let postOptions = {
                     uri:
@@ -376,8 +365,10 @@ router.delete(`/:id`, (req, res) => {
     .then(data => {
       if (data.length > 0) {
         db.remove(id).then(() => {
-          db.get().then(()=>{
-            onDeleteSurvey(res);
+          db.get().then(() => {
+            // onDeleteSurvey(res);
+            let my_job = schedule.scheduledJobs[id];
+            my_job.cancel();
           });
         });
       } else {
@@ -388,6 +379,7 @@ router.delete(`/:id`, (req, res) => {
       serverErrorDelete500(res, type);
     });
 });
+
 
 router.put("/:id", (req, res) => {
   const { id } = req.params;
