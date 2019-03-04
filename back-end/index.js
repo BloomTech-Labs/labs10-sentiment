@@ -1,6 +1,6 @@
 require("dotenv").config();
 const server = require("./api/server.js");
-const {onServerStartScheduleSurveys} = require("./api/routes/surveyRouter.js");
+const surveyRouter = require("./api/routes/surveyRouter.js");
 
 let port;
 
@@ -12,5 +12,5 @@ if (process.env.DB_ENV === "development") {
 
 server.listen(port, () => {
   console.log(`Server listening ${port}`);
-  onServerStartScheduleSurveys();
+  surveyRouter.onServerStartScheduleSurveys();
 });
