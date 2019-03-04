@@ -16,6 +16,7 @@ class TeamList extends React.Component {
         
     }
 
+    
     render() {
         const uri = "https://sentimentbot.netlify.com/authorization";
         return (
