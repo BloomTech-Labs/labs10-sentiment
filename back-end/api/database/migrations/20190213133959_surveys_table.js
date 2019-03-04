@@ -6,6 +6,7 @@ exports.up = function(knex, Promise) {
     tbl.timestamp("created_at", true).defaultTo(knex.fn.now());
     tbl.integer("manager_id").notNullable();
     tbl.string("survey_time_stamp");
+    tbl.string("ex_time");
   });
 };
 

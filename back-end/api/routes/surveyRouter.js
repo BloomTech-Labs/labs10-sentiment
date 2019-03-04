@@ -41,8 +41,87 @@ const type2 = "Team Member";
 
 const onServerStartScheduleSurveys = () => {
   console.log("on server start");
+  //////////////////////////////////////////////////////////
 
-}
+  surveyDb
+    .get()
+    .then(data => {
+      if (data.length === 0) {
+        console.log({
+          error: `No surveys exist.`
+        });
+      } else {
+        ////////////////////////////////////////////////////////////
+        for (let t = 0; t < data.length; t++) {
+          let survey_id = data[t].id;
+          let {manager_id, title, description, ex_time} = data[t];
+          
+          surveyFeelingsDb
+            .getSurveyID(survey_id)
+            .then(data => {
+              console.log("survey feeling array", data);
+              let feelingTextArray = [];
+
+              for (let i = 0; i < data.length; i++) {
+                let { feelings_id } = data[i];
+                preFeelingsDb
+                  .getID(feelings_id)
+                  .then(data => {
+                    console.log("pre feeling array", data);
+                    if (data.length === 0) {
+                      // res.status(404).json({
+                      console.log({
+                        error: `Pre Feeling with Id: ${feelings_id} does not exist.`
+                      });
+                    } else {
+                      let { feeling_text } = data[0];
+                      feelingTextArray.push(feeling_text);
+                    }
+                  })
+                  .catch(err => console.log(err));
+              }
+
+              console.log(feelingTextArray);
+              let botInfo = {
+                message: true,
+                member_id: manager_id,
+                survey_id: survey_id,
+                title: title,
+                description: description,
+                // channelID:
+                options: feelingTextArray
+              };
+
+              console.log("botInfo", botInfo);
+
+              var j = schedule.scheduleJob(ex_time, function() {
+                console.log("Schedule Processed");
+                let postOptions = {
+                  uri:
+                    "https://botsentiment.herokuapp.com/api/slash/send-me-buttons",
+                  method: "POST",
+                  headers: {
+                    "Content-type": "application/json"
+                  },
+                  json: botInfo
+                };
+                request(postOptions, (error, response, body) => {
+                  if (error) {
+                    // handle errors as you see fit
+                    res.json({ error: "Error." });
+                  }
+                });
+              });
+            })
+            .catch(err => console.log(err));
+        }
+        /////////////////////////////////
+      }
+    })
+    .catch(err => console.log(err));
+
+  //////////////////////////////////////////////////////////////
+};
 
 const deleteSurvey = () => {
   j.cancel();
@@ -102,66 +181,70 @@ const surveyScheduler = (timeInfo, postInfo) => {
           error: `Survey with Manager Id: ${manager_id} does not exist.`
         });
       } else {
-        surveyFeelingsDb
-          .getSurveyID(survey_id)
-          .then(data => {
-            console.log("survey feeling array", data);
-            let feelingTextArray = [];
+        let updatePost = {
+          ex_time: exTime
+        };
+        surveyDb
+          .update(survey_id, updatePost)
+          .then(() => {
+            surveyFeelingsDb
+              .getSurveyID(survey_id)
+              .then(data => {
+                console.log("survey feeling array", data);
+                let feelingTextArray = [];
 
-            for (let i = 0; i < data.length; i++) {
-              let { feelings_id } = data[i];
-              preFeelingsDb
-                .getID(feelings_id)
-                .then(data => {
-                  console.log("pre feeling array", data);
-                  if (data.length === 0) {
-                    // res.status(404).json({
-                    console.log({
-                      error: `Pre Feeling with Id: ${feelings_id} does not exist.`
-                    });
-                  } else {
-                    let { feeling_text } = data[0];
-                    feelingTextArray.push(feeling_text);
-                  }
-                })
-                .catch(err => console.log(err));
-            }
-
-            console.log(feelingTextArray);
-            let botInfo = {
-              message: true,
-              member_id: manager_id,
-              survey_id: survey_id,
-              title: title,
-              description: description,
-              // channelID:
-              options: feelingTextArray
-            };
-
-            console.log("botInfo", botInfo);
-
-            var j = schedule.scheduleJob(exTime, function() {
-              console.log("Schedule Processed");
-              let postOptions = {
-                uri:
-                  "https://botsentiment.herokuapp.com/api/slash/send-me-buttons",
-                method: "POST",
-                headers: {
-                  "Content-type": "application/json"
-                },
-                json: botInfo
-              };
-              request(postOptions, (error, response, body) => {
-                if (error) {
-                  // handle errors as you see fit
-                  res.json({ error: "Error." });
+                for (let i = 0; i < data.length; i++) {
+                  let { feelings_id } = data[i];
+                  preFeelingsDb
+                    .getID(feelings_id)
+                    .then(data => {
+                      console.log("pre feeling array", data);
+                      if (data.length === 0) {
+                        // res.status(404).json({
+                        console.log({
+                          error: `Pre Feeling with Id: ${feelings_id} does not exist.`
+                        });
+                      } else {
+                        let { feeling_text } = data[0];
+                        feelingTextArray.push(feeling_text);
+                      }
+                    })
+                    .catch(err => console.log(err));
                 }
-              });
-            });
 
+                console.log(feelingTextArray);
+                let botInfo = {
+                  message: true,
+                  member_id: manager_id,
+                  survey_id: survey_id,
+                  title: title,
+                  description: description,
+                  // channelID:
+                  options: feelingTextArray
+                };
 
+                console.log("botInfo", botInfo);
 
-            
+                var j = schedule.scheduleJob(exTime, function() {
+                  console.log("Schedule Processed");
+                  let postOptions = {
+                    uri:
+                      "https://botsentiment.herokuapp.com/api/slash/send-me-buttons",
+                    method: "POST",
+                    headers: {
+                      "Content-type": "application/json"
+                    },
+                    json: botInfo
+                  };
+                  request(postOptions, (error, response, body) => {
+                    if (error) {
+                      // handle errors as you see fit
+                      res.json({ error: "Error." });
+                    }
+                  });
+                });
+              })
+              .catch(err => console.log(err));
           })
           .catch(err => console.log(err));
       }
@@ -202,7 +285,8 @@ router.post("/", (req, res) => {
         let insertInfo = {
           title: postInfo.title,
           description: postInfo.description,
-          manager_id: postInfo.manager_id
+          manager_id: postInfo.manager_id,
+          ex_time: ""
         };
 
         let timeInfo = {
@@ -316,5 +400,4 @@ router.put("/:id", (req, res) => {
   });
 });
 
-module.exports = {router, onServerStartScheduleSurveys};
-
+module.exports = { router, onServerStartScheduleSurveys };
