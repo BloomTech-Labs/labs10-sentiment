@@ -8,6 +8,7 @@ exports.up = function(knex, Promise) {
       tbl.string("bot_user_id");
       tbl.string("bot_access_token");
       tbl.integer("member_id").unique().notNullable();
+      tbl.string("channel_id");
     });
   };
   

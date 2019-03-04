@@ -67,6 +67,19 @@ let uri = "https://botsentiment.herokuapp.com/api/slackauth";
 //   });
 // });
 
+function sendToAuthorization() {
+  let postOptions = {
+    uri: "https://sentimentbot.netlify.com/Authorization",
+    method: "GET"
+  };
+  request(postOptions, (error, response, body) => {
+    if (error) {
+      // handle errors as you see fit
+      res.json({ error: "Error." });
+    }
+  });
+}
+
 router.get("/", (req, res) => {
   console.log(req.query.code);
   const options = {
@@ -90,14 +103,17 @@ router.get("/", (req, res) => {
         .status(200)
         .end();
     } else {
-      console.log(JSONresponse);
+      console.log("JSONresponse auth", JSONresponse);
       console.log({ state: req.query.state });
       let memberID = req.query.state;
       memberID = Number(memberID);
       console.log(memberID);
       db.getByMemberId(memberID)
         .then(data => {
+          console.log("data", data);
+
           if (!data[0]) {
+            /////change so will update instead/////////
             let postInfo = {
               access_token: JSONresponse.access_token,
               user_id: JSONresponse.user_id,
@@ -105,19 +121,39 @@ router.get("/", (req, res) => {
               team_id: JSONresponse.team_id,
               bot_user_id: JSONresponse.bot.bot_user_id,
               bot_access_token: JSONresponse.bot.bot_access_token,
-              member_id: memberID
+              member_id: memberID,
+              channel_id: ""
             };
 
             db.insert(postInfo)
-              .then(postSuccess(res))
+              .then(() => {
+                sendToAuthorization();
+              })
               .catch(serverErrorPost(res));
           } else {
-            res.status(400).json({
-              error: `Member with Id ${memberID} is already authorized`
-            });
+            let { id } = data[0];
+            console.log("id", id);
+            let post = {
+              access_token: JSONresponse.access_token,
+              user_id: JSONresponse.user_id,
+              team_name: JSONresponse.team_name,
+              team_id: JSONresponse.team_id,
+              bot_user_id: JSONresponse.bot.bot_user_id,
+              bot_access_token: JSONresponse.bot.bot_access_token,
+              member_id: memberID,
+              channel_id: ""
+            };
+            db.update(id, post)
+              .then(() => {
+                sendToAuthorization();
+              })
+              .catch(serverErrorUpdate500(res, "Auth"));
+            // res.status(400).json({
+            //   error: `Member with Id ${memberID} is already authorized`  /////change so will update instead/////////
+            // });
           }
         })
-        .catch();
+        .catch(err => console.log(err));
     }
   });
 });

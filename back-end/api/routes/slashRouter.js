@@ -66,27 +66,6 @@ function postMessage(JSONmessage, token) {
       // handle errors as you see fit
       res.json({ error: "Error." });
     }
-    // else {
-    //   console.log("body", body);
-    //   console.log("body time stamp", body.message.ts);
-    //   ///////////// put to servey add survey_time_stamp
-    //   dbSurveys
-    //     .getID(surveyId)
-    //     .then(data => {
-    //       if (data.length > 0) {
-    //         let putInfo = {
-    //           survey_time_stamp: body.message.ts
-    //         };
-    //         dbSurveys
-    //           .update(surveyId, putInfo)
-    //           .then(data => console.log(data))
-    //           .catch(err => console.log(err));
-    //       } else {
-    //         console.log({ error: "survey does not exist" });
-    //       }
-    //     })
-    //     .catch(err => console.log(err));
-    // }
   });
 }
 
@@ -116,13 +95,49 @@ function postMessage(JSONmessage, token) {
 
 // https://slack.com/api/chat.postMessage?token=xoxb-553324377632-553511725281-WtIU01FxATAkavAPlFn6BPz2&channel=CG9EQ53QR&text=Test
 
+router.post("/connect-channel-to-survey", urlencodedParser, (req, res) => {
+  res.status(200).end(); // best practice to respond with empty 200 status code
+  let reqBody = req.body;
+  console.log("reqBody", reqBody);
+  let { channel_id, user_id } = reqBody;
+  console.log({ channel_id: channel_id, user_id: user_id });
+
+  dbAuth
+    .getBySlackUserId(user_id)
+    .then(data => {
+      console.log({ data: data });
+      let { id } = data[0];
+      console.log({ id: id });
+      let post = {
+        channel_id: channel_id
+      };
+      dbAuth
+        .update(id, post)
+        .then(() => {
+          res.status(200).json({
+            message: `Updated Auth ID: ${id} with slack channel ID: ${channel_id}.`
+          });
+        })
+        .catch(serverErrorDelete500(res, "Auth"));
+    })
+    .catch(
+      serverErrorDelete404(() => {
+        res
+          .status(400)
+          .json({
+           error: `Slack User with user_id: ${user_id} does not exist in the database.`
+          });
+      })
+    );
+});
+
 let surveyIdDep;
 
 router.post("/send-me-buttons", urlencodedParser, (req, res) => {
   res.status(200).end(); // best practice to respond with empty 200 status code
   let reqBody = req.body;
   console.log("reqBody", reqBody);
-  
+
   if (reqBody.command === "/send-me-buttons") {
     let responseURL = reqBody.response_url;
     if (reqBody.token != process.env.VERIFCATION_TOKEN) {
@@ -135,7 +150,7 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
           if (data.length === 0) {
             console.log({ error: "User is not Authorized" });
           } else {
-            let member_id = data[0].member_id;
+            let member_id = data[0].member_id; ///// team_member_id
             dbTeamMembers
               .getID(member_id)
               .then(data => {
@@ -171,9 +186,7 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                                     "survey feeling array slash",
                                     data
                                   );
-
                                   let feelingTextArray = [];
-
                                   for (let j = 0; j < data.length; j++) {
                                     let { feelings_id } = data[j];
                                     let max = data.length - 1;
@@ -324,8 +337,13 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
       .then(data => {
         const botToken = data[0].access_token;
         console.log("botToken", botToken);
+        const {channel_id} = data[0];
+        console.log("channel_id", channel_id);
+        if(channel_id === null){
+          res.status(404).json("channel id is equall to null");
+        }else{
         let message = {
-          channel: "CG9EQ53QR",
+          channel: channel_id, //////////////////////////////make dynamic team_id
           text: `${title}`,
           as_user: false,
           attachments: [
@@ -350,6 +368,7 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
         console.log(message);
 
         postMessage(message, botToken);
+      }
       })
       .catch(err => err);
   } else if (reqBody.payload) {
@@ -410,17 +429,15 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                           .then(getSuccess(res))
                           .catch(serverErrorPost(res));
                       } else {
-                        res
-                          .status(400)
-                          .json({
-                            error: "Feeling Exists for Team Member and Survey"
-                          });
+                        res.status(400).json({
+                          error: "Feeling Exists for Team Member and Survey"
+                        });
                       }
                     })
                     .catch(serverErrorGet(res));
                 })
                 .catch(serverErrorGet(res));
-                ////////////////////////////////
+              ////////////////////////////////
             })
             .catch(err => console.log(err));
         } else {
