@@ -75,6 +75,8 @@ const surveyScheduler = (timeInfo, postInfo) => {
     exTime = `${min} ${hour} * * 5`;
   } else if (timeInfo.dailyWeeklyMonthly === "monthly") {
     exTime = `${min} ${hour} 1 * *`;
+  }else if (timeInfo.dailyWeeklyMonthly === "test"){
+    exTime = `*/1 * * * *`;
   }
 
   console.log("exTime", exTime);
