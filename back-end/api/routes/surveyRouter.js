@@ -94,7 +94,7 @@ const onServerStartScheduleSurveys = () => {
 
               console.log("botInfo", botInfo);
 
-            j = schedule.scheduleJob(survey_id, ex_time, function() {
+            var j = schedule.scheduleJob(survey_id, ex_time, function() {
                 console.log("Schedule Processed");
                 let postOptions = {
                   uri:
@@ -221,7 +221,7 @@ const surveyScheduler = (timeInfo, postInfo) => {
 
                 console.log("botInfo", botInfo);
 
-                j = schedule.scheduleJob(survey_id, exTime, function() {
+                var j = schedule.scheduleJob(survey_id, exTime, function() {
                   console.log("Schedule Processed");
                   let postOptions = {
                     uri:
@@ -367,7 +367,8 @@ router.delete(`/:id`, (req, res) => {
         db.remove(id).then(() => {
           db.get().then(() => {
             // onDeleteSurvey(res);
-            let my_job = schedule.scheduledJobs[id];
+            console.log('delete id',id);
+            var my_job = schedule.scheduledJobs[id];
             my_job.cancel();
           });
         });
