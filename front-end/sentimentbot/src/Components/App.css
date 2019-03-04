@@ -69,3 +69,6 @@
   width: 100px;
   height: 100px;
 }
+.bot-buttons {
+  cursor: pointer;
+}
