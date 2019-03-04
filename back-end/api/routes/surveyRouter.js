@@ -381,6 +381,7 @@ router.delete(`/:id`, (req, res) => {
 
             var my_job = schedule.scheduledJobs[stringSurveyId];
             my_job.cancel();
+            res.status(200).json({message: `Survey ID: ${id} canceled`});
           });
         });
       } else {
