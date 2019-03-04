@@ -97,9 +97,8 @@ router.get("/", (req, res) => {
       console.log(memberID);
       db.getByMemberId(memberID)
         .then(data => {
-          console.log("data",data);
-          let {id} = data[0];
-          console.log("id",id);
+          console.log("data", data);
+
           if (!data[0]) {
             /////change so will update instead/////////
             let postInfo = {
@@ -117,6 +116,8 @@ router.get("/", (req, res) => {
               .then(postSuccess(res)) ///// redirect to front end
               .catch(serverErrorPost(res));
           } else {
+            let { id } = data[0];
+            console.log("id", id);
             let post = {
               access_token: JSONresponse.access_token,
               user_id: JSONresponse.user_id,
@@ -135,7 +136,7 @@ router.get("/", (req, res) => {
             // });
           }
         })
-        .catch(err=>console.log(err));
+        .catch(err => console.log(err));
     }
   });
 });
