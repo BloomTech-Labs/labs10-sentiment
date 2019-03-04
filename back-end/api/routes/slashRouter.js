@@ -106,7 +106,8 @@ router.post("/connect-channel-to-survey", urlencodedParser, (req, res) => {
     .getBySlackUserId(user_id)
     .then(data => {
       console.log({ data: data });
-      let { id } = data;
+      let { id } = data[0];
+      console.log({ id: id });
       let post = {
         channel_id: channel_id
       };
