@@ -97,7 +97,9 @@ router.get("/", (req, res) => {
       console.log(memberID);
       db.getByMemberId(memberID)
         .then(data => {
+          console.log("data",data);
           let {id} = data[0];
+          console.log("id",id);
           if (!data[0]) {
             /////change so will update instead/////////
             let postInfo = {
