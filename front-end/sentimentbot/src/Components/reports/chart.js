@@ -30,10 +30,7 @@ class PieChart extends React.Component {
     this.response4 = "";
     this.complete = false;
 
-if(this.props.survey.length < 1) {
-      return
-
-} else {
+if(this.props.survey.length > 0 && this.props.singleSurvey.length !== 0) {
   const responses = this.props.singleSurvey.data.map(response => {
       count += 1;
     });
@@ -97,7 +94,7 @@ if(this.props.survey.length < 1) {
   // }
 
   render() {
-    if (this.props.survey.length === 0 && this.props.isFetching === true || this.props.singleSurvey.length === 0) {
+    if (this.props.survey.length === 0 && this.props.surveyIsFetching === true || this.props.singleSurvey.length === 0) {
       return <p>Make surveys to display data</p>;
     } else {
       const data = {
@@ -149,7 +146,7 @@ function mapStateToProps(state) {
   return {
     singleSurvey: state.surveyReducer.singleSurvey,
     survey: state.surveyReducer.survey,
-    isFetching: state.surveyReducer.survey,
+    surveyIsFetching: state.surveyReducer.surveyIsFetching,
     error: state.surveyReducer.error
   };
 }

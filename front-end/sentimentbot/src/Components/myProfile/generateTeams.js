@@ -1,11 +1,13 @@
 import React from 'react'
 import { connect } from "react-redux";
+
 import { getSingleTeam } from "../../actions";
+
+import { getFeelings } from "../../actions";
+
 import GenerateList from './generateList'
 
 class GenerateTeams extends React.Component {
-
-
 
   
   render() {
@@ -23,12 +25,11 @@ class GenerateTeams extends React.Component {
   
   function mapStateToProps(state) {
     return {
-      singleTeams: state.teamsReducer.singleTeams,
-      teams: state.teamsReducer.teams
+      feelings: state.feelingsReducer.feelings
     };
   }
   
   export default connect(
     mapStateToProps,
-    { getSingleTeam }
+    { getFeelings }
   )(GenerateTeams);

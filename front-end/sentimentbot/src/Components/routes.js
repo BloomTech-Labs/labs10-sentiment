@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Router } from "react-router-dom";
-import Home from './Home'
+import Home from "./Home";
 import Callback from "./callback/callback";
 import Auth from "./Auth/auth";
 import history from "./history";
@@ -11,12 +11,22 @@ import { createStore, applyMiddleware, compose } from "redux";
 import { Provider } from "react-redux";
 import rootReducer from "../reducers/index";
 import Profile from "./myProfile/myProfile";
+
 import Billing from './billing/billing';
 import Survey from './Survey/newsurvey';
 import Reports from './reports/reports';
 import AccountSettings from './accountSettings/accountSettings';
 import GenerateReport from './reports/generateReport'
 import TeamList from '../Components/teamList/teamList';
+
+import Billing from "./billing/billing";
+import Survey from "./Survey/newsurvey";
+import Reports from "./reports/reports";
+import AccountSettings from "./accountSettings/accountSettings";
+import GenerateReport from "./reports/generateReport";
+import TeamList from "../Components/teamList/teamList";
+import Loading from './myProfile/loading';
+
 
 const auth = new Auth();
 
@@ -42,7 +52,11 @@ export const makeMainRoutes = () => {
     <Provider store={store}>
       <Router history={history}>
         <div>
-          <Route exact path="/" render={props => <Home auth={auth} {...props} />} />
+          <Route
+            exact
+            path="/"
+            render={props => <Home auth={auth} {...props} />}
+          />
           <Route
             path="/home"
             render={props => <Home auth={auth} {...props} />}
@@ -51,23 +65,46 @@ export const makeMainRoutes = () => {
             path="/callback"
             render={props => {
               handleAuthentication(props);
-              return <Callback {...props} auth={auth}/>;
+              return <Callback {...props} auth={auth} />;
             }}
           />
           <Route
             path="/authorization"
             render={props => <Authorization {...props} />}
           />
-
-          <Route path="/profile" render={props => <Profile {...props} auth={auth} />} />
-          <Route path="/billing" render={props => <Billing {...props} auth={auth}/>} />
-          <Route path="/survey" render={props => <Survey {...props} auth={auth} />} />
-          <Route path="/reports" render={props => <Reports {...props} auth={auth}/>} />
-          <Route path="/accountset" render={props => <AccountSettings {...props} auth={auth} />} />
-          <Route path="/generatereport" render={props => <GenerateReport {...props} auth={auth} />} />
-          <Route path="/teamlist" render={props => <TeamList {...props} auth={auth} />} />
-
-        </div> 
+          <Route
+            path="/profile"
+            render={props => <Profile {...props} auth={auth} />}
+          />
+          <Route
+            path="/billing"
+            render={props => <Billing {...props} auth={auth} />}
+          />
+          <Route
+            path="/survey"
+            render={props => <Survey {...props} auth={auth} />}
+          />
+          <Route
+            path="/reports"
+            render={props => <Reports {...props} auth={auth} />}
+          />
+          <Route
+            path="/accountset"
+            render={props => <AccountSettings {...props} auth={auth} />}
+          />
+          <Route
+            path="/generatereport"
+            render={props => <GenerateReport {...props} auth={auth} />}
+          />
+          <Route
+            path="/teamlist"
+            render={props => <TeamList {...props} auth={auth} />}
+          />{" "}
+          <Route
+            path="/loading"
+            render={props => <Loading {...props} auth={auth} />}
+          />
+        </div>
       </Router>
     </Provider>
   );

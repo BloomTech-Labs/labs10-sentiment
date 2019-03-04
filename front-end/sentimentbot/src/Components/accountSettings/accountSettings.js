@@ -55,7 +55,9 @@ class accountSettings extends React.Component {
   };
 
   // Switches type & team_id of person leaving team to null
-  handleLeaveTeam() {
+  handleLeaveTeam = event => {
+    event.preventDefault();
+    console.log('clicked')
     const firstName = this.props.singleTeamMembers[0].firstName
     const lastName = this.props.singleTeamMembers[0].lastName
     const email = this.props.singleTeamMembers[0].email
@@ -64,7 +66,13 @@ class accountSettings extends React.Component {
     const team_id = null
     const id = this.props.singleTeamMembers[0].id
     const combine = { firstName: firstName, lastName: lastName, email: email, phone: phone, type: type, team_id: team_id }
-    editTeamMembers(id, combine)
+    this.props.editTeamMembers(id, combine)
+    this.props.history.push('/loading')
+    let currentMember = this.props.singleTeamMembers[0]
+    currentMember.type = null;
+    currentMember.team_id = null;
+    // this.props.history.push('/profile')
+
   };
 
 
@@ -80,6 +88,7 @@ class accountSettings extends React.Component {
         ) : (
             <>
               <h3>Settings</h3>
+              <p>Reset your password below:</p>
               <form className="account-form" onSubmit={this.handleSubmit}>
                 <label>Email:</label>
                 <input
@@ -123,7 +132,7 @@ class accountSettings extends React.Component {
                   Submit
               </button>
               </form>
-              <button onClick={() => this.handleLeaveTeam()} > Leave Team </button>
+              <button onClick={this.handleLeaveTeam} > Leave Team </button>
             </>
           )}
       </div>

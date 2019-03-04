@@ -18,7 +18,7 @@ import {
 
 const initialState = {
     survey: [],
-    isFetching: false,
+    surveyIsFetching: false,
     error: null,
     singleSurvey: [],
   };
@@ -28,84 +28,84 @@ const initialState = {
       case FETCH_SURVEY_START:
         return {
           ...state,
-          isFetching: true
+          surveyIsFetching: true
         };
       case FETCH_SURVEY_SUCCESS:
         return {
           ...state,
-          isFetching: false,
+          surveyIsFetching: false,
           survey: action.payload,
           error: null
         };
       case FETCH_SURVEY_FAILURE:
         return {
           ...state,
-          isFetching: false,
+          surveyIsFetching: false,
           error: action.payload
         };
       case ADD_SURVEY_START:
         return {
           ...state,
-          isFetching: true
+          surveyIsFetching: true
         };
       case ADD_SURVEY_SUCCESS:
         return {
           ...state,
-          isFetching: false,
+          surveyIsFetching: false,
         };
       case ADD_SURVEY_FAILURE:
         return {
           ...state,
-          isFetching: false,
+          surveyIsFetching: false,
           error: action.payload
         };
       case EDIT_SURVEY_START:
         return {
           ...state,
-          isFetching: true
+          surveyIsFetching: true
         };
       case EDIT_SURVEY_SUCCESS:
         return {
           ...state,
-          isFetching: false,
+          surveyIsFetching: false,
         };
       case EDIT_SURVEY_FAILURE:
         return {
           ...state,
-          isFetching: false,
+          surveyIsFetching: false,
           error: action.payload
         };
       case DELETE_SURVEY_START:
         return {
           ...state,
-          isFetching: true
+          surveyIsFetching: true
         };
       case DELETE_SURVEY_SUCCESS:
         return {
           ...state,
-          isFetching: false,
+          surveyIsFetching: false,
         };
       case DELETE_SURVEY_FAILURE:
         return {
           ...state,
-          isFetching: false,
+          surveyIsFetching: false,
           error: action.payload
         };
       case SINGLE_SURVEY_START:
         return {
           ...state,
-          isFetching: true
+          surveyIsFetching: true
         };
       case SINGLE_SURVEY_SUCCESS:
         return {
           ...state,
-          isFetching: false,
+          surveyIsFetching: false,
           singleSurvey: action.payload
         };
       case SINGLE_SURVEY_FAILURE:
         return {
           ...state,
-          isFetching: false,
+          surveyIsFetching: false,
           singleSurvey: [],
           error: action.payload
         };

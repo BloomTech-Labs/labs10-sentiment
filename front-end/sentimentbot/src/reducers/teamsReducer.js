@@ -24,7 +24,7 @@ import {
 
 const initialState = {
   teams: [],
-  isFetching: false,
+  teamsIsFetching: false,
   error: null,
   singleTeams: [],
   teamMembers: [],
@@ -35,121 +35,121 @@ const teamsReducer = (state = initialState, action) => {
     case FETCH_TEAMS_START:
       return {
         ...state,
-        isFetching: true
+        teamsIsFetching: true
       };
     case FETCH_TEAMS_SUCCESS:
       return {
         ...state,
-        isFetching: false,
+        teamsIsFetching: false,
         teams: action.payload,
         error: null
       };
     case FETCH_TEAMS_FAILURE:
       return {
         ...state,
-        isFetching: false,
+        teamsIsFetching: false,
         error: action.payload
       };
     case ADD_TEAMS_START:
       return {
         ...state,
-        isFetching: true
+        teamsIsFetching: true
       };
     case ADD_TEAMS_SUCCESS:
       return {
         ...state,
-        isFetching: false
+        teamsIsFetching: false
       };
     case ADD_TEAMS_FAILURE:
       return {
         ...state,
-        isFetching: false,
+        teamsIsFetching: false,
         error: action.payload
       };
     case EDIT_TEAMS_START:
       return {
         ...state,
-        isFetching: true
+        teamsIsFetching: true
       };
     case EDIT_TEAMS_SUCCESS:
       return {
         ...state,
-        isFetching: false
+        teamsIsFetching: false
       };
     case EDIT_TEAMS_FAILURE:
       return {
         ...state,
-        isFetching: false,
+        teamsIsFetching: false,
         error: action.payload
       };
     case DELETE_TEAMS_START:
       return {
         ...state,
-        isFetching: true
+        teamsIsFetching: true
       };
     case DELETE_TEAMS_SUCCESS:
       return {
         ...state,
-        isFetching: false
+        teamsIsFetching: false
       };
     case DELETE_TEAMS_FAILURE:
       return {
         ...state,
-        isFetching: false,
+        teamsIsFetching: false,
         error: action.payload
       };
     case SINGLE_TEAMS_START:
       return {
         ...state,
-        isFetching: true
+        teamsIsFetching: true
       };
     case SINGLE_TEAMS_SUCCESS:
       return {
         ...state,
-        isFetching: false,
+        teamsIsFetching: false,
         singleTeams: action.payload
       };
     case SINGLE_TEAMS_FAILURE:
       return {
         ...state,
-        isFetching: false,
+        teamsIsFetching: false,
         singleTeams: [],
         error: action.payload
       };
     case JOIN_TEAM_START:
       return {
         ...state,
-        isFetching: true
+        teamsIsFetching: true
       };
     case JOIN_TEAM_SUCCESS:
       return {
         ...state,
-        isFetching: false,
+        teamsIsFetching: false,
         teamMembers: action.payload
       };
     case JOIN_TEAM_FAILURE:
       return {
         ...state,
-        isFetching: false,
+        teamsIsFetching: false,
         teamMembers: [],
         error: action.payload
       };
       case FETCH_TEAMS_MEMBERS_START:
       return {
         ...state,
-        isFetching: true
+        teamsIsFetching: true
       };
     case FETCH_TEAMS_MEMBERS_SUCCESS:
       return {
         ...state,
-        isFetching: false,
+        teamsIsFetching: false,
         teamMembers: action.payload,
         error: null
       };
     case FETCH_TEAMS_MEMBERS_FAILURE:
       return {
         ...state,
-        isFetching: false,
+        teamsIsFetching: false,
         error: action.payload
       };
     default:
