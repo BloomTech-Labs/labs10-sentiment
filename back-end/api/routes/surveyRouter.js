@@ -26,6 +26,8 @@ const {
 const type = "survey";
 const type2 = "Team Member";
 
+var j;
+
 // let timeInfo = {
 //   dailyWeeklyMonthly: postInfo.dailyWeeklyMonthly, optional values are = daily/weekly/monthly
 //   hour: postInfo.hour,
@@ -39,8 +41,9 @@ const type2 = "Team Member";
 //   manager_id: postInfo.manager_id
 // };
 
-const onDeleteSurvey = () => {
+const onDeleteSurvey = (res) = () => {
   j.cancel();
+  res.json("cancelled?")
 
 
 };
@@ -100,7 +103,7 @@ const onServerStartScheduleSurveys = () => {
 
               console.log("botInfo", botInfo);
 
-              var j = schedule.scheduleJob(ex_time, function() {
+              j = schedule.scheduleJob(ex_time, function() {
                 console.log("Schedule Processed");
                 let postOptions = {
                   uri:
@@ -229,7 +232,7 @@ const surveyScheduler = (timeInfo, postInfo) => {
 
                 console.log("botInfo", botInfo);
 
-                var j = schedule.scheduleJob(exTime, function() {
+                j = schedule.scheduleJob(exTime, function() {
                   console.log("Schedule Processed");
                   let postOptions = {
                     uri:
@@ -374,7 +377,7 @@ router.delete(`/:id`, (req, res) => {
       if (data.length > 0) {
         db.remove(id).then(() => {
           db.get().then(()=>{
-            onDeleteSurvey();
+            onDeleteSurvey(res);
           });
         });
       } else {
