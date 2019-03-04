@@ -94,7 +94,7 @@ const onServerStartScheduleSurveys = () => {
 
               console.log("botInfo", botInfo);
 
-              schedule.scheduleJob(survey_id, ex_time, function() {
+            j = schedule.scheduleJob(survey_id, ex_time, function() {
                 console.log("Schedule Processed");
                 let postOptions = {
                   uri:
@@ -221,7 +221,7 @@ const surveyScheduler = (timeInfo, postInfo) => {
 
                 console.log("botInfo", botInfo);
 
-                schedule.scheduleJob(survey_id, exTime, function() {
+                j = schedule.scheduleJob(survey_id, exTime, function() {
                   console.log("Schedule Processed");
                   let postOptions = {
                     uri:
