@@ -3,6 +3,7 @@ const router = express.Router();
 const request = require("request");
 const schedule = require("node-schedule");
 const db = require("../database/helpers/surveysDb");
+const server = require("../server.js");
 
 const teamMembersDb = require("../database/helpers/teamMembersDb");
 const surveyDb = require("../database/helpers/surveysDb");
@@ -37,6 +38,11 @@ const type2 = "Team Member";
 //   description: postInfo.description,
 //   manager_id: postInfo.manager_id
 // };
+
+const onServerStartScheduleSurveys = () =>{
+  console.log('on server start');
+};
+
 const deleteSurvey = () => {
   j.cancel();
 };
@@ -232,6 +238,18 @@ router.post("/", (req, res) => {
       }
     });
 });
+
+
+
+
+
+
+
+
+
+
+
+
 
 router.get("/manager/:id", (req, res) => {
   const { id } = req.params;
