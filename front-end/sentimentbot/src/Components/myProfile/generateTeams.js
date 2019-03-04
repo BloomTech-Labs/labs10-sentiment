@@ -1,6 +1,10 @@
 import React from 'react'
 import { connect } from "react-redux";
+
+import { getSingleTeam } from "../../actions";
+
 import { getFeelings } from "../../actions";
+
 import GenerateList from './generateList'
 
 class GenerateTeams extends React.Component {
