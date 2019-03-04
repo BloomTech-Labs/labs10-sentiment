@@ -93,8 +93,10 @@ const onServerStartScheduleSurveys = () => {
               };
 
               console.log("botInfo", botInfo);
-
-            var j = schedule.scheduleJob(survey_id, ex_time, function() {
+              /////////////////////////////////////////////////////////survey_id to string
+              let stringSurveyId = survey_id.toString();
+              console.log("stringSurveyId", stringSurveyId);
+              var j = schedule.scheduleJob(stringSurveyId, ex_time, function() {
                 console.log("Schedule Processed");
                 let postOptions = {
                   uri:
@@ -220,25 +222,31 @@ const surveyScheduler = (timeInfo, postInfo) => {
                 };
 
                 console.log("botInfo", botInfo);
+                let stringSurveyId = survey_id.toString();
+                console.log("stringSurveyId", stringSurveyId);
 
-                var j = schedule.scheduleJob(survey_id, exTime, function() {
-                  console.log("Schedule Processed");
-                  let postOptions = {
-                    uri:
-                      "https://botsentiment.herokuapp.com/api/slash/send-me-buttons",
-                    method: "POST",
-                    headers: {
-                      "Content-type": "application/json"
-                    },
-                    json: botInfo
-                  };
-                  request(postOptions, (error, response, body) => {
-                    if (error) {
-                      // handle errors as you see fit
-                      res.json({ error: "Error." });
-                    }
-                  });
-                });
+                var j = schedule.scheduleJob(
+                  stringSurveyId,
+                  exTime,
+                  function() {
+                    console.log("Schedule Processed");
+                    let postOptions = {
+                      uri:
+                        "https://botsentiment.herokuapp.com/api/slash/send-me-buttons",
+                      method: "POST",
+                      headers: {
+                        "Content-type": "application/json"
+                      },
+                      json: botInfo
+                    };
+                    request(postOptions, (error, response, body) => {
+                      if (error) {
+                        // handle errors as you see fit
+                        res.json({ error: "Error." });
+                      }
+                    });
+                  }
+                );
               })
               .catch(err => console.log(err));
           })
@@ -367,8 +375,11 @@ router.delete(`/:id`, (req, res) => {
         db.remove(id).then(() => {
           db.get().then(() => {
             // onDeleteSurvey(res);
-            console.log('delete id',id);
-            var my_job = schedule.scheduledJobs[id];
+            console.log("delete id", id);
+            let stringSurveyId = id.toString();
+            console.log("stringSurveyId", stringSurveyId);
+
+            var my_job = schedule.scheduledJobs[stringSurveyId];
             my_job.cancel();
           });
         });
@@ -380,7 +391,6 @@ router.delete(`/:id`, (req, res) => {
       serverErrorDelete500(res, type);
     });
 });
-
 
 router.put("/:id", (req, res) => {
   const { id } = req.params;
