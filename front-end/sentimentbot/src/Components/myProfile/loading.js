@@ -13,7 +13,6 @@ getSingleTeamMembers,
 
 class Loading extends React.Component {
     state = {
-        team_id: this.props.singleTeamMembers.team_id,
         complete1: false,
         complete2: false,
     }
@@ -35,6 +34,7 @@ class Loading extends React.Component {
                   complete2: true
               })
               this.props.getSingleTeam(this.props.singleTeamMembers[0].team_id);
+              this.props.getFeelings(this.props.singleTeamMembers[0].id)
           }
 
       }
@@ -44,7 +44,7 @@ class Loading extends React.Component {
           return (
         <div className="container">
         <button onClick={() => this.props.history.push('/profile')}>Click</button>
-        <p>Click here to go back to your profile page.</p>
+        <p>Thanks for waiting! Click here to go back to your profile page.</p>
       </div>
           )
       } else {

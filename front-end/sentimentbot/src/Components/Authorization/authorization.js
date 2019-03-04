@@ -13,7 +13,7 @@ import {
   getSurvey,
   getTeams,
   getSingleTeam,
-  getFeelings,
+  getFeelings
 } from "../../actions/index";
 import history from "../history";
 
@@ -24,20 +24,23 @@ class Authorization extends React.Component {
     email: localStorage.getItem("email"),
     phone: "",
     type: null,
-    team_id: null
+    team_id: null,
+    view: ""
   };
 
   componentDidMount() {
-    this.props.getSingleTeamMembers(localStorage.getItem("email"))
-    this.props.getTeamMembers()
-    this.submit = false
-    this.props.getTeams()
+    this.props.getSingleTeamMembers(localStorage.getItem("email"));
+    this.props.getTeamMembers();
+    this.submit = false;
+    this.props.getTeams();
   }
 
   componentDidUpdate(prevProps) {
-    if(this.props.singleTeamMembers.length != prevProps.singleTeamMembers.length) {
-      this.props.getSingleTeam(this.props.singleTeamMembers[0].team_id)
-      this.props.getFeelings(this.props.singleTeamMembers[0].id)
+    if (
+      this.props.singleTeamMembers.length != prevProps.singleTeamMembers.length
+    ) {
+      this.props.getSingleTeam(this.props.singleTeamMembers[0].team_id);
+      this.props.getFeelings(this.props.singleTeamMembers[0].id);
     }
   }
 
@@ -49,17 +52,32 @@ class Authorization extends React.Component {
 
   submitHandler = event => {
     event.preventDefault();
-    this.props.addTeamMembers(this.state);
+    let firstName = this.state.firstName;
+    let lastName = this.state.lastName;
+    let email = this.state.email;
+    let phone = this.state.phone;
+    let type = null;
+    let team_id = null;
+    let combine = {
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      phone: phone,
+      type: type,
+      team_id: team_id
+    };
+    this.props.addTeamMembers(combine);
     this.setState({
       firstName: "",
       lastName: "",
       email: localStorage.getItem("email"),
       phone: "",
       type: null,
-      team_id: null
+      team_id: null,
+      view: "done"
     });
-    this.submit = true
-    // history.push('/profile')
+    this.submit = true;
+    this.props.getTeamMembers();
   };
 
   render() {
@@ -68,7 +86,11 @@ class Authorization extends React.Component {
     }
 
     if (this.props.tmIsFetching === true) {
-      return <div className="container"><p>Loading...</p></div>
+      return (
+        <div className="container">
+          <p>Loading...</p>
+        </div>
+      );
     }
 
     const makeInput = name => (
@@ -82,28 +104,37 @@ class Authorization extends React.Component {
       />
     );
 
-    return (
-      <>
-        {this.props.singleTeamMembers.length < 1 || this.submit === true ? (
+    if (this.state.view === "") {
+      return (
+        <>
+          {this.props.singleTeamMembers.length === 0 ? (
+            <div className="container">
+              <p>Please finish registering before continuing...</p>
+              <form onSubmit={this.submitHandler} autoComplete="nope">
+                {makeInput("firstName")}
+                {makeInput("lastName")} {makeInput("email")}
+                {makeInput("phone")}
+                <button>Sign Up</button>
+              </form>
+            </div>
+          ) : (
+            <div className="container">
+              <p>Welcome Back!</p>
+              <button onClick={() => history.replace("/profile")}>
+                Continue To Profile
+              </button>
+            </div>
+          )}
+        </>
+      );
+      } else {
+        return (
           <div className="container">
-          <p>Please finish registering before continuing...</p>
-          <form onSubmit={this.submitHandler} autoComplete="nope">
-            {makeInput("firstName")}
-            {makeInput("lastName")} {makeInput("email")}
-            {makeInput("phone")}
-            <button>Sign Up</button>
-          </form>
+          <p>Thanks for registering! Please allow us a moment to finish registering you</p>
+          <button onClick={() => this.props.history.push('/loading')}>Thank you</button>
           </div>
-        ) : (
-          <div className="container">
-          <p>Welcome Back!</p>
-          <button onClick={() => history.replace("/profile")}>
-            Continue To Profile
-          </button>
-          </div>
-        )}
-      </>
-    );
+        )
+    }
   }
 }
 
