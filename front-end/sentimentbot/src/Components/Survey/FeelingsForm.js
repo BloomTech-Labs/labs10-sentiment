@@ -1,41 +1,54 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
+import { getPreFeeling } from "../../actions/preFeelings";
+import { addPreFeeling } from "../../actions/preFeelings";
+import { editPreFeeling } from "../../actions/preFeelings";
+import { deletePreFeeling } from "../../actions/preFeelings";
+import { fetchSinglePreFeeling } from "../../actions/preFeelings";
 
 
-function FeelingsForm(props) {
-    // function handleSubmit(event) {
-        // event.preventDefault();
-  
-        let questions = 4;
-        let questionsLeft = ' [' + questions + ' questions left]';
-        let surveyQuestion = prompt('Please type your survey question.' + questionsLeft);
-        questions -= 1;
-        questionsLeft = ' [' + questions + ' questions left]';
-        let feelingOne = prompt('Please type a possible response.' + questionsLeft);
-        questions -= 1;
-        questionsLeft = ' [' + questions + ' questions left]';
-        let feelingTwo = prompt('Please type another possible response.' + questionsLeft);
-        questions -= 1;
-        questionsLeft = ' [' + questions + ' questions left]';
-        let feelingThree = prompt('Please type another possible response.' + questionsLeft);
-        questions -= 1;
-        questionsLeft = ' [' + questions + ' questions left]';
-        let feelingFour = prompt('Please type a final possible response.' + questionsLeft);
-        alert('All done. Ready for your survey?');
-        let sentence = surveyQuestion;
-        sentence += feelingOne;
-        sentence += feelingTwo;
-        sentence += feelingThree;
-        sentence += feelingFour;
-        document.write(sentence);
-    // }
-  return (
-    <div>
-        <h2>Survey Form</h2>
-    </div>
-       
-    
-  );
+class PreFeelingList extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+
+    }
+  }
+    componentDidMount() {
+        this.props.fetchSinglePreFeeling();
+    }
+
+    render() {
+        return (
+            <div>
+                { !this.props.getPreFeeling && this.props.prefeelings.length ? 
+                <ul>
+                    {this.props.prefeelings.map(prefeeling =>
+                        <li key={prefeeling.id}>
+                            <p>{prefeeling.feeling_text}</p>
+                        </li>
+                    )}
+                </ul> : null
+                } 
+            </div>
+        );
+    }
 }
-
-
-export default FeelingsForm;
+function mapStateToProps(state) {
+  return {
+    prefeelings: state.preFeelingReducer.prefeelings,
+    isFetching: state.preFeelingReducer.isFetching,
+    error: state.preFeelingReducer.error,
+    singlePreFeelings: state.preFeelingReducer.singlePreFeeling,
+  };
+}
+export default connect(
+  mapStateToProps,{
+    getPreFeeling,
+    addPreFeeling,
+    editPreFeeling,
+    deletePreFeeling,
+    fetchSinglePreFeeling, 
+  }
+  )(PreFeelingList);
