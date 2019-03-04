@@ -18,7 +18,7 @@ import {
 
 const initialState = {
     feelings: [],
-    isFetching: false,
+    feelingsIsFetching: false,
     error: null,
     singleFeelings: [],
   };
@@ -28,84 +28,84 @@ const initialState = {
       case FETCH_FEELINGS_START:
         return {
           ...state,
-          isFetching: true
+          feelingsIsFetching: true
         };
       case FETCH_FEELINGS_SUCCESS:
         return {
           ...state,
-          isFetching: false,
+          feelingsIsFetching: false,
           feelings: action.payload,
           error: null
         };
       case FETCH_FEELINGS_FAILURE:
         return {
           ...state,
-          isFetching: false,
+          feelingsIsFetching: false,
           error: action.payload
         };
       case ADD_FEELINGS_START:
         return {
           ...state,
-          isFetching: true
+          feelingsIsFetching: true
         };
       case ADD_FEELINGS_SUCCESS:
         return {
           ...state,
-          isFetching: false,
+          feelingsIsFetching: false,
         };
       case ADD_FEELINGS_FAILURE:
         return {
           ...state,
-          isFetching: false,
+          feelingsIsFetching: false,
           error: action.payload
         };
       case EDIT_FEELINGS_START:
         return {
           ...state,
-          isFetching: true
+          feelingsIsFetching: true
         };
       case EDIT_FEELINGS_SUCCESS:
         return {
           ...state,
-          isFetching: false,
+          feelingsIsFetching: false,
         };
       case EDIT_FEELINGS_FAILURE:
         return {
           ...state,
-          isFetching: false,
+          feelingsIsFetching: false,
           error: action.payload
         };
       case DELETE_FEELINGS_START:
         return {
           ...state,
-          isFetching: true
+          feelingsIsFetching: true
         };
       case DELETE_FEELINGS_SUCCESS:
         return {
           ...state,
-          isFetching: false,
+          feelingsIsFetching: false,
         };
       case DELETE_FEELINGS_FAILURE:
         return {
           ...state,
-          isFetching: false,
+          feelingsIsFetching: false,
           error: action.payload
         };
       case SINGLE_FEELINGS_START:
         return {
           ...state,
-          isFetching: true
+          feelingsIsFetching: true
         };
       case SINGLE_FEELINGS_SUCCESS:
         return {
           ...state,
-          isFetching: false,
+          feelingsIsFetching: false,
           singleFeelings: action.payload
         };
       case SINGLE_FEELINGS_FAILURE:
         return {
           ...state,
-          isFetching: false,
+          feelingsIsFetching: false,
           singleFeelings: [],
           error: action.payload
         };

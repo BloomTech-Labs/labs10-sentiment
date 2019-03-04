@@ -2,7 +2,7 @@ import React from "react";
 import { Elements, StripeProvider } from "react-stripe-elements";
 import CheckoutForm from "../stripe/checkoutForm";
 import StripeCheckout from "react-stripe-checkout";
-import NavBar from '../NavBar/NavBar';
+import NavBar from "../NavBar/NavBar";
 import "../App.css";
 
 class Billing extends React.Component {
@@ -15,17 +15,20 @@ class Billing extends React.Component {
   }
 
   async onToken(token) {
-    let response = await fetch("https://botsentiment.herokuapp.com/api/stripe/subscribe10", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        stripeToken: token.id,
-        email: token.email
-      })
-    });
+    let response = await fetch(
+      "https://botsentiment.herokuapp.com/api/stripe/subscribe10",
+      {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          stripeToken: token.id,
+          email: token.email
+        })
+      }
+    );
 
     if (response.ok)
       this.setState({
@@ -34,19 +37,22 @@ class Billing extends React.Component {
   }
 
   async onToken2(token) {
-    let response = await fetch("https://botsentiment.herokuapp.com/stripe/subscribe50", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        stripeToken: token.id,
-        email: token.email
-      })
-    });
+    let response = await fetch(
+      "https://botsentiment.herokuapp.com/stripe/subscribe50",
+      {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          stripeToken: token.id,
+          email: token.email
+        })
+      }
+    );
 
-    if (response.ok) 
+    if (response.ok)
       this.setState({
         complete: true
       });
@@ -54,14 +60,14 @@ class Billing extends React.Component {
   }
 
   render() {
-    if(!localStorage.getItem('email')){
-      this.props.history.push('/home')
+    if (!localStorage.getItem("email")) {
+      this.props.history.push("/home");
     }
 
     if (this.state.complete) {
       return (
         <>
-        <NavBar />
+          <NavBar />
 
           <div className="purchase-complete billing-container">
             <h1>Purchase Complete</h1>
@@ -71,9 +77,8 @@ class Billing extends React.Component {
     } else {
       return (
         <>
-        <NavBar />
-          
           <div className="billing-container">
+          <NavBar />
             <p className="billing-title"> Billing Page </p>
 
             {/* <StripeProvider apiKey="pk_test_IWDsGyB9paFAzC5KQEtIOfLG"> */}

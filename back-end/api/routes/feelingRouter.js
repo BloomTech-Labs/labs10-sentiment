@@ -94,4 +94,13 @@ router.put("/:id", (req, res) => {
   });
 });
 
+//get all by one person
+router.get("/myfeelings/:id", (req, res) => {
+  const { id } = req.params;
+  db.get().where({ team_member_id: id })
+    .then(getSuccess(res))
+    .catch(serverErrorGetID(res, type, id));
+});
+
+
 module.exports = router;

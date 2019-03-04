@@ -18,7 +18,7 @@ import {
 
 const initialState = {
     managers: [],
-    isFetching: false,
+    managersIsFetching: false,
     error: null,
     singleManagers: [],
   };
@@ -28,84 +28,84 @@ const initialState = {
       case FETCH_MANAGERS_START:
         return {
           ...state,
-          isFetching: true
+          managersIsFetching: true
         };
       case FETCH_MANAGERS_SUCCESS:
         return {
           ...state,
-          isFetching: false,
+          managersIsFetching: false,
           managers: action.payload,
           error: null
         };
       case FETCH_MANAGERS_FAILURE:
         return {
           ...state,
-          isFetching: false,
+          managersIsFetching: false,
           error: action.payload
         };
       case ADD_MANAGERS_START:
         return {
           ...state,
-          isFetching: true
+          managersIsFetching: true
         };
       case ADD_MANAGERS_SUCCESS:
         return {
           ...state,
-          isFetching: false,
+          managersIsFetching: false,
         };
       case ADD_MANAGERS_FAILURE:
         return {
           ...state,
-          isFetching: false,
+          managersIsFetching: false,
           error: action.payload
         };
       case EDIT_MANAGERS_START:
         return {
           ...state,
-          isFetching: true
+          managersIsFetching: true
         };
       case EDIT_MANAGERS_SUCCESS:
         return {
           ...state,
-          isFetching: false,
+          managersIsFetching: false,
         };
       case EDIT_MANAGERS_FAILURE:
         return {
           ...state,
-          isFetching: false,
+          managersIsFetching: false,
           error: action.payload
         };
       case DELETE_MANAGERS_START:
         return {
           ...state,
-          isFetching: true
+          managersIsFetching: true
         };
       case DELETE_MANAGERS_SUCCESS:
         return {
           ...state,
-          isFetching: false,
+          managersIsFetching: false,
         };
       case DELETE_MANAGERS_FAILURE:
         return {
           ...state,
-          isFetching: false,
+          managersIsFetching: false,
           error: action.payload
         };
       case SINGLE_MANAGERS_START:
         return {
           ...state,
-          isFetching: true
+          managersIsFetching: true
         };
       case SINGLE_MANAGERS_SUCCESS:
         return {
           ...state,
-          isFetching: false,
+          managersIsFetching: false,
           singleManagers: action.payload
         };
       case SINGLE_MANAGERS_FAILURE:
         return {
           ...state,
-          isFetching: false,
+          managersIsFetching: false,
           singleManagers: [],
           error: action.payload
         };

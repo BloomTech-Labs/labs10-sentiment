@@ -281,7 +281,7 @@ function mapStateToProps(state) {
     error: state.teamMembersReducer.error,
     teamMembers: state.teamMembersReducer.teamMembers,
     survey: state.surveyReducer.survey,
-    isFetching: state.surveyReducer.isFetching,
+    surveyIsFetching: state.surveyReducer.surveyIsFetching,
     singleSurvey: state.surveyReducer.singleSurvey
   };
 }

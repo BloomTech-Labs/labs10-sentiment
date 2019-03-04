@@ -254,7 +254,7 @@ router.get("/:id", (req, res) => {
     .get()
     .where({ survey_time_stamp: id })
     .then(data => {
-      db.getID(id)
+      db.get().where({ survey_time_stamp: id })
         .then(response => {
           res.status(200).json({ response, data });
         })
