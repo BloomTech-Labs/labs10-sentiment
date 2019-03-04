@@ -39,6 +39,12 @@ const type2 = "Team Member";
 //   manager_id: postInfo.manager_id
 // };
 
+const onDeleteSurvey = () => {
+  j.cancel();
+
+
+};
+
 const onServerStartScheduleSurveys = () => {
   console.log("on server start");
   //////////////////////////////////////////////////////////
@@ -123,9 +129,7 @@ const onServerStartScheduleSurveys = () => {
   //////////////////////////////////////////////////////////////
 };
 
-const deleteSurvey = () => {
-  j.cancel();
-};
+
 
 const surveyScheduler = (timeInfo, postInfo) => {
   let hour;
@@ -367,9 +371,11 @@ router.delete(`/:id`, (req, res) => {
   // const { id } = req.params;
   // db.getID(id)
   //   .then(data => {
-  //     if (data) {
+  //     if (data.length > 0) {
   //       db.remove(id).then(() => {
-  //         db.get().then(getSuccess(res));
+  //         db.get().then(()=>{
+  //           onDeleteSurvey();
+  //         });
   //       });
   //     } else {
   //       serverErrorDelete404(res, type, id);
@@ -378,7 +384,7 @@ router.delete(`/:id`, (req, res) => {
   //   .catch(() => {
   //     serverErrorDelete500(res, type);
   //   });
-  deleteSurvey();
+  onDeleteSurvey();
 });
 
 router.put("/:id", (req, res) => {
