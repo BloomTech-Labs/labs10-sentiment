@@ -108,7 +108,7 @@ router.get("/", (req, res) => {
               bot_user_id: JSONresponse.bot.bot_user_id,
               bot_access_token: JSONresponse.bot.bot_access_token,
               member_id: memberID,
-              channel_id: null
+              channel_id: ""
             };
 
             db.insert(postInfo)
@@ -123,7 +123,7 @@ router.get("/", (req, res) => {
               bot_user_id: JSONresponse.bot.bot_user_id,
               bot_access_token: JSONresponse.bot.bot_access_token,
               member_id: memberID,
-              channel_id: null
+              channel_id: ""
             };
             db.update(id, post)
               .then(getSuccess(res))
