@@ -16,7 +16,6 @@ import {
   getFeelings,
 } from "../../actions/index";
 import history from "../history";
-import NavBar from "../NavBar/NavBar";
 
 class Authorization extends React.Component {
   state = {
@@ -29,7 +28,6 @@ class Authorization extends React.Component {
   };
 
   componentDidMount() {
-    this.props.getTeams()
     this.props.getSingleTeamMembers(localStorage.getItem("email"))
     this.props.getTeamMembers()
     this.submit = false
@@ -67,6 +65,10 @@ class Authorization extends React.Component {
   render() {
     if (!localStorage.getItem("email")) {
       this.props.history.push("/home");
+    }
+
+    if (this.props.tmIsFetching === true) {
+      return <div className="container"><p>Loading...</p></div>
     }
 
     const makeInput = name => (
@@ -110,7 +112,7 @@ class Authorization extends React.Component {
 function mapStateToProps(state) {
   return {
     singleTeamMembers: state.teamMembersReducer.singleTeamMembers,
-    isFetching: state.teamMembersReducer.isFetching,
+    tmIsFetching: state.teamMembersReducer.tmIsFetching,
     error: state.teamMembersReducer.error,
     teamMembers: state.teamMembersReducer.teamMembers,
     survey: state.surveyReducer.survey,

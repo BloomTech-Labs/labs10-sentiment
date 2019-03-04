@@ -9,7 +9,8 @@ import {
   editTeamMembers,
   getSingleTeam,
   fetchSingleSurvey,
-  getSurvey
+  getSurvey,
+  joinTeam,
 } from "../../actions/index";
 import NavBar from "../NavBar/NavBar";
 import GenerateTeams from "./generateTeams";
@@ -57,12 +58,13 @@ class Profile extends React.Component {
     //   this.fetchAuth(code);
     // }
     if (
-      this.props.isFetching === false &&
+      this.props.surveyIsFetching === false &&
       this.props.survey.length > 0 &&
       this.state.loaded === true
     ) {
       this.props.fetchSingleSurvey(this.props.survey[0].survey_time_stamp);
       this.props.getSingleTeam(this.props.singleTeamMembers[0].team_id);
+      this.props.getSingleTeamMembers(localStorage.getItem('email'))
       this.setState({
         loaded: false
       });
@@ -95,26 +97,47 @@ class Profile extends React.Component {
       view: "create",
       createTeam: ""
     });
+    let currentMember = this.props.singleTeamMembers[0]
+    currentMember.type = "manager"
+    this.props.getSingleTeamMembers(localStorage.getItem('email'))
   };
 
   addCodeToMember = event => {
     event.preventDefault();
-    const code = this.state.team_code;
-    let teams = this.props.getTeams();
-    let teamID = teams.map(item => {
-      if (item.team_code === code) {
-        return item.id;
+    const code = parseInt(this.state.team_code);
+    let teams = this.props.teams;
+    let futureTeamId = null;
+    // let teamID = teams.map(item => {
+    //   if (item.team_code === code) {
+    //     return item.id;
+    //   }
+    // });
+
+    for (let i = 0; i < teams.length; i++) {
+      if (teams[i].team_code === code) {
+        futureTeamId = teams[i].id
       }
-    });
+    }
+
+    console.log(futureTeamId)
 
     let member = this.props.singleTeamMembers[0];
 
-    member.team_id = teamID;
+    member.team_id = futureTeamId;
     member.type = "team_member";
 
     console.log(member);
 
-    this.props.editTeamMembers(member.id, member);
+    this.props.joinTeam(member.id, {team_code: code} );
+    this.setState({
+      view: 'join',
+      team_code: 0
+    })
+    let currentMember = this.props.singleTeamMembers[0]
+
+    currentMember.type = member.type;
+    currentMember.team_id = futureTeamId;
+    this.props.history.push('/loading')
   };
 
   handleChange = event => {
@@ -148,14 +171,32 @@ class Profile extends React.Component {
       return (
         <div className="container">
           <NavBar />
-          <p>
-            {this.props.singleTeamMembers[0].firstName}{" "}
-            {this.props.singleTeamMembers[0].lastName}
+          <p>Welcome, {this.props.singleTeamMembers[0].firstName}!
           </p>
-          <p>{this.props.singleTeams[0].name}</p>
+          <p>Join your team on Slack!</p>
+          <a
+            href={`https://slack.com/oauth/authorize?scope=commands&client_id=553324377632.554405336645&redirect_uri=${uri}&state=${
+              this.props.singleTeamMembers[0].id
+            }`}
+          >
+            <img
+              alt="Add to Slack"
+              height="40"
+              width="139"
+              src="https://platform.slack-edge.com/img/add_to_slack.png"
+              srcSet="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x"
+            />
+          </a>
+          <p>Team: {this.props.singleTeams[0].name}</p>
           <div>
             <p>List of all your reactions</p>
-            {this.props.feelings.length > 0 ? (<p><GenerateTeams /></p>) : (<p>Oops! You haven't responded to any surveys yet!</p>)}
+            {this.props.feelings.length > 0 ? (
+              <p>
+                <GenerateTeams />
+              </p>
+            ) : (
+              <p>Oops! You haven't responded to any surveys yet!</p>
+            )}
           </div>
         </div>
       );
@@ -169,17 +210,16 @@ class Profile extends React.Component {
             <br />
             <input
               onChange={this.handleChange}
-              name="jointeam"
+              name="team_code"
+              id="number"
+              type="number"
+              min="0"
+              step="1"
               placeholder="Enter Team Code Here"
-            />
+              />
+
             <br />
-            <button
-              onClick={() =>
-                this.setState({
-                  view: "join"
-                })
-              }
-            >
+            <button onClick={this.addCodeToMember}>
               Join with this team code
             </button>{" "}
             <br />
@@ -197,6 +237,7 @@ class Profile extends React.Component {
     } else if (view === "create") {
       return (
         <div className="container">
+        {/* <p>Loading...</p> */}
           <NavBar />
           <a
             href={`https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645&redirect_uri=${uri}&state=${
@@ -211,7 +252,11 @@ class Profile extends React.Component {
               srcSet="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x"
             />
           </a>
-          <form onSubmit={this.submitHandler} autoComplete="nope">
+
+          <p>Congratulations on creating your team! Add us on slack, or click below to allow us to update your site access.</p>
+          <br />
+          <button onClick={() => this.props.history.push('/loading')}>Here!</button>
+          {/* <form onSubmit={this.submitHandler} autoComplete="nope">
             <input
               autoComplete="off"
               type="text"
@@ -227,13 +272,14 @@ class Profile extends React.Component {
             >
               Submit Team Title
             </button>
-          </form>
+          </form> */}
         </div>
       );
     } else if (view === "join") {
       return (
         <div className="container">
-          <NavBar />
+        <p>Loading...</p>
+          {/* <NavBar />
           <a
             href={`https://slack.com/oauth/authorize?scope=commands&client_id=553324377632.554405336645&redirect_uri=${uri}&state=${
               this.props.singleTeamMembers[0].id
@@ -247,6 +293,10 @@ class Profile extends React.Component {
               srcSet="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x"
             />
           </a>
+          <p>Congratulations on joining your team. Click the button above to join your team on Slack. Or, click below to see your profile.</p>
+          <button onClick={() => this.setState({
+            view: ""
+          })}>Here</button> */}
           {/* <form onSubmit={this.submitHandler} autoComplete="nope">
             <input
               autoComplete="off"
@@ -276,10 +326,11 @@ function mapStateToProps(state) {
     error: state.teamMembersReducer.error,
     teamMembers: state.teamMembersReducer.teamMembers,
     survey: state.surveyReducer.survey,
-    isFetching: state.surveyReducer.isFetching,
+    surveyIsFetching: state.surveyReducer.surveyIsFetching,
     singleSurvey: state.surveyReducer.singleSurvey,
     singleTeams: state.teamsReducer.singleTeams,
-    feelings: state.feelingsReducer.feelings
+    feelings: state.feelingsReducer.feelings,
+    teams: state.teamsReducer.teams
   };
 }
 
@@ -294,7 +345,8 @@ export default connect(
     editTeamMembers,
     getSingleTeam,
     fetchSingleSurvey,
-    getSurvey
+    getSurvey,
+    joinTeam
   }
 )(Profile);
 

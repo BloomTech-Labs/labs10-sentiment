@@ -29,7 +29,7 @@ class NavBar extends React.Component {
 
               <NavLink to="/accountset">Account Settings</NavLink>
             </div>
-          </div>{" "}
+          </div>
         </>
       ) : (
         <>

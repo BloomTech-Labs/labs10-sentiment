@@ -19,7 +19,6 @@ class Login extends React.Component {
   // }
 
   render() {
-    const { isAuthenticated } = this.props.auth;
 
     return (
       <div className="login-container">

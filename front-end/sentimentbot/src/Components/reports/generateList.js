@@ -50,7 +50,7 @@ function mapStateToProps(state) {
     return {
       singleSurvey: state.surveyReducer.singleSurvey,
       survey: state.surveyReducer.survey,
-      isFetching: state.surveyReducer.isFetching
+      surveyIsFetching: state.surveyReducer.surveyIsFetching
     };
   }
   
