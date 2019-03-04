@@ -368,23 +368,22 @@ router.get("/:id", (req, res) => {
 });
 
 router.delete(`/:id`, (req, res) => {
-  // const { id } = req.params;
-  // db.getID(id)
-  //   .then(data => {
-  //     if (data.length > 0) {
-  //       db.remove(id).then(() => {
-  //         db.get().then(()=>{
-  //           onDeleteSurvey();
-  //         });
-  //       });
-  //     } else {
-  //       serverErrorDelete404(res, type, id);
-  //     }
-  //   })
-  //   .catch(() => {
-  //     serverErrorDelete500(res, type);
-  //   });
-  onDeleteSurvey();
+  const { id } = req.params;
+  db.getID(id)
+    .then(data => {
+      if (data.length > 0) {
+        db.remove(id).then(() => {
+          db.get().then(()=>{
+            onDeleteSurvey();
+          });
+        });
+      } else {
+        serverErrorDelete404(res, type, id);
+      }
+    })
+    .catch(() => {
+      serverErrorDelete500(res, type);
+    });
 });
 
 router.put("/:id", (req, res) => {
