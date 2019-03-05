@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import PreFeelingList from './FeelingsForm';
+import PreFeelingsChosen from './preFeelingsChosen';
+import NavBar from '../NavBar/NavBar';
+// import CustomEmoji from './customEmoji';
+import "emoji-mart/css/emoji-mart.css";
+import { Picker } from "emoji-mart";
 
 import MoodAwe from "../../images/Awe.jpg";
 import MoodSeriously from "../../images/Seriously.jpg";
@@ -29,12 +33,7 @@ import { getSurvey } from "../../actions/survey";
 import { editSurvey } from "../../actions/survey";
 import { deleteSurvey } from "../../actions/survey";
 import { fetchSingleSurvey } from "../../actions/survey";
-
-import { getPreFeeling } from "../../actions/preFeelings";
-import { addPreFeeling } from "../../actions/preFeelings";
-import { editPreFeeling } from "../../actions/preFeelings";
-import { deletePreFeeling } from "../../actions/preFeelings";
-import { fetchSinglePreFeeling } from "../../actions/preFeelings";
+import { addPreFeeling } from "../../actions";
 
 
 class NewSurvey extends Component {
@@ -49,25 +48,49 @@ class NewSurvey extends Component {
       min: 0,
       amPm: "",
       timeZone: "",
+      option1: null,
+      option2: null,
+      option3: null,
+      option4: null,
       preFeelingIdsArray: [],
-      prefeeling_id: 0
+      custom: ""
     };
   }
-  onChangeInput = event => {};
 
+  componentDidMount() {
+    this.setState({
+      option1: this.props.prefeelings[0].id,
+      option2: this.props.prefeelings[0].id,
+      option3: this.props.prefeelings[0].id,
+      option4: this.props.prefeelings[0].id,
+    })
+  }
+
+  emojiPicker = (emoji, event) =>  {
+    event.preventDefault();
+    this.setState({
+      custom: emoji.colons
+    })
+  }
   onChangeHandler = event => {
     this.setState({
       [event.target.name]: event.target.value
     });
   };
 
+  addCustom = event => {
+    event.preventDefault();
+    const custom = {feeling_text: this.state.custom};
+    this.props.addPreFeeling(custom)
+    this.props.history.push("/emojiloading")
+  }
+  
   onChangeDropDown = event => {
     console.log(event.target.value, event.target.id);
     if (
       event.target.id === "manager_id" ||
       event.target.id === "hour" ||
-      event.target.id === "min" ||
-      event.target.id === "prefeeling_id"
+      event.target.id === "min" 
     ) {
       let number = event.target.value;
       number = Number(number);
@@ -84,53 +107,86 @@ class NewSurvey extends Component {
     }
   };
 
-  // bot-button onClick handler
-  // botButtonClick(event){
-  //   console.log(event.target.id)
-  //   switch(.getDBId()) {
-  //     case awe:
-  //       this.props.awe()
-  //       break;
-  //     case seriously:
-  //     this.props.seriously()
-  //       break;
-  //     case cringe:
-  //     this.props.cringe()
-  //       break;
-  //     case disgust:
-  //     this.props.disgust()
-  //       break;
-  //     case drool:
-  //     this.props.drool()
-  //       break;
-  //     case mad:
-  //     this.props.mad()
-  //       break;
-  //     case love:
-  //     this.props.love()
-  //       break;
-  //     case sad:
-  //     this.props.sad()
-  //       break;
-  //     case weep:
-  //     this.props.weep()
-  //       break;
-  //     case whaat:
-  //     this.props.whaat()
-  //       break;
-  //     case happy:
-  //     this.props.happy()
-  //       break;
-  //     case thinking:
-  //     this.props.thinking()
-  //       break;
-  //     default:
-  //   }
-  // }
+  onSelectTest1 = event => {
+    console.log(event.target.value, event.target.id, "hey!");
+    this.setState({
+      ...this.state,
+      option1: parseInt(event.target.value)
+    });
+  }
+
+  onSelectTest2 = event => {
+    console.log(event.target.value, event.target.id, "hey!");
+    this.setState({
+      ...this.state,
+      option2: parseInt(event.target.value)
+    });
+  }
+
+  onSelectTest3 = event => {
+    console.log(event.target.value, event.target.id, "hey!");
+    this.setState({
+      ...this.state,
+      option3: parseInt(event.target.value)
+    });
+  }
+
+  onSelectTest4 = event => {
+    console.log(event.target.value, event.target.id, "hey!");
+    this.setState({
+      ...this.state,
+      option4: parseInt(event.target.value)
+    });
+  }
+
+  onConfirmation = event => {
+    event.preventDefault();
+    console.log("clicked!");
+    if (this.state.preFeelingIdsArray.length > 3) {
+      this.state.preFeelingIdsArray.shift()
+      this.state.preFeelingIdsArray.shift()
+      this.state.preFeelingIdsArray.shift()
+      this.state.preFeelingIdsArray.shift()
+    }
+    this.setState({
+      preFeelingIdsArray: [
+        ...this.state.preFeelingIdsArray, 
+        this.state.option1, 
+        this.state.option2, 
+        this.state.option3, 
+        this.state.option4]
+    })
+  }
+
+  createSurvey = event => {
+    event.preventDefault();
+    let title = this.state.title;
+    let description = this.state.description; 
+    let manager_id = this.props.singleTeamMembers[0].id; 
+    let dailyWeeklyMonthly= this.state.dailyWeeklyMonthly;
+    let hour = this.state.hour;
+    let amPm = this.state.amPm;
+    let timeZone = this.state.timeZone;
+    let min = this.state.min;
+    let preFeelingIdsArray = this.state.preFeelingIdsArray;
+    const combine = {
+      title: title, 
+      description: description, 
+      manager_id: manager_id, 
+      dailyWeeklyMonthly: dailyWeeklyMonthly,
+      hour: hour,
+      amPm: amPm,
+      timeZone: timeZone,
+      min: min,
+      preFeelingIdsArray: preFeelingIdsArray
+    }
+      this.props.addSurvey(combine)};
 
   render() {
+    
     return (
       <div className="table-box">
+        <NavBar />
         <div>
           <h3>M.O.O.D Response Chart</h3>
         </div>
@@ -190,7 +246,29 @@ class NewSurvey extends Component {
         </table>
       
         {/* <Survey.Survey model={model} onComplete={this.onComplete}/> */}
-        <form>
+        {/* <CustomEmoji /> */}
+        <Picker
+                set="apple"
+                title="Pick your emoji…"
+                emoji="point_up"
+                style={{ position: "absolute", bottom: "20px", right: "20px" }}
+                i18n={{
+                search: "Search",
+                categories: { search: "Search Results", recent: "Recents" }
+                }}
+                onClick={this.emojiPicker}
+                // custom={customEmoji}
+            />
+        <input 
+          placeholder={this.state.custom} 
+          type="text" 
+          name="custom"
+          onChange={this.onChangeHandler}>
+        </input>
+        <button onClick={this.addCustom}>
+          Click to Create Your Own Emoji
+        </button>
+        <form onSubmit={this.createSurvey}>
           <div className="title">
             <label>Title</label>
             <input
@@ -209,7 +287,14 @@ class NewSurvey extends Component {
               onChange={this.onChangeHandler}
             />
           </div>
-          <PreFeelingList />
+          <PreFeelingsChosen 
+            onSelectTest1={this.onSelectTest1} 
+            onSelectTest2={this.onSelectTest2}
+            onSelectTest3={this.onSelectTest3}
+            onSelectTest4={this.onSelectTest4}
+            />
+          <button onClick={this.onConfirmation}>Confirm</button>
+    
           <div className="dailyWeeklyMonthly">
             <label>Recurence</label>
             <select id="dailyWeeklyMonthly" onChange={this.onChangeDropDown}>
@@ -316,7 +401,7 @@ class NewSurvey extends Component {
           </div>
         
           {/* <button onClick={handleSubmit}>Submit</button> */}
-          <button>Submit</button>
+          <button onSubmit={this.createSurvey}>Submit</button>
         </form>
       </div>
     );
@@ -330,7 +415,8 @@ function mapStateToProps(state) {
     teamMembers: state.teamMembersReducer.teamMembers,
     survey: state.surveyReducer.survey,
     surveyIsFetching: state.surveyReducer.surveyIsFetching,
-    singleSurvey: state.surveyReducer.singleSurvey
+    singleSurvey: state.surveyReducer.singleSurvey,
+    prefeelings: state.prefeelingsReducer.prefeelings,
   };
 }
 
@@ -349,10 +435,6 @@ export default connect(
     editSurvey,
     deleteSurvey,
     fetchSingleSurvey,
-    getPreFeeling,
-    addPreFeeling,
-    editPreFeeling,
-    deletePreFeeling,
-    fetchSinglePreFeeling,
+    addPreFeeling
   }
 )(NewSurvey);

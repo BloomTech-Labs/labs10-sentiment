@@ -11,13 +11,11 @@ import {
   fetchSingleSurvey,
   getSurvey,
   joinTeam,
+  getPreFeeling, 
 } from "../../actions/index";
 import NavBar from "../NavBar/NavBar";
 
 import GenerateTeams from './generateTeams';
-
-import GenerateTeams from "./generateTeams";
-
 
 class Profile extends React.Component {
   constructor() {
@@ -45,6 +43,7 @@ class Profile extends React.Component {
     this.setState({
       loaded: true
     });
+    this.props.getPreFeeling()
   }
 
   // this.props.teamMembers.length !== prevProps.teamMembers.length
@@ -350,7 +349,8 @@ export default connect(
     getSingleTeam,
     fetchSingleSurvey,
     getSurvey,
-    joinTeam
+    joinTeam,
+    getPreFeeling, 
   }
 )(Profile);
 
