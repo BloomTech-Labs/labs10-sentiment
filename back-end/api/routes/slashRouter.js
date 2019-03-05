@@ -349,7 +349,8 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
     dbAuth
       .getByMemberId(reqBody.member_id)
       .then(data => {
-        const botToken = data[0].access_token;
+        // const botToken = data[0].access_token;
+        const botToken = data[0].bot_access_token;
         console.log("botToken", botToken);
         const {channel_id} = data[0];
         console.log("channel_id", channel_id);
