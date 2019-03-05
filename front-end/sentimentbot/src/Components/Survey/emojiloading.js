@@ -11,7 +11,7 @@ getSingleTeamMembers,
   getFeelings,
   getPreFeeling
 } from "../../actions/index";
-import MoodThinking from "../../images/Thinking.jpg";
+import MoodThinking from "./Thinking.jpg";
 
 class EmojiLoading extends React.Component {
     state = {
