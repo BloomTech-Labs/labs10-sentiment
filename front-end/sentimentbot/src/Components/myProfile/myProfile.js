@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import "../App.css";
 import {
   getSingleTeamMembers,
   addTeamMembers,
@@ -171,9 +172,10 @@ class Profile extends React.Component {
 
     if (this.props.singleTeamMembers[0].team_id != null) {
       return (
-        <div className="container">
-          <NavBar />
-          <p>Welcome, {this.props.singleTeamMembers[0].firstName}!</p>
+<div>
+        <NavBar />
+        <div className="main-container">
+         <div className="name-container"> <p>Welcome, {this.props.singleTeamMembers[0].firstName}!</p>
           <p>Join your team on Slack!</p>
           <a
             href={`https://slack.com/oauth/authorize?scope=commands&client_id=553324377632.554405336645&redirect_uri=${uri}&state=${
@@ -188,6 +190,7 @@ class Profile extends React.Component {
               srcSet="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x"
             />
           </a>
+          </div>
           <p>Team: {this.props.singleTeams[0].name}</p>
           <div>
             <p>List of all your reactions</p>
@@ -200,12 +203,14 @@ class Profile extends React.Component {
             )}
           </div>
         </div>
+        </div>
       );
     }
     if (view === "") {
       return (
-        <div className="container">
-          <NavBar />
+        <div>
+        <NavBar />
+        <div className="join-container">
           <div>
             <br />
             <br />
@@ -233,10 +238,11 @@ class Profile extends React.Component {
             <button onClick={this.createTeam}>Create a Team</button> <br />
           </div>
         </div>
+        </div>
       );
     } else if (view === "create") {
       return (
-        <div className="container">
+        <div className="create-container">
           {/* <p>Loading...</p> */}
           <NavBar />
           <a
