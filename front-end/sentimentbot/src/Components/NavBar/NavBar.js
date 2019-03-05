@@ -112,6 +112,11 @@ class NavBar extends React.Component {
         <NavbarToggler onClick={this.toggle} />
         <Collapse isOpen={this.state.isOpen} navbar>
           <Nav className="ml-auto" navbar>
+          <NavItem>
+          <NavLink>
+            <Navlink to="/profile">Profile</Navlink>
+          </NavLink>
+        </NavItem>
           <UncontrolledDropdown nav inNavbar>
             <DropdownToggle style={fontColor} nav caret>
               Options
