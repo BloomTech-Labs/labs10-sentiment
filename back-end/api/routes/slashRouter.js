@@ -372,7 +372,7 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
       })
       .catch(err => err);
   } else if (reqBody.payload) {
-    console.log("jsonPayload", jsonPayload);
+ 
     let jsonPayload = JSON.parse(reqBody.payload);
     console.log("jsonPayload", jsonPayload);
     /////////////////////////////////////////////
