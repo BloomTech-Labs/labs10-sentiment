@@ -27,6 +27,7 @@ const type = "team";
 //     .catch(serverErrorPost(res));
 // });
 
+// https://slack.com/oauth/authorize?client_id=553324377632.554405336645&scope=bot,chat:write:bot,commands,emoji:read
 // https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645&redirect_uri=https://botsentiment.herokuapp.com/api/slackauth&state=id2
 // https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645&redirect_uri=http://localhost:5002/api/slackauth&state=id
 

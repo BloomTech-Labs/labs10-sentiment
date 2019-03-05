@@ -59,7 +59,7 @@ const onServerStartScheduleSurveys = () => {
           surveyFeelingsDb
             .getSurveyID(survey_id)
             .then(data => {
-              console.log("survey feeling array", data);
+              // console.log("survey feeling array", data);
               let feelingTextArray = [];
 
               for (let i = 0; i < data.length; i++) {
@@ -67,7 +67,7 @@ const onServerStartScheduleSurveys = () => {
                 preFeelingsDb
                   .getID(feelings_id)
                   .then(data => {
-                    console.log("pre feeling array", data);
+                    // console.log("pre feeling array", data);
                     if (data.length === 0) {
                       // res.status(404).json({
                       console.log({
@@ -95,7 +95,7 @@ const onServerStartScheduleSurveys = () => {
               console.log("botInfo", botInfo);
               /////////////////////////////////////////////////////////survey_id to string
               let stringSurveyId = survey_id.toString();
-              console.log("stringSurveyId", stringSurveyId);
+              // console.log("stringSurveyId", stringSurveyId);
               var j = schedule.scheduleJob(stringSurveyId, ex_time, function() {
                 console.log("Schedule Processed");
                 let postOptions = {
