@@ -105,7 +105,6 @@ class NavBar extends React.Component {
                 </Collapse>
               </Navbar>
             </div>
-          </div>
         </>
       ) : (
         <Navbar expand="md">
