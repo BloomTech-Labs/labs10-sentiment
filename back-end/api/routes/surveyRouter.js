@@ -95,7 +95,7 @@ const onServerStartScheduleSurveys = () => {
               console.log("botInfo", botInfo);
               /////////////////////////////////////////////////////////survey_id to string
               let stringSurveyId = survey_id.toString();
-              // console.log("stringSurveyId", stringSurveyId);
+              console.log("stringSurveyId", stringSurveyId);
               var j = schedule.scheduleJob(stringSurveyId, ex_time, function() {
                 console.log("Schedule Processed");
                 let postOptions = {
