@@ -27,3 +27,7 @@
 .dropdown-menu .dropdown-item:hover {
     background-color: #5bbdc2;
 }
+
+.logout-button {
+    color: white;
+}

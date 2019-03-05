@@ -92,6 +92,7 @@ class NavBar extends React.Component {
                             </NavLink>
                           </NavItem>
                         </DropdownItem>
+
                         <DropdownItem>
                           <NavItem>
                             <NavLink>
