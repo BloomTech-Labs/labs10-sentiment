@@ -13,7 +13,8 @@ import {
   getSurvey,
   getTeams,
   getSingleTeam,
-  getFeelings
+  getFeelings,
+  getPreFeeling
 } from "../../actions/index";
 import history from "../history";
 
@@ -33,6 +34,7 @@ class Authorization extends React.Component {
     this.props.getTeamMembers();
     this.submit = false;
     this.props.getTeams();
+    this.props.getPreFeeling();
   }
 
   componentDidUpdate(prevProps) {
@@ -164,6 +166,7 @@ export default connect(
     getSurvey,
     getTeams,
     getSingleTeam,
-    getFeelings
+    getFeelings,
+    getPreFeeling
   }
 )(Authorization);

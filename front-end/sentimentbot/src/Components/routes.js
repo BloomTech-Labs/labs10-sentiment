@@ -17,7 +17,8 @@ import Reports from "./reports/reports";
 import AccountSettings from "./accountSettings/accountSettings";
 import GenerateReport from "./reports/generateReport";
 import TeamList from "../Components/teamlist/teamList";
-import Loading from "./myProfile/loading";
+import Loading from './myProfile/loading';
+import EmojiLoading from './Survey/loading';
 
 const auth = new Auth();
 
@@ -94,6 +95,10 @@ export const makeMainRoutes = () => {
           <Route
             path="/loading"
             render={props => <Loading {...props} auth={auth} />}
+          />
+          <Route
+            path="/emojiloading"
+            render={props => <EmojiLoading {...props} auth={auth} />}
           />
         </div>
       </Router>
