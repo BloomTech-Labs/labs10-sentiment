@@ -92,7 +92,6 @@ class NavBar extends React.Component {
                             </NavLink>
                           </NavItem>
                         </DropdownItem>
-
                         <DropdownItem>
                           <NavItem>
                             <NavLink>
@@ -139,8 +138,8 @@ class NavBar extends React.Component {
       </Collapse>
     </Navbar>
       )}
-    </>
   );
+</>
 }};
 
 function mapStateToProps(state) {
