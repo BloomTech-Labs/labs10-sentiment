@@ -105,52 +105,42 @@ class NavBar extends React.Component {
                 </Collapse>
               </Navbar>
             </div>
-          </>
-        ) : (
-          <>
-            {/* <Logout auth={auth} />
-          <div className="navBar">
-            <div className="navButton">
-              <NavLink to="/profile">Profile</NavLink>
-
-              <NavLink to="/accountset">Account Settings</NavLink>
-            </div>
-          </div> */}
-            <Navbar expand="md">
-              <NavbarBrand href="/home">MOOD</NavbarBrand>
-              <NavbarToggler onClick={this.toggle} />
-              <Collapse isOpen={this.state.isOpen} navbar>
-                <Nav className="ml-auto" navbar>
-                  <UncontrolledDropdown nav inNavbar>
-                    <DropdownToggle style={fontColor} nav caret>
-                      Options
-                    </DropdownToggle>
-                    <DropdownMenu right style={backgroundColor}>
-                      <DropdownItem>
-                        <NavItem>
-                          <NavLink>
-                            <Navlink to="/accountset">Account Settings</Navlink>
-                          </NavLink>
-                        </NavItem>
-                      </DropdownItem>
-                      <DropdownItem>
-                        <NavItem>
-                          <NavLink>
-                            <Logout auth={auth} />
-                          </NavLink>
-                        </NavItem>
-                      </DropdownItem>
-                    </DropdownMenu>
-                  </UncontrolledDropdown>
-                </Nav>
-              </Collapse>
-            </Navbar>
-          </>
-        )}
-      </>
-    );
-  }
-}
+          </div>
+        </>
+      ) : (
+        <Navbar expand="md">
+        <NavbarBrand href="/home">MOOD</NavbarBrand>
+        <NavbarToggler onClick={this.toggle} />
+        <Collapse isOpen={this.state.isOpen} navbar>
+          <Nav className="ml-auto" navbar>
+          <UncontrolledDropdown nav inNavbar>
+            <DropdownToggle style={fontColor} nav caret>
+              Options
+            </DropdownToggle>
+            <DropdownMenu right style={backgroundColor}>
+              <DropdownItem>
+                <NavItem>
+                  <NavLink>
+                    <Navlink to="/accountset">Account Settings</Navlink>
+                  </NavLink>
+                </NavItem>
+              </DropdownItem>
+             <DropdownItem>
+                          <NavItem>
+                            <NavLink>
+                              <Logout auth={auth} />
+                            </NavLink>
+                          </NavItem>
+                        </DropdownItem>
+            </DropdownMenu>
+          </UncontrolledDropdown>
+        </Nav>
+      </Collapse>
+    </Navbar>
+      )}
+    </>
+  );
+}};
 
 function mapStateToProps(state) {
   return {
