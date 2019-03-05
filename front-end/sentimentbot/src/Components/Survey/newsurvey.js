@@ -5,19 +5,7 @@ import NavBar from '../NavBar/NavBar';
 // import CustomEmoji from './customEmoji';
 import "emoji-mart/css/emoji-mart.css";
 import { Picker } from "emoji-mart";
-
-import MoodAwe from "../../images/Awe.jpg";
-import MoodSeriously from "../../images/Seriously.jpg";
-import MoodCringe from "../../images/Cringe.jpg";
-import MoodDisgust from "../../images/Disgust.jpg";
-import MoodDrool from "../../images/Drool.jpg";
-import MoodHappy from "../../images/Happy.jpg";
-import MoodLove from "../../images/Love.jpg";
-import MoodMad from "../../images/Mad.jpg";
-import MoodSad from "../../images/Sad.jpg";
-import MoodWeep from "../../images/Weep.jpg";
-import MoodWHAAT from "../../images/WHAAT.jpg";
-import MoodThinking from "../../images/Thinking.jpg";
+import MoodBotCarousel from './carousel';
 
 import { addTeam } from "../../actions/teams";
 import { getTeams } from "../../actions/teams";
@@ -190,61 +178,7 @@ class NewSurvey extends Component {
         <div>
           <h3>M.O.O.D Response Chart</h3>
         </div>
-        <table className="MoodbotTable">
-          <tr>
-            <td>
-              <p>Awe</p>
-              <button id="awe" className="bot-buttons"><img className="moodbot-img" src={MoodAwe} alt="awe" /></button>
-            </td>
-            <td>
-              <p>Seriously</p>
-              <button id="seriously" className="bot-buttons"><img className="moodbot-img" src={MoodSeriously} alt="come on" /></button>
-            </td>
-            <td>
-              <p>Cringe</p>
-              <button id="cringe" className="bot-buttons"><img className="moodbot-img" src={MoodCringe} alt="cringe" /></button>
-            </td>
-            <td>
-              <p>Disgust</p>
-              <button id="disgust" className="bot-buttons"><img className="moodbot-img" src={MoodDisgust} alt="disgust" /></button>
-            </td>
-            <td>
-              <p>Drool</p>
-              <button id="drool" className="bot-buttons"><img className="moodbot-img" src={MoodDrool} alt="drool" /></button>
-            </td>
-            <td>
-              <p>Mad</p>
-              <button id="mad" className="bot-buttons"><img className="moodbot-img" src={MoodMad} alt="mad" /></button>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <p>Love</p>
-              <button id="love" className="bot-buttons"><img className="moodbot-img" src={MoodLove} alt="love" /></button>
-            </td>
-            <td>
-              <p>Sad</p>
-              <button id="sad" className="bot-buttons"><img className="moodbot-img" src={MoodSad} alt="sad" /></button>
-            </td>
-            <td>
-              <p>Weep</p>
-              <button id="weep" className="bot-buttons"><img className="moodbot-img" src={MoodWeep} alt="weep" /></button>
-            </td>
-            <td>
-              <p>WHAAT</p>
-              <button id="whaat" className="bot-buttons"><img className="moodbot-img" src={MoodWHAAT} alt="what" /></button>
-            </td>
-            <td>
-              <p>Happy</p>
-              <button id="happy" className="bot-buttons"><img className="moodbot-img" src={MoodHappy} alt="happy" /></button>
-            </td>
-            <td>
-              <p>Thinking</p>
-              <button id="thinking" className="bot-buttons"><img className="moodbot-img" src={MoodThinking} alt="thinking" /></button>
-            </td>
-          </tr>
-        </table>
-      
+       <MoodBotCarousel />
         {/* <Survey.Survey model={model} onComplete={this.onComplete}/> */}
         {/* <CustomEmoji /> */}
         <Picker

@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { getTeamsMembers, editTeamMembers } from "../../actions/index";
 import "./teamlist.css";
-
+import  NavBar from '../NavBar/NavBar';
 class TeamList extends React.Component {
   componentWillMount() {
     this.props.getTeamsMembers(this.props.singleTeamMembers[0].team_id);
@@ -18,6 +18,7 @@ class TeamList extends React.Component {
     return (
       <>
         <div className="container">
+        <NavBar />
           <p>{this.props.singleTeams[0].name}</p>
           <a
             href={`https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645&redirect_uri=${uri}&state=${

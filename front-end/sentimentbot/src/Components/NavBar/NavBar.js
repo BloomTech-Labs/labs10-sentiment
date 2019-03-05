@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink as Navlink } from 'react-router-dom';
+// import { NavLink } from 'react-router-dom';
 import Logout from "../login/logout";
 import "./NavBar.css";
 import Auth from "../Auth/auth";
@@ -80,7 +81,7 @@ class NavBar extends React.Component {
         </Navbar>
       </div>
           <Logout auth={auth} />
-          <div className="navBar">
+          {/* <div className="navBar">
             <div className="navButton">
               <NavLink to="/profile">Profile</NavLink>
 
@@ -94,7 +95,7 @@ class NavBar extends React.Component {
 
               <NavLink to="/accountset">Account Settings</NavLink>
             </div>
-          </div>
+          </div> */}
         </>
       ) : (
         <>
