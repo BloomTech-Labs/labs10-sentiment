@@ -14,7 +14,6 @@ import {
   getPreFeeling, 
 } from "../../actions/index";
 import NavBar from "../NavBar/NavBar";
-
 import GenerateTeams from './generateTeams';
 
 class Profile extends React.Component {
@@ -67,7 +66,7 @@ class Profile extends React.Component {
     ) {
       this.props.fetchSingleSurvey(this.props.survey[0].survey_time_stamp);
       this.props.getSingleTeam(this.props.singleTeamMembers[0].team_id);
-      this.props.getSingleTeamMembers(localStorage.getItem('email'))
+      this.props.getSingleTeamMembers(localStorage.getItem("email"));
       this.setState({
         loaded: false
       });
@@ -100,9 +99,9 @@ class Profile extends React.Component {
       view: "create",
       createTeam: ""
     });
-    let currentMember = this.props.singleTeamMembers[0]
-    currentMember.type = "manager"
-    this.props.getSingleTeamMembers(localStorage.getItem('email'))
+    let currentMember = this.props.singleTeamMembers[0];
+    currentMember.type = "manager";
+    this.props.getSingleTeamMembers(localStorage.getItem("email"));
   };
 
   addCodeToMember = event => {
@@ -118,11 +117,11 @@ class Profile extends React.Component {
 
     for (let i = 0; i < teams.length; i++) {
       if (teams[i].team_code === code) {
-        futureTeamId = teams[i].id
+        futureTeamId = teams[i].id;
       }
     }
 
-    console.log(futureTeamId)
+    console.log(futureTeamId);
 
     let member = this.props.singleTeamMembers[0];
 
@@ -131,16 +130,16 @@ class Profile extends React.Component {
 
     console.log(member);
 
-    this.props.joinTeam(member.id, {team_code: code} );
+    this.props.joinTeam(member.id, { team_code: code });
     this.setState({
-      view: 'join',
+      view: "join",
       team_code: 0
-    })
-    let currentMember = this.props.singleTeamMembers[0]
+    });
+    let currentMember = this.props.singleTeamMembers[0];
 
     currentMember.type = member.type;
     currentMember.team_id = futureTeamId;
-    this.props.history.push('/loading')
+    this.props.history.push("/loading");
   };
 
   handleChange = event => {
@@ -174,8 +173,7 @@ class Profile extends React.Component {
       return (
         <div className="container">
           <NavBar />
-          <p>Welcome, {this.props.singleTeamMembers[0].firstName}!
-          </p>
+          <p>Welcome, {this.props.singleTeamMembers[0].firstName}!</p>
           <p>Join your team on Slack!</p>
           <a
             href={`https://slack.com/oauth/authorize?scope=commands&client_id=553324377632.554405336645&redirect_uri=${uri}&state=${
@@ -219,8 +217,7 @@ class Profile extends React.Component {
               min="0"
               step="1"
               placeholder="Enter Team Code Here"
-              />
-
+            />
             <br />
             <button onClick={this.addCodeToMember}>
               Join with this team code
@@ -240,7 +237,7 @@ class Profile extends React.Component {
     } else if (view === "create") {
       return (
         <div className="container">
-        {/* <p>Loading...</p> */}
+          {/* <p>Loading...</p> */}
           <NavBar />
           <a
             href={`https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645&redirect_uri=${uri}&state=${
@@ -256,9 +253,14 @@ class Profile extends React.Component {
             />
           </a>
 
-          <p>Congratulations on creating your team! Add us on slack, or click below to allow us to update your site access.</p>
+          <p>
+            Congratulations on creating your team! Add us on slack, or click
+            below to allow us to update your site access.
+          </p>
           <br />
-          <button onClick={() => this.props.history.push('/loading')}>Here!</button>
+          <button onClick={() => this.props.history.push("/loading")}>
+            Here!
+          </button>
           {/* <form onSubmit={this.submitHandler} autoComplete="nope">
             <input
               autoComplete="off"
@@ -281,7 +283,7 @@ class Profile extends React.Component {
     } else if (view === "join") {
       return (
         <div className="container">
-        <p>Loading...</p>
+          <p>Loading...</p>
           {/* <NavBar />
           <a
             href={`https://slack.com/oauth/authorize?scope=commands&client_id=553324377632.554405336645&redirect_uri=${uri}&state=${
