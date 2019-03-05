@@ -34,51 +34,69 @@ class NavBar extends React.Component {
     });
   }
   render() {
-  return (
-    <>
-      {this.props.singleTeamMembers[0].type === "manager" ? (
-        <>
-          <div>
-        <Navbar color="light" light expand="md">
-          <NavbarBrand href="/home">MOOD</NavbarBrand>
-          <NavbarToggler onClick={this.toggle} />
-          <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav className="ml-auto" navbar>
-              <NavItem>
-                <NavLink><Navlink to="/profile">Profile</Navlink></NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink><Navlink to="/teamlist">Team List</Navlink></NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink><Navlink  to="/survey">Survey</Navlink></NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink><Navlink  to="/billing">Billing</Navlink></NavLink>
-              </NavItem>
-              <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret>
-                  Options
-                </DropdownToggle>
-                <DropdownMenu right>
-                  <DropdownItem>
+    const backgroundColor = {
+      backgroundColor: "#02C8A7"
+    };
+
+    const fontColor = {
+      color: "white"
+    };
+
+    return (
+      <>
+        {this.props.singleTeamMembers[0].type === "team-member" ? (
+          <>
+            <div>
+              <Navbar expand="md">
+                <NavbarBrand href="/home">MOOD</NavbarBrand>
+                <NavbarToggler onClick={this.toggle} />
+                <Collapse isOpen={this.state.isOpen} navbar>
+                  <Nav className="ml-auto" navbar>
                     <NavItem>
-                      <NavLink><Navlink to="/accountset">Account Settings</Navlink></NavLink>
+                      <NavLink>
+                        <Navlink to="/profile">Profile</Navlink>
+                      </NavLink>
                     </NavItem>
-                  </DropdownItem>
-                  <DropdownItem>
-                    Option 2
-                  </DropdownItem>
-                  <DropdownItem divider />
+                    <NavItem>
+                      <NavLink>
+                        <Navlink to="/teamlist">Team List</Navlink>
+                      </NavLink>
+                    </NavItem>
+                    <NavItem>
+                      <NavLink>
+                        <Navlink to="/survey">Survey</Navlink>
+                      </NavLink>
+                    </NavItem>
+                    <NavItem>
+                      <NavLink>
+                        <Navlink to="/billing">Billing</Navlink>
+                      </NavLink>
+                    </NavItem>
+                    <UncontrolledDropdown nav inNavbar>
+                      <DropdownToggle style={fontColor} nav caret>
+                        Options
+                      </DropdownToggle>
+                      <DropdownMenu right style={backgroundColor}>
+                        <DropdownItem>
+                          <NavItem>
+                            <NavLink>
+                              <Navlink to="/accountset">
+                                Account Settings
+                              </Navlink>
+                            </NavLink>
+                          </NavItem>
+                        </DropdownItem>
+                        <DropdownItem>Option 2</DropdownItem>
+                        {/* <DropdownItem divider />
                   <DropdownItem>
                     Reset
-                  </DropdownItem>
-                </DropdownMenu>
-              </UncontrolledDropdown>
-            </Nav>
-          </Collapse>
-        </Navbar>
-      </div>
+                  </DropdownItem> */}
+                      </DropdownMenu>
+                    </UncontrolledDropdown>
+                  </Nav>
+                </Collapse>
+              </Navbar>
+            </div>
           <Logout auth={auth} />
           <div className="navBar">
             <div className="navButton">
@@ -97,16 +115,29 @@ class NavBar extends React.Component {
           </div>
         </>
       ) : (
-        <>
-          <Logout auth={auth} />
-          <div className="navBar">
-            <div className="navButton">
-              <NavLink to="/profile">Profile</NavLink>
-
-              <NavLink to="/accountset">Account Settings</NavLink>
-            </div>
-          </div>
-        </>
+        <Navbar expand="md">
+        <NavbarBrand href="/home">MOOD</NavbarBrand>
+        <NavbarToggler onClick={this.toggle} />
+        <Collapse isOpen={this.state.isOpen} navbar>
+          <Nav className="ml-auto" navbar>
+          <UncontrolledDropdown nav inNavbar>
+            <DropdownToggle style={fontColor} nav caret>
+              Options
+            </DropdownToggle>
+            <DropdownMenu right style={backgroundColor}>
+              <DropdownItem>
+                <NavItem>
+                  <NavLink>
+                    <Navlink to="/accountset">Account Settings</Navlink>
+                  </NavLink>
+                </NavItem>
+              </DropdownItem>
+              <DropdownItem>Option 2</DropdownItem>
+            </DropdownMenu>
+          </UncontrolledDropdown>
+        </Nav>
+      </Collapse>
+    </Navbar>
       )}
     </>
   );
