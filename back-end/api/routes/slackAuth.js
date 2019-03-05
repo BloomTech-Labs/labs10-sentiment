@@ -29,6 +29,7 @@ const type = "team";
 
 // https://slack.com/oauth/authorize?client_id=553324377632.554405336645&scope=bot,chat:write:bot,commands,emoji:read
 // https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645&redirect_uri=https://botsentiment.herokuapp.com/api/slackauth&state=id2
+// https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645&redirect_uri=https://botsentiment.herokuapp.com/api/slackauth&state=id2
 // https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645&redirect_uri=http://localhost:5002/api/slackauth&state=id
 
 // let uri = "http://localhost:5002/api/slackauth";
@@ -70,7 +71,7 @@ let uri = "https://botsentiment.herokuapp.com/api/slackauth";
 
 function sendToAuthorization() {
   let postOptions = {
-    uri: "https://sentimentbot.netlify.com/Authorization",
+    uri: "https://sentimentbot.netlify.com/authorization",
     method: "GET"
   };
   request(postOptions, (error, response, body) => {
