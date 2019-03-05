@@ -230,6 +230,7 @@ const surveyScheduler = (timeInfo, postInfo) => {
                   exTime,
                   function() {
                     console.log("Schedule Processed");
+                    console.log("botInfo2", botInfo);
                     let postOptions = {
                       uri:
                         "https://botsentiment.herokuapp.com/api/slash/send-me-buttons",
