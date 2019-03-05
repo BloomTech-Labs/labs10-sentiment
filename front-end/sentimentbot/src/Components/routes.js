@@ -20,6 +20,7 @@ import TeamList from "../Components/teamlist/teamList";
 import Loading from './myProfile/loading';
 import EmojiLoading from './Survey/loading';
 
+
 const auth = new Auth();
 
 const handleAuthentication = ({ location }) => {
