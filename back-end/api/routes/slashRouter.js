@@ -136,7 +136,7 @@ let surveyIdDep;
 router.post("/send-me-buttons", urlencodedParser, (req, res) => {
   res.status(200).end(); // best practice to respond with empty 200 status code
   let reqBody = req.body;
-  // console.log("reqBody", reqBody);
+  console.log("reqBody", reqBody);
 
   if (reqBody.command === "/send-me-buttons") {
     let responseURL = reqBody.response_url;
@@ -372,6 +372,7 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
       })
       .catch(err => err);
   } else if (reqBody.payload) {
+    console.log("jsonPayload", jsonPayload);
     let jsonPayload = JSON.parse(reqBody.payload);
     console.log("jsonPayload", jsonPayload);
     /////////////////////////////////////////////
