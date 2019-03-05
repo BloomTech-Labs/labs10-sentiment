@@ -9,7 +9,7 @@ export default class Auth {
   auth0 = new auth0.WebAuth({
     domain: "bikbik.auth0.com",
     clientID: "BnXSvU6tE4W8WGMt3gDWra24hXr8qY0e",
-    redirectUri: process.env.ENV_VAR,
+    redirectUri: "https://sentimentbot.netlify.com/callback",
 //     redirectUri: "http://localhost:3000/callback",
     responseType: "token id_token",
     scope: "openid profile email"
