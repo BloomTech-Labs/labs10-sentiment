@@ -98,16 +98,16 @@ function postMessage(JSONmessage, token) {
 router.post("/connect-channel-to-survey", urlencodedParser, (req, res) => {
   res.status(200).end(); // best practice to respond with empty 200 status code
   let reqBody = req.body;
-  // console.log("reqBody", reqBody);
+  console.log("reqBody", reqBody);
   let { channel_id, user_id } = reqBody;
-  // console.log({ channel_id: channel_id, user_id: user_id });
+  console.log({ channel_id: channel_id, user_id: user_id });
 
   dbAuth
     .getBySlackUserId(user_id)
     .then(data => {
-      // console.log({ data: data });
+      console.log({ data: data });
       let { id } = data[0];
-      // console.log({ id: id });
+      console.log({ id: id });
       let post = {
         channel_id: channel_id
       };
