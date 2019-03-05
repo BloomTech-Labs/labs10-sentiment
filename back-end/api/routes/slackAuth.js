@@ -69,7 +69,7 @@ let uri = "https://botsentiment.herokuapp.com/api/slackauth";
 
 function sendToAuthorization() {
   let postOptions = {
-    uri: "https://sentimentbot.netlify.com/Authorization",
+    uri: "https://sentimentbot.netlify.com/authorization",
     method: "GET"
   };
   request(postOptions, (error, response, body) => {
