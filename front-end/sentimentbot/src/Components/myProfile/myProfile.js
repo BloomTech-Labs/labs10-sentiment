@@ -175,7 +175,7 @@ class Profile extends React.Component {
 <div>
         <NavBar />
         <div className="main-container">
-         <div className="name-container"> <p>Welcome, {this.props.singleTeamMembers[0].firstName}!</p>
+         <div className="name-container"> <h1 className="welcome-container">Welcome, {this.props.singleTeamMembers[0].firstName}!</h1>
           <p>Join your team on Slack!</p>
           <a
             href={`https://slack.com/oauth/authorize?scope=commands&client_id=553324377632.554405336645&redirect_uri=${uri}&state=${
