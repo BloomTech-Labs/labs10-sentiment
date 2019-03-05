@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 // import App from '../src/Components/App';
 import { makeMainRoutes } from './Components/routes';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const routes = makeMainRoutes();
 

@@ -16,7 +16,7 @@ import Survey from "./Survey/newsurvey";
 import Reports from "./reports/reports";
 import AccountSettings from "./accountSettings/accountSettings";
 import GenerateReport from "./reports/generateReport";
-import TeamList from "../Components/teamlist/teamList";
+import TeamList from "../Components/teamList/teamList";
 import Loading from './myProfile/loading';
 import EmojiLoading from './Survey/loading';
 
