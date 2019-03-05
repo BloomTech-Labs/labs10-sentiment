@@ -137,8 +137,8 @@ class NavBar extends React.Component {
       </Collapse>
     </Navbar>
       )}
+  </>
   );
-</>
 }};
 
 function mapStateToProps(state) {
