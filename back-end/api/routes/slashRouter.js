@@ -336,9 +336,9 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
       .getByMemberId(reqBody.member_id)
       .then(data => {
         const botToken = data[0].access_token;
-        // console.log("botToken", botToken);
+        console.log("botToken", botToken);
         const {channel_id} = data[0];
-        // console.log("channel_id", channel_id);
+        console.log("channel_id", channel_id);
         if(channel_id === null){
           res.status(404).json("channel id is equall to null");
         }else{
