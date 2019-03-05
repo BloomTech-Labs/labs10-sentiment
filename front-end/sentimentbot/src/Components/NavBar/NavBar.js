@@ -86,7 +86,7 @@ class NavBar extends React.Component {
                             </NavLink>
                           </NavItem>
                         </DropdownItem>
-                        <DropdownItem>Option 2</DropdownItem>
+                        <DropdownItem>Logout</DropdownItem>
                         {/* <DropdownItem divider />
                   <DropdownItem>
                     Reset
@@ -132,7 +132,14 @@ class NavBar extends React.Component {
                   </NavLink>
                 </NavItem>
               </DropdownItem>
-              <DropdownItem>Option 2</DropdownItem>
+              
+              <DropdownItem>
+              <NavItem>
+              <NavLink>
+              <Logout auth={auth}/>
+              </NavLink>
+              </NavItem>
+              </DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>
         </Nav>

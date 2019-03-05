@@ -18,6 +18,21 @@
  padding: 10px;
 }
 
+/* My Profile */
+
+.main-container {
+  width: 900px;
+  margin-top: 40px;
+ margin-left: auto;
+ margin-right: auto;
+
+
+  
+}
+
+.name-container {
+}
+
 /* Billing */
 .billing-container {
   text-align: center;
