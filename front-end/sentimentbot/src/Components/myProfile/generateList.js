@@ -1,21 +1,19 @@
 import React from "react";
 import { connect } from 'react-redux'
-import { getSingleTeam, joinTeam } from "../../actions";
+import { getFeelings } from "../../actions";
 import '../history';
 
 
 function GenerateList(props) {
 
-  let count = props.teams.length;
-
-  console.log(props.teams[0].team_code)
+  let count = props.feelings.length;
 
 
-  function generateReport(i) {
-      const id = props.singleTeamMembers[0].id;
-      const team_code = { team_code: i}
-      props.joinTeam(id, team_code)
-  }
+//   function generateReport(i) {
+//       const id = props.singleTeamMembers[0].id;
+//       const team_code = { team_code: i}
+//       props.joinTeam(id, team_code)
+//   }
 
 //   for (let i=0; i<count; i++) {
 //       <div>
@@ -35,7 +33,8 @@ function GenerateList(props) {
 function displayDivs() {
     let divs = [];
     for(let i=0; i<count; i++) {
-        divs.push(<div key={i}><p>{props.teams[i].name} Join this team?</p><button onClick={() => generateReport(props.teams[i].team_code)}>Here!</button></div>)
+        let date = new Date(`${props.feelings[i].created_at}`)
+        divs.push(<div key={i}><p>You reacted with {props.feelings[i].feeling_text} on {date.toDateString()}.</p></div>)
     }
     return divs
 }
@@ -50,15 +49,11 @@ return (
 
 function mapStateToProps(state) {
     return {
-      singleTeams: state.teamsReducer.singleTeams,
-      teams: state.teamsReducer.teams,
-      isFetching: state.teamsReducer.isFetching,
-      teamMembers: state.teamsReducer.teamMembers,
-      singleTeamMembers: state.teamMembersReducer.singleTeamMembers
+        feelings: state.feelingsReducer.feelings
     };
   }
   
   export default connect(
     mapStateToProps,
-    { getSingleTeam, joinTeam }
+    { getFeelings }
   )(GenerateList);

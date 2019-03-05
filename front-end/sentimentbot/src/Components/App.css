@@ -4,8 +4,20 @@
   align-items: inherit;
   justify-content: center;
   background-color: whitesmoke;
-  
+  font-size: 62.5%;
+  font-family: 'Lora', serif;
 }
+
+h1 {
+  font-family: 'Fredoka One', cursive;
+}
+
+p {
+  padding-left: 10px;
+  font-family: 'Lora', serif;
+  font-size: 1.3rem;
+}
+
 
 /* Home */
 .home-container {
@@ -17,6 +29,27 @@
  border: 1px solid black;
  padding: 10px;
 }
+
+/* My Profile */
+
+.main-container {
+  width: 900px;
+  margin-top: 60px;
+ margin-left: auto;
+ margin-right: auto;
+
+}
+
+.main-container p {
+  font-family: 'Roboto', sans-serif;
+}
+.name-container {
+}
+
+.welcome-container {
+  font-size: 4rem;
+}
+
 
 /* Billing */
 .billing-container {
