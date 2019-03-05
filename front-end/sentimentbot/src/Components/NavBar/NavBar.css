@@ -18,8 +18,36 @@
     }
 } */
 
-.nav-link a {
+.nav-item .nav-link a {
     text-decoration: none;
-    color: rgba(0,0,0,.5);
+    color: white;
+}
+
+.navbar {
+    background-color: #02C8A7;
+}
+
+.navbar-expand-md a {
+    color: #F53240;
+}
+
+.dropdown-menu .dropdown-item {
+    background-color: #02C8A7;
+}
+
+.dropdown-menu-right {
+    background-color: #02C8A7; 
+}
+
+.dropdown-menu {
+    background-color: #02C8A7;
+}
+
+.dropdown-menu .dropdown-item:hover {
+    background-color: #5bbdc2;
+}
+
+.logout-button {
+    color: white;
 }
 

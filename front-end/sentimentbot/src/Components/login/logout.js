@@ -18,11 +18,11 @@ class Logout extends React.Component {
     return (
       <div className="login-container">
 
-            <button
+            <div
             onClick={this.logout.bind(this)}
-            className="login-button">
+            className="logout-button">
               Log Out
-            </button>
+            </div>
       </div>
     );
   }
