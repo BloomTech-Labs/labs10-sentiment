@@ -9,10 +9,10 @@ class PieChart extends React.Component {
   constructor() {
     super();
     this.state = {
-      response1: "",
-      response2: "",
-      response3: "",
-      response4: "",
+      response1: null,
+      response2: null,
+      response3: null,
+      response4: null,
       count1: 0,
       count2: 0,
       count3: 0,
@@ -23,46 +23,78 @@ class PieChart extends React.Component {
 
   componentDidMount() {
     this.setState({ complete: false });
-    let count = 0;
+    this.count = 0;
     this.response1 = "";
     this.response2 = "";
     this.response3 = "";
     this.response4 = "";
     this.complete = false;
 
-if(this.props.survey.length > 0 && this.props.singleSurvey.length !== 0) {
-  const responses = this.props.singleSurvey.data.map(response => {
-      count += 1;
-    });
+    if (this.props.survey.length > 0 && this.props.singleSurvey.length !== 0) {
+      const responses = this.props.singleSurvey.data.map(response => {
+        this.count += 1;
+      });
 
+      if (this.count < 4) {
+        for (let i = 0; i < this.count; i++) {
+          let temp = this.props.singleSurvey.data[i].feeling_text;
+          if (this.response1 === "") {
+            this.response1 = temp;
+            if (this.count === 1) {
+              this.complete = true;
+            }
+          } else if (this.response1 !== temp && this.response2 === "") {
+            this.response2 = temp;
+            if (this.count === 2) {
+              this.complete = true;
+            }
+          } else if (
+            this.response1 !== temp &&
+            this.response3 === "" &&
+            this.response2 !== temp
+          ) {
+            this.response3 = temp;
+            if (this.count === 3) {
+              this.complete = true;
+            }
+          } else if (
+            this.response1 !== temp &&
+            this.response4 === "" &&
+            this.response2 !== temp &&
+            this.response3 !== temp
+          ) {
+            this.response4 = temp;
+            this.complete = true;
+          }
+        }
+      }
 
-    for (let i = 0; i < count; i++) {
-      let temp = this.props.singleSurvey.data[i].feeling_text;
-      if (this.response1 === "") {
-        this.response1 = temp;
-      } else if (this.response1 !== temp && this.response2 === "") {
-        this.response2 = temp;
-      } else if (
-        this.response1 !== temp &&
-        this.response3 === "" &&
-        this.response2 !== temp
-      ) {
-        this.response3 = temp;
-      } else if (
-        this.response1 !== temp &&
-        this.response4 === "" &&
-        this.response2 !== temp &&
-        this.response3 !== temp
-      ) {
-        this.response4 = temp;
-        this.complete = true;
+      for (let i = 0; i < this.count; i++) {
+        let temp = this.props.singleSurvey.data[i].feeling_text;
+        if (this.response1 === "") {
+          this.response1 = temp;
+        } else if (this.response1 !== temp && this.response2 === "") {
+          this.response2 = temp;
+        } else if (
+          this.response1 !== temp &&
+          this.response3 === "" &&
+          this.response2 !== temp
+        ) {
+          this.response3 = temp;
+        } else if (
+          this.response1 !== temp &&
+          this.response4 === "" &&
+          this.response2 !== temp &&
+          this.response3 !== temp
+        ) {
+          this.response4 = temp;
+          this.complete = true;
+        }
       }
     }
-  }
-  
 
     this.responseArray = [];
-    for (let i = 0; i < count; i++) {
+    for (let i = 0; i < this.count; i++) {
       let temp = this.props.singleSurvey.data[i].feeling_text;
       this.responseArray.push(temp);
     }
@@ -94,7 +126,11 @@ if(this.props.survey.length > 0 && this.props.singleSurvey.length !== 0) {
   // }
 
   render() {
-    if (this.props.survey.length === 0 && this.props.surveyIsFetching === true || this.props.singleSurvey.length === 0) {
+    if (
+      (this.props.survey.length === 0 &&
+        this.props.surveyIsFetching === true) ||
+      this.props.singleSurvey.length === 0
+    ) {
       return <p>Make surveys to display data</p>;
     } else {
       const data = {
@@ -125,6 +161,7 @@ if(this.props.survey.length > 0 && this.props.singleSurvey.length !== 0) {
           ) : (
             <div className="pie-chart">
               <h2>{this.props.singleSurvey.response[0].description}</h2>
+              <p>{this.count} {this.count < 2 ? ('response') : ('responses')} to this survey</p>
               <Pie
                 data={data}
                 width={50}

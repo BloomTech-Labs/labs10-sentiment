@@ -1,9 +1,9 @@
 import React from "react";
-import { NavLink as Navlink } from 'react-router-dom';
+import { NavLink as Navlink } from "react-router-dom";
 import Logout from "../login/logout";
 import "./NavBar.css";
 import Auth from "../Auth/auth";
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 import {
   Collapse,
   Navbar,
@@ -15,7 +15,8 @@ import {
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem } from 'reactstrap';
+  DropdownItem
+} from "reactstrap";
 
 const auth = new Auth();
 
@@ -44,7 +45,7 @@ class NavBar extends React.Component {
 
     return (
       <>
-        {this.props.singleTeamMembers[0].type === "team-member" ? (
+        {this.props.singleTeamMembers[0].type === "manager" ? (
           <>
             <div>
               <Navbar expand="md">
@@ -69,6 +70,11 @@ class NavBar extends React.Component {
                     </NavItem>
                     <NavItem>
                       <NavLink>
+                        <Navlink to="/reports">Reports</Navlink>
+                      </NavLink>
+                    </NavItem>
+                    <NavItem>
+                      <NavLink>
                         <Navlink to="/billing">Billing</Navlink>
                       </NavLink>
                     </NavItem>
@@ -86,33 +92,19 @@ class NavBar extends React.Component {
                             </NavLink>
                           </NavItem>
                         </DropdownItem>
-                        <DropdownItem>Logout</DropdownItem>
-                        {/* <DropdownItem divider />
-                  <DropdownItem>
-                    Reset
-                  </DropdownItem> */}
+                        <DropdownItem>
+                          <NavItem>
+                            <NavLink>
+                              <Logout auth={auth} />
+                            </NavLink>
+                          </NavItem>
+                        </DropdownItem>
                       </DropdownMenu>
                     </UncontrolledDropdown>
                   </Nav>
                 </Collapse>
               </Navbar>
             </div>
-          <Logout auth={auth} />
-          <div className="navBar">
-            <div className="navButton">
-              <NavLink to="/profile">Profile</NavLink>
-
-              <NavLink to="/teamlist">Team List</NavLink>
-
-              <NavLink to="/survey">Survey</NavLink>
-
-              <NavLink to="/reports">Reports</NavLink>
-
-              <NavLink to="/billing">Billing</NavLink>
-
-              <NavLink to="/accountset">Account Settings</NavLink>
-            </div>
-          </div>
         </>
       ) : (
         <Navbar expand="md">
@@ -132,31 +124,30 @@ class NavBar extends React.Component {
                   </NavLink>
                 </NavItem>
               </DropdownItem>
-              
-              <DropdownItem>
-              <NavItem>
-              <NavLink>
-              <Logout auth={auth}/>
-              </NavLink>
-              </NavItem>
-              </DropdownItem>
+             <DropdownItem>
+                          <NavItem>
+                            <NavLink>
+                              <Logout auth={auth} />
+                            </NavLink>
+                          </NavItem>
+                        </DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>
         </Nav>
       </Collapse>
     </Navbar>
       )}
-    </>
+  </>
   );
 }};
 
 function mapStateToProps(state) {
   return {
-    singleTeamMembers: state.teamMembersReducer.singleTeamMembers,
+    singleTeamMembers: state.teamMembersReducer.singleTeamMembers
   };
 }
 
 export default connect(
   mapStateToProps,
-  {  }
+  {}
 )(NavBar);
