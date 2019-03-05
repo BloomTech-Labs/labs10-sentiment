@@ -170,9 +170,23 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                         dbSurveys
                           .getManagerID(manager_id)
                           .then(data => {
-                            let survey_id = data[data.length - 1].id;
-                            let title = data[data.length - 1].title;
-                            let description = data[data.length - 1].description;
+                            // let title = data[data.length - 1].title;
+                            // let description = data[data.length - 1].description;
+
+                            let survey_id = Math.max.apply(Math, data.map(function(o) { return o.id; }))
+                            let title = data.map(item=>{
+                              if(item.id === survey_id){
+                                return item.title;
+                              }
+                            });
+                            let description = data.map(item=>{
+                              if(item.id === survey_id){
+                                return item.description;
+                              }
+                            });
+
+
+
                             console.log("survey id", survey_id);
                             if (data.length === 0) {
                               console.log({
