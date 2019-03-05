@@ -10,7 +10,7 @@ export default class Auth {
     domain: "bikbik.auth0.com",
     clientID: "BnXSvU6tE4W8WGMt3gDWra24hXr8qY0e",
     redirectUri: "https://sentimentbot.netlify.com/callback",
-    // redirectUri: "http://localhost:3000/callback",
+//     redirectUri: "http://localhost:3000/callback",
     responseType: "token id_token",
     scope: "openid profile email"
   });
@@ -46,8 +46,8 @@ export default class Auth {
   handleAuthentication() {
     return new Promise((resolve, reject) => {
       this.auth0.parseHash((err, authResult) => {
-          console.log('auth result', authResult)
-          console.log('profile', authResult.idTokenPayload);
+        console.log("auth result", authResult);
+        console.log("profile", authResult.idTokenPayload);
         if (err) return reject(err);
         if (!authResult || !authResult.idToken) {
           return reject(err);
@@ -58,16 +58,16 @@ export default class Auth {
         this.expiresAt = authResult.idTokenPayload.exp * 1000;
 
         // assign gathered values to localStorage for persistence in the application
-        localStorage.setItem('jwt', authResult.idToken);
-        localStorage.setItem('email', authResult.idTokenPayload.email);
-        localStorage.setItem('name', authResult.idTokenPayload.name);
-        localStorage.setItem('img_url', authResult.idTokenPayload.picture);
-        localStorage.setItem('isLoggedIn', true);
-        history.replace('/authorization')
-    
+        localStorage.setItem("jwt", authResult.idToken);
+        localStorage.setItem("email", authResult.idTokenPayload.email);
+        localStorage.setItem("name", authResult.idTokenPayload.name);
+        localStorage.setItem("img_url", authResult.idTokenPayload.picture);
+        localStorage.setItem("isLoggedIn", true);
+        history.replace("/authorization");
+
         resolve();
       });
-    })
+    });
   }
 
   getAccessToken() {
@@ -101,7 +101,7 @@ export default class Auth {
   //       this.logout();
   //       console.log(err, 'renew session');
   //     }
-  //   }); 
+  //   });
   // }
 
   getProfile(cb) {
@@ -109,7 +109,7 @@ export default class Auth {
       if (profile) {
         this.userProfile = profile;
       }
-      cb(err, profile, 'get profile');
+      cb(err, profile, "get profile");
     });
   }
 
@@ -122,10 +122,10 @@ export default class Auth {
     // Remove isLoggedIn flag from localStorage
     localStorage.removeItem("isLoggedIn");
     localStorage.removeItem("email");
-    localStorage.removeItem('jwt')
-    localStorage.removeItem('img_url')
-    localStorage.removeItem('lsid')
-    localStorage.removeItem('name')
+    localStorage.removeItem("jwt");
+    localStorage.removeItem("img_url");
+    localStorage.removeItem("lsid");
+    localStorage.removeItem("name");
     // navigate to the home route
     history.replace("/home");
   }
