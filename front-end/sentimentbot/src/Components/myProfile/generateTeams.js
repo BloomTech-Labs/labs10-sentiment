@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from "react-redux";
-import { getSingleTeam } from "../../actions/index";
-import GenerateList from './GenerateList'
+import { getSingleTeam } from "../../actions";
+import GenerateList from './generateList'
 
 class GenerateTeams extends React.Component {
 

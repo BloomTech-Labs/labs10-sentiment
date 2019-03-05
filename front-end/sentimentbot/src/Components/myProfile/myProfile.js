@@ -13,7 +13,7 @@ import {
   joinTeam
 } from "../../actions/index";
 import NavBar from "../NavBar/NavBar";
-import GenerateTeams from "./GenerateTeams";
+import GenerateTeams from "./generateTeams";
 
 class Profile extends React.Component {
   constructor() {
