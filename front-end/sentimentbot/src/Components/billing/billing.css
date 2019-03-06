@@ -1,6 +1,6 @@
 .billing-container {
     width: 900px;
-    margin-top: 60px;
+    margin-top: 30px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -13,6 +13,11 @@
     margin: 10px;
 }
 
+.billing-container .card {
+    border: none;
+    margin: 2rem;
+}
+
  .billing-card-body {
     width: 50%;
     height: 300px;
@@ -23,20 +28,24 @@
     box-shadow: 10px 10px 5px 0px #7cdbd5;
 }
 
-.billing-container .card {
-    border: none;
-    margin: 2rem;
-}
-
 .billing-card-title {
     font-family: 'Fredoka One', cursive;
     border-bottom: 1px solid black;
     width: 30%;
 }
 
-.billing-card-text {
+.billing-card-subtitle {
     font-weight: bold;
+}
+
+.billing-card-text {
+    padding-top: 20px;
+    padding-left: 20px;
+    /* font-weight: bold; */
     font-size: 1.1rem;
 }
 
- .stripe-button-el { display: none } 
+.stripe-checkout {
+    width: 55%;
+    margin-left: 5rem;
+}

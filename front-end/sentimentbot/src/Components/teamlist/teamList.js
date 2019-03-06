@@ -41,7 +41,7 @@ class TeamList extends React.Component {
             {this.props.teamMembers.map(user => {
               return (
                 <div>
-                  <p>{user.firstName}</p>
+                  <p>{user.firstName} {user.lastName}</p>
                   <button className="teamlist-button" onClick={() => this.handleClick({ id: user.id, firstName: user.firstName, lastName: user.lastName, email: user.email, phone: user.phone, type: null, team_id: null })}>Remove</button>
                 </div>
               )
