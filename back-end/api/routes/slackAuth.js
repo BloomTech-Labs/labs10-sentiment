@@ -69,18 +69,18 @@ let uri = "https://botsentiment.herokuapp.com/api/slackauth";
 //   });
 // });
 
-function sendToAuthorization() {
-  let postOptions = {
-    uri: "https://sentimentbot.netlify.com/authorization",
-    method: "GET"
-  };
-  request(postOptions, (error, response, body) => {
-    if (error) {
-      // handle errors as you see fit
-      res.json({ error: "Error." });
-    }
-  });
-}
+// function sendToAuthorization() {
+//   let postOptions = {
+//     uri: "https://sentimentbot.netlify.com/authorization",
+//     method: "GET"
+//   };
+//   request(postOptions, (error, response, body) => {
+//     if (error) {
+//       // handle errors as you see fit
+//       res.json({ error: "Error." });
+//     }
+//   });
+// }
 
 router.get("/", (req, res) => {
   console.log(req.query.code);
@@ -129,7 +129,8 @@ router.get("/", (req, res) => {
 
             db.insert(postInfo)
               .then(() => {
-                sendToAuthorization();
+                // sendToAuthorization();
+                res.redirect('https://sentimentbot.netlify.com/authorization');
               })
               .catch(serverErrorPost(res));
           } else {
@@ -147,7 +148,8 @@ router.get("/", (req, res) => {
             };
             db.update(id, post)
               .then(() => {
-                sendToAuthorization();
+                // sendToAuthorization();
+                res.redirect('https://sentimentbot.netlify.com/authorization');
               })
               .catch(serverErrorUpdate500(res, "Auth"));
             // res.status(400).json({
