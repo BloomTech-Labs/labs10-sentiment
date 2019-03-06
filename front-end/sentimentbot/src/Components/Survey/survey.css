@@ -46,7 +46,7 @@
 }
 /* Survey Custom Emoji */
 .customemoji-form {
-    max-width: 450px;
+    max-width: 370px;
     width: 100%;
     margin: 10px;
     color: #000;
@@ -57,7 +57,7 @@
 }
 /* Survey Form */
 .survey-form {
-    max-width: 450px;
+    max-width: 370px;
     width: 100%;
     margin: 10px;
     
@@ -81,3 +81,16 @@
     margin-right: auto;
 }
 
+@media (max-width: 700px) {
+    .form-box {
+        display: flex;
+        flex-direction: column;
+    }
+
+ }
+ @media (max-width: 900px) {
+    .form-box {
+        display: flex;  
+    }
+ 
+}
