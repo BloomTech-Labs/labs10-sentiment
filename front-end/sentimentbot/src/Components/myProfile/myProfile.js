@@ -16,7 +16,7 @@ import {
 } from "../../actions/index";
 import NavBar from "../NavBar/NavBar";
 import GenerateTeams from "./generateTeams";
-import Happy from "../../images/Happy.jpg";
+import Happy from "../Survey/Happy.jpg";
 
 class Profile extends React.Component {
   constructor() {
@@ -185,7 +185,7 @@ class Profile extends React.Component {
               <a
                 href={`https://slack.com/oauth/authorize?scope=commands&client_id=553324377632.554405336645&redirect_uri=${uri}&state=${
                   this.props.singleTeamMembers[0].id
-                }`}
+                  }`}
               >
                 <img
                   alt="Add to Slack"
@@ -204,8 +204,8 @@ class Profile extends React.Component {
                   <GenerateTeams />
                 </p>
               ) : (
-                <p>Oops! You haven't responded to any surveys yet!</p>
-              )}
+                  <p>Oops! You haven't responded to any surveys yet!</p>
+                )}
             </div>
             <img
               className="happy"
@@ -260,7 +260,7 @@ class Profile extends React.Component {
           <a
             href={`https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645&redirect_uri=${uri}&state=${
               this.props.singleTeamMembers[0].id
-            }`}
+              }`}
           >
             <img
               alt="Add to Slack"
