@@ -6,7 +6,7 @@ import "./survey.css";
 // import CustomEmoji from './customEmoji';
 import "emoji-mart/css/emoji-mart.css";
 import { Picker } from "emoji-mart";
-import MoodBotCarousel from './carousel';
+import MoodBotCarousel from './Carousel/carousel';
 
 import { addTeam } from "../../actions/teams";
 import { getTeams } from "../../actions/teams";
