@@ -3,7 +3,12 @@ import { Elements, StripeProvider } from "react-stripe-elements";
 import CheckoutForm from "../stripe/checkoutForm";
 import StripeCheckout from "react-stripe-checkout";
 import NavBar from "../NavBar/NavBar";
-import "../App.css";
+import {
+  Card, CardImg, CardText, CardBody,
+  CardTitle, CardSubtitle, Button
+} from 'reactstrap';
+// import "../App.css";
+import "./billing.css"
 
 class Billing extends React.Component {
   constructor() {
@@ -77,9 +82,9 @@ class Billing extends React.Component {
     } else {
       return (
         <>
-          <div className="billing-container">
           <NavBar />
-            <p className="billing-title"> Billing Page </p>
+          <div className="billing-container">
+            <h1 className="billing-title"> Billing Page </h1>
 
             {/* <StripeProvider apiKey="pk_test_IWDsGyB9paFAzC5KQEtIOfLG"> */}
             {/* <div className="stripe-box"> */}
@@ -90,18 +95,25 @@ class Billing extends React.Component {
             {/* </div> */}
             {/* </StripeProvider> */}
 
-            <p>Click here for $10 a month subscription</p>
-            <StripeCheckout
-              token={this.onToken}
-              stripeKey="pk_test_IWDsGyB9paFAzC5KQEtIOfLG"
-            />
-            <br />
-            <br />
-            <p>Click here for $50 a month subscription</p>
-            <StripeCheckout
-              token={this.onToken2}
-              stripeKey="pk_test_IWDsGyB9paFAzC5KQEtIOfLG"
-            />
+            <Card className="billing-card">
+              <CardBody className="billing-card-body">
+                <CardTitle className="billing-card-title">Click here for $10 a month subscription</CardTitle>
+                <StripeCheckout
+                  token={this.onToken}
+                  stripeKey="pk_test_IWDsGyB9paFAzC5KQEtIOfLG"
+                />
+              </CardBody>
+            </Card>
+
+            <Card className="billing-card">
+              <CardBody className="billing-card-body">
+                <CardTitle className="billing-card-title">Click here for $50 a month subscription</CardTitle>
+                <StripeCheckout
+                  token={this.onToken2}
+                  stripeKey="pk_test_IWDsGyB9paFAzC5KQEtIOfLG"
+                />
+              </CardBody>
+            </Card>
           </div>
         </>
       );

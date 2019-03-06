@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from 'react-redux'
 import { getFeelings } from "../../actions";
+import { Emoji } from 'emoji-mart'
 import '../history';
 
 
@@ -34,11 +35,24 @@ function displayDivs() {
     let divs = [];
     for(let i=0; i<count; i++) {
         let date = new Date(`${props.feelings[i].created_at}`)
-        divs.push(<div key={i}><p>You reacted with {props.feelings[i].feeling_text} on {date.toDateString()}.</p></div>)
+        let testText = props.feelings[i].feeling_text
+        let breakTest = testText.split(" ");
+        let result = [];
+        for (let i = 0; i < breakTest.length; i++) {
+          if (breakTest[i].indexOf(":") === -1) {
+            let textP = breakTest[i] + " ";
+            result.push(textP);
+          } else if (breakTest[i].indexOf(":") > -1) {
+            let textE = <Emoji emoji={breakTest[i]} size={16} />;
+            result.push(textE);
+          }
+        }
+
+        divs.push(<div key={i}><p>You reacted with {result} on {date.toDateString()}.</p></div>)
     }
     return divs
 }
-
+// {props.feelings[i].feeling_text}
 return (
     <div>
         {displayDivs()}
