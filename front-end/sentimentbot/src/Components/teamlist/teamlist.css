@@ -1,6 +1,6 @@
 .mainTeam-container {
     width: 900px;
-    margin-top: 60px;
+    margin-top: 30px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -20,6 +20,11 @@
     font-size: 15px;
 }
 
+.mainTeam-container img {
+    border: 2px solid #f58a91;
+    border-radius: 10px;
+}
+
 .teamlist-container div {
     margin: 1rem;
 }
@@ -27,20 +32,24 @@
 .teamlist-container p {
     display: inline-block;
     margin-right: .8rem;
+    font-size: 1.2rem;
+    font-family: 'Fredoka One', cursive;
 }
 
-.teamlist-button {
-    color: #fff !important;
+ .teamlist-button {
+     color: white;
     text-transform: uppercase;
-    background: #f53240;
-    padding: 3px;
+    background: #7cd8d5;
     border-radius: 5px;
     display: inline-block;
     border: none;
+    width: 12%;
+    font-size: .8rem;
     }
 
 .teamlist-button:hover {
-    background: #434343;
+    color: white;
+    background: #f53240;
     letter-spacing: 1px;
     -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
     -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);

@@ -97,20 +97,30 @@ class Billing extends React.Component {
 
             <Card className="billing-card">
               <CardBody className="billing-card-body">
-                <CardTitle className="billing-card-title">Click here for $10 a month subscription</CardTitle>
-                <StripeCheckout
+                <CardTitle className="billing-card-title enhanced">Enhanced</CardTitle>
+                <CardSubtitle className="billing-card-subtitle">$10/mo</CardSubtitle>
+                <CardText className="billing-card-text">Click here for $10 a month subscription</CardText>
+                <StripeCheckout className="stripe-checkout"
                   token={this.onToken}
                   stripeKey="pk_test_IWDsGyB9paFAzC5KQEtIOfLG"
+                  image="https://i.gyazo.com/59da540e04d2a13f71991c8b168a4ab5.png"
+                  description="$10/mo"
+                  name="M.O.O.D."
                 />
               </CardBody>
             </Card>
 
             <Card className="billing-card">
               <CardBody className="billing-card-body">
-                <CardTitle className="billing-card-title">Click here for $50 a month subscription</CardTitle>
-                <StripeCheckout
+                <CardTitle className="billing-card-title">Professional</CardTitle>
+                <CardSubtitle className="billing-card-subtitle">$50/mo</CardSubtitle>
+                <CardText className="billing-card-text">Click here for $50 a month subscription</CardText>
+                <StripeCheckout className="stripe-checkout"
                   token={this.onToken2}
                   stripeKey="pk_test_IWDsGyB9paFAzC5KQEtIOfLG"
+                  image="https://i.gyazo.com/59da540e04d2a13f71991c8b168a4ab5.png"
+                  description="$50/mo"
+                  name="M.O.O.D."
                 />
               </CardBody>
             </Card>
