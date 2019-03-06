@@ -154,20 +154,24 @@ class PieChart extends React.Component {
         ]
       };
 
+      let date = new Date(`${this.props.singleSurvey.response[0].created_at}`)
+
       return (
         <>
           {this.state.complete === false ? (
             <div>Create Surveys to see results!</div>
           ) : (
             <div className="pie-chart">
-              <h2>{this.props.singleSurvey.response[0].description}</h2>
+            <div className="pie-chart-words">
+              <h2>{this.props.singleSurvey.response[0].description}</h2><h3>Created on {date.toDateString()}.</h3>
               <p>{this.count} {this.count < 2 ? ('response') : ('responses')} to this survey</p>
+              </div>
               <Pie
                 data={data}
-                width={50}
-                height={50}
+                width={25}
+                height={25}
                 options={{
-                  maintainAspectRatio: false
+                  maintainAspectRatio: true
                 }}
               />
             </div>
