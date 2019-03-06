@@ -6,11 +6,11 @@
     margin-right: auto;
 }
 
-@media (max-width:800px) {
+@media (max-width:900px) and (min-width:501px) {
 
     .billing-container {
-        width: 80%;
-        margin-right: 0;
+        width: 70%;
+        /* margin-left: 12rem; */
     }
 }
 
@@ -34,12 +34,19 @@
     margin: 0.625rem;
 }
 
+@media (max-width:900px) and (min-width:501px){
+
+    .billing-title {
+        width: 60%;
+        margin-left: 20px;
+    }
+}
+
 @media (max-width:500px) {
 
     .billing-title {
-        width: 100%;
-        margin-left: 20px;
         width: 140%;
+        margin-left: 20px;
     }
 }
 
@@ -60,6 +67,15 @@
     border-radius: 8px;
     border: 1px solid smokewhite;
     box-shadow: 10px 10px 5px 0px #7cdbd5;
+}
+
+@media (max-width:900px) and (min-width:501px) {
+
+    .billing-card-body {
+        width: 83%;
+        /* width: 30rem; */
+        margin-right: 5rem;
+    }
 }
 
 @media (max-width:500px) {
