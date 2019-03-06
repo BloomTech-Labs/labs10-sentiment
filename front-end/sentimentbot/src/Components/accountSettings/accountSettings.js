@@ -4,6 +4,7 @@ import axios from "axios";
 import { editTeamMembers } from "../../actions/index";
 import { connect } from "react-redux";
 import "./accountSettings.css";
+
 import { Col, FormGroup, Label, Input } from "reactstrap";
 
 class accountSettings extends React.Component {
@@ -88,123 +89,115 @@ class accountSettings extends React.Component {
     //   props.history.push("/home");
     // }
     return (
-      <div className="container">
+      <>
         <NavBar />
-        {this.state.response === 200 ? (
-          <div>Email will be sent shortly</div>
-        ) : (
-          <>
-            <h3 className="settings-header">Settings</h3>
+        <div className="container">
+          {this.state.response === 200 ? (
+            <div>Email will be sent shortly</div>
+          ) : (
+            <>
+              <h3 className="settings-header">Settings</h3>
 
-            <form className="account-form" onSubmit={this.handleSubmit}>
-              <FormGroup row>
-                <Label for="emailField" sm={2}>
-                  Email
-                </Label>
-                <Col sm={4}>
-                  <Input
-                    type="email"
-                    name="email"
-                    id="emailField"
-                    placeholder="Enter email here"
-                  />
-                </Col>
-              </FormGroup>
-              <FormGroup row>
-                <Label for="phoneNumber" sm={2}>
-                  Phone
-                </Label>
-                <Col sm={4}>
-                  <Input
-                    type="text"
-                    name="phone"
-                    id="phoneNumber"
-                    placeholder="555-555-5555"
-                  />
-                </Col>
-              </FormGroup>
-              {/*<label>Email:</label>
-                <input
-                  className="form-input"
-                  type="email"
-                  placeholder="johndoe@yahoo.com"
-                  name="email"
-                  onChange={this.handleChange}
-                />
+              <form className="account-form" onSubmit={this.handleSubmit}>
+                <FormGroup row>
+                  <Label for="emailField" sm={2}>
+                    Email
+                  </Label>
+                  <Col sm={4}>
+                    <Input
+                      type="email"
+                      name="email"
+                      id="emailField"
+                      placeholder="Enter email here"
+                    />
+                  </Col>
+                </FormGroup>
+                <FormGroup row>
+                  <Label for="phoneNumber" sm={2}>
+                    Phone
+                  </Label>
+                  <Col sm={4}>
+                    <Input
+                      type="text"
+                      name="phone"
+                      id="phoneNumber"
+                      placeholder="555-555-5555"
+                    />
+                  </Col>
+                </FormGroup>
+
                 <br />
-                <label>Phone:</label>
-                <input
-                  className="form-input"
-                  type="text"
-                  placeholder="Phone"
-                  name="phone"
-                  onChange={this.handleChange}
-                />*/}
-              <br />
-              <label>
-                Emails?
-                <input
-                  name="isEmail"
-                  type="checkbox"
-                  checked={this.state.isEmail}
-                  onChange={this.handleInputChange}
-                />
-              </label>
-              <label>
-                Texts?
-                <input
-                  name="isText"
-                  type="checkbox"
-                  checked={this.state.isText}
-                  onChange={this.handleInputChange}
-                />
-              </label>
-              <br />
+                <FormGroup check inline>
+                  <Label check>
+                    <Input
+                      type="checkbox"
+                      name="isEmail"
+                      checked={this.state.isEmail}
+                      onchange={this.handleInputChange}
+                    />
+                    Email
+                  </Label>
+                </FormGroup>
 
-              <p>Reset your password below:</p>
+                <FormGroup check inline>
+                  <Label check>
+                    <Input
+                      type="checkbox"
+                      name="isText"
+                      checked={this.state.isText}
+                      onchange={this.handleInputChange}
+                    />
+                    Text
+                  </Label>
+                </FormGroup>
 
-              <FormGroup row>
-                <Label for="oldPassword" sm={2}>
-                  Old Password
-                </Label>
-                <Col sm={4}>
-                  <Input
-                    type="password"
-                    name="password"
-                    id="oldPassword"
-                    placeholder="password placeholder"
-                  />
-                </Col>
-              </FormGroup>
+                <br />
 
-              <FormGroup row>
-                <Label for="newPassword" sm={2}>
-                  New Password
-                </Label>
-                <Col sm={4}>
-                  <Input
-                    type="password"
-                    name="password"
-                    id="newPassword"
-                    placeholder="password placeholder"
-                  />
-                </Col>
-              </FormGroup>
+                <p>Reset your password below:</p>
 
-              <button
-                className="btn-style"
-                onSubmit={this.handleSubmit}
-                color="primary"
-              >
-                Submit
+                <FormGroup row>
+                  <Label for="oldPassword" sm={2}>
+                    Old Password
+                  </Label>
+                  <Col sm={4}>
+                    <Input
+                      type="password"
+                      name="password"
+                      id="oldPassword"
+                      placeholder="password placeholder"
+                    />
+                  </Col>
+                </FormGroup>
+
+                <FormGroup row>
+                  <Label for="newPassword" sm={2}>
+                    New Password
+                  </Label>
+                  <Col sm={4}>
+                    <Input
+                      type="password"
+                      name="password"
+                      id="newPassword"
+                      placeholder="password placeholder"
+                    />
+                  </Col>
+                </FormGroup>
+
+                <button
+                  className="btn-style"
+                  onSubmit={this.handleSubmit}
+                  color="primary"
+                >
+                  Submit
+                </button>
+              </form>
+              <button className="btn-style" onClick={this.handleLeaveTeam}>
+                Leave Team
               </button>
-            </form>
-            <button className="btn-style" onClick={this.handleLeaveTeam}>
-              Leave Team
-            </button>
-          </>
-        )}
-      </div>
+            </>
+          )}
+        </div>
+      </>
     );
   }
 }
