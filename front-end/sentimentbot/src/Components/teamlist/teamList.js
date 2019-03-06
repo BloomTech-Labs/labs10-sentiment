@@ -21,8 +21,8 @@ class TeamList extends React.Component {
     return (
       <>
         <NavBar />
-        <div className="container">
-          <p>{this.props.singleTeams[0].name}</p>
+        <div className="mainTeam-container">
+          <h1>{this.props.singleTeams[0].name}</h1>
           <a
             href={`https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645&redirect_uri=${uri}&state=${this.props.singleTeamMembers[0].id}`}
           >
@@ -42,7 +42,7 @@ class TeamList extends React.Component {
               return (
                 <div>
                   <p>{user.firstName}</p>
-                  <button onClick={() => this.handleClick({ id: user.id, firstName: user.firstName, lastName: user.lastName, email: user.email, phone: user.phone, type: null, team_id: null })}>Remove</button>
+                  <button className="team" onClick={() => this.handleClick({ id: user.id, firstName: user.firstName, lastName: user.lastName, email: user.email, phone: user.phone, type: null, team_id: null })}>Remove</button>
                 </div>
               )
             })}
