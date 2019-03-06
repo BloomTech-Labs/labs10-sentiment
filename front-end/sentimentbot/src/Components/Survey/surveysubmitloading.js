@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import "./survey.css";
 import {
 getSingleTeamMembers,
   addTeamMembers,
@@ -44,7 +45,7 @@ class SurveySubmitLoading  extends React.Component {
   render() {
       if (this.state.complete2 === true && this.state.complete1 === true) {
           return (
-        <div className="container">
+        <div className="loading-container">
         <button onClick={() => this.props.history.push('/survey')}>Click</button>
         <p>Thanks for waiting! Your survey has been submitted!</p>
         <img className="moodbot-img" src={MoodHappy} alt="happy" />
@@ -52,7 +53,7 @@ class SurveySubmitLoading  extends React.Component {
           )
       } else {
           return (
-              <div className="container">
+              <div className="loading-container">
         <p>Loading...our bots are loading</p>
         <img className="moodbot-img" src={MoodThinking} alt="thinking" />
         </div>

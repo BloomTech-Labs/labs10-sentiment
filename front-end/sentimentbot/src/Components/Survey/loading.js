@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import "./survey.css";
 import {
 getSingleTeamMembers,
   addTeamMembers,
@@ -11,7 +12,8 @@ getSingleTeamMembers,
   getFeelings,
   getPreFeeling
 } from "../../actions/index";
-import MoodThinking from "./Thinking.jpg";
+import MoodThinking from "../PNG/nobackgroundThinking.png";
+import MoodHappy from "../PNG/nobackgroundHappy.png";
 
 class EmojiLoading extends React.Component {
     state = {
@@ -43,19 +45,24 @@ class EmojiLoading extends React.Component {
   render() {
       if (this.state.complete2 === true && this.state.complete1 === true) {
           return (
-        <div className="container">
-        <button onClick={() => this.props.history.push('/survey')}>Click</button>
-        <p>Thanks for waiting! Your custom response has been added.</p>
-      </div>
+            <div className="loading-container">
+              <p>Thanks for waiting! Your custom response has been added.</p>
+              <div className="loadingImg-but">
+                <button onClick={() => this.props.history.push('/survey')}>Click</button>
+                <img className="moodbot-img" src={MoodHappy} alt="happy" />
+              </div>
+            </div>
           )
       } else {
-          return (
-              <div className="container">
-        <p>Loading...our bots are loading</p>
-        <img className="moodbot-img" src={MoodThinking} alt="thinking" />
+      return (
+        <div className="loading-container">
+          <p>Loading...our bots are loading</p>
+          <div className="loadingImg-but">
+            <img className="moodbot-img" src={MoodThinking} alt="thinking" />
+          </div>
         </div>
-          )
-      }
+      )
+    }
   }
 }
 
