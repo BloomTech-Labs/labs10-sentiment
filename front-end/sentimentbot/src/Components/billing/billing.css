@@ -1,3 +1,4 @@
+/* Billing Container */
 .billing-container {
     width: 50%;
     margin-top: 1.875rem;
@@ -5,23 +6,55 @@
     margin-right: auto;
 }
 
+@media (max-width:800px) {
+
+    .billing-container {
+        width: 80%;
+        margin-right: 0;
+    }
+}
+
+@media (max-width:500px) {
+
+    .billing-container {
+        width: 60%;
+        margin-top: 0;
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
+/* Billing Title */
+
 .billing-title {
     font-size: 2rem;
     border-bottom: 2px solid black;
-    /* width: 30rem; */
     width: 50%;
     padding: 0.625rem;
     margin: 0.625rem;
 }
+
+@media (max-width:500px) {
+
+    .billing-title {
+        width: 100%;
+        margin-left: 20px;
+        width: 140%;
+    }
+}
+
+/* Billing Card */
 
 .billing-container .card {
     border: none;
     margin: 2rem;
 }
 
+/* Billing Card Body */
+
  .billing-card-body {
     width: 50%;
-    height: 300px;
+    /* height: 300px; */
     color: #000;
     border: 4px solid #f58a91;
     border-radius: 8px;
@@ -29,24 +62,54 @@
     box-shadow: 10px 10px 5px 0px #7cdbd5;
 }
 
+@media (max-width:500px) {
+
+    .billing-card-body {
+        width: 180%;
+        /* padding-right: 800px; */
+    }
+}
+
+/* Billing Card Title */
+
 .billing-card-title {
     font-family: 'Fredoka One', cursive;
     border-bottom: 1px solid black;
-    width: 30%;
+    width: 28%;
 }
+
+.enhanced {
+    width: 23%;
+}
+
+@media (max-width:500px) {
+
+    .billing-card-title {
+        /* width: 37%; */
+        width: 7rem;
+    }
+
+    .enhanced {
+        /* width: 29%; */
+        width: 6rem;
+    }
+}
+
+/* Billing Card Subtitle */
 
 .billing-card-subtitle {
     font-weight: bold;
 }
 
+/* Billing Card Text */
+
 .billing-card-text {
-    /* padding-top: 20px; */
     padding-top: 1.6rem;
-    /* padding-left: 20px; */
     padding-left: 1.8rem;
-    /* font-weight: bold; */
     font-size: 1.1rem;
 }
+
+/* Stripe checkout */
 
 .stripe-checkout {
     width: 55%;

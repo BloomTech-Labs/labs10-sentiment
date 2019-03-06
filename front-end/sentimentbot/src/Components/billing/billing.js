@@ -97,7 +97,7 @@ class Billing extends React.Component {
 
             <Card className="billing-card">
               <CardBody className="billing-card-body">
-                <CardTitle className="billing-card-title">Enhanced</CardTitle>
+                <CardTitle className="billing-card-title enhanced">Enhanced</CardTitle>
                 <CardSubtitle className="billing-card-subtitle">$10/mo</CardSubtitle>
                 <CardText className="billing-card-text">Click here for $10 a month subscription</CardText>
                 <StripeCheckout className="stripe-checkout"
