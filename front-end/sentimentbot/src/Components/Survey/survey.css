@@ -8,6 +8,58 @@
     width: 100%;
     margin-left: auto;
     margin-right: auto;
+    display: flex;
+    flex-direction: column;
+}
+.form-box {
+    display: flex;  
+}
+.survey-title {
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+}
+.survey-buttons {
+}
+/* Survey Carousel */
+.survey-carousel {
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+}
+/* Survey Custom Emoji */
+.customemoji-form {
+    max-width: 450px;
+    width: 100%;
+    margin: 10px;
+    color: #000;
+    border: 1px solid #f58a91;
+    border-radius: 8px;
+    border: 1px solid smokewhite;
+    box-shadow: -10px 10px 5px 0px #7cdbd5;
+
+}
+/* Survey Form */
+.survey-form {
+    max-width: 450px;
+    width: 100%;
+    margin: 10px;
+    
+    color: #000;
+    border: 1px solid #f58a91;
+    border-radius: 8px;
+    border: 1px solid smokewhite;
+    box-shadow: -10px 10px 5px 0px #7cdbd5;
+
+}
+.survey-inputbox {
+
+}
+.survey-inputlabel {
+
 }
 /* Loading Pages */
 .loading-container {
@@ -16,3 +68,4 @@
     margin-left: auto;
     margin-right: auto;
 }
+
