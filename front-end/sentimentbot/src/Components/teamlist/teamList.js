@@ -42,7 +42,7 @@ class TeamList extends React.Component {
               return (
                 <div>
                   <p>{user.firstName}</p>
-                  <button className="team" onClick={() => this.handleClick({ id: user.id, firstName: user.firstName, lastName: user.lastName, email: user.email, phone: user.phone, type: null, team_id: null })}>Remove</button>
+                  <button className="teamlist-button" onClick={() => this.handleClick({ id: user.id, firstName: user.firstName, lastName: user.lastName, email: user.email, phone: user.phone, type: null, team_id: null })}>Remove</button>
                 </div>
               )
             })}
