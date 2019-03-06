@@ -45,7 +45,10 @@ p {
     font-family: 'Roboto', sans-serif;
 }
 
-.name-container {}
+.name-container {
+    display: flex;
+    justify-content: space-evenly;
+}
 
 .welcome-container {
     font-size: 4rem;
@@ -62,9 +65,9 @@ p {
 }
 
 .happy {
-    position: absolute;
-    right: 300px;
-    top: 75px;
+    order: 10;
+    position: relative;
+    top: 10%;
 }
 
 

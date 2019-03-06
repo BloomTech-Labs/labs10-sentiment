@@ -177,24 +177,28 @@ class Profile extends React.Component {
           <NavBar />
           <div className="main-container">
             <div className="name-container">
-              {" "}
-              <h1 className="welcome-container">
-                Welcome, {this.props.singleTeamMembers[0].firstName}!
-              </h1>
-              <p>Join your team on Slack!</p>
-              <a
-                href={`https://slack.com/oauth/authorize?scope=commands&client_id=553324377632.554405336645&redirect_uri=${uri}&state=${
-                  this.props.singleTeamMembers[0].id
-                }`}
-              >
-                <img
-                  alt="Add to Slack"
-                  height="40"
-                  width="139"
-                  src="https://platform.slack-edge.com/img/add_to_slack.png"
-                  srcSet="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x"
-                />
-              </a>
+              <div className="happy">
+                <img src={Happy} alt="Happy MoodBot" width="200" height="200" />
+              </div>
+              <div>
+                <h1 className="welcome-container">
+                  Welcome, {this.props.singleTeamMembers[0].firstName}!
+                </h1>
+                <p>Join your team on Slack!</p>
+                <a
+                  href={`https://slack.com/oauth/authorize?scope=commands&client_id=553324377632.554405336645&redirect_uri=${uri}&state=${
+                    this.props.singleTeamMembers[0].id
+                  }`}
+                >
+                  <img
+                    alt="Add to Slack"
+                    height="40"
+                    width="139"
+                    src="https://platform.slack-edge.com/img/add_to_slack.png"
+                    srcSet="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x"
+                  />
+                </a>
+              </div>
             </div>
             <p>Team: {this.props.singleTeams[0].name}</p>
             <div className="reactions">
@@ -207,13 +211,6 @@ class Profile extends React.Component {
                 <p>Oops! You haven't responded to any surveys yet!</p>
               )}
             </div>
-            <img
-              className="happy"
-              src={Happy}
-              alt="Happy MoodBot"
-              width="200"
-              height="200"
-            />
           </div>
         </div>
       );
