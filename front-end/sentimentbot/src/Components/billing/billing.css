@@ -1,0 +1,34 @@
+.billing-container {
+    width: 900px;
+    margin-top: 60px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.billing-title {
+    font-size: 2rem;
+    border-bottom: 2px solid black;
+    width: 30rem;
+    padding: 10px;
+    margin: 10px;
+}
+
+.billing-card-body {
+    width: 50%;
+    height: 300px;
+    color: #000;
+    border: 4px solid #f58a91;
+    border-radius: 8px;
+    border: 1px solid smokewhite;
+    box-shadow: 10px 10px 5px 0px #7cdbd5;
+}
+
+.billing-container .card {
+    border: none;
+    margin: 2rem;
+}
+
+.billing-card-title {
+    font-weight: bold;
+    border-bottom: 1px solid black;
+}
