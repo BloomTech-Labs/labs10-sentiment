@@ -1,107 +1,136 @@
 .App {
-  text-align: center;
-  display: flex;
-  align-items: inherit;
-  justify-content: center;
-  background-color: whitesmoke;
-  font-size: 62.5%;
-  font-family: 'Lora', serif;
+    text-align: center;
+    display: flex;
+    align-items: inherit;
+    justify-content: center;
+    background-color: whitesmoke;
+    font-size: 62.5%;
+    font-family: 'Lora', serif;
 }
 
 h1 {
-  font-family: 'Fredoka One', cursive;
+    font-family: 'Fredoka One', cursive;
 }
 
 p {
-  padding-left: 10px;
-  font-family: 'Lora', serif;
-  font-size: 1.3rem;
+    padding-left: 10px;
+    font-family: 'Lora', serif;
+    font-size: 1.3rem;
 }
 
 
 /* Home */
+
 .home-container {
- text-align: center;
- margin-left: auto;
- margin-right: auto;
- max-width: 900px;
- width: 95%;
- border: 1px solid black;
- padding: 10px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 900px;
+    width: 95%;
+    border: 1px solid black;
+    padding: 10px;
 }
+
 
 /* My Profile */
 
 .main-container {
-  width: 900px;
-  margin-top: 60px;
- margin-left: auto;
- margin-right: auto;
-
+    width: 900px;
+    margin-top: 60px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .main-container p {
-  font-family: 'Roboto', sans-serif;
-}
-.name-container {
+    font-family: 'Roboto', sans-serif;
 }
 
+.name-container {}
+
 .welcome-container {
-  font-size: 4rem;
+    font-size: 4rem;
+}
+
+.reactions {
+    width: 80%;
+    height: 250px;
+    color: #000;
+    border: 1px solid #f58a91;
+    border-radius: 8px;
+    border: 1px solid smokewhite;
+    box-shadow: -10px 10px 5px 0px #7cdbd5;
+}
+
+.happy {
+    position: absolute;
+    right: 300px;
+    top: 75px;
 }
 
 
 /* Billing */
+
 .billing-container {
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 500px;
-  width: 100%;
-  border: 1px solid black;
-  padding: 10px;
-}
-.billing-title {
-  font-size: 2rem;
-  border-bottom: 2px solid black;
-  padding: 10px;
-  margin: 10px;
-}
-/* Checkout/ Purchase */
-.checkout {
-  min-width: 100px;
-  width: 100%;
-  border: 1px solid black;
-}
-.purchase-complete {
-  min-width: 100px;
-  width: 100%;
-  border: 1px solid black;
-}
-.card-elements {  
-  border: 1px solid black;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 500px;
+    width: 100%;
+    border: 1px solid black;
+    padding: 10px;
 }
 
+.billing-title {
+    font-size: 2rem;
+    border-bottom: 2px solid black;
+    padding: 10px;
+    margin: 10px;
+}
+
+
+/* Checkout/ Purchase */
+
+.checkout {
+    min-width: 100px;
+    width: 100%;
+    border: 1px solid black;
+}
+
+.purchase-complete {
+    min-width: 100px;
+    width: 100%;
+    border: 1px solid black;
+}
+
+.card-elements {
+    border: 1px solid black;
+}
+
+
 /* Survey */
+
 .surveypage-container {
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 500px;
-  width: 100%;
-  border: 1px solid black;
-  padding: 10px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 500px;
+    width: 100%;
+    border: 1px solid black;
+    padding: 10px;
 }
+
 .MoodbotTable {
-  border: 1px solid black;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 300px;
+    border: 1px solid black;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 300px;
 }
+
 .moodbot-img {
-  width: 100px;
-  height: 100px;
+    width: 100px;
+    height: 100px;
 }
+
 .bot-buttons {
-  cursor: pointer;
+    cursor: pointer;
 }
