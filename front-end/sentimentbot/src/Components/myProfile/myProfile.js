@@ -12,10 +12,11 @@ import {
   fetchSingleSurvey,
   getSurvey,
   joinTeam,
-  getPreFeeling, 
+  getPreFeeling
 } from "../../actions/index";
 import NavBar from "../NavBar/NavBar";
-import GenerateTeams from './generateTeams';
+import GenerateTeams from "./generateTeams";
+import Happy from "../../images/Happy.jpg";
 
 class Profile extends React.Component {
   constructor() {
@@ -43,7 +44,7 @@ class Profile extends React.Component {
     this.setState({
       loaded: true
     });
-    this.props.getPreFeeling()
+    this.props.getPreFeeling();
   }
 
   // this.props.teamMembers.length !== prevProps.teamMembers.length
@@ -172,72 +173,83 @@ class Profile extends React.Component {
 
     if (this.props.singleTeamMembers[0].team_id != null) {
       return (
-<div>
-        <NavBar />
-        <div className="main-container">
-         <div className="name-container"> <h1 className="welcome-container">Welcome, {this.props.singleTeamMembers[0].firstName}!</h1>
-          <p>Join your team on Slack!</p>
-          <a
-            href={`https://slack.com/oauth/authorize?scope=commands&client_id=553324377632.554405336645&redirect_uri=${uri}&state=${
-              this.props.singleTeamMembers[0].id
-            }`}
-          >
+        <div>
+          <NavBar />
+          <div className="main-container">
+            <div className="name-container">
+              {" "}
+              <h1 className="welcome-container">
+                Welcome, {this.props.singleTeamMembers[0].firstName}!
+              </h1>
+              <p>Join your team on Slack!</p>
+              <a
+                href={`https://slack.com/oauth/authorize?scope=commands&client_id=553324377632.554405336645&redirect_uri=${uri}&state=${
+                  this.props.singleTeamMembers[0].id
+                }`}
+              >
+                <img
+                  alt="Add to Slack"
+                  height="40"
+                  width="139"
+                  src="https://platform.slack-edge.com/img/add_to_slack.png"
+                  srcSet="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x"
+                />
+              </a>
+            </div>
+            <p>Team: {this.props.singleTeams[0].name}</p>
+            <div className="reactions">
+              <p>List of all your reactions</p>
+              {this.props.feelings.length > 0 ? (
+                <p>
+                  <GenerateTeams />
+                </p>
+              ) : (
+                <p>Oops! You haven't responded to any surveys yet!</p>
+              )}
+            </div>
             <img
-              alt="Add to Slack"
-              height="40"
-              width="139"
-              src="https://platform.slack-edge.com/img/add_to_slack.png"
-              srcSet="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x"
+              className="happy"
+              src={Happy}
+              alt="Happy MoodBot"
+              width="200"
+              height="200"
             />
-          </a>
           </div>
-          <p>Team: {this.props.singleTeams[0].name}</p>
-          <div>
-            <p>List of all your reactions</p>
-            {this.props.feelings.length > 0 ? (
-              <p>
-                <GenerateTeams />
-              </p>
-            ) : (
-              <p>Oops! You haven't responded to any surveys yet!</p>
-            )}
-          </div>
-        </div>
         </div>
       );
     }
     if (view === "") {
       return (
         <div>
-        <NavBar />
-        <div className="join-container">
-          <div>
-            <br />
-            <br />
-            <input
-              onChange={this.handleChange}
-              name="team_code"
-              id="number"
-              type="number"
-              min="0"
-              step="1"
-              placeholder="Enter Team Code Here"
-            />
-            <br />
-            <button onClick={this.addCodeToMember}>
-              Join with this team code
-            </button>{" "}
-            <br />
-            <br />
-            <input
-              onChange={this.handleChange}
-              name="createTeam"
-              placeholder="Your Team Name"
-            />{" "}
-            <br />
-            <button onClick={this.createTeam}>Create a Team</button> <br />
+          <NavBar />
+          <div className="join-container">
+            <div>
+              <br />
+              <br />
+              <input
+                onChange={this.handleChange}
+                name="team_code"
+                id="number"
+                type="number"
+                min="0"
+                step="1"
+                placeholder="Enter Team Code Here"
+              />
+              <br />
+              <button onClick={this.addCodeToMember}>
+                Join with this team code
+              </button>{" "}
+              <br />
+              <br />
+              <input
+                onChange={this.handleChange}
+                name="createTeam"
+                placeholder="Your Team Name"
+              />{" "}
+              <br />
+              <button onClick={this.createTeam}>Create a Team</button> <br />
+            </div>
           </div>
-        </div>
         </div>
       );
     } else if (view === "create") {
@@ -358,7 +370,7 @@ export default connect(
     fetchSingleSurvey,
     getSurvey,
     joinTeam,
-    getPreFeeling, 
+    getPreFeeling
   }
 )(Profile);
 
