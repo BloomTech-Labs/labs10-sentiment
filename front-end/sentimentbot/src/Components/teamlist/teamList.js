@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getTeamsMembers, editTeamMembers } from '../../actions/index';
 import './teamlist.css';
-import NavBar from '../NavBar/NavBar';
 
 class TeamList extends React.Component {
 
@@ -20,7 +19,6 @@ class TeamList extends React.Component {
         const uri = "https://sentimentbot.netlify.com/authorization";
         return (
             <>
-            <NavBar />
             <div className="container">
             <p>{this.props.singleTeams[0].name}</p>
             <a
