@@ -13,7 +13,7 @@
     margin: 10px;
 }
 
-.billing-card-body {
+ .billing-card-body {
     width: 50%;
     height: 300px;
     color: #000;
@@ -29,6 +29,14 @@
 }
 
 .billing-card-title {
-    font-weight: bold;
+    font-family: 'Fredoka One', cursive;
     border-bottom: 1px solid black;
+    width: 30%;
 }
+
+.billing-card-text {
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+ .stripe-button-el { display: none } 
