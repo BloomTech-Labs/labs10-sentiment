@@ -1,0 +1,23 @@
+.mainTeam-container {
+    width: 900px;
+    margin-top: 60px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.team-members-container {
+    width: 80%;
+    height: 250px;
+    color: #000;
+    border: 3px solid #f58a91;
+    border-radius: 8px;
+    border: 1px solid smokewhite;
+    box-shadow: 10px 10px 5px 0px #7cdbd5;
+}
+
+.team-members-container div button {
+}
+
+.welcome-container {
+    font-size: 4rem;
+}
