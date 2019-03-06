@@ -12,8 +12,8 @@ getSingleTeamMembers,
   getFeelings,
   getPreFeeling
 } from "../../actions/index";
-import MoodThinking from "./Thinking.jpg";
-import MoodHappy from './Happy.jpg';
+import MoodThinking from "../PNG/nobackgroundThinking.png";
+import MoodHappy from "../PNG/nobackgroundHappy.png";
 
 class SurveySubmitLoading  extends React.Component {
     state = {

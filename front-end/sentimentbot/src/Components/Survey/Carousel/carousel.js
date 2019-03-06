@@ -1,18 +1,18 @@
 import React from 'react';
 import { UncontrolledCarousel } from 'reactstrap';
-import "./survey.css";
-import MoodAwe from "./Awe.jpg"
-import MoodSeriously from "./Seriously.jpg";
-import MoodCringe from "./Cringe.jpg";
-import MoodDisgust from "./Disgust.jpg";
-import MoodDrool from "./Drool.jpg";
-import MoodHappy from "./Happy.jpg";
-import MoodLove from "./Love.jpg";
-import MoodMad from "./Mad.jpg";
-import MoodSad from "./Sad.jpg";
-import MoodWeep from "./Weep.jpg";
-import MoodWHAAT from "./WHAAT.jpg";
-import MoodThinking from "./Thinking.jpg";
+import "../survey.css";
+import MoodAwe from "./nobackgroundAwe copy.png"
+import MoodSeriously from "./nobackgroundSeriously copy.png";
+import MoodCringe from "./nobackgroundCringe copy.png";
+import MoodDisgust from "./nobackgroundDisgust copy.png";
+import MoodDrool from "./nobackgroundDrool copy.png";
+import MoodHappy from "./nobackgroundHappy copy.png";
+import MoodLove from "./nobackgroundLove copy.png";
+import MoodMad from "./nobackgroundMad copy.png";
+import MoodSad from "./nobackgroundSad copy.png";
+import MoodWeep from "./nobackgroundWeep copy.png";
+import MoodWHAAT from "./nobackgroundWhaat copy.png";
+import MoodThinking from "./nobackgroundThinking copy.png";
 
 const items = [
     {
