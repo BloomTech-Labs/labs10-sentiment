@@ -59,7 +59,7 @@ const onServerStartScheduleSurveys = () => {
           surveyFeelingsDb
             .getSurveyID(survey_id)
             .then(data => {
-              console.log("survey feeling array", data);
+              // console.log("survey feeling array", data);
               let feelingTextArray = [];
 
               for (let i = 0; i < data.length; i++) {
@@ -67,7 +67,7 @@ const onServerStartScheduleSurveys = () => {
                 preFeelingsDb
                   .getID(feelings_id)
                   .then(data => {
-                    console.log("pre feeling array", data);
+                    // console.log("pre feeling array", data);
                     if (data.length === 0) {
                       // res.status(404).json({
                       console.log({
@@ -96,8 +96,9 @@ const onServerStartScheduleSurveys = () => {
               /////////////////////////////////////////////////////////survey_id to string
               let stringSurveyId = survey_id.toString();
               console.log("stringSurveyId", stringSurveyId);
-              var j = schedule.scheduleJob(stringSurveyId, ex_time, function() {
+              schedule.scheduleJob(stringSurveyId, ex_time, function() {
                 console.log("Schedule Processed");
+                console.log("botInfo2", botInfo);
                 let postOptions = {
                   uri:
                     "https://botsentiment.herokuapp.com/api/slash/send-me-buttons",
@@ -225,28 +226,25 @@ const surveyScheduler = (timeInfo, postInfo) => {
                 let stringSurveyId = survey_id.toString();
                 console.log("stringSurveyId", stringSurveyId);
 
-                var j = schedule.scheduleJob(
-                  stringSurveyId,
-                  exTime,
-                  function() {
-                    console.log("Schedule Processed");
-                    let postOptions = {
-                      uri:
-                        "https://botsentiment.herokuapp.com/api/slash/send-me-buttons",
-                      method: "POST",
-                      headers: {
-                        "Content-type": "application/json"
-                      },
-                      json: botInfo
-                    };
-                    request(postOptions, (error, response, body) => {
-                      if (error) {
-                        // handle errors as you see fit
-                        res.json({ error: "Error." });
-                      }
-                    });
-                  }
-                );
+                schedule.scheduleJob(stringSurveyId, exTime, function() {
+                  console.log("Schedule Processed");
+                  console.log("botInfo2", botInfo);
+                  let postOptions = {
+                    uri:
+                      "https://botsentiment.herokuapp.com/api/slash/send-me-buttons",
+                    method: "POST",
+                    headers: {
+                      "Content-type": "application/json"
+                    },
+                    json: botInfo
+                  };
+                  request(postOptions, (error, response, body) => {
+                    if (error) {
+                      // handle errors as you see fit
+                      res.json({ error: "Error." });
+                    }
+                  });
+                });
               })
               .catch(err => console.log(err));
           })
@@ -359,7 +357,8 @@ router.get("/:id", (req, res) => {
     .get()
     .where({ survey_time_stamp: id })
     .then(data => {
-      db.get().where({ survey_time_stamp: id })
+      db.get()
+        .where({ survey_time_stamp: id })
         .then(response => {
           res.status(200).json({ response, data });
         })
@@ -381,7 +380,7 @@ router.delete(`/:id`, (req, res) => {
 
             var my_job = schedule.scheduledJobs[stringSurveyId];
             my_job.cancel();
-            res.status(200).json({message: `Survey ID: ${id} canceled`});
+            res.status(200).json({ message: `Survey ID: ${id} canceled` });
           });
         });
       } else {

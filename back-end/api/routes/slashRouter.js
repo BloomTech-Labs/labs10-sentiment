@@ -170,9 +170,23 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                         dbSurveys
                           .getManagerID(manager_id)
                           .then(data => {
-                            let survey_id = data[data.length - 1].id;
-                            let title = data[data.length - 1].title;
-                            let description = data[data.length - 1].description;
+                            // let title = data[data.length - 1].title;
+                            // let description = data[data.length - 1].description;
+
+                            let survey_id = Math.max.apply(Math, data.map(function(o) { return o.id; }))
+                            let title = data.map(item=>{
+                              if(item.id === survey_id){
+                                return item.title;
+                              }
+                            });
+                            let description = data.map(item=>{
+                              if(item.id === survey_id){
+                                return item.description;
+                              }
+                            });
+
+
+
                             console.log("survey id", survey_id);
                             if (data.length === 0) {
                               console.log({
@@ -182,19 +196,19 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                               surveyFeelingsDb
                                 .getSurveyID(survey_id)
                                 .then(data => {
-                                  console.log(
-                                    "survey feeling array slash",
-                                    data
-                                  );
+                                  // console.log(
+                                  //   "survey feeling array slash",
+                                  //   data
+                                  // );
                                   let feelingTextArray = [];
                                   for (let j = 0; j < data.length; j++) {
                                     let { feelings_id } = data[j];
                                     let max = data.length - 1;
-                                    console.log("feelings_id", feelings_id);
+                                    // console.log("feelings_id", feelings_id);
                                     preFeelingsDb
                                       .getID(feelings_id)
                                       .then(data => {
-                                        console.log("pre feeling array", data);
+                                        // console.log("pre feeling array", data);
                                         if (data.length === 0) {
                                           console.log({
                                             error: `Pre Feeling with Id: ${feelings_id} does not exist.`
@@ -213,10 +227,10 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                                           let feeling_text =
                                             data[0].feeling_text;
                                           feelingTextArray.push(feeling_text);
-                                          console.log(
-                                            "feelingTextArray",
-                                            feelingTextArray
-                                          );
+                                          // console.log(
+                                          //   "feelingTextArray",
+                                          //   feelingTextArray
+                                          // );
 
                                           let arrayOptions = [];
                                           for (
@@ -233,7 +247,7 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                                                 type: "button",
                                                 value: feelingTextArray[t]
                                               };
-                                              console.log("value", value);
+                                              // console.log("value", value);
                                               arrayOptions.push(value);
                                               ///////////////////////////////////////////////////////////////////
 
@@ -256,7 +270,7 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                                                   }
                                                 ]
                                               };
-                                              console.log("message", message);
+                                              // console.log("message", message);
                                               sendMessageToSlackResponseURL(
                                                 responseURL,
                                                 message
@@ -270,7 +284,7 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                                                 type: "button",
                                                 value: feelingTextArray[t]
                                               };
-                                              console.log("value", value);
+                                              // console.log("value", value);
                                               arrayOptions.push(value);
                                             }
                                           }
@@ -314,28 +328,29 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
     sendMessageToSlackResponseURL(actionJSONPayload.response_url, message);
   } else if (reqBody.message === true) {
     let surveyId = reqBody.survey_id;
-    console.log("surveyId", surveyId);
+    // console.log("surveyId", surveyId);
     surveyIdDep = surveyId;
-    console.log("surveyIdDep", surveyIdDep);
+    // console.log("surveyIdDep", surveyIdDep);
     let title = reqBody.title;
     let description = reqBody.description;
     let options = reqBody.options;
-    console.log("options", options);
+    // console.log("options", options);
     let arrayOptions = [];
     for (let i = 0; i < options.length; i++) {
       let value = {
         text: options[i],
         value: options[i]
       };
-      console.log("value", value);
+      // console.log("value", value);
       arrayOptions.push(value);
     }
-    console.log("arrayOptions", arrayOptions);
+    // console.log("arrayOptions", arrayOptions);
 
     dbAuth
       .getByMemberId(reqBody.member_id)
       .then(data => {
-        const botToken = data[0].access_token;
+        // const botToken = data[0].access_token;
+        const botToken = data[0].bot_access_token;
         console.log("botToken", botToken);
         const {channel_id} = data[0];
         console.log("channel_id", channel_id);
@@ -365,13 +380,14 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
             }
           ]
         };
-        console.log(message);
+        // console.log(message);
 
         postMessage(message, botToken);
       }
       })
       .catch(err => err);
   } else if (reqBody.payload) {
+ 
     let jsonPayload = JSON.parse(reqBody.payload);
     console.log("jsonPayload", jsonPayload);
     /////////////////////////////////////////////
