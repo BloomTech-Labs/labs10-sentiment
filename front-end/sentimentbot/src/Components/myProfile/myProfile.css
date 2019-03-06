@@ -51,7 +51,7 @@ h3 {
   color: #000;
   border: 1px solid #f58a91;
   border-radius: 8px;
-  border: 1px solid smokewhite;
+  /* border: 1px solid smokewhite; */
   box-shadow: -10px 10px 5px 0px #7cdbd5;
   overflow: hidden;
 }
@@ -78,7 +78,7 @@ h3 {
 }
 
 .btn-feel {
-  width: 40%;
+  width: 100%;
   padding: 1rem;
   color: #212529;
   background-color: #7cdbd5;
@@ -88,9 +88,49 @@ h3 {
   cursor: pointer;
 }
 .btn-feel:hover {
-  color: #f53240;
-  background-color: #02c8a7;
+  color: #96040e;
+  background-color: #F9BE02;
   border: 2px solid #f58a91;
+}
+
+.sub-container-3 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+}
+
+.sub-container-4 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 80%;
+}
+
+.sub-container-4 p {
+  margin-bottom: 1rem;
+  /* font-family: "Fredoka One", cursive; */
+}
+
+.sub-container-5 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.input-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 45%;
+}
+
+.input-div input {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
 }
 
 @media (max-width: 900px) {
@@ -126,6 +166,10 @@ h3 {
   .btn-feel {
     width: 100%;
   }
+  .sub-container-3 {
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
 }
 
 @media (max-width: 600px) {
@@ -157,5 +201,12 @@ h3 {
   }
   .happy {
     display: none;
+  }
+  .sub-container-5 {
+    flex-direction: column;
+  }
+  .input-div {
+    width: 100%;
+    margin-bottom: 1rem;
   }
 }

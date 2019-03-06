@@ -233,32 +233,59 @@ class Profile extends React.Component {
       return (
         <div>
           <NavBar />
-          <div className="join-container">
-            <div>
-              <br />
-              <br />
-              <input
-                onChange={this.handleChange}
-                name="team_code"
-                id="number"
-                type="number"
-                min="0"
-                step="1"
-                placeholder="Enter Team Code Here"
+          <div className="main-container">
+            <div className="sub-container-3">
+              {" "}
+              <h1 className="welcome-container">Welcome to Mood!</h1>
+              <img
+                className="happy"
+                src={Happy}
+                alt="Happy MoodBot"
+                width="200"
+                height="200"
               />
-              <br />
-              <button onClick={this.addCodeToMember}>
-                Join with this team code
-              </button>{" "}
-              <br />
-              <br />
-              <input
-                onChange={this.handleChange}
-                name="createTeam"
-                placeholder="Your Team Name"
-              />{" "}
-              <br />
-              <button onClick={this.createTeam}>Create a Team</button> <br />
+            </div>
+            <div className="sub-container-4">
+              <h2>You're not on a Team!</h2>
+              <p className="p-con-4">
+                If you wish to join an existing team as a team member, place the
+                team code provided by you're project manager inside the team code input and click the "Join A Team"
+                button.
+              </p>
+              <p className="p-con-4">
+                If you wish to create a team as a team manager, place you're team name inside the team name input and click the "Create A Team"
+                button.
+              </p>
+              <div className="sub-container-5">
+                <div className="input-div">
+                  <h3>Join a Team!</h3>
+                  <p>Submit the Team Code Below</p>
+                  <input
+                    onChange={this.handleChange}
+                    name="team_code"
+                    id="number"
+                    type="number"
+                    min="0"
+                    step="1"
+                    placeholder="Enter Team Code Here"
+                  />
+                  <button className="btn-feel" onClick={this.addCodeToMember}>
+                    Join A Team
+                  </button>{" "}
+                </div>
+                <div className="input-div">
+                  <h3>Create a Team!</h3>
+                  <p>Submit the Team Name Below</p>
+                  <input
+                    onChange={this.handleChange}
+                    name="createTeam"
+                    placeholder="Your Team Name"
+                  />{" "}
+                  <button className="btn-feel" onClick={this.createTeam}>
+                    Create a Team
+                  </button>{" "}
+                </div>
+              </div>
             </div>
           </div>
         </div>
