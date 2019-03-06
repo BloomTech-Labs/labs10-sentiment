@@ -1,4 +1,4 @@
-.container {
+.reports-container {
     text-align: center;
     margin-left: auto;
     margin-right: auto;
@@ -6,6 +6,42 @@
     width: 100%;
     border: 1px solid black;
     padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: column;
+}
+
+img {
+    width: 20%;
+    height: 30%;
+}
+
+.bot-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 25%;
+}
+
+.report-button-combo {
+    width: 100%;
+    height: 50%;
+}
+
+.combo-container {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+}
+
+.combo-container-button {
+    width: 30%;
+    height: 10%;
+
+    
 }
 
 @media (max-width: 320px) {
