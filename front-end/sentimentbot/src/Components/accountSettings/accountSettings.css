@@ -8,8 +8,31 @@
     padding: 10px;
 } */
 
+* {
+    font-family: 'Lora', serif;
+    font-size: 1rem;
+}
+
+.container {
+    margin: 0;
+    padding: 0;
+}
+
+.settings-header {
+    color: #7CDBD5;
+    font-family: 'Fredoka One', cursive;
+}
+
+.btn-style {
+    background-color: #02B4A0;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 1.4rem;
+    width: 15%;
+}
+
 @media (max-width: 320px) {
-    .container { 
+    .container {
         width: 300px;
     }
 }
