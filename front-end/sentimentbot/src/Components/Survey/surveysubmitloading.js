@@ -13,7 +13,7 @@ getSingleTeamMembers,
 } from "../../actions/index";
 import MoodThinking from "./Thinking.jpg";
 
-class EmojiLoading extends React.Component {
+class SurveySubmitLoading  extends React.Component {
     state = {
         complete1: false,
         complete2: false,
@@ -25,7 +25,7 @@ class EmojiLoading extends React.Component {
                 complete1: true,
                 complete2: true
             })
-            this.props.getPreFeeling()
+            this.props.getSurvey()
         }
       }
 
@@ -35,7 +35,7 @@ class EmojiLoading extends React.Component {
                   complete1: true,
                   complete2: true
               })
-              this.props.getPreFeeling()
+              this.props.getSurvey()
           }
 
       }
@@ -80,4 +80,4 @@ export default connect(
     getFeelings,
     getPreFeeling,
   }
-)(EmojiLoading);
+)(SurveySubmitLoading );
