@@ -54,12 +54,18 @@ class NewSurvey extends Component {
     })
   }
 
+  surveySubmit = event => {
+    event.preventDefault();
+    this.props.history.push("/surveysubmitloading");
+  }
+
   emojiPicker = (emoji, event) =>  {
     event.preventDefault();
     this.setState({
       custom: emoji.colons
     })
   }
+
   onChangeHandler = event => {
     this.setState({
       [event.target.name]: event.target.value
@@ -214,7 +220,7 @@ class NewSurvey extends Component {
             /> 
           </div>
           <div className="description">
-            <label>Decription</label>
+            <label>Description</label>
             <input
               type="text"
               value={this.state.description}
@@ -231,7 +237,7 @@ class NewSurvey extends Component {
           <button onClick={this.onConfirmation}>Confirm</button>
     
           <div className="dailyWeeklyMonthly">
-            <label>Recurence</label>
+            <label>Recurrence</label>
             <select id="dailyWeeklyMonthly" onChange={this.onChangeDropDown}>
               <option value="daily">Daily</option>
               <option value="weekly">Weekly</option>
@@ -336,7 +342,7 @@ class NewSurvey extends Component {
           </div>
         
           {/* <button onClick={handleSubmit}>Submit</button> */}
-          <button onSubmit={this.createSurvey}>Submit</button>
+          <button onSubmit={this.createSurvey} onClick={this.surveySubmit}>Submit</button>
         </form>
       </div>
       </div>

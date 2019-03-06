@@ -12,6 +12,7 @@ getSingleTeamMembers,
   getPreFeeling
 } from "../../actions/index";
 import MoodThinking from "./Thinking.jpg";
+import MoodHappy from './Happy.jpg';
 
 class SurveySubmitLoading  extends React.Component {
     state = {
@@ -45,7 +46,8 @@ class SurveySubmitLoading  extends React.Component {
           return (
         <div className="container">
         <button onClick={() => this.props.history.push('/survey')}>Click</button>
-        <p>Thanks for waiting! Your custom response has been added.</p>
+        <p>Thanks for waiting! Your survey has been submitted!</p>
+        <img className="moodbot-img" src={MoodHappy} alt="happy" />
       </div>
           )
       } else {
