@@ -20,6 +20,11 @@
     font-size: 15px;
 }
 
+.mainTeam-container img {
+    border: 2px solid #f58a91;
+    border-radius: 10px;
+}
+
 .teamlist-container div {
     margin: 1rem;
 }
@@ -32,15 +37,18 @@
 }
 
  .teamlist-button {
+     /* color: white; */
     text-transform: uppercase;
     background: #7cd8d5;
     border-radius: 5px;
     display: inline-block;
     border: none;
+    width: 12%;
+    font-size: .8rem;
     }
 
 .teamlist-button:hover {
-    /* color: #fff; */
+    /* color: white; */
     background: #f53240;
     letter-spacing: 1px;
     -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);

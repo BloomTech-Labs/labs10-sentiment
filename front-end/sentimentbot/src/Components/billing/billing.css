@@ -1,6 +1,6 @@
 .billing-container {
-    width: 900px;
-    margin-top: 30px;
+    width: 50%;
+    margin-top: 1.875rem;
     margin-left: auto;
     margin-right: auto;
 }
@@ -8,9 +8,10 @@
 .billing-title {
     font-size: 2rem;
     border-bottom: 2px solid black;
-    width: 30rem;
-    padding: 10px;
-    margin: 10px;
+    /* width: 30rem; */
+    width: 50%;
+    padding: 0.625rem;
+    margin: 0.625rem;
 }
 
 .billing-container .card {
@@ -39,8 +40,10 @@
 }
 
 .billing-card-text {
-    padding-top: 20px;
-    padding-left: 20px;
+    /* padding-top: 20px; */
+    padding-top: 1.6rem;
+    /* padding-left: 20px; */
+    padding-left: 1.8rem;
     /* font-weight: bold; */
     font-size: 1.1rem;
 }
