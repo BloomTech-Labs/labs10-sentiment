@@ -1,0 +1,161 @@
+.main-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 60px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+h2 {
+  font-family: "Fredoka One", cursive;
+}
+
+h3 {
+  font-family: "Fredoka One", cursive;
+}
+
+.main-container p {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+}
+
+.name-container {
+  width: 80%;
+}
+
+.sub-container-1 {
+  display: flex;
+  flex-direction: row;
+}
+
+.sub-container-2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 84%;
+}
+.sub-container-2 img {
+  width: 12rem;
+  height: 3.5rem;
+}
+
+/* .welcome-container {
+  font-size: 4rem;
+} */
+
+.reactions {
+  width: 80%;
+  height: 250px;
+  color: #000;
+  border: 1px solid #f58a91;
+  border-radius: 8px;
+  border: 1px solid smokewhite;
+  box-shadow: -10px 10px 5px 0px #7cdbd5;
+  overflow: hidden;
+}
+
+.reactions p {
+  margin-top: 1rem;
+  font-family: "Fredoka One", cursive;
+}
+
+.reactions-scroll {
+  overflow-y: scroll;
+  height: 200px;
+}
+
+.happy {
+  height: 12rem;
+  width: 10rem;
+}
+
+.btn-div {
+  margin-top: 2rem;
+  width: 80%;
+  /* height: 5rem; */
+}
+
+.btn-feel {
+  width: 40%;
+  padding: 1rem;
+  color: #212529;
+  background-color: #7cdbd5;
+  font-size: 1.2rem;
+  border-radius: 0.5rem;
+  font-family: "Fredoka One", cursive;
+  cursor: pointer;
+}
+.btn-feel:hover {
+  color: #f53240;
+  background-color: #02c8a7;
+  border: 2px solid #f58a91;
+}
+
+@media (max-width: 900px) {
+  h1 {
+    text-align: center;
+    font-size: 3rem;
+  }
+  h2 {
+    text-align: center;
+    font-size: 1.4rem;
+  }
+  h3 {
+    font-size: 1.2rem;
+  }
+  .sub-container-2 a {
+    text-align: center;
+  }
+  /* .sub-container-2 img {
+    width: 100%;
+    height: 6.5rem;
+  } */
+  .sub-container-1 {
+    flex-direction: column;
+    align-items: center;
+  }
+  .sub-container-2 {
+    width: 100%;
+    height: 12rem;
+  }
+  .happy {
+    display: none;
+  }
+  .btn-feel {
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  h1 {
+    text-align: center;
+    font-size: 2.2rem;
+  }
+  h2 {
+    text-align: center;
+    font-size: 1.4rem;
+  }
+  h3 {
+    font-size: 1.2rem;
+  }
+  .sub-container-2 a {
+    text-align: center;
+  }
+  /* .sub-container-2 img {
+      width: 100%;
+      height: 6.5rem;
+    } */
+  .sub-container-1 {
+    flex-direction: column;
+    align-items: center;
+  }
+  .sub-container-2 {
+    width: 100%;
+    height: 12rem;
+  }
+  .happy {
+    display: none;
+  }
+}
