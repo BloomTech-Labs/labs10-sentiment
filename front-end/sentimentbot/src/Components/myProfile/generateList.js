@@ -43,12 +43,12 @@ function displayDivs() {
             let textP = breakTest[i] + " ";
             result.push(textP);
           } else if (breakTest[i].indexOf(":") > -1) {
-            let textE = <Emoji emoji={breakTest[i]} size={16} />;
+            let textE = <Emoji emoji={breakTest[i]} size={24} />;
             result.push(textE);
           }
         }
 
-        divs.push(<div key={i}><p>You reacted with {result} on {date.toDateString()}.</p></div>)
+        divs.push(<div key={i}><p>Feeling: {result} Date: {date.toDateString()}.</p></div>)
     }
     return divs
 }

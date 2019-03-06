@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import "../App.css";
+// import "../App.css";
+import "./myProfile.css";
 import {
   getSingleTeamMembers,
   addTeamMembers,
@@ -16,7 +17,7 @@ import {
 } from "../../actions/index";
 import NavBar from "../NavBar/NavBar";
 import GenerateTeams from "./generateTeams";
-import Happy from "../Survey/Happy.jpg";
+import Happy from "../PNG/nobackgroundHappy.png";
 
 class Profile extends React.Component {
   constructor() {
@@ -181,39 +182,49 @@ class Profile extends React.Component {
               <h1 className="welcome-container">
                 Welcome, {this.props.singleTeamMembers[0].firstName}!
               </h1>
-              <p>Join your team on Slack!</p>
-              <a
-                href={`https://slack.com/oauth/authorize?scope=commands&client_id=553324377632.554405336645&redirect_uri=${uri}&state=${
-                  this.props.singleTeamMembers[0].id
-                  }`}
-              >
+              <div className="sub-container-1">
+                <div className="sub-container-2">
+                  <h2>Join your team on Slack!</h2>
+                  <a
+                    href={`https://slack.com/oauth/authorize?scope=commands&client_id=553324377632.554405336645&redirect_uri=${uri}&state=${
+                      this.props.singleTeamMembers[0].id
+                    }`}
+                  >
+                    <img
+                      alt="Add to Slack"
+                      height="40"
+                      width="139"
+                      src="https://platform.slack-edge.com/img/add_to_slack.png"
+                      srcSet="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x"
+                    />
+                  </a>
+                  <h3>Team: {this.props.singleTeams[0].name}</h3>
+                </div>
                 <img
-                  alt="Add to Slack"
-                  height="40"
-                  width="139"
-                  src="https://platform.slack-edge.com/img/add_to_slack.png"
-                  srcSet="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x"
+                  className="happy"
+                  src={Happy}
+                  alt="Happy MoodBot"
+                  width="200"
+                  height="200"
                 />
-              </a>
+              </div>
             </div>
-            <p>Team: {this.props.singleTeams[0].name}</p>
+
             <div className="reactions">
-              <p>List of all your reactions</p>
-              {this.props.feelings.length > 0 ? (
-                <p>
-                  <GenerateTeams />
-                </p>
-              ) : (
+              <p>Your Reactions:</p>
+              <div className="reactions-scroll">
+                {this.props.feelings.length > 0 ? (
+                  <p>
+                    <GenerateTeams />
+                  </p>
+                ) : (
                   <p>Oops! You haven't responded to any surveys yet!</p>
                 )}
+              </div>
             </div>
-            <img
-              className="happy"
-              src={Happy}
-              alt="Happy MoodBot"
-              width="200"
-              height="200"
-            />
+            {/* <div className="btn-div">
+              <button className="btn-feel">Responed to Latest Survey</button>
+            </div> */}
           </div>
         </div>
       );
@@ -260,7 +271,7 @@ class Profile extends React.Component {
           <a
             href={`https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645&redirect_uri=${uri}&state=${
               this.props.singleTeamMembers[0].id
-              }`}
+            }`}
           >
             <img
               alt="Add to Slack"
