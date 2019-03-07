@@ -58,6 +58,7 @@ class Home extends React.Component {
     return (
       <>
       <div className="home-container">
+      <div className="landingIntro">
         <div className="home-container-text">
           <h1>
             Hello, I'm am your Miniature Organization Observation Drone, or M.O.O.D,
@@ -73,6 +74,7 @@ class Home extends React.Component {
             width="200"
             height="200"
           />
+        </div>
         </div>
 
         <Card className="card">
