@@ -1,0 +1,23 @@
+/* Footer */
+.footer {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    bottom: 0;
+}
+.copyright-words {
+    font-size: .5rem;
+    display: flex;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+.footerimg-box {
+    overflow: hidden;
+}
+.footer-img {
+    width: 100%;
+    max-height: 50px;
+    margin: 0;
+}

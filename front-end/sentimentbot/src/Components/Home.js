@@ -3,8 +3,10 @@ import Login from './login/login'
 import Auth from "./Auth/auth";
 import "./home.css";
 import Happy from "./PNG/nobackgroundHappy.png";
+import Footer from "./Footer/footer";
 import { Card, CardText, CardBody,
   CardTitle, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem  } from 'reactstrap';
+
 
 class Home extends React.Component {
   constructor(props) {
@@ -145,7 +147,7 @@ class Home extends React.Component {
       <div> Woah No...Woah NO NO NO NO NO NO NO NO...*wheezing* ~Joseph</div>
       </div>
       </div>
-      
+      <Footer />
       </>
     );
   }
