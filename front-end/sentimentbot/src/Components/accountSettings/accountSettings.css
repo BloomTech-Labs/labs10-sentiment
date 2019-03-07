@@ -14,6 +14,14 @@
     font-weight: 600;
 }
 
+.from-control {
+    box-shadow: none;
+}
+
+.form-check-input {
+    box-shadow: none;
+}
+
 .settings-header {
     color: #7CDBD5;
     font-family: 'Fredoka One', cursive;
