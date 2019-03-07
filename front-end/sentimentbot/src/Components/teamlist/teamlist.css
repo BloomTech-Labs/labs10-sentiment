@@ -1,17 +1,10 @@
+/* Main Team Container */
+
 .mainTeam-container {
-    width: 900px;
-    margin-top: 30px;
+    width: 80%;
+    margin-top: 1.875rem;
     margin-left: auto;
     margin-right: auto;
-}
-
-.teamlist-container {
-    width: 70%;
-    height: 300px;
-    color: #000;
-    border: 4px solid #f58a91;
-    border-radius: 8px;
-    box-shadow: 10px 10px 5px 0px #7cdbd5;
 }
 
 .mainTeam-container h1 {
@@ -23,9 +16,34 @@
     font-size: 15px;
 }
 
-.mainTeam-container img {
+.mainTeam-container .slack-button {
     border: 2px solid #f58a91;
     border-radius: 10px;
+    margin-bottom: 5px;
+}
+
+.mainTeam-container .eh-moodbot {
+    position: relative;
+}
+
+
+.mainTeam-container .eh-moodbot2 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -50px;
+    margin-top: -120px;
+}
+
+/* TeamList Container */
+
+.teamlist-container {
+    width: 60%;
+    height: 300px;
+    color: #000;
+    border: 4px solid #f58a91;
+    border-radius: 8px;
+    box-shadow: 10px 10px 5px 0px #7cdbd5;
 }
 
 .teamlist-container div {
@@ -39,14 +57,15 @@
     font-family: 'Fredoka One', cursive;
 }
 
+/* TeamList Button */
+
  .teamlist-button {
-     color: white;
+    color: white;
     text-transform: uppercase;
-    background: #7cd8d5;
+    background: #02C8A7;
     border-radius: 5px;
     display: inline-block;
     border: none;
-    width: 12%;
     font-size: .8rem;
     }
 
@@ -58,4 +77,29 @@
     -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
     box-shadow: 5px 40px -10px rgba(0,0,0,0.57);
     transition: all 0.4s ease 0s;
+}
+
+/* Tablet */
+
+@media (max-width:900px) and (min-width:601px) {
+    .teamlist-container {
+        width: 100%;
+    }
+
+    .mainTeam-container .eh-moodbot2 {
+        margin-left: 150px;
+    }
+}
+
+/* Mobile */
+
+@media (max-width:600px) {
+
+    .teamlist-container {
+        width: 100%;
+    }
+
+    .mainTeam-container .eh-moodbot2 {
+        display: none;
+    }
 }
