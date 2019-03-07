@@ -14,6 +14,10 @@
     box-shadow: 10px 10px 5px 0px #7cdbd5;
 }
 
+.mainTeam-container h1 {
+    width: 20%;
+}
+
 .mainTeam-container :nth-child(3) {
     font-weight: bold;
     font-size: 15px;
