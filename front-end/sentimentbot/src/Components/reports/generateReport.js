@@ -1,5 +1,4 @@
 import React from 'react'
-import Select from 'react-select'
 import { connect } from "react-redux";
 import { fetchSingleSurvey } from "../../actions/index";
 import NavBar from '../NavBar/NavBar';
