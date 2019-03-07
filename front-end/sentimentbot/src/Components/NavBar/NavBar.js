@@ -1,5 +1,4 @@
 import React from "react";
-import { NavLink as Navlink } from "react-router-dom";
 import Logout from "../login/logout";
 import "./NavBar.css";
 import Auth from "../Auth/auth";
@@ -17,6 +16,7 @@ import {
   DropdownMenu,
   DropdownItem
 } from "reactstrap";
+import history from '../history'
 
 const auth = new Auth();
 
@@ -39,9 +39,14 @@ class NavBar extends React.Component {
       backgroundColor: "#02C8A7"
     };
 
+    const whiteBackground = {
+      backgroundColor: "white"
+    }
+
     const fontColor = {
       color: "white"
     };
+
 
     return (
       <>
@@ -55,27 +60,27 @@ class NavBar extends React.Component {
                   <Nav className="ml-auto" navbar>
                     <NavItem>
                       <NavLink>
-                        <Navlink to="/profile">Profile</Navlink>
+                        <div onClick={() => history.push('/profile')}>Profile</div>
                       </NavLink>
                     </NavItem>
                     <NavItem>
                       <NavLink>
-                        <Navlink to="/teamlist">Team List</Navlink>
+                      <div onClick={() => history.push('/teamlist')}>Teamlist</div>
                       </NavLink>
                     </NavItem>
                     <NavItem>
                       <NavLink>
-                        <Navlink to="/survey">Survey</Navlink>
+                      <div onClick={() => history.push('/survey')}>Survey</div>
                       </NavLink>
                     </NavItem>
                     <NavItem>
                       <NavLink>
-                        <Navlink to="/reports">Reports</Navlink>
+                      <div onClick={() => history.push('/reports')}>Reports</div>
                       </NavLink>
                     </NavItem>
                     <NavItem>
                       <NavLink>
-                        <Navlink to="/billing">Billing</Navlink>
+                      <div onClick={() => history.push('/billing')}>Billing</div>
                       </NavLink>
                     </NavItem>
                     <UncontrolledDropdown nav inNavbar>
@@ -86,9 +91,7 @@ class NavBar extends React.Component {
                         <DropdownItem>
                           <NavItem>
                             <NavLink>
-                              <Navlink to="/accountset">
-                                Account Settings
-                              </Navlink>
+                            <div onClick={() => history.push('/accountset')}>Account Settings</div>
                             </NavLink>
                           </NavItem>
                         </DropdownItem>
@@ -109,12 +112,12 @@ class NavBar extends React.Component {
       ) : (
         <Navbar expand="md">
         <NavbarBrand href="/home">MOOD</NavbarBrand>
-        <NavbarToggler onClick={this.toggle} />
+        <NavbarToggler onClick={this.toggle} style={whiteBackground} />
         <Collapse isOpen={this.state.isOpen} navbar>
           <Nav className="ml-auto" navbar>
           <NavItem>
           <NavLink>
-            <Navlink to="/profile">Profile</Navlink>
+          <div onClick={() => history.push('/profile')}>Profile</div>
           </NavLink>
         </NavItem>
           <UncontrolledDropdown nav inNavbar>
@@ -125,7 +128,7 @@ class NavBar extends React.Component {
               <DropdownItem>
                 <NavItem>
                   <NavLink>
-                    <Navlink to="/accountset">Account Settings</Navlink>
+                  <div onClick={() => history.push('/accountset')}>Account Settings</div>
                   </NavLink>
                 </NavItem>
               </DropdownItem>

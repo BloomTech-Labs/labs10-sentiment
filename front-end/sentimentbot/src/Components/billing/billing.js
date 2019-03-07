@@ -1,16 +1,12 @@
 import React from "react";
-import { Elements, StripeProvider } from "react-stripe-elements";
-import CheckoutForm from "../stripe/checkoutForm";
 import StripeCheckout from "react-stripe-checkout";
 import NavBar from "../NavBar/NavBar";
 import {
   Card,
-  CardImg,
   CardText,
   CardBody,
   CardTitle,
   CardSubtitle,
-  Button
 } from "reactstrap";
 // import "../App.css";
 import "./billing.css";

@@ -1,6 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import Login from "./login/login";
+import Login from './login/login'
 import Auth from "./Auth/auth";
 import "./home.css";
 import Happy from "./PNG/nobackgroundHappy.png";
