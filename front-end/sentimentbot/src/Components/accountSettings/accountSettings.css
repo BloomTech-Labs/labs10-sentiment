@@ -8,6 +8,7 @@
     /* padding: 10px; */
 }
 
+
 /* * {
     font-family: 'Lora', serif;
     font-size: .9rem;
@@ -15,7 +16,7 @@
 } */
 
 
-.from-control {
+.form-control {
     box-shadow: none;
 }
 
@@ -42,6 +43,8 @@ input[type=password]:focus {
     font-size: 1.4rem;
     width: 25%;
     margin-top: 10px;
+    display: flex;
+    justify-content: center;
 }
 
 .btn-style:hover {
