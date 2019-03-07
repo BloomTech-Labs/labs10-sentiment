@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { fetchSingleSurvey } from "../../actions/index";
 import { Pie } from "react-chartjs-2";
+import { Emoji } from "emoji-mart";
 
 // MVP use pie chart to show average feelings over the last 7 days.
 
@@ -13,10 +14,10 @@ class PieChart extends React.Component {
       response2: null,
       response3: null,
       response4: null,
-      count1: 0,
-      count2: 0,
-      count3: 0,
-      count4: 0,
+      count1: null,
+      count2: null,
+      count3: null,
+      count4: null,
       complete: false
     };
   }
@@ -37,7 +38,24 @@ class PieChart extends React.Component {
 
       if (this.count < 4) {
         for (let i = 0; i < this.count; i++) {
-          let temp = this.props.singleSurvey.data[i].feeling_text;
+          let data = this.props.singleSurvey.data;
+
+          for(let i=0; i<this.count; i++) {
+            let testText = data[i].feeling_text
+            let breakTest = testText.split(" ");
+            this.result = [];
+            for (let i = 0; i < breakTest.length; i++) {
+              if (breakTest[i].indexOf(":") === -1) {
+                let textP = breakTest[i] + " ";
+                this.result.push(textP);
+              } else if (breakTest[i].indexOf(":") > -1) {
+                let textE = <Emoji emoji={breakTest[i]} size={16} />;
+                this.result.push(textE);
+              }
+            }
+        }
+
+          let temp = data[i].feeling_text;
           if (this.response1 === "") {
             this.response1 = temp;
             if (this.count === 1) {
@@ -70,7 +88,9 @@ class PieChart extends React.Component {
       }
 
       for (let i = 0; i < this.count; i++) {
-        let temp = this.props.singleSurvey.data[i].feeling_text;
+        let data = this.props.singleSurvey.data;
+
+        let temp = data[i].feeling_text;
         if (this.response1 === "") {
           this.response1 = temp;
         } else if (this.response1 !== temp && this.response2 === "") {
@@ -91,6 +111,71 @@ class PieChart extends React.Component {
           this.complete = true;
         }
       }
+
+      //     this.responsesEmojis = []
+
+      //     for(let i=1; i<=4; i++) {
+      //       let testText = this.response[i]
+      //       let breakTest = testText.split(" ");
+      //       let result = [];
+      //       for (let i = 0; i < breakTest.length; i++) {
+      //         if (breakTest[i].indexOf(":") === -1) {
+      //           let textP = breakTest[i] + " ";
+      //           result.push(textP);
+      //         } else if (breakTest[i].indexOf(":") > -1) {
+      //           let textE = <Emoji emoji={breakTest[i]} size={16} />;
+      //           result.push(textE);
+      //         }
+      //       }
+      //       this.responsesEmojis = result;
+      //   }
+      //   console.log(this.responsesEmojis)
+      // }
+    }
+
+    this.emoji1 = []
+    this.emoji2 = []
+    this.emoji3 = []
+    this.emoji4 = []
+
+    for (let i=0; i<this.result.length; i++) {
+      if (this.emoji1.length === 0) {
+        if (typeof this.result[i] === 'string') {
+          this.emoji1.push(this.result[i])
+          this.emoji1.push(this.result[i+1])
+          i = i +2
+        } else {
+          this.emoji1 = this.result[i]
+          i = i+1
+        }
+      } else if (this.emoji1[0] !== this.result[i] && this.emoji2.length === 0) {
+        if (typeof this.result[i] === 'string') {
+          this.emoji2.push(this.result[i])
+          this.emoji2.push(this.result[i+1])
+          i = i +2
+        } else {
+          this.emoji2 = this.result[i]
+          i = i+1
+        }
+      } else if(this.emoji1[0] !== this.result[i] && this.emoji2[0] !== this.result[i] && this.emoji3.length === 0) {
+        if (typeof this.result[i] === 'string') {
+          this.emoji3.push(this.result[i])
+          this.emoji3.push(this.result[i+1])
+          i = i +2
+        } else {
+          this.emoji3 = this.result[i]
+          i = i+1
+        }
+      } else if(this.emoji1[0] !== this.result[i] && this.emoji2[0] !== this.result[i] && this.emoji3[0] !== this.result[i] && this.emoji4.length === 0){ 
+        if (typeof this.result[i] === 'string') {
+          this.emoji4.push(this.result[i])
+          this.emoji4.push(this.result[i+1])
+          i = i +2
+        } else {
+          this.emoji4 = this.result[i]
+          i = i+1
+        }
+      } 
     }
 
     this.responseArray = [];
@@ -134,12 +219,7 @@ class PieChart extends React.Component {
       return <p>Make surveys to display data</p>;
     } else {
       const data = {
-        labels: [
-          this.state.response1,
-          this.state.response2,
-          this.state.response3,
-          this.state.response4
-        ],
+        labels: ["", "", "", ""],
         datasets: [
           {
             data: [
@@ -154,7 +234,7 @@ class PieChart extends React.Component {
         ]
       };
 
-      let date = new Date(`${this.props.singleSurvey.response[0].created_at}`)
+      let date = new Date(`${this.props.singleSurvey.response[0].created_at}`);
 
       return (
         <>
@@ -162,16 +242,58 @@ class PieChart extends React.Component {
             <div>Create Surveys to see results!</div>
           ) : (
             <div className="pie-chart">
-            <div className="pie-chart-words">
-              <h2>{this.props.singleSurvey.response[0].description}</h2><h3>Created on {date.toDateString()}.</h3>
-              <p>{this.count} {this.count < 2 ? ('response') : ('responses')} to this survey</p>
+              <div className="pie-chart-words">
+                <h2>{this.props.singleSurvey.response[0].description}</h2>
+                <h3>Created on {date.toDateString()}.</h3>
+                <p>
+                  {this.count} {this.count < 2 ? "response" : "responses"} to
+                  this survey
+                </p>
+              </div>
+              <div className="responses">
+                  <p className="response1">Response 1:</p>
+                  {this.state.response1[0] === ":" ? (
+                    <Emoji
+                      className="emoji1"
+                      emoji={this.state.response1}
+                      size={16}
+                    />
+                  ) : (<p>{this.emoji1[0]}{this.emoji1[1]}</p>)
+                } <p className="response2">Response 2:</p>
+                  {this.state.response2[0] === ":" ? (
+                    <Emoji
+                      className="emoji"
+                      emoji={this.state.response2}
+                      size={16}
+                    />
+                  ) : (
+                    <p>{this.emoji2[0]}{this.emoji2[1]}</p>
+                  )} <p className="response3">Response 3:</p>
+                  {this.state.response3[0] === ":" ? (
+                    <Emoji
+                      className="emoji"
+                      emoji={this.state.response3}
+                      size={16}
+                    />
+                  ) : (
+                    <p>{this.emoji3[0]}{this.emoji3[1]}</p>
+                  )} <p className="response4">Response 4:</p>
+                  {this.state.response4[0] === ":" ? (
+                    <Emoji
+                      className="emoji"
+                      emoji={this.state.response4}
+                      size={16}
+                    />
+                  ) : (
+                    <p>{this.emoji4[0]}{this.emoji4[1]}</p>
+                  )}
               </div>
               <Pie
                 data={data}
-                width={25}
-                height={25}
+                width={15}
+                height={15}
                 options={{
-                  maintainAspectRatio: true
+                  maintainAspectRatio: false
                 }}
               />
             </div>
