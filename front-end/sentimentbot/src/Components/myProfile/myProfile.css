@@ -61,6 +61,7 @@ h3 {
   /* border: 1px solid smokewhite; */
   box-shadow: -10px 10px 5px 0px #7cdbd5;
   overflow: hidden;
+  padding: 10px;
 }
 
 .reactions p {

@@ -3,6 +3,8 @@ import Login from './login/login'
 import Auth from "./Auth/auth";
 import "./home.css";
 import Happy from "./PNG/nobackgroundHappy.png";
+import Footer from "./Footer/footer";
+
 class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -42,25 +44,25 @@ class Home extends React.Component {
     const auth = new Auth();
     return (
       <>
-      <div className="home-container">
-        <div className="home-container-text">
-          <h1>
-            Hello, I'm am your Miniature Organization Observation Drone, or M.O.O.D,
-            Let me help you enjoy working with your team.
-          </h1>
-          <Login auth={auth} />
+        <div className="home-container">
+          <div className="home-container-text">
+            <h1>
+              Hello, I'm am your Miniature Organization Observation Drone, or M.O.O.D,
+              Let me help you enjoy working with your team.
+            </h1>
+            <Login auth={auth} />
+          </div>
+          <div className="home-container-img">
+            <img
+              className="happy-auth"
+              src={Happy}
+              alt="Happy MoodBot"
+              width="200"
+              height="200"
+            />
+          </div>
         </div>
-        <div className="home-container-img">
-          <img
-            className="happy-auth"
-            src={Happy}
-            alt="Happy MoodBot"
-            width="200"
-            height="200"
-          />
-        </div>
-      </div>
-      
+        <Footer />
       </>
     );
   }

@@ -5,16 +5,12 @@ import GenerateList from './generateList'
 
 class GenerateTeams extends React.Component {
 
-  
   render() {
-
       return (
         <>
-        <GenerateList history = {this.props.history} />
-        {/* <Select options={surveyList} /> */}
-
+          <GenerateList history = {this.props.history} />
+          {/* <Select options={surveyList} /> */}
         </>
-        
       );
     }
   }

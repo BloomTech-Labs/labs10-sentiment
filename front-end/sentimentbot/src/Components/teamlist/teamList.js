@@ -4,6 +4,7 @@ import { getTeamsMembers, editTeamMembers } from '../../actions/index';
 import './teamlist.css';
 import NavBar from '../NavBar/NavBar';
 import Eh from '../PNG/nobackgroundEh.png';
+import Footer from "../Footer/footer";
 
 class TeamList extends React.Component {
 
@@ -59,6 +60,7 @@ class TeamList extends React.Component {
             })}
           </div>
         </div>
+        <Footer />
       </>
     )
   }

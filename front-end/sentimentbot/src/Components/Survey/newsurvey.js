@@ -7,7 +7,6 @@ import "./survey.css";
 import "emoji-mart/css/emoji-mart.css";
 import { Picker } from "emoji-mart";
 import MoodBotCarousel from './Carousel/carousel';
-import FooterBanner from "../PNG/MOODfooterBANNER6.png";
 
 import { addTeam } from "../../actions/teams";
 import { getTeams } from "../../actions/teams";
@@ -24,6 +23,9 @@ import { editSurvey } from "../../actions/survey";
 import { deleteSurvey } from "../../actions/survey";
 import { fetchSingleSurvey } from "../../actions/survey";
 import { addPreFeeling } from "../../actions";
+
+import FooterBanner from "../PNG/MOODfooterBANNER6.png";
+import MoodAwe from "../PNG/nobackgroundAwe.png";
 
 class NewSurvey extends Component {
   constructor() {
@@ -189,22 +191,23 @@ class NewSurvey extends Component {
           </div>
           <div className="form-box">
             <div className="customemoji-form"> 
-            <h2>Custom Emoji Maker</h2>
+              <h2>Custom Emoji Maker</h2>
               <div className="survey-instructions">
-                <p className="instruction-p">To create a Custom Emoji response, just click on an emoji below!</p>
-                <p className="instruction-p"> The emoji will be added as a possible respoonse on the Survey Maker Form. </p>
+                <p className="instruction-p">To create a Custom Emoji Response, just click on an emoji below!</p>
+                <p className="instruction-p"> The emoji will be added as a possible response on the Survey Maker Form. </p>
               </div> 
-              <Picker
-                  set="apple"
-                  title="Pick your emoji…"
-                  emoji="point_up"
-                  i18n={{
-                  search: "Search",
-                  categories: { search: "Search Results", recent: "Recents" }
-                  }}
-                  onClick={this.emojiPicker}
-                  // custom={customEmoji}
-              />
+              <div className="emoji-picker">
+                <Picker
+                    set="apple"
+                    title="Pick your emoji…"
+                    emoji="point_up"
+                    i18n={{
+                    search: "Search",
+                    categories: { search: "Search Results", recent: "Recents" }
+                    }}
+                    onClick={this.emojiPicker}
+                />
+              </div>
               <input 
                 placeholder={this.state.custom} 
                 type="text" 
@@ -214,6 +217,7 @@ class NewSurvey extends Component {
               <button className="survey-buttons" onClick={this.addCustom}>
                 Send Chosen Emojis to Survey
               </button>
+              <img alt="awe" className="emojibot" src={MoodAwe} />
             </div>
             <div className="survey-form">
               <h2>Survey Maker Form</h2>
@@ -227,15 +231,17 @@ class NewSurvey extends Component {
                     type="text"
                     value={this.state.title}
                     name="title"
+                    placeholder="enter the title of your survey"
                     onChange={this.onChangeHandler}
                   /> 
                 </div>
                 <div className="survey-inputbox">
-                  <label className="survey-inputlabel">Description</label>
+                  <label className="survey-inputlabel">Question</label>
                   <input
                     type="text"
                     value={this.state.description}
                     name="description"
+                    placeholder="enter your survey question"
                     onChange={this.onChangeHandler}
                   />
                 </div>
@@ -360,17 +366,17 @@ class NewSurvey extends Component {
                   </select>
                 </div>
                 <div className="survey-instructions">
-                  <p className="instruction-p">Hit SUBMIT to make your survey!</p>
+                  <p className="instruction-p survey-submit">Hit SUBMIT to make your survey!</p>
                 </div>
                 <button className="survey-buttons" onSubmit={this.createSurvey}>Submit</button>
               </form>
             </div>
           </div>
         </div>
-        <div className="footer">
-          <p className="copyright-words">© Copyright M.O.O.D All Rights Reserved.</p>
-          <div className="footerimg-box">
-            <img  className="footer-img" src={FooterBanner} />
+        <div className="surveyfooter">
+          <p className="surveycopyright-words">© Copyright M.O.O.D All Rights Reserved.</p>
+          <div className="surveyfooterimg-box">
+            <img  className="surveyfooter-img" alt="footer" src={FooterBanner} />
           </div>
         </div>
       </div>
