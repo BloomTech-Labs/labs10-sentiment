@@ -42,7 +42,8 @@
  .teamlist-button {
      color: white;
     text-transform: uppercase;
-    background: #7cd8d5;
+    /* background: #7cd8d5; */
+    background: #02C8A7;
     border-radius: 5px;
     display: inline-block;
     border: none;
