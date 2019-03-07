@@ -39,7 +39,7 @@ class Authorization extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (
-      this.props.singleTeamMembers.length != prevProps.singleTeamMembers.length
+      this.props.singleTeamMembers.length !== prevProps.singleTeamMembers.length
     ) {
       this.props.getSingleTeam(this.props.singleTeamMembers[0].team_id);
       this.props.getFeelings(this.props.singleTeamMembers[0].id);

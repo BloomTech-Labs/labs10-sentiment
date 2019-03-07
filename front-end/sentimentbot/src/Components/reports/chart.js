@@ -10,10 +10,10 @@ class PieChart extends React.Component {
   constructor() {
     super();
     this.state = {
-      response1: null,
-      response2: null,
-      response3: null,
-      response4: null,
+      response1: "",
+      response2: "",
+      response3: "",
+      response4: "",
       count1: null,
       count2: null,
       count3: null,
@@ -22,7 +22,7 @@ class PieChart extends React.Component {
     };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.setState({ complete: false });
     this.count = 0;
     this.response1 = "";
@@ -32,9 +32,9 @@ class PieChart extends React.Component {
     this.complete = false;
 
     if (this.props.survey.length > 0 && this.props.singleSurvey.length !== 0) {
-      const responses = this.props.singleSurvey.data.map(response => {
-        this.count += 1;
-      });
+      const responses = this.props.singleSurvey.data.map(response => this.count += 1
+      );
+      console.log(responses, "responses")
 
       if (this.count < 4) {
         for (let i = 0; i < this.count; i++) {
@@ -133,6 +133,8 @@ class PieChart extends React.Component {
       // }
     }
 
+    if (this.props.survey.length > 0 && this.props.singleSurvey.length !== 0 && this.complete === true) {
+
     this.emoji1 = []
     this.emoji2 = []
     this.emoji3 = []
@@ -177,6 +179,7 @@ class PieChart extends React.Component {
         }
       } 
     }
+  }
 
     this.responseArray = [];
     for (let i = 0; i < this.count; i++) {
@@ -213,8 +216,8 @@ class PieChart extends React.Component {
   render() {
     if (
       (this.props.survey.length === 0 &&
-        this.props.surveyIsFetching === true) ||
-      this.props.singleSurvey.length === 0
+        this.props.surveyIsFetching === true &&
+      this.props.singleSurvey.length === 0 && this.state.complete === false)
     ) {
       return <p>Make surveys to display data</p>;
     } else {
@@ -234,17 +237,25 @@ class PieChart extends React.Component {
         ]
       };
 
+
       let date = new Date(`${this.props.singleSurvey.response[0].created_at}`);
+
+      console.log(date, "date right here")
+
+      const canvas = {
+        height: "600px",
+        width: "400px"
+      }
 
       return (
         <>
           {this.state.complete === false ? (
             <div>Create Surveys to see results!</div>
           ) : (
-            <div className="pie-chart">
+            <div className="pie-chart-main" style={canvas}>
               <div className="pie-chart-words">
                 <h2>{this.props.singleSurvey.response[0].description}</h2>
-                <h3>Created on {date.toDateString()}.</h3>
+                {date === undefined ? (<p>This has no responses yet</p>) : (<h3>Created on {date.toDateString()}.</h3>)}
                 <p>
                   {this.count} {this.count < 2 ? "response" : "responses"} to
                   this survey
@@ -288,12 +299,13 @@ class PieChart extends React.Component {
                     <p>{this.emoji4[0]}{this.emoji4[1]}</p>
                   )}
               </div>
-              <Pie
+              <Pie className="piepie"
                 data={data}
-                width={15}
-                height={15}
+                // width={10}
+                height={-10}
                 options={{
-                  maintainAspectRatio: false
+                  maintainAspectRatio: false,
+                  responsive: true
                 }}
               />
             </div>

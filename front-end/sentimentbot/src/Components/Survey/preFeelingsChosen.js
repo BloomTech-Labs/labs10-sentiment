@@ -11,9 +11,7 @@ import {
 } from "../../actions/preFeelings";
 
 class PreFeelingsChosen extends React.Component {
-  constructor() {
-    super();
-  }
+
   
   // onSelectTest= event => {
   //   console.log(event.target.value, event.target.id, "hey!");

@@ -174,7 +174,9 @@ class NewSurvey extends Component {
       min: min,
       preFeelingIdsArray: preFeelingIdsArray
     }
-      this.props.addSurvey(combine)};
+      this.props.addSurvey(combine)
+      this.props.history.push('/loading')
+    };
 
   render() {
     
@@ -352,7 +354,7 @@ class NewSurvey extends Component {
                     <option value="PST">pst</option>
                   </select>
                 </div>
-                <button className="survey-buttons" onSubmit={this.createSurvey} onClick={this.surveySubmit}>Submit</button>
+                <button className="survey-buttons" onSubmit={this.createSurvey}>Submit</button>
               </form>
             </div>
           </div>
