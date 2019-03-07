@@ -15,12 +15,18 @@
   margin-right: auto;
 }
 
-h2 {
+.main-container h1 {
   font-family: "Fredoka One", cursive;
 }
 
-h3 {
+.sub-container-2 h2 {
   font-family: "Fredoka One", cursive;
+  font-size: 1.3rem;
+}
+
+.sub-container-2 h3 {
+  font-family: "Fredoka One", cursive;
+  font-size: 1.3rem;
 }
 
 .main-container p {
@@ -65,7 +71,8 @@ h3 {
 
 .reactions p {
   margin-top: 1rem;
-  font-family: "Fredoka One", cursive;
+  font-family: 'Roboto', sans-serif;
+  padding-left: 1%;
 }
 
 .reactions-scroll {

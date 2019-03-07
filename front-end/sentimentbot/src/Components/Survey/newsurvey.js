@@ -147,6 +147,7 @@ class NewSurvey extends Component {
         this.state.option3, 
         this.state.option4]
     })
+    alert('Choices have been saved!')
   }
 
   createSurvey = event => {
