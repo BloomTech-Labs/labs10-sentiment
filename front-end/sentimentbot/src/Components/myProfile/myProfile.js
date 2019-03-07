@@ -18,6 +18,7 @@ import {
 import NavBar from "../NavBar/NavBar";
 import GenerateTeams from "./generateTeams";
 import Happy from "../PNG/nobackgroundHappy.png";
+import Footer from "../Footer/footer";
 
 class Profile extends React.Component {
   constructor() {
@@ -243,6 +244,7 @@ class Profile extends React.Component {
               <button className="btn-feel">Responed to Latest Survey</button>
             </div> */}
           </div>
+          <Footer />
         </div>
       );
     }
@@ -306,6 +308,7 @@ class Profile extends React.Component {
               </div>
             </div>
           </div>
+          <Footer />
         </div>
       );
     } else if (view === "create") {
@@ -356,6 +359,7 @@ class Profile extends React.Component {
               Submit Team Title
             </button>
           </form> */}
+          <Footer />
         </div>
       );
     } else if (view === "join") {
@@ -397,6 +401,7 @@ class Profile extends React.Component {
               Submit Team Code
             </button>
           </form> */}
+          <Footer />
         </div>
       );
     }

@@ -9,6 +9,7 @@ import {
   CardSubtitle,
 } from "reactstrap";
 // import "../App.css";
+import Footer from "../Footer/footer";
 import "./billing.css";
 
 class Billing extends React.Component {
@@ -78,6 +79,7 @@ class Billing extends React.Component {
           <div className="purchase-complete billing-container">
             <h1>Purchase Complete</h1>
           </div>
+          <Footer />
         </>
       );
     } else {
@@ -140,6 +142,7 @@ class Billing extends React.Component {
               </div>
             </div>
           </div>
+          <Footer />
         </>
       );
     }

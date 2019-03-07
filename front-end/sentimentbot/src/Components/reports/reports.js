@@ -1,6 +1,7 @@
 import React from "react";
 import PieChart from "./chart";
 import NavBar from '../NavBar/NavBar';
+import Footer from "../Footer/footer";
 import './report.css'
 
 function Reports(props) {
@@ -19,6 +20,7 @@ function Reports(props) {
       <PieChart history={props.history} />
       </div>
       </div>
+      <Footer />
     </>
   );
 }
