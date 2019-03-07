@@ -4,6 +4,7 @@ import axios from "axios";
 import { editTeamMembers } from "../../actions/index";
 import { connect } from "react-redux";
 import "./accountSettings.css";
+import Footer from "../Footer/footer";
 
 import { Col, FormGroup, Label, Input } from "reactstrap";
 
@@ -168,6 +169,7 @@ class accountSettings extends React.Component {
             </div>
           )}
         </div>
+        <Footer />
       </>
     );
   }
