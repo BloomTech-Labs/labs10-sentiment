@@ -3,7 +3,7 @@ import Login from './login/login'
 import Auth from "./Auth/auth";
 import "./home.css";
 import Happy from "./PNG/nobackgroundHappy.png";
-import Footer from "./Footer/footer";
+import FooterBanner from "./PNG/MOODfooterBANNER6.png";
 import { Card, CardText, CardBody,
   CardTitle, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem  } from 'reactstrap';
 
@@ -147,7 +147,12 @@ class Home extends React.Component {
       <div> Woah No...Woah NO NO NO NO NO NO NO NO...*wheezing* ~Joseph</div>
       </div>
       </div>
-      <Footer />
+      <div className="homefooter">
+          <p className="homecopyright-words">© Copyright M.O.O.D All Rights Reserved.</p>
+          <div className="homefooterimg-box">
+            <img  className="homefooter-img" alt="footer" src={FooterBanner} />
+          </div>
+        </div>
       </>
     );
   }
