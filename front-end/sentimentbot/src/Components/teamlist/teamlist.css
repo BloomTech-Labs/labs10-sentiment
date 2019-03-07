@@ -30,18 +30,16 @@
 }
 
 .mainTeam-container .eh-moodbot {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    width: 84%;
+    position: relative;
 }
 
+
 .mainTeam-container .eh-moodbot2 {
-    display: flex;
-    flex-direction: row;
-    /* align-content: center; */
-    /* align-items: center; */
-    align-self: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -50px;
+    margin-top: -120px;
 }
 
 .teamlist-container div {
@@ -56,9 +54,8 @@
 }
 
  .teamlist-button {
-     color: white;
+    color: white;
     text-transform: uppercase;
-    /* background: #7cd8d5; */
     background: #02C8A7;
     border-radius: 5px;
     display: inline-block;
@@ -76,15 +73,23 @@
     transition: all 0.4s ease 0s;
 }
 
-@media (max-width:900px) and (min-width:501px) {
+@media (max-width:900px) and (min-width:601px) {
     .teamlist-container {
         width: 100%;
     }
+
+    .mainTeam-container .eh-moodbot2 {
+        margin-left: 150px;
+    }
 }
 
-@media (max-width:500px) {
+@media (max-width:600px) {
 
     .teamlist-container {
         width: 100%;
+    }
+
+    .mainTeam-container .eh-moodbot2 {
+        display: none;
     }
 }

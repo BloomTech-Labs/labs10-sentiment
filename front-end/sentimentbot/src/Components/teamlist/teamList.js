@@ -37,13 +37,17 @@ class TeamList extends React.Component {
             />
           </a>
           <p>Team Join Code: {this.props.singleTeams[0].team_code}</p>
-          <h3>Team Members</h3>
-          <img
-            src={Eh}
-            alt="Eh MoodBot"
-            width="200"
-            height="200"
-          />
+          <div className="eh-moodbot">
+            <h3>Team Members</h3>
+            <div className="eh-moodbot2">
+              <img
+                src={Eh}
+                alt="Eh MoodBot"
+                width="150"
+                height="150"
+              />
+            </div>
+          </div>
           <div className="teamlist-container">
             {this.props.teamMembers.map(user => {
               return (
