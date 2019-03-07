@@ -40,7 +40,7 @@ class TeamList extends React.Component {
               />
             </div>
           </div>
-          <div className="teamlist-container">
+          <div className="teamlist-container team-scrollbar">
             {this.props.teamMembers.map(user => {
               return (
                 <div>
