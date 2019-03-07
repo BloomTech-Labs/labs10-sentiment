@@ -215,9 +215,7 @@ class PieChart extends React.Component {
 
   render() {
     if (
-      (this.props.survey.length === 0 &&
-        this.props.surveyIsFetching === false &&
-      this.props.singleSurvey.length === 0 && this.state.complete === false) {
+      (this.props.survey.length === 0 && this.props.surveyIsFetching === false && this.props.singleSurvey.length === 0 && this.state.complete === false) {
       return <p>Make surveys to display data</p>;
     } else {
       const data = {
