@@ -1,7 +1,6 @@
 import React from "react";
-
+import "./login.css";
 class Login extends React.Component {
-
   login() {
     this.props.auth.login();
   }
@@ -19,18 +18,11 @@ class Login extends React.Component {
   // }
 
   render() {
-
     return (
       <div className="login-container">
-            
-                  <button
-                    onClick={this.login.bind(this)}
-                  className="login-button">
-                    Log In
-                  </button>
-
-
-
+        <button onClick={this.login.bind(this)} className="btn-feel-3">
+          Log In
+        </button>
       </div>
     );
   }

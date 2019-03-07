@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import PreFeelingList from "./preFeelingList";
 import "../history";
+import "./survey.css";
 import { 
   getPreFeeling, 
   addPreFeeling, 
@@ -11,9 +12,7 @@ import {
 } from "../../actions/preFeelings";
 
 class PreFeelingsChosen extends React.Component {
-  constructor() {
-    super();
-  }
+
   
   // onSelectTest= event => {
   //   console.log(event.target.value, event.target.id, "hey!");
@@ -25,7 +24,7 @@ class PreFeelingsChosen extends React.Component {
   render() {
     return (
       <div>
-        <p> Which possible responses would you like to choose?</p>
+        <p className="instruction-p survey-instructions "> Which possible responses would you like to have available?</p>
         <PreFeelingList 
         onSelectTest1={this.props.onSelectTest1} 
         onSelectTest2={this.props.onSelectTest2}

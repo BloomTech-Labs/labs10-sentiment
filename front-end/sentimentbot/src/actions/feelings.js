@@ -19,7 +19,7 @@ export const SINGLE_FEELINGS_FAILURE = 'SINGLE_FEELINGS_FAILURE';
 export const getFeelings = id => dispatch => {
     dispatch({ type: FETCH_FEELINGS_START });
     axios
-    .get(`https://botsentiment.herokuapp.com/api/feelings/${id}`)
+    .get(`https://botsentiment.herokuapp.com/api/feelings/myfeelings/${id}`)
     .then(response => {
         dispatch({ type: FETCH_FEELINGS_SUCCESS, payload: response.data })
     })
