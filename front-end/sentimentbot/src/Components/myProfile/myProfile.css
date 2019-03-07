@@ -1,3 +1,10 @@
+.fake-nav {
+    height: 4rem;
+    width: 100%;
+    background: #02c8a7;
+    margin-bottom: 1rem;
+  }
+
 .main-container {
   width: 100%;
   display: flex;
@@ -86,6 +93,7 @@ h3 {
   border-radius: 0.5rem;
   font-family: "Fredoka One", cursive;
   cursor: pointer;
+  box-shadow: -10px 10px 5px 0px #212529;
 }
 .btn-feel:hover {
   color: #96040e;
@@ -132,6 +140,33 @@ h3 {
   border-radius: 0.5rem;
   margin-bottom: 1rem;
 }
+
+.btn-feel-2 {
+    width: 20rem;;
+    padding: 1rem;
+    color: #212529;
+    background-color: #7cdbd5;
+    font-size: 1.2rem;
+    border-radius: 0.5rem;
+    font-family: "Fredoka One", cursive;
+    cursor: pointer;
+    box-shadow: -10px 10px 5px 0px #212529;
+  }
+  .btn-feel-2:hover {
+    color: #96040e;
+    background-color: #f9be02;
+    border: 2px solid #f58a91;
+  }
+
+  .p-tag{
+      margin-top: 2rem;
+  }
+
+  .container-pandb{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+  }
 
 @media (max-width: 900px) {
   h1 {

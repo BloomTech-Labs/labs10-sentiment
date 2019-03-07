@@ -17,7 +17,8 @@ import {
   getPreFeeling
 } from "../../actions/index";
 import history from "../history";
-
+import "./authorization.css";
+import Happy from "../PNG/nobackgroundHappy.png";
 class Authorization extends React.Component {
   state = {
     firstName: "",
@@ -39,7 +40,7 @@ class Authorization extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (
-      this.props.singleTeamMembers.length != prevProps.singleTeamMembers.length
+      this.props.singleTeamMembers.length !== prevProps.singleTeamMembers.length
     ) {
       this.props.getSingleTeam(this.props.singleTeamMembers[0].team_id);
       this.props.getFeelings(this.props.singleTeamMembers[0].id);
@@ -96,7 +97,7 @@ class Authorization extends React.Component {
     }
 
     const makeInput = name => (
-      <textarea
+      <input
         autoComplete="off"
         type="text"
         onChange={this.handleChange}
@@ -109,33 +110,50 @@ class Authorization extends React.Component {
     if (this.state.view === "") {
       return (
         <>
+          <div className="fake-nav" />
           {this.props.singleTeamMembers.length === 0 ? (
-            <div className="container">
+            <div className="container-form">
               <p>Please finish registering before continuing...</p>
               <form onSubmit={this.submitHandler} autoComplete="nope">
                 {makeInput("firstName")}
                 {makeInput("lastName")} {makeInput("email")}
                 {makeInput("phone")}
-                <button>Sign Up</button>
+                <button className="btn-feel" >Sign Up</button>
               </form>
+              <img
+                  className="happy-auth"
+                  src={Happy}
+                  alt="Happy MoodBot"
+                  width="200"
+                  height="200"
+                />
             </div>
           ) : (
             <div className="container">
               <p>Welcome Back!</p>
-              <button onClick={() => history.replace("/profile")}>
+              <button className="btn-feel-2" onClick={() => history.replace("/profile")}>
                 Continue To Profile
               </button>
             </div>
           )}
         </>
       );
-      } else {
-        return (
-          <div className="container">
-          <p>Thanks for registering! Please allow us a moment to finish registering you</p>
-          <button onClick={() => this.props.history.push('/loading')}>Thank you</button>
-          </div>
-        )
+    } else {
+      return (
+        <>
+        <div className="fake-nav" />
+        <div className="container">
+          
+          <p>
+            Thanks for registering! Please allow us a moment to finish
+            registering you
+          </p>
+          <button className="btn-feel-2" onClick={() => this.props.history.push("/loading")}>
+            Thank you
+          </button>
+        </div>
+        </>
+      );
     }
   }
 }

@@ -1,6 +1,7 @@
-.nav-item .nav-link a {
+.nav-item .nav-link div {
     text-decoration: none;
     color: white;
+    cursor: pointer;
 }
 
 .navbar {
@@ -30,4 +31,11 @@
 
 .logout-button {
     color: white;
+}
+
+.navbar-expand-md .navbar-toggler {
+    background-image: url("http://chittagongit.com//images/hamburger-icon/hamburger-icon-8.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
 }
