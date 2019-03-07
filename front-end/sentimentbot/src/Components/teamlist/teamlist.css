@@ -1,6 +1,6 @@
 .mainTeam-container {
-    width: 900px;
-    margin-top: 30px;
+    width: 50%;
+    margin-top: 1.875rem;
     margin-left: auto;
     margin-right: auto;
 }
@@ -46,7 +46,7 @@
     border-radius: 5px;
     display: inline-block;
     border: none;
-    width: 12%;
+    /* width: 12%; */
     font-size: .8rem;
     }
 
