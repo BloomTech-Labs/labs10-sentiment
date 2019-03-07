@@ -95,7 +95,7 @@ class accountSettings extends React.Component {
           {this.state.response === 200 ? (
             <div>Email will be sent shortly</div>
           ) : (
-            <>
+            <div className="settings-page">
               <h3 className="settings-header">Settings</h3>
 
               <form className="account-form" onSubmit={this.handleSubmit}>
@@ -103,7 +103,7 @@ class accountSettings extends React.Component {
                   <Label for="emailField" sm={2}>
                     Email
                   </Label>
-                  <Col sm={4}>
+                  <Col sm={6}>
                     <Input
                       type="email"
                       name="email"
@@ -116,7 +116,7 @@ class accountSettings extends React.Component {
                   <Label for="phoneNumber" sm={2}>
                     Phone
                   </Label>
-                  <Col sm={4}>
+                  <Col sm={6}>
                     <Input
                       type="text"
                       name="phone"
@@ -125,7 +125,6 @@ class accountSettings extends React.Component {
                     />
                   </Col>
                 </FormGroup>
-
                 <br />
                 <FormGroup check inline>
                   <Label check>
@@ -138,7 +137,6 @@ class accountSettings extends React.Component {
                     Email
                   </Label>
                 </FormGroup>
-
                 <FormGroup check inline>
                   <Label check>
                     <Input
@@ -150,38 +148,7 @@ class accountSettings extends React.Component {
                     Text
                   </Label>
                 </FormGroup>
-
                 <br />
-
-                <p>Reset your password below:</p>
-
-                <FormGroup row>
-                  <Label for="oldPassword" sm={2}>
-                    Old Password
-                  </Label>
-                  <Col sm={4}>
-                    <Input
-                      type="password"
-                      name="password"
-                      id="oldPassword"
-                      placeholder="password placeholder"
-                    />
-                  </Col>
-                </FormGroup>
-
-                <FormGroup row>
-                  <Label for="newPassword" sm={2}>
-                    New Password
-                  </Label>
-                  <Col sm={4}>
-                    <Input
-                      type="password"
-                      name="password"
-                      id="newPassword"
-                      placeholder="password placeholder"
-                    />
-                  </Col>
-                </FormGroup>
 
                 <button
                   className="btn-style"
@@ -194,7 +161,7 @@ class accountSettings extends React.Component {
               <button className="btn-style" onClick={this.handleLeaveTeam}>
                 Leave Team
               </button>
-            </>
+            </div>
           )}
         </div>
       </>

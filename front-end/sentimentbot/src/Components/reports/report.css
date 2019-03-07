@@ -7,9 +7,14 @@
         align-items: center;
     }
 
+    p {
+        font-family: "Roboto", sans-serif;
+    }
+
     .main-reports-container h2 {
         margin-top: 3%;
         font-size: 4rem;
+        font-family: "Fredoka One", cursive;
     }
 
     .main-reports-container button {
@@ -17,6 +22,7 @@
         background-color: #7cdbd5;
         color: #212529;
         margin: 3%;
+        border-radius: .25rem;
     }
 
     .main-reports-container-button:hover {
@@ -35,10 +41,12 @@
 
     .pie-chart-words h2 {
         font-size: 2rem;
+        font-family: "Fredoka One", cursive;
     }
 
     .pie-chart-words h3 {
         font-size: 1.2rem;
+        font-family: "Fredoka One", cursive;
     }
 
     .reports-container {
@@ -458,12 +466,12 @@
 }
 
 .combo-container-button {
-    margin-left: 8%;
-    margin-top: 10%;
+    margin: 10% auto;
     width: 90%;
     height: 40px;
     background-color: #7cdbd5;
     color: #212529;
+    border-radius: .25rem;
 }
 
 .combo-container-button:hover {
