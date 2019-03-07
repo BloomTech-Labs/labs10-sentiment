@@ -8,10 +8,18 @@
     /* padding: 10px; */
 }
 
-* {
+/* * {
     font-family: 'Lora', serif;
     font-size: .9rem;
     font-weight: 600;
+} */
+
+.from-control {
+    box-shadow: none;
+}
+
+.form-check-input {
+    box-shadow: none;
 }
 
 
