@@ -186,19 +186,36 @@ class Profile extends React.Component {
               <div className="sub-container-1">
                 <div className="sub-container-2">
                   <h2>Join your team on Slack!</h2>
-                  <a
-                    href={`https://slack.com/oauth/authorize?scope=commands&client_id=553324377632.554405336645&redirect_uri=${uri}&state=${
-                      this.props.singleTeamMembers[0].id
-                    }`}
-                  >
-                    <img
-                      alt="Add to Slack"
-                      height="40"
-                      width="139"
-                      src="https://platform.slack-edge.com/img/add_to_slack.png"
-                      srcSet="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x"
-                    />
-                  </a>
+                  {this.props.singleTeamMembers[0].type === "manager" ? (
+                    <a
+                      href={`https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645&redirect_uri=${uri}&state=${
+                        this.props.singleTeamMembers[0].id
+                      }`}
+                    >
+                      <img
+                        alt="Add to Slack"
+                        height="40"
+                        width="139"
+                        src="https://platform.slack-edge.com/img/add_to_slack.png"
+                        srcSet="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x"
+                      />
+                    </a>
+                  ) : (
+                    <a
+                      href={`https://slack.com/oauth/authorize?scope=commands&client_id=553324377632.554405336645&redirect_uri=${uri}&state=${
+                        this.props.singleTeamMembers[0].id
+                      }`}
+                    >
+                      <img
+                        alt="Add to Slack"
+                        height="40"
+                        width="139"
+                        src="https://platform.slack-edge.com/img/add_to_slack.png"
+                        srcSet="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x"
+                      />
+                    </a>
+                  )}
+
                   <h3>Team: {this.props.singleTeams[0].name}</h3>
                 </div>
                 <img
@@ -251,12 +268,13 @@ class Profile extends React.Component {
               <h2>You're not on a Team!</h2>
               <p className="p-con-4">
                 If you wish to join an existing team as a team member, place the
-                team code provided by you're project manager inside the team code input and click the "Join A Team"
-                button.
+                team code provided by you're project manager inside the team
+                code input and click the "Join A Team" button.
               </p>
               <p className="p-con-4">
-                If you wish to create a team as a team manager, place you're team name inside the team name input and click the "Create A Team"
-                button.
+                If you wish to create a team as a team manager, place you're
+                team name inside the team name input and click the "Create A
+                Team" button.
               </p>
               <div className="sub-container-5">
                 <div className="input-div">
@@ -312,14 +330,17 @@ class Profile extends React.Component {
             />
           </a> */}
           <div className="container-pandb">
-          <p className="p-tag">
-            Congratulations on creating your team! Click
-            below to allow us to update your site access.
-          </p>
-          <br />
-          <button className="btn-feel-2 " onClick={() => this.props.history.push("/loading")}>
-            Here!
-          </button>
+            <p className="p-tag">
+              Congratulations on creating your team! Click below to allow us to
+              update your site access.
+            </p>
+            <br />
+            <button
+              className="btn-feel-2 "
+              onClick={() => this.props.history.push("/loading")}
+            >
+              Here!
+            </button>
           </div>
           {/* <form onSubmit={this.submitHandler} autoComplete="nope">
             <input

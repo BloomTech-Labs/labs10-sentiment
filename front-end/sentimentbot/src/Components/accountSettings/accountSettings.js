@@ -149,35 +149,6 @@ class accountSettings extends React.Component {
                   </Label>
                 </FormGroup>
                 <br />
-                <p className="reset">Reset your password below:</p>
-                <FormGroup row>
-                  <Label for="oldPassword" sm={2}>
-                    Old Password
-                  </Label>
-                  <Col sm={6}>
-                    <Input
-                      type="password"
-                      name="password"
-                      id="oldPassword"
-                      placeholder="password placeholder"
-                      required
-                    />
-                  </Col>
-                </FormGroup>
-                <FormGroup row>
-                  <Label for="newPassword" sm={2}>
-                    New Password
-                  </Label>
-                  <Col sm={6}>
-                    <Input
-                      type="password"
-                      name="password"
-                      id="newPassword"
-                      placeholder="password placeholder"
-                      required
-                    />
-                  </Col>
-                </FormGroup>
 
                 <button
                   className="btn-style"

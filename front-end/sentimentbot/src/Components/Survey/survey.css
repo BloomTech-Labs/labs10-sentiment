@@ -25,6 +25,7 @@
     border: 1px solid #f58a91;
     border-radius: 2px;
     box-shadow: -2px 3px 2px 0px #13635d;
+    padding: 0 1.5px 0 1.5px;
 }
 .instruction-p {
     font-size: .9rem;

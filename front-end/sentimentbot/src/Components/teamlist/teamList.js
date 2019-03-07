@@ -28,14 +28,6 @@ class TeamList extends React.Component {
           <a
             href={`https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645&redirect_uri=${uri}&state=${this.props.singleTeamMembers[0].id}`}
           >
-            <img
-              className="slack-button"
-              alt="Add to Slack"
-              height="40"
-              width="139"
-              src="https://platform.slack-edge.com/img/add_to_slack.png"
-              srcSet="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x"
-            />
           </a>
           <p>Team Join Code: {this.props.singleTeams[0].team_code}</p>
           <div className="eh-moodbot">
@@ -49,7 +41,7 @@ class TeamList extends React.Component {
               />
             </div>
           </div>
-          <div className="teamlist-container">
+          <div className="teamlist-container team-scrollbar">
             {this.props.teamMembers.map(user => {
               return (
                 <div>

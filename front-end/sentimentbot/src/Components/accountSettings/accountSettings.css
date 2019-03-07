@@ -1,5 +1,5 @@
 .container {
-    text-align: center;
+    /* text-align: center; */
     margin-left: auto;
     margin-right: auto;
     width: 900px;
@@ -8,10 +8,19 @@
     /* padding: 10px; */
 }
 
-* {
+
+/* * {
     font-family: 'Lora', serif;
     font-size: .9rem;
     font-weight: 600;
+} */
+
+.form-control {
+    box-shadow: none;
+}
+
+.form-check-input {
+    box-shadow: none;
 }
 
 
@@ -24,6 +33,7 @@ input[type=password]:focus {
 .settings-header {
     color: #7CDBD5;
     font-family: 'Fredoka One', cursive;
+    font-size: 3.6rem;
 }
 
 .btn-style {
@@ -33,6 +43,8 @@ input[type=password]:focus {
     font-size: 1.4rem;
     width: 25%;
     margin-top: 10px;
+    display: flex;
+    justify-content: center;
 }
 
 .btn-style:hover {
@@ -55,11 +67,14 @@ input[type=password]:focus {
         text-align: center;
         font-size: 3rem;
     }
+    .form-control {
+        width: 180%;
+    }
 }
 
 @media (max-width: 600px) {
     .btn-style {
-        width: 30%;
+        width: 100%;
     }
     input {
         width: 100%;
