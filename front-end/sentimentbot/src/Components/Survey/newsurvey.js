@@ -190,6 +190,10 @@ class NewSurvey extends Component {
           </div>
           <div className="form-box">
             <div className="customemoji-form"> 
+              <div className="survey-instructions">
+                <p>To create a Custom Emoji response, just click on an emoji below and then Confirm!</p>
+                <p> The emoji will be added as a possible respoonse on the Survey Maker Form. </p>
+              </div>
               <input 
                 placeholder={this.state.custom} 
                 type="text" 
@@ -213,6 +217,10 @@ class NewSurvey extends Component {
               />
             </div>
             <div className="survey-form">
+              <div className="survey-instructions">
+                <p>To create a Custom Emoji response, just click on an emoji below and then Confirm!</p>
+                <p> The emoji will be added as a possible respoonse on the Survey Maker Form. </p>
+              </div>
               <form onSubmit={this.createSurvey}>
                 <div className="survey-inputbox">
                   <label className="survey-inputlabel">Title</label>

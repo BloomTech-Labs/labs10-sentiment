@@ -13,7 +13,15 @@
     flex-direction: column;
 }
 .form-box {
-    display: flex;  
+    display: flex; 
+    justify-content: space-evenly; 
+}
+.survey-instructions {
+    font-size: .5rem;
+    color: teal;
+    border: 5px solid teal;
+    margin: 3px;
+
 }
 .survey-title {
     max-width: 900px;
@@ -24,17 +32,18 @@
 }
 .survey-buttons {
     width: 40%;
-  padding: 1.1rem;
+  padding: 8px;
   color: #212529;
   background-color: #7cdbd5;
-  font-size: .5rem;
+  font-size: .85rem;
   border-radius: 0.5rem;
   font-family: "Fredoka One", cursive;
   cursor: pointer;
 }
 .survey-buttons:hover {
   color: #96040e;
-  background-color: #F9BE02;
+  
+  background-color: #f9be02;
   border: 2px solid #f58a91;
 }
 /* Survey Carousel */
@@ -49,6 +58,7 @@
     max-width: 370px;
     width: 100%;
     margin: 10px;
+    padding: 8px;
     color: #000;
     border: 1px solid #f58a91;
     border-radius: 8px;
@@ -60,7 +70,7 @@
     max-width: 370px;
     width: 100%;
     margin: 10px;
-    
+    padding: 8px;
     color: #000;
     border: 1px solid #f58a91;
     border-radius: 8px;
@@ -81,7 +91,7 @@
     margin-right: auto;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 725px) {
     .form-box {
         display: flex;
         flex-direction: column;
@@ -91,6 +101,9 @@
  @media (max-width: 900px) {
     .form-box {
         display: flex;  
+        justify-content: center;
+        margin-left: auto;
+        margin-right: auto;
     }
  
 }
