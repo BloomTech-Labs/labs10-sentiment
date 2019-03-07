@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { getTeamsMembers, editTeamMembers } from '../../actions/index';
 import './teamlist.css';
 import NavBar from '../NavBar/NavBar';
+import Eh from '../PNG/nobackgroundEh.png';
 
 class TeamList extends React.Component {
 
@@ -27,6 +28,7 @@ class TeamList extends React.Component {
             href={`https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645&redirect_uri=${uri}&state=${this.props.singleTeamMembers[0].id}`}
           >
             <img
+              className="slack-button"
               alt="Add to Slack"
               height="40"
               width="139"
@@ -35,8 +37,13 @@ class TeamList extends React.Component {
             />
           </a>
           <p>Team Join Code: {this.props.singleTeams[0].team_code}</p>
-
           <h3>Team Members</h3>
+          <img
+            src={Eh}
+            alt="Eh MoodBot"
+            width="200"
+            height="200"
+          />
           <div className="teamlist-container">
             {this.props.teamMembers.map(user => {
               return (

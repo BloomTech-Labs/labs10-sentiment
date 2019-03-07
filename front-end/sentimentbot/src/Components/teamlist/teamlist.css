@@ -23,10 +23,25 @@
     font-size: 15px;
 }
 
-.mainTeam-container img {
+.mainTeam-container .slack-button {
     border: 2px solid #f58a91;
     border-radius: 10px;
     margin-bottom: 5px;
+}
+
+.mainTeam-container .eh-moodbot {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 84%;
+}
+
+.mainTeam-container .eh-moodbot2 {
+    display: flex;
+    flex-direction: row;
+    /* align-content: center; */
+    /* align-items: center; */
+    align-self: center;
 }
 
 .teamlist-container div {
