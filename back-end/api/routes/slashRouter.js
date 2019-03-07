@@ -442,7 +442,9 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                       if (data.length === 0) {
                         dbFeelings
                           .insert(postFeel)
-                          .then(getSuccess(res))
+                          .then(() => {
+                            res.redirect('https://sentimentbot.netlify.com/authorization');
+                          })
                           .catch(serverErrorPost(res));
                       } else {
                         res.status(400).json({
