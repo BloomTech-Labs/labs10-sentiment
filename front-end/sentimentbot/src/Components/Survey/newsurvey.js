@@ -7,6 +7,7 @@ import "./survey.css";
 import "emoji-mart/css/emoji-mart.css";
 import { Picker } from "emoji-mart";
 import MoodBotCarousel from './Carousel/carousel';
+import FooterBanner from "../PNG/MOODfooterBANNER6.png";
 
 import { addTeam } from "../../actions/teams";
 import { getTeams } from "../../actions/teams";
@@ -31,11 +32,11 @@ class NewSurvey extends Component {
       title: "",
       description: "",
       manager_id: 0,
-      dailyWeeklyMonthly: "",
-      hour: 0,
-      min: 0,
-      amPm: "",
-      timeZone: "",
+      dailyWeeklyMonthly: "daily",
+      hour: 1,
+      min: 1,
+      amPm: "am",
+      timeZone: "est",
       option1: null,
       option2: null,
       option3: null,
@@ -51,12 +52,8 @@ class NewSurvey extends Component {
       option2: this.props.prefeelings[0].id,
       option3: this.props.prefeelings[0].id,
       option4: this.props.prefeelings[0].id,
+      
     })
-  }
-
-  surveySubmit = event => {
-    event.preventDefault();
-    this.props.history.push("/surveysubmitloading");
   }
 
   emojiPicker = (emoji, event) =>  {
@@ -175,7 +172,7 @@ class NewSurvey extends Component {
       preFeelingIdsArray: preFeelingIdsArray
     }
       this.props.addSurvey(combine)
-      this.props.history.push('/loading')
+      this.props.history.push("/surveysubmitloading")
     };
 
   render() {
@@ -192,24 +189,15 @@ class NewSurvey extends Component {
           </div>
           <div className="form-box">
             <div className="customemoji-form"> 
+            <h2>Custom Emoji Maker</h2>
               <div className="survey-instructions">
-                <p>To create a Custom Emoji response, just click on an emoji below and then Confirm!</p>
-                <p> The emoji will be added as a possible respoonse on the Survey Maker Form. </p>
-              </div>
-              <input 
-                placeholder={this.state.custom} 
-                type="text" 
-                name="custom"
-                onChange={this.onChangeHandler}>
-              </input>
-              <button className="survey-buttons" onClick={this.addCustom}>
-                Click to Create Your Own Emoji
-              </button>
+                <p className="instruction-p">To create a Custom Emoji response, just click on an emoji below!</p>
+                <p className="instruction-p"> The emoji will be added as a possible respoonse on the Survey Maker Form. </p>
+              </div> 
               <Picker
                   set="apple"
                   title="Pick your emoji…"
                   emoji="point_up"
-                  
                   i18n={{
                   search: "Search",
                   categories: { search: "Search Results", recent: "Recents" }
@@ -217,11 +205,20 @@ class NewSurvey extends Component {
                   onClick={this.emojiPicker}
                   // custom={customEmoji}
               />
+              <input 
+                placeholder={this.state.custom} 
+                type="text" 
+                name="custom"
+                onChange={this.onChangeHandler}>
+              </input>
+              <button className="survey-buttons" onClick={this.addCustom}>
+                Send Chosen Emojis to Survey
+              </button>
             </div>
             <div className="survey-form">
+              <h2>Survey Maker Form</h2>
               <div className="survey-instructions">
-                <p>To create a Custom Emoji response, just click on an emoji below and then Confirm!</p>
-                <p> The emoji will be added as a possible respoonse on the Survey Maker Form. </p>
+                <p className="instruction-p">To create a Survey, please fill in the form below!</p>
               </div>
               <form onSubmit={this.createSurvey}>
                 <div className="survey-inputbox">
@@ -242,14 +239,22 @@ class NewSurvey extends Component {
                     onChange={this.onChangeHandler}
                   />
                 </div>
-                <PreFeelingsChosen 
-                  onSelectTest1={this.onSelectTest1} 
-                  onSelectTest2={this.onSelectTest2}
-                  onSelectTest3={this.onSelectTest3}
-                  onSelectTest4={this.onSelectTest4}
+                <div className="survey-responsebox">
+                  <PreFeelingsChosen 
+                    onSelectTest1={this.onSelectTest1} 
+                    onSelectTest2={this.onSelectTest2}
+                    onSelectTest3={this.onSelectTest3}
+                    onSelectTest4={this.onSelectTest4}
                   />
+                </div>
+                
+                <div className="survey-instructions">
+                  <p className="instruction-p">Hit CONFIRM to add your choosen possible responses to the survey!</p>
+                </div>
                 <button className="survey-buttons" onClick={this.onConfirmation}>Confirm</button>
-          
+                <div className="survey-instructions">
+                  <p className="instruction-p">Set up a schedule for your survey to be sent out!</p>
+                </div>
                 <div className="survey-inputbox">
                   <label className="survey-inputlabel">Recurrence</label>
                   <select id="dailyWeeklyMonthly" onChange={this.onChangeDropDown}>
@@ -354,9 +359,18 @@ class NewSurvey extends Component {
                     <option value="PST">pst</option>
                   </select>
                 </div>
+                <div className="survey-instructions">
+                  <p className="instruction-p">Hit SUBMIT to make your survey!</p>
+                </div>
                 <button className="survey-buttons" onSubmit={this.createSurvey}>Submit</button>
               </form>
             </div>
+          </div>
+        </div>
+        <div className="footer">
+          <p className="copyright-words">© Copyright M.O.O.D All Rights Reserved.</p>
+          <div className="footerimg-box">
+            <img  className="footer-img" src={FooterBanner} />
           </div>
         </div>
       </div>
