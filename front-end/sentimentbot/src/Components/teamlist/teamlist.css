@@ -26,6 +26,7 @@
 .mainTeam-container img {
     border: 2px solid #f58a91;
     border-radius: 10px;
+    margin-bottom: 5px;
 }
 
 .teamlist-container div {
