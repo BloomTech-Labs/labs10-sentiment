@@ -32,16 +32,17 @@ class PieChart extends React.Component {
     this.complete = false;
 
     if (this.props.survey.length > 0 && this.props.singleSurvey.length !== 0) {
-      const responses = this.props.singleSurvey.data.map(response => this.count += 1
+      const responses = this.props.singleSurvey.data.map(
+        response => (this.count += 1)
       );
-      console.log(responses, "responses")
+      console.log(responses, "responses");
 
       if (this.count < 4) {
         for (let i = 0; i < this.count; i++) {
           let data = this.props.singleSurvey.data;
 
-          for(let i=0; i<this.count; i++) {
-            let testText = data[i].feeling_text
+          for (let i = 0; i < this.count; i++) {
+            let testText = data[i].feeling_text;
             let breakTest = testText.split(" ");
             this.result = [];
             for (let i = 0; i < breakTest.length; i++) {
@@ -53,7 +54,7 @@ class PieChart extends React.Component {
                 this.result.push(textE);
               }
             }
-        }
+          }
 
           let temp = data[i].feeling_text;
           if (this.response1 === "") {
@@ -89,6 +90,21 @@ class PieChart extends React.Component {
 
       for (let i = 0; i < this.count; i++) {
         let data = this.props.singleSurvey.data;
+
+        for (let i = 0; i < this.count; i++) {
+          let testText = data[i].feeling_text;
+          let breakTest = testText.split(" ");
+          this.result = [];
+          for (let i = 0; i < breakTest.length; i++) {
+            if (breakTest[i].indexOf(":") === -1) {
+              let textP = breakTest[i] + " ";
+              this.result.push(textP);
+            } else if (breakTest[i].indexOf(":") > -1) {
+              let textE = <Emoji emoji={breakTest[i]} size={16} />;
+              this.result.push(textE);
+            }
+          }
+        }
 
         let temp = data[i].feeling_text;
         if (this.response1 === "") {
@@ -133,53 +149,68 @@ class PieChart extends React.Component {
       // }
     }
 
-    if (this.props.survey.length > 0 && this.props.singleSurvey.length !== 0 && this.complete === true) {
+    if (
+      this.props.survey.length > 0 &&
+      this.props.singleSurvey.length !== 0 &&
+      this.complete === true
+    ) {
+      this.emoji1 = [];
+      this.emoji2 = [];
+      this.emoji3 = [];
+      this.emoji4 = [];
 
-    this.emoji1 = []
-    this.emoji2 = []
-    this.emoji3 = []
-    this.emoji4 = []
-
-    for (let i=0; i<this.result.length; i++) {
-      if (this.emoji1.length === 0) {
-        if (typeof this.result[i] === 'string') {
-          this.emoji1.push(this.result[i])
-          this.emoji1.push(this.result[i+1])
-          i = i +2
-        } else {
-          this.emoji1 = this.result[i]
-          i = i+1
+      for (let i = 0; i < this.result.length; i++) {
+        if (this.emoji1.length === 0) {
+          if (typeof this.result[i] === "string") {
+            this.emoji1.push(this.result[i]);
+            this.emoji1.push(this.result[i + 1]);
+            i = i + 2;
+          } else {
+            this.emoji1 = this.result[i];
+            i = i + 1;
+          }
+        } else if (
+          this.emoji1[0] !== this.result[i] &&
+          this.emoji2.length === 0
+        ) {
+          if (typeof this.result[i] === "string") {
+            this.emoji2.push(this.result[i]);
+            this.emoji2.push(this.result[i + 1]);
+            i = i + 2;
+          } else {
+            this.emoji2 = this.result[i];
+            i = i + 1;
+          }
+        } else if (
+          this.emoji1[0] !== this.result[i] &&
+          this.emoji2[0] !== this.result[i] &&
+          this.emoji3.length === 0
+        ) {
+          if (typeof this.result[i] === "string") {
+            this.emoji3.push(this.result[i]);
+            this.emoji3.push(this.result[i + 1]);
+            i = i + 2;
+          } else {
+            this.emoji3 = this.result[i];
+            i = i + 1;
+          }
+        } else if (
+          this.emoji1[0] !== this.result[i] &&
+          this.emoji2[0] !== this.result[i] &&
+          this.emoji3[0] !== this.result[i] &&
+          this.emoji4.length === 0
+        ) {
+          if (typeof this.result[i] === "string") {
+            this.emoji4.push(this.result[i]);
+            this.emoji4.push(this.result[i + 1]);
+            i = i + 2;
+          } else {
+            this.emoji4 = this.result[i];
+            i = i + 1;
+          }
         }
-      } else if (this.emoji1[0] !== this.result[i] && this.emoji2.length === 0) {
-        if (typeof this.result[i] === 'string') {
-          this.emoji2.push(this.result[i])
-          this.emoji2.push(this.result[i+1])
-          i = i +2
-        } else {
-          this.emoji2 = this.result[i]
-          i = i+1
-        }
-      } else if(this.emoji1[0] !== this.result[i] && this.emoji2[0] !== this.result[i] && this.emoji3.length === 0) {
-        if (typeof this.result[i] === 'string') {
-          this.emoji3.push(this.result[i])
-          this.emoji3.push(this.result[i+1])
-          i = i +2
-        } else {
-          this.emoji3 = this.result[i]
-          i = i+1
-        }
-      } else if(this.emoji1[0] !== this.result[i] && this.emoji2[0] !== this.result[i] && this.emoji3[0] !== this.result[i] && this.emoji4.length === 0){ 
-        if (typeof this.result[i] === 'string') {
-          this.emoji4.push(this.result[i])
-          this.emoji4.push(this.result[i+1])
-          i = i +2
-        } else {
-          this.emoji4 = this.result[i]
-          i = i+1
-        }
-      } 
+      }
     }
-  }
 
     this.responseArray = [];
     for (let i = 0; i < this.count; i++) {
@@ -215,11 +246,18 @@ class PieChart extends React.Component {
 
   render() {
     if (
-      (this.props.survey.length === 0 &&
-        this.props.surveyIsFetching === false &&
-      this.props.singleSurvey.length === 0 && this.state.complete === false)
-    )  {
+      this.props.survey.length === 0 &&
+      this.props.surveyIsFetching === false &&
+      this.props.singleSurvey.length === 0 &&
+      this.state.complete === false
+    ) {
       return <p>Make surveys to display data</p>;
+    } else if (
+      this.props.survey.length > 0 &&
+      this.props.surveyIsFetching === false &&
+      this.props.singleSurvey.length === 0 &&
+      this.state.complete === false
+    ) { return <p>Make surveys to display data</p>
     } else {
       const data = {
         labels: ["", "", "", ""],
@@ -237,15 +275,14 @@ class PieChart extends React.Component {
         ]
       };
 
-
       let date = new Date(`${this.props.singleSurvey.response[0].created_at}`);
 
-      console.log(date, "date right here")
+      console.log(date, "date right here");
 
       const canvas = {
         height: "600px",
         width: "400px"
-      }
+      };
 
       return (
         <>
@@ -255,51 +292,72 @@ class PieChart extends React.Component {
             <div className="pie-chart-main" style={canvas}>
               <div className="pie-chart-words">
                 <h2>{this.props.singleSurvey.response[0].description}</h2>
-                {date === undefined ? (<p>This has no responses yet</p>) : (<h3>Created on {date.toDateString()}.</h3>)}
+                {date === undefined ? (
+                  <p>This has no responses yet</p>
+                ) : (
+                  <h3>Created on {date.toDateString()}.</h3>
+                )}
                 <p>
                   {this.count} {this.count < 2 ? "response" : "responses"} to
                   this survey
                 </p>
               </div>
               <div className="responses">
-                  <p className="response1">Response 1:</p>
-                  {this.state.response1[0] === ":" ? (
-                    <Emoji
-                      className="emoji1"
-                      emoji={this.state.response1}
-                      size={16}
-                    />
-                  ) : (<p>{this.emoji1[0]}{this.emoji1[1]}</p>)
-                } <p className="response2">Response 2:</p>
-                  {this.state.response2[0] === ":" ? (
-                    <Emoji
-                      className="emoji"
-                      emoji={this.state.response2}
-                      size={16}
-                    />
-                  ) : (
-                    <p>{this.emoji2[0]}{this.emoji2[1]}</p>
-                  )} <p className="response3">Response 3:</p>
-                  {this.state.response3[0] === ":" ? (
-                    <Emoji
-                      className="emoji"
-                      emoji={this.state.response3}
-                      size={16}
-                    />
-                  ) : (
-                    <p>{this.emoji3[0]}{this.emoji3[1]}</p>
-                  )} <p className="response4">Response 4:</p>
-                  {this.state.response4[0] === ":" ? (
-                    <Emoji
-                      className="emoji"
-                      emoji={this.state.response4}
-                      size={16}
-                    />
-                  ) : (
-                    <p>{this.emoji4[0]}{this.emoji4[1]}</p>
-                  )}
+                <p className="response1">Response 1:</p>
+                {this.state.response1[0] === ":" ? (
+                  <Emoji
+                    className="emoji1"
+                    emoji={this.state.response1}
+                    size={16}
+                  />
+                ) : (
+                  <p>
+                    {this.emoji1[0]}
+                    {this.emoji1[1]}
+                  </p>
+                )}{" "}
+                <p className="response2">Response 2:</p>
+                {this.state.response2[0] === ":" ? (
+                  <Emoji
+                    className="emoji"
+                    emoji={this.state.response2}
+                    size={16}
+                  />
+                ) : (
+                  <p>
+                    {this.emoji2[0]}
+                    {this.emoji2[1]}
+                  </p>
+                )}{" "}
+                <p className="response3">Response 3:</p>
+                {this.state.response3[0] === ":" ? (
+                  <Emoji
+                    className="emoji"
+                    emoji={this.state.response3}
+                    size={16}
+                  />
+                ) : (
+                  <p>
+                    {this.emoji3[0]}
+                    {this.emoji3[1]}
+                  </p>
+                )}{" "}
+                <p className="response4">Response 4:</p>
+                {this.state.response4[0] === ":" ? (
+                  <Emoji
+                    className="emoji"
+                    emoji={this.state.response4}
+                    size={16}
+                  />
+                ) : (
+                  <p>
+                    {this.emoji4[0]}
+                    {this.emoji4[1]}
+                  </p>
+                )}
               </div>
-              <Pie className="piepie"
+              <Pie
+                className="piepie"
                 data={data}
                 // width={10}
                 height={-10}
