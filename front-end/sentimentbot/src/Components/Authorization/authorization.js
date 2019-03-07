@@ -142,7 +142,7 @@ class Authorization extends React.Component {
       return (
         <>
         <div className="fake-nav" />
-        <div className="container">
+        <div className="auth-container">
           
           <p>
             Thanks for registering! Please allow us a moment to finish

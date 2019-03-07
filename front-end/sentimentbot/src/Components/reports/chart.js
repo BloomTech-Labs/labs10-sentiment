@@ -18,7 +18,8 @@ class PieChart extends React.Component {
       count2: null,
       count3: null,
       count4: null,
-      complete: false
+      complete: false,
+      // date: null
     };
   }
 
@@ -223,6 +224,12 @@ class PieChart extends React.Component {
       counts[x] = (counts[x] || 0) + 1;
     });
 
+    // if(this.props.singleSurvey.response.length === 0) {
+    //   this.date = new Date();
+    // } else {
+    // this.date = new Date(`${this.props.singleSurvey.response[0].created_at}`);
+    // }
+
     this.setState({
       response1: this.response1,
       response2: this.response2,
@@ -232,7 +239,8 @@ class PieChart extends React.Component {
       count2: counts[this.response2],
       count3: counts[this.response3],
       count4: counts[this.response4],
-      complete: this.complete
+      complete: this.complete,
+      // date: this.date
     });
   }
 
@@ -245,7 +253,10 @@ class PieChart extends React.Component {
   // }
 
   render() {
-    if (
+    if (this.props.singleSurvey.response.length === 0) {
+      return <p>Make surveys to display data</p>
+    }
+    else if (
       this.props.survey.length === 0 &&
       this.props.surveyIsFetching === false &&
       this.props.singleSurvey.length === 0 &&
@@ -256,7 +267,7 @@ class PieChart extends React.Component {
       this.props.survey.length > 0 &&
       this.props.surveyIsFetching === false &&
       this.props.singleSurvey.length === 0 &&
-      this.state.complete === false
+      this.state.complete === true
     ) { return <p>Make surveys to display data</p>
     } else {
       const data = {
@@ -274,10 +285,8 @@ class PieChart extends React.Component {
           }
         ]
       };
-
-      let date = new Date(`${this.props.singleSurvey.response[0].created_at}`);
-
-      console.log(date, "date right here");
+      
+let date = new Date(`${this.props.singleSurvey.response[0].created_at}`)
 
       const canvas = {
         height: "600px",
