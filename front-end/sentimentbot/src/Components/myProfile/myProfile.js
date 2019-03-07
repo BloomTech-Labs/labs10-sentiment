@@ -168,7 +168,7 @@ class Profile extends React.Component {
 
     const view = this.state.view;
 
-    const uri = "https://sentimentbot.netlify.com/authorization";
+    const uri = "https://botsentiment.herokuapp.com/api/slackauth";
     // const uri = "http://localhost:3000/authorization";
     console.log(view);
 
@@ -295,7 +295,7 @@ class Profile extends React.Component {
         <div className="create-container">
           {/* <p>Loading...</p> */}
           <NavBar />
-          <a
+          {/* <a
             href={`https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645&redirect_uri=${uri}&state=${
               this.props.singleTeamMembers[0].id
             }`}
@@ -307,16 +307,17 @@ class Profile extends React.Component {
               src="https://platform.slack-edge.com/img/add_to_slack.png"
               srcSet="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x"
             />
-          </a>
-
-          <p>
-            Congratulations on creating your team! Add us on slack, or click
+          </a> */}
+          <div className="container-pandb">
+          <p className="p-tag">
+            Congratulations on creating your team! Click
             below to allow us to update your site access.
           </p>
           <br />
-          <button onClick={() => this.props.history.push("/loading")}>
+          <button className="btn-feel-2 " onClick={() => this.props.history.push("/loading")}>
             Here!
           </button>
+          </div>
           {/* <form onSubmit={this.submitHandler} autoComplete="nope">
             <input
               autoComplete="off"
