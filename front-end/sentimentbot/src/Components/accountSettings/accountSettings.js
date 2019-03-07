@@ -98,6 +98,8 @@ class accountSettings extends React.Component {
             <div className="settings-page">
               <h3 className="settings-header">Settings</h3>
 
+              
+              <p>Reset your password here:</p>
               <form className="account-form" onSubmit={this.handleSubmit}>
                 <FormGroup row>
                   <Label for="emailField" sm={2}>
@@ -126,6 +128,7 @@ class accountSettings extends React.Component {
                   </Col>
                 </FormGroup>
                 <br />
+                <div className="checkbox-div">
                 <FormGroup check inline>
                   <Label check>
                     <Input
@@ -148,6 +151,7 @@ class accountSettings extends React.Component {
                     Text
                   </Label>
                 </FormGroup>
+                </div>
                 <br />
 
                 <button
@@ -158,7 +162,7 @@ class accountSettings extends React.Component {
                   Submit
                 </button>
               </form>
-              <button className="btn-style" onClick={this.handleLeaveTeam}>
+              <button className="btn-style btn-style2" onClick={this.handleLeaveTeam}>
                 Leave Team
               </button>
             </div>

@@ -90,7 +90,7 @@ class Authorization extends React.Component {
 
     if (this.props.tmIsFetching === true) {
       return (
-        <div className="container">
+        <div className="auth-container">
           <p>Loading...</p>
         </div>
       );

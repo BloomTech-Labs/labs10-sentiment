@@ -41,10 +41,8 @@ input[type=password]:focus {
     color: #fff;
     border-radius: 5px;
     font-size: 1.4rem;
-    width: 25%;
+    width: 100%;
     margin-top: 10px;
-    display: flex;
-    justify-content: center;
 }
 
 .btn-style:hover {
@@ -55,6 +53,27 @@ input[type=password]:focus {
 
 .reset {
     margin-top: 20px;
+}
+/* .form-check-inline {
+    position: absolute;
+    top: 20px;
+    left: 250px;
+    width: 10%;
+} */
+/* .account-form {
+    display: flex;
+    width: 90%;
+    margin: 0 auto;
+} */
+
+.checkbox-div {
+    display: flex;
+    justify-content: center;    
+    margin-top: -4%;
+}
+
+.btn-style2 {
+    margin-top: 3%;
 }
 
 @media (max-width: 900px) {
@@ -73,15 +92,24 @@ input[type=password]:focus {
 }
 
 @media (max-width: 600px) {
-    .btn-style {
-        width: 100%;
-    }
     input {
         width: 100%;
     }
+    .btn-style {
+        width: 100%;
+    }
+    .col-sm-6{
+        width: 100%;
+    }
+
+    .form-group {
+        width: 100%;
+        margin-left: 5%;
+    }
+
 }
 
-@media (max-width: 320px) {
+@media (max-width: 420px) {
     .container {
         width: 100%;
     }
@@ -91,4 +119,5 @@ input[type=password]:focus {
     .reset {
         margin-bottom: 12%;
     }
+
 }

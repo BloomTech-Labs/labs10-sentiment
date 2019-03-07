@@ -109,6 +109,47 @@
     margin: 5px;
     margin-bottom: 10px;
 }
+
+/* Loading Pages */
+.loading-container {
+    max-width: 900px;
+    width: 70%;
+    margin-left: auto;
+    display: flex;
+    margin-right: auto;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5%;
+}
+
+.loading-container img {
+    width: 25%;
+    height: 25%;
+}
+
+.loading-container button {
+    width: 25%;
+    margin-bottom: 2%;
+}
+
+.loadingImg-but {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.loadingImg-but button {
+    width: 25%;
+}
+
+.loadingImg-but {
+    width: 25%;
+}
+/* Footer */
+.footer {
+    margin-top: 40px;
+}
+
 /* Survey Footer */
 .survey-footer {
     margin-top: 50px;
