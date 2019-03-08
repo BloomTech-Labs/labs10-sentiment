@@ -110,15 +110,14 @@ router.get("/", (req, res) => {
       let memberID = req.query.state;
       memberID = Number(memberID);
       console.log(memberID);
-      console.log(memberID);
-      db.getByMemberId('JSONresponse.bot.bot_user_id',JSONresponse.bot.bot_user_id)
+      console.log('JSONresponse.bot.bot_user_id',memberIJSONresponse.bot.bot_user_idD);
+      db.getByMemberId(memberID)
         .then(data => {
           console.log("data", data);
           let postInfo;
           if (!data[0]) {
             /////change so will update instead/////////
             if (!JSONresponse.bot.bot_user_id) {
-              
               postInfo = {
                 access_token: JSONresponse.access_token,
                 user_id: JSONresponse.user_id,
