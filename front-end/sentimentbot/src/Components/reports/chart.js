@@ -56,7 +56,7 @@ class PieChart extends React.Component {
               }
             }
           }
-
+          console.log("yo!!");
           let temp = data[i].feeling_text;
           if (this.response1 === "") {
             this.response1 = temp;
@@ -211,6 +211,7 @@ class PieChart extends React.Component {
           }
         }
       }
+      console.log(this.emoji1, this.emoji2);
     }
 
     this.responseArray = [];
@@ -239,7 +240,7 @@ class PieChart extends React.Component {
       count2: counts[this.response2],
       count3: counts[this.response3],
       count4: counts[this.response4],
-      complete: this.complete,
+      complete: true,
       // date: this.date
     });
   }
@@ -313,7 +314,7 @@ let date = new Date(`${this.props.singleSurvey.response[0].created_at}`)
               </div>
               <div className="responses">
                 <p className="response1">Response 1:</p>
-                {this.state.response1[0] === ":" ? (
+                {this.state.response1 === "" ? (<p></p>) : (this.state.response1[0] === ":" ? (
                   <Emoji
                     className="emoji1"
                     emoji={this.state.response1}
@@ -324,11 +325,11 @@ let date = new Date(`${this.props.singleSurvey.response[0].created_at}`)
                     {this.emoji1[0]}
                     {this.emoji1[1]}
                   </p>
-                )}{" "}
+                ))}{" "}
                 <p className="response2">Response 2:</p>
-                {this.state.response2[0] === ":" ? (
+                {this.state.response2 === "" ? (<p></p>) : (this.state.response2[0] === ":" ? (
                   <Emoji
-                    className="emoji"
+                    className="emoji1"
                     emoji={this.state.response2}
                     size={16}
                   />
@@ -337,11 +338,11 @@ let date = new Date(`${this.props.singleSurvey.response[0].created_at}`)
                     {this.emoji2[0]}
                     {this.emoji2[1]}
                   </p>
-                )}{" "}
+                ))}{" "}
                 <p className="response3">Response 3:</p>
-                {this.state.response3[0] === ":" ? (
+                {this.state.response3 === "" ? (<p></p>) : (this.state.response3[0] === ":" ? (
                   <Emoji
-                    className="emoji"
+                    className="emoji1"
                     emoji={this.state.response3}
                     size={16}
                   />
@@ -350,11 +351,11 @@ let date = new Date(`${this.props.singleSurvey.response[0].created_at}`)
                     {this.emoji3[0]}
                     {this.emoji3[1]}
                   </p>
-                )}{" "}
+                ))}{" "}
                 <p className="response4">Response 4:</p>
-                {this.state.response4[0] === ":" ? (
+                {this.state.response4 === "" ? (<p></p>) : (this.state.response4[0] === ":" ? (
                   <Emoji
-                    className="emoji"
+                    className="emoji1"
                     emoji={this.state.response4}
                     size={16}
                   />
@@ -363,7 +364,7 @@ let date = new Date(`${this.props.singleSurvey.response[0].created_at}`)
                     {this.emoji4[0]}
                     {this.emoji4[1]}
                   </p>
-                )}
+                ))}
               </div>
               <Pie
                 className="piepie"
