@@ -110,7 +110,7 @@ router.get("/", (req, res) => {
       let memberID = req.query.state;
       memberID = Number(memberID);
       console.log(memberID);
-      console.log('JSONresponse.bot.bot_user_id',JSONresponse.bot.bot_user_id);
+      // console.log('JSONresponse.bot.bot_user_id',JSONresponse.bot.bot_user_id);
       db.getByMemberId(memberID)
         .then(data => {
           console.log("data", data);
