@@ -330,7 +330,7 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
     let surveyId = reqBody.survey_id;
     // console.log("surveyId", surveyId);
     surveyIdDep = surveyId;
-    // console.log("surveyIdDep", surveyIdDep);
+    console.log("surveyIdDep test", surveyIdDep);
     let title = reqBody.title;
     let description = reqBody.description;
     let options = reqBody.options;
@@ -401,7 +401,7 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
           console.log('data survey id for time',data);
           let putInfo;
           let survey_time_stamp;
-          if(data[0].survey_time_stamp === null){
+          if(data[0].survey_time_stamp === null){ //////////////////////////
             putInfo = {
               survey_time_stamp: jsonPayload.message_ts
             };
