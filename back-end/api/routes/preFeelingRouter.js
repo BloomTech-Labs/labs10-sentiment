@@ -1,3 +1,4 @@
+// PreFeeling Router
 const express = require("express");
 const router = express.Router();
 const db = require("../database/helpers/preFeelingsDb");
@@ -16,6 +17,7 @@ const {
 
 const type = "feeling";
 
+// POST
 router.post("/", (req, res) => {
   const postInfo = req.body;
   db.insert(postInfo)
@@ -23,12 +25,14 @@ router.post("/", (req, res) => {
     .catch(serverErrorPost(res));
 });
 
+// GET ALL
 router.get("/", (req, res) => {
   db.get()
     .then(getSuccess(res))
     .catch(serverErrorGet(res));
 });
 
+// GET ONE
 router.get("/:id", (req, res) => {
   const { id } = req.params;
   db.getID(id)
@@ -36,6 +40,7 @@ router.get("/:id", (req, res) => {
     .catch(serverErrorGetID(res, type, id));
 });
 
+// DELETE
 router.delete(`/:id`, (req, res) => {
   const { id } = req.params;
   db.getID(id)
@@ -53,6 +58,7 @@ router.delete(`/:id`, (req, res) => {
     });
 });
 
+//  PUT/UPDATE
 router.put("/:id", (req, res) => {
   const { id } = req.params;
   const changes = req.body;
