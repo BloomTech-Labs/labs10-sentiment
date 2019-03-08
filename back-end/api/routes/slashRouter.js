@@ -450,18 +450,18 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                     )
                     .then(data => {
                       console.log("data mem sur", data);
-                      if (data.length === 0) {
+                      // if (data.length === 0) {
                         dbFeelings
                           .insert(postFeel)
                           .then(() => {
                             res.redirect('https://sentimentbot.netlify.com/authorization');
                           })
                           .catch(serverErrorPost(res));
-                      } else {
-                        res.status(400).json({
-                          error: "Feeling Exists for Team Member and Survey"
-                        });
-                      }
+                      // } else {
+                      //   res.status(400).json({
+                      //     error: "Feeling Exists for Team Member and Survey"
+                      //   });
+                      // }
                     })
                     .catch(serverErrorGet(res));
                 })
