@@ -113,43 +113,70 @@ router.get("/", (req, res) => {
       db.getByMemberId(memberID)
         .then(data => {
           console.log("data", data);
-
+          let postInfo;
           if (!data[0]) {
             /////change so will update instead/////////
-            let postInfo = {
-              access_token: JSONresponse.access_token,
-              user_id: JSONresponse.user_id,
-              team_name: JSONresponse.team_name,
-              team_id: JSONresponse.team_id,
-              bot_user_id: JSONresponse.bot.bot_user_id,
-              bot_access_token: JSONresponse.bot.bot_access_token,
-              member_id: memberID,
-              channel_id: ""
-            };
+            if (JSONresponse.bot.bot_user_id === undefined) {
+              postInfo = {
+                access_token: JSONresponse.access_token,
+                user_id: JSONresponse.user_id,
+                team_name: JSONresponse.team_name,
+                team_id: JSONresponse.team_id,
+                bot_user_id: null,
+                bot_access_token: null,
+                member_id: memberID,
+                channel_id: ""
+              };
+            } else if (JSONresponse.bot.bot_user_id !== undefined) {
+              postInfo = {
+                access_token: JSONresponse.access_token,
+                user_id: JSONresponse.user_id,
+                team_name: JSONresponse.team_name,
+                team_id: JSONresponse.team_id,
+                bot_user_id: JSONresponse.bot.bot_user_id,
+                bot_access_token: JSONresponse.bot.bot_access_token,
+                member_id: memberID,
+                channel_id: ""
+              };
+            }
 
             db.insert(postInfo)
               .then(() => {
                 // sendToAuthorization();
-                res.redirect('https://sentimentbot.netlify.com/authorization');
+                res.redirect("https://sentimentbot.netlify.com/authorization");
               })
               .catch(serverErrorPost(res));
           } else {
             let { id } = data[0];
             console.log("id", id);
-            let post = {
-              access_token: JSONresponse.access_token,
-              user_id: JSONresponse.user_id,
-              team_name: JSONresponse.team_name,
-              team_id: JSONresponse.team_id,
-              bot_user_id: JSONresponse.bot.bot_user_id,
-              bot_access_token: JSONresponse.bot.bot_access_token,
-              member_id: memberID,
-              channel_id: ""
-            };
+            if (JSONresponse.bot.bot_user_id === undefined) {
+              postInfo = {
+                access_token: JSONresponse.access_token,
+                user_id: JSONresponse.user_id,
+                team_name: JSONresponse.team_name,
+                team_id: JSONresponse.team_id,
+                bot_user_id: null,
+                bot_access_token: null,
+                member_id: memberID,
+                channel_id: ""
+              };
+            } else if (JSONresponse.bot.bot_user_id !== undefined) {
+              postInfo = {
+                access_token: JSONresponse.access_token,
+                user_id: JSONresponse.user_id,
+                team_name: JSONresponse.team_name,
+                team_id: JSONresponse.team_id,
+                bot_user_id: JSONresponse.bot.bot_user_id,
+                bot_access_token: JSONresponse.bot.bot_access_token,
+                member_id: memberID,
+                channel_id: ""
+              };
+            }
+
             db.update(id, post)
               .then(() => {
                 // sendToAuthorization();
-                res.redirect('https://sentimentbot.netlify.com/authorization');
+                res.redirect("https://sentimentbot.netlify.com/authorization");
               })
               .catch(serverErrorUpdate500(res, "Auth"));
             // res.status(400).json({
