@@ -110,13 +110,15 @@ router.get("/", (req, res) => {
       let memberID = req.query.state;
       memberID = Number(memberID);
       console.log(memberID);
-      db.getByMemberId(memberID)
+      console.log(memberID);
+      db.getByMemberId('JSONresponse.bot.bot_user_id',JSONresponse.bot.bot_user_id)
         .then(data => {
           console.log("data", data);
           let postInfo;
           if (!data[0]) {
             /////change so will update instead/////////
-            if (JSONresponse.bot.bot_user_id === undefined) {
+            if (!JSONresponse.bot.bot_user_id) {
+              
               postInfo = {
                 access_token: JSONresponse.access_token,
                 user_id: JSONresponse.user_id,
@@ -127,7 +129,7 @@ router.get("/", (req, res) => {
                 member_id: memberID,
                 channel_id: ""
               };
-            } else if (JSONresponse.bot.bot_user_id !== undefined) {
+            } else if (JSONresponse.bot.bot_user_id) {
               postInfo = {
                 access_token: JSONresponse.access_token,
                 user_id: JSONresponse.user_id,
@@ -139,7 +141,7 @@ router.get("/", (req, res) => {
                 channel_id: ""
               };
             }
-
+            console.log("postInfo", postInfo);
             db.insert(postInfo)
               .then(() => {
                 // sendToAuthorization();
@@ -149,7 +151,7 @@ router.get("/", (req, res) => {
           } else {
             let { id } = data[0];
             console.log("id", id);
-            if (JSONresponse.bot.bot_user_id === undefined) {
+            if (!JSONresponse.bot.bot_user_id) {
               postInfo = {
                 access_token: JSONresponse.access_token,
                 user_id: JSONresponse.user_id,
@@ -160,7 +162,7 @@ router.get("/", (req, res) => {
                 member_id: memberID,
                 channel_id: ""
               };
-            } else if (JSONresponse.bot.bot_user_id !== undefined) {
+            } else if (JSONresponse.bot.bot_user_id) {
               postInfo = {
                 access_token: JSONresponse.access_token,
                 user_id: JSONresponse.user_id,
@@ -172,7 +174,7 @@ router.get("/", (req, res) => {
                 channel_id: ""
               };
             }
-
+            console.log("postInfo2", postInfo);
             db.update(id, post)
               .then(() => {
                 // sendToAuthorization();
