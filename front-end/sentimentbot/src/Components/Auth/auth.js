@@ -9,8 +9,8 @@ export default class Auth {
   auth0 = new auth0.WebAuth({
     domain: "bikbik.auth0.com",
     clientID: "BnXSvU6tE4W8WGMt3gDWra24hXr8qY0e",
-    redirectUri: "https://sentimentbot.netlify.com/callback",
-    // redirectUri: "http://localhost:3000/callback",
+    // redirectUri: "https://sentimentbot.netlify.com/callback",
+    redirectUri: "http://localhost:3000/callback",
     responseType: "token id_token",
     scope: "openid profile email"
   });
@@ -56,7 +56,7 @@ export default class Auth {
         this.profile = authResult.idTokenPayload;
         // set the time that the id token will expire at
         this.expiresAt = authResult.idTokenPayload.exp * 1000;
-
+        
         // assign gathered values to localStorage for persistence in the application
         localStorage.setItem("jwt", authResult.idToken);
         localStorage.setItem("email", authResult.idTokenPayload.email);
