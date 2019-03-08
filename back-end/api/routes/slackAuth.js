@@ -110,14 +110,14 @@ router.get("/", (req, res) => {
       let memberID = req.query.state;
       memberID = Number(memberID);
       console.log(memberID);
-      // console.log('JSONresponse.bot.bot_user_id',JSONresponse.bot.bot_user_id);
+      console.log('JSONresponse.bot.bot_user_id',JSONresponse.bot);
       db.getByMemberId(memberID)
         .then(data => {
           console.log("data", data);
           let postInfo;
           if (!data[0]) {
             /////change so will update instead/////////
-            if (!JSONresponse.bot.bot_user_id) {
+            if (!JSONresponse.bot) {
               postInfo = {
                 access_token: JSONresponse.access_token,
                 user_id: JSONresponse.user_id,
@@ -150,7 +150,7 @@ router.get("/", (req, res) => {
           } else {
             let { id } = data[0];
             console.log("id", id);
-            if (!JSONresponse.bot.bot_user_id) {
+            if (!JSONresponse.bot) {
               postInfo = {
                 access_token: JSONresponse.access_token,
                 user_id: JSONresponse.user_id,
