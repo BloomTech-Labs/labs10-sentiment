@@ -39,26 +39,20 @@ class PieChart extends React.Component {
       );
       console.log(responses, "responses");
 
-      for (let i = 0; i < this.count; i++) {
-        let data = this.props.singleSurvey.data;
-        let testText = data[i].feeling_text;
-        let breakTest = testText.split(" ");
-        this.result = [];
-        for (let i = 0; i < breakTest.length; i++) {
-          if (breakTest[i].indexOf(":") === -1) {
-            let textP = breakTest[i] + " ";
-            this.result.push(textP);
-          } else if (breakTest[i].indexOf(":") > -1) {
-            let textE = <Emoji emoji={breakTest[i]} size={16} />;
-            this.result.push(textE);
+          for (let i = 0; i < this.count; i++) {
+            let testText = data[i].feeling_text;
+            let breakTest = testText.split(" ");
+            this.result = [];
+            for (let i = 0; i < breakTest.length; i++) {
+              if (breakTest[i].indexOf(":") === -1) {
+                let textP = breakTest[i] + " ";
+                this.result.push(textP);
+              } else if (breakTest[i].indexOf(":") > -1) {
+                let textE = <Emoji emoji={breakTest[i]} size={16} />;
+                this.result.push(textE);
+              }
+            }
           }
-        }
-      }
-
-      if (this.count < 4) {
-        for (let i = 0; i < this.count; i++) {
-          let data = this.props.singleSurvey.data;
-
           let temp = data[i].feeling_text;
           if (this.response1 === "") {
             this.response1 = temp;
@@ -200,6 +194,7 @@ class PieChart extends React.Component {
           }
         }
       }
+      console.log(this.emoji1, this.emoji2);
     }
 
     this.responseArray = [];

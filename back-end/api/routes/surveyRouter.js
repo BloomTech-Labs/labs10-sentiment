@@ -312,7 +312,7 @@ router.post("/", (req, res) => {
                 console.log("survey manager", data);
                 for (let i = 0; i < preFeelingIdsArray.length; i++) {
                   let post = {
-                    survey_id: data[data.length - 1].id,
+                    survey_id: data[data.length - 1].id, ///////possible issue
                     feelings_id: preFeelingIdsArray[i]
                   };
                   surveyFeelingsDb

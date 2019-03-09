@@ -1,3 +1,4 @@
+// Feeling Router
 const express = require("express");
 const router = express.Router();
 const db = require("../database/helpers/feelingsDb");
@@ -74,7 +75,7 @@ router.delete(`/:id`, (req, res) => {
       serverErrorDelete500(res, type);
     });
 });
-// PUT/ UPDATE
+// PUT & UPDATE
 router.put("/:id", (req, res) => {
   const { id } = req.params;
   const changes = req.body;
@@ -94,7 +95,7 @@ router.put("/:id", (req, res) => {
   });
 });
 
-//get all by one person
+//Get All By 1 Person
 router.get("/myfeelings/:id", (req, res) => {
   const { id } = req.params;
   db.get().where({ team_member_id: id })

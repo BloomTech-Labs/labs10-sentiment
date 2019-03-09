@@ -354,7 +354,7 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
         console.log("botToken", botToken);
         const {channel_id} = data[0];
         console.log("channel_id", channel_id);
-        if(channel_id === null){
+        if(channel_id === ""){
           res.status(404).json("channel id is equall to null");
         }else{
         let message = {
@@ -398,15 +398,26 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
       .getID(surveyIdDep)
       .then(data => {
         if (data.length > 0) {
-          let putInfo = {
-            survey_time_stamp: jsonPayload.message_ts
-          };
+          console.log('data survey id for time',data);
+          let putInfo;
+          let survey_time_stamp;
+          if(data[0].survey_time_stamp === null){
+            putInfo = {
+              survey_time_stamp: jsonPayload.message_ts
+            };
+            survey_time_stamp = jsonPayload.message_ts;
+          }else{
+            putInfo = {
+              survey_time_stamp: data[0].survey_time_stamp
+            };
+            survey_time_stamp = data[0].survey_time_stamp;
+          }
+          
           dbSurveys
             .update(surveyIdDep, putInfo)
             .then(() => {
               ////////////////////////////////
               let userIdSlack = jsonPayload.user.id;
-              let survey_time_stamp = jsonPayload.message_ts;
               let callbackIDSlash = jsonPayload.callback_id;
 
               dbAuth
@@ -439,16 +450,18 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                     )
                     .then(data => {
                       console.log("data mem sur", data);
-                      if (data.length === 0) {
+                      // if (data.length === 0) {
                         dbFeelings
                           .insert(postFeel)
-                          .then(getSuccess(res))
+                          .then(() => {
+                            res.redirect('https://sentimentbot.netlify.com/authorization');
+                          })
                           .catch(serverErrorPost(res));
-                      } else {
-                        res.status(400).json({
-                          error: "Feeling Exists for Team Member and Survey"
-                        });
-                      }
+                      // } else {
+                      //   res.status(400).json({
+                      //     error: "Feeling Exists for Team Member and Survey"
+                      //   });
+                      // }
                     })
                     .catch(serverErrorGet(res));
                 })

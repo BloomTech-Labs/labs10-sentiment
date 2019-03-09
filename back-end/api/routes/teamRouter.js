@@ -23,6 +23,7 @@ const type = "team";
 //     .catch(serverErrorPost(res));
 // });
 
+// POST Team
 router.post("/", (req, res) => {
   // front end provide team name and current member id
   // {
@@ -36,7 +37,7 @@ router.post("/", (req, res) => {
     .then(team => {
       for (let i = 0; i < team.length; i++) {
         if (team[i].name === postInfo.name) {
-          res.status(400).json({error: "Team Name Already Exists"});
+          res.status(400).json({ error: "Team Name Already Exists" });
         }
       }
       // if there are no teams use 10000 as first team code
@@ -106,9 +107,11 @@ router.get("/", (req, res) => {
     .catch(serverErrorGet(res));
 });
 
+// GET Team By ID
 router.get("/:id", (req, res) => {
   const { id } = req.params;
-  db.get().where({ id: id })
+  db.get()
+    .where({ id: id })
     .then(getSuccess(res))
     .catch(serverErrorGetID(res, type, id));
 });
