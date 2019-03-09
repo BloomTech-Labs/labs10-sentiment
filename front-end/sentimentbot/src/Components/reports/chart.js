@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { fetchSingleSurvey } from "../../actions/index";
 import { Pie } from "react-chartjs-2";
 import { Emoji } from "emoji-mart";
-
+import loadinggif from '../callback/loading.svg';
 // MVP use pie chart to show average feelings over the last 7 days.
 
 class PieChart extends React.Component {
@@ -19,6 +19,7 @@ class PieChart extends React.Component {
       count3: null,
       count4: null,
       complete: false,
+      loading: true
       // date: null
     };
   }
@@ -38,10 +39,6 @@ class PieChart extends React.Component {
       );
       console.log(responses, "responses");
 
-      if (this.count < 4) {
-        for (let i = 0; i < this.count; i++) {
-          let data = this.props.singleSurvey.data;
-
           for (let i = 0; i < this.count; i++) {
             let testText = data[i].feeling_text;
             let breakTest = testText.split(" ");
@@ -56,56 +53,43 @@ class PieChart extends React.Component {
               }
             }
           }
-          console.log("yo!!");
           let temp = data[i].feeling_text;
           if (this.response1 === "") {
             this.response1 = temp;
             if (this.count === 1) {
               this.complete = true;
             }
-          } else if (this.response1 !== temp && this.response2 === "") {
+          } else if (this.response1 === temp && this.response2 === "") {
             this.response2 = temp;
             if (this.count === 2) {
               this.complete = true;
             }
           } else if (
-            this.response1 !== temp &&
+            this.response1 === temp &&
             this.response3 === "" &&
-            this.response2 !== temp
+            this.response2 === temp
           ) {
             this.response3 = temp;
             if (this.count === 3) {
               this.complete = true;
             }
           } else if (
-            this.response1 !== temp &&
+            this.response1 === temp &&
             this.response4 === "" &&
-            this.response2 !== temp &&
-            this.response3 !== temp
+            this.response2 === temp &&
+            this.response3 === temp
           ) {
             this.response4 = temp;
             this.complete = true;
+          } else {
+            this.complete = true
           }
-        }
-      }
+        
+      
+      
 
-      for (let i = 0; i < this.count; i++) {
+      for (i = 0; i < this.count; i++) {
         let data = this.props.singleSurvey.data;
-
-        for (let i = 0; i < this.count; i++) {
-          let testText = data[i].feeling_text;
-          let breakTest = testText.split(" ");
-          this.result = [];
-          for (let i = 0; i < breakTest.length; i++) {
-            if (breakTest[i].indexOf(":") === -1) {
-              let textP = breakTest[i] + " ";
-              this.result.push(textP);
-            } else if (breakTest[i].indexOf(":") > -1) {
-              let textE = <Emoji emoji={breakTest[i]} size={16} />;
-              this.result.push(textE);
-            }
-          }
-        }
 
         let temp = data[i].feeling_text;
         if (this.response1 === "") {
@@ -240,10 +224,12 @@ class PieChart extends React.Component {
       count2: counts[this.response2],
       count3: counts[this.response3],
       count4: counts[this.response4],
-      complete: true,
+      complete: this.complete,
+      loading: false
       // date: this.date
     });
   }
+
 
   // componentDidUpdate(prevProps) {
   //   if (this.props.singleSurvey.response[0].id !== prevProps.singleSurvey.response[0].id) {
@@ -254,10 +240,9 @@ class PieChart extends React.Component {
   // }
 
   render() {
-    if (this.props.singleSurvey.response.length === 0) {
-      return <p>Make surveys to display data</p>
-    }
-    else if (
+if (this.props.loading === true) {
+  return <img className="loadinggif" src={loadinggif} alt="loading" />
+} else if (
       this.props.survey.length === 0 &&
       this.props.surveyIsFetching === false &&
       this.props.singleSurvey.length === 0 &&
@@ -270,6 +255,8 @@ class PieChart extends React.Component {
       this.props.singleSurvey.length === 0 &&
       this.state.complete === true
     ) { return <p>Make surveys to display data</p>
+    } else if (this.props.singleSurvey.response.length === 0) {
+      return <p>Make surveys to display data</p>
     } else {
       const data = {
         labels: ["", "", "", ""],
@@ -370,7 +357,7 @@ let date = new Date(`${this.props.singleSurvey.response[0].created_at}`)
                 className="piepie"
                 data={data}
                 // width={10}
-                height={-10}
+                height={10}
                 options={{
                   maintainAspectRatio: false,
                   responsive: true

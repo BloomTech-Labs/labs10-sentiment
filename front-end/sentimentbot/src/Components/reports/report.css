@@ -1,4 +1,22 @@
-   .main-reports-container {
+:root {
+    --main-bg-color: #F5F5F5;
+    --main-btn-color: #02C8A7;
+    --hover-color: #7cdbd5;
+    --hover-border-color: #02C8A7;
+    --hover-font-color: white;
+    --p-font-style: "Roboto", sans-serif;
+    --headers-font-style: 'Roboto Slab', serif;
+}
+
+.background-color {
+    background-color: var(--main-bg-color);
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    overflow: scroll;
+}
+
+.main-reports-container {
         width: 80%;
         margin: 0 auto;
         display: flex;
@@ -8,27 +26,28 @@
     }
 
     p {
-        font-family: "Roboto", sans-serif;
+        font-family: var(--p-font-style);
     }
 
     .main-reports-container h2 {
         margin-top: 3%;
         font-size: 4rem;
-        font-family: "Fredoka One", cursive;
+        font-family: var(--headers-font-style);
+        color: black;
     }
 
     .main-reports-container button {
         width: 40%;
-        background-color: #7cdbd5;
-        color: #212529;
+        background-color: var(--main-btn-color);
+        color: white;
         margin: 3%;
         border-radius: .25rem;
     }
 
     .main-reports-container-button:hover {
-        color: #96040e;
-        background-color: #f9be02;
-        border: 2px solid #f58a91;
+        color: var(--hover-font-color);
+        background-color: var(--hover-color);
+        border: 1px solid var(--hover-border-color);
     }
 
 
@@ -41,12 +60,12 @@
 
     .pie-chart-words h2 {
         font-size: 2rem;
-        font-family: "Fredoka One", cursive;
+        font-family: var(--headers-font-style);
     }
 
     .pie-chart-words h3 {
         font-size: 1.2rem;
-        font-family: "Fredoka One", cursive;
+        font-family: var(--headers-font-style);
     }
 
     .reports-container {
@@ -134,15 +153,16 @@
 
     .main-reports-container button {
         width: 70%;
-        background-color: #7cdbd5;
-        color: #212529;
+        background-color: var(--main-btn-color);
+        color: white;
         margin: 5% 0;
+        border-radius: .25rem;
     }
 
     .main-reports-container-button:hover {
-        color: #96040e;
-        background-color: #f9be02;
-        border: 2px solid #f58a91;
+        color: var(--hover-font-color);
+        background-color: var(--hover-color);
+        border: 1px solid var(--hover-border-color);
     }
 
 
@@ -225,15 +245,16 @@
 
     .main-reports-container button {
         width: 70%;
-        background-color: #7cdbd5;
-        color: #212529;
+        background-color: var(--main-btn-color);
+        color: white;
         margin: 5% 0;
+        border-radius: .25rem;
     }
 
     .main-reports-container-button:hover {
-        color: #96040e;
-        background-color: #f9be02;
-        border: 2px solid #f58a91;
+        color: var(--hover-font-color);
+        background-color: var(--hover-color);
+        border: 1px solid var(--hover-border-color);
     }
 
 
@@ -338,14 +359,15 @@
 
     .report-button-combo button {
         width: 100%;
-        background-color: #7cdbd5;
-        color: #212529;
+        background-color: var(--main-btn-color);
+        color: white;
+        border-radius: .25rem;
     }
 
     .report-button-combo button:hover {
-        color: #96040e;
-        background-color: #f9be02;
-        border: 2px solid #f58a91;
+        color: var(--hover-font-color);
+        background-color: var(--hover-color);
+        border: 1px solid var(--hover-border-color);
     }
 
     .combo-container-button {
@@ -353,14 +375,15 @@
         margin-top: 10%;
         width: 100%;
         height: 20%;
-        background-color: #7cdbd5;
-        color: #212529;
+        background-color: var(--main-btn-color);
+        color: white;
+        border-radius: .25rem;
     }
 
     .combo-container-button:hover {
-        color: #96040e;
-        background-color: #f9be02;
-        border: 2px solid #f58a91;
+        color: var(--hover-font-color);
+        background-color: var(--hover-color);
+        border: 1px solid var(--hover-border-color);
     }
 
 }
@@ -407,14 +430,15 @@
     .report-button-combo button {
         width: 100%;
         height: 25%;
-        background-color: #7cdbd5;
-        color: #212529;
+        background-color: var(--main-btn-color);
+        color: white;
+        border-radius: .25rem;
     }
 
     .report-button-combo button:hover {
-        color: #96040e;
-        background-color: #f9be02;
-        border: 2px solid #f58a91;
+        color: var(--hover-font-color);
+        background-color: var(--hover-color);
+        border: 1px solid var(--hover-border-color);
     }
 
     .combo-container-button {
@@ -422,14 +446,15 @@
         margin-top: 10%;
         width: 100%;
         height: 40px;
-        background-color: #7cdbd5;
-        color: #212529;
+        background-color: var(--main-btn-color);
+        color: white;
+        border-radius: .25rem;
     }
 
     .combo-container-button:hover {
-        color: #96040e;
-        background-color: #f9be02;
-        border: 2px solid #f58a91;
+        color: var(--hover-font-color);
+        background-color: var(--hover-color);
+        border: 1px solid var(--hover-border-color);
     }
 }
 
@@ -439,7 +464,7 @@
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
-    font-family: 'Roboto', sans-serif;
+    font-family: var(--p-font-style);
 }
 
 .bot-container img {
@@ -478,29 +503,30 @@
 .report-button-combo button {
     width: 80%;
     height: 25%;
-    background-color: #7cdbd5;
-    color: #212529;
+    background-color: var(--main-btn-color);
+    color: white;
+    border-radius: .25rem;
 }
 
 .report-button-combo button:hover {
-    color: #96040e;
-    background-color: #f9be02;
-    border: 2px solid #f58a91;
+    color: var(--hover-font-color);
+    background-color: var(--hover-color);
+    border: 1px solid var(--hover-border-color);
 }
 
 .combo-container-button {
     margin: 10% auto;
     width: 90%;
     height: 40px;
-    background-color: #7cdbd5;
-    color: #212529;
+    background-color: var(--main-btn-color);
+    color: white;
     border-radius: .25rem;
 }
 
 .combo-container-button:hover {
-    color: #96040e;
-    background-color: #f9be02;
-    border: 2px solid #f58a91;
+    color: var(--hover-font-color);
+    background-color: var(--hover-color);
+    border: 1px solid var(--hover-border-color);
 }
 
 .combo-container {
