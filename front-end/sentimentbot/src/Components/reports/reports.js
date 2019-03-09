@@ -22,12 +22,6 @@ function Reports(props) {
       </div>
 
     </div>
-      {/* <div className="reportsfooter">
-          <p className="reportscopyright-words">© Copyright M.O.O.D All Rights Reserved.</p>
-          <div className="reportsfooterimg-box">
-            <img  className="reportsfooter-img" alt="footer" src={FooterBanner} />
-          </div>
-        </div> */}
   );
 }
 
