@@ -10,6 +10,7 @@ function GenerateList(props) {
 
   function generateReport(i) {
     props.fetchSingleSurvey(i)
+    props.history.push('/reports')
   }
 
   //   for (let i=0; i<count; i++) {
@@ -55,7 +56,7 @@ function GenerateList(props) {
 
       </div>
       {/* <Button onClick={() => props.history.push('/reports')} color="secondary" size="lg" block>See New Report</Button> */}
-      <button onClick={() => props.history.push('/reports')} className="combo-container-button">See New Report</button>
+      <button onClick={() => props.history.push('/reports')} className="combo-container-button">Go back</button>
     </div>
   )
 

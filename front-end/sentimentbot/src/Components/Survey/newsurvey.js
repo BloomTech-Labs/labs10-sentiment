@@ -37,8 +37,8 @@ class NewSurvey extends Component {
       dailyWeeklyMonthly: "daily",
       hour: 1,
       min: 1,
-      amPm: "am",
-      timeZone: "est",
+      amPm: "AM",
+      timeZone: "EST",
       option1: null,
       option2: null,
       option3: null,
@@ -175,6 +175,7 @@ class NewSurvey extends Component {
       preFeelingIdsArray: preFeelingIdsArray
     }
       this.props.addSurvey(combine)
+      // console.log(combine)
       this.props.history.push("/surveysubmitloading")
     };
 

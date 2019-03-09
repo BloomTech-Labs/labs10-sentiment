@@ -27,7 +27,7 @@ class SurveySubmitLoading  extends React.Component {
                 complete1: true,
                 complete2: true
             })
-            this.props.getSurvey()
+            this.props.getSurvey(this.props.singleTeamMembers[0].id)
         }
       }
 

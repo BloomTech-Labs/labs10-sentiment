@@ -5,11 +5,23 @@
 }
 
 .navbar {
-    background-color: #02C8A7;
+    background-color: var(--main-btn-color);
 }
 
-.navbar-expand-md a {
-    color: #F53240;
+/* .navbar-expand-md a {
+    color: white;
+}
+
+.navbar-brand a { 
+    font-family: var(--headers-font-style);
+    text-decoration: none;
+} */
+
+.navbot {
+    height: 5.5%;
+    width: 5.5%;
+    margin: 0;
+    padding: -2%;
 }
 
 .dropdown-menu .dropdown-item {
