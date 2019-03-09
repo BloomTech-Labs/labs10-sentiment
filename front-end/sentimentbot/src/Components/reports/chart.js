@@ -87,7 +87,7 @@ class PieChart extends React.Component {
         }
       }
 
-      for (let i = 0; i < this.count; i++) {
+      for (var i = 0; i < this.count; i++) {
         let data = this.props.singleSurvey.data;
 
         let temp = data[i].feeling_text;
