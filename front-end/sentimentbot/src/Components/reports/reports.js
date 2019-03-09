@@ -28,7 +28,6 @@ function Reports(props) {
             <img  className="reportsfooter-img" alt="footer" src={FooterBanner} />
           </div>
         </div> */}
-    </>
   );
 }
 
