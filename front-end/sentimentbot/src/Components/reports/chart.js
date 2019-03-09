@@ -39,6 +39,26 @@ class PieChart extends React.Component {
       );
       console.log(responses, "responses");
 
+      // for (let i = 0; i < this.count; i++) {
+      //   let data = this.props.singleSurvey.data;
+      //   let testText = data[i].feeling_text;
+      //   let breakTest = testText.split(" ");
+      //   this.result = [];
+      //   for (let i = 0; i < breakTest.length; i++) {
+      //     if (breakTest[i].indexOf(":") === -1) {
+      //       let textP = breakTest[i] + " ";
+      //       this.result.push(textP);
+      //     } else if (breakTest[i].indexOf(":") > -1) {
+      //       let textE = <Emoji emoji={breakTest[i]} size={16} />;
+      //       this.result.push(textE);
+      //     }
+      //   }
+      // }
+
+      if (this.count < 4) {
+        for (let i = 0; i < this.count; i++) {
+          let data = this.props.singleSurvey.data;
+
           for (let i = 0; i < this.count; i++) {
             let testText = data[i].feeling_text;
             let breakTest = testText.split(" ");
@@ -84,11 +104,10 @@ class PieChart extends React.Component {
           } else {
             this.complete = true
           }
-        
-      
-      
+        }
+      }
 
-      for (i = 0; i < this.count; i++) {
+      for (let i = 0; i < this.count; i++) {
         let data = this.props.singleSurvey.data;
 
         let temp = data[i].feeling_text;
@@ -229,7 +248,6 @@ class PieChart extends React.Component {
       // date: this.date
     });
   }
-
 
   // componentDidUpdate(prevProps) {
   //   if (this.props.singleSurvey.response[0].id !== prevProps.singleSurvey.response[0].id) {
