@@ -1,8 +1,3 @@
-// Check if email matches an existing email
-// If they have registered but are not a team,
-// Or if the are on team then it takes them to their profile.
-// CDM with axios to db GET as JSON obj
-
 import React from "react";
 import { connect } from "react-redux";
 import {
@@ -19,6 +14,8 @@ import {
 import history from "../history";
 import "./authorization.css";
 import Happy from "../PNG/nobackgroundHappy.png";
+import loadinggif from '../callback/loading.svg'
+
 class Authorization extends React.Component {
   state = {
     firstName: "",
@@ -27,13 +24,13 @@ class Authorization extends React.Component {
     phone: "",
     type: null,
     team_id: null,
-    view: ""
+    view: "",
+    loading: true,
   };
 
   componentDidMount() {
     this.props.getSingleTeamMembers(localStorage.getItem("email"));
     this.props.getTeamMembers();
-    this.submit = false;
     this.props.getTeams();
     this.props.getPreFeeling();
   }
@@ -44,6 +41,9 @@ class Authorization extends React.Component {
     ) {
       this.props.getSingleTeam(this.props.singleTeamMembers[0].team_id);
       this.props.getFeelings(this.props.singleTeamMembers[0].id);
+      this.setState({
+        loading: false
+      })
     }
   }
 
@@ -79,21 +79,18 @@ class Authorization extends React.Component {
       team_id: null,
       view: "done"
     });
-    this.submit = true;
     this.props.getTeamMembers();
   };
 
   render() {
-    if (!localStorage.getItem("email")) {
+    if (!localStorage.getItem("jwt")) {
       this.props.history.push("/home");
     }
 
-    if (this.props.tmIsFetching === true) {
-      return (
-        <div className="auth-container">
-          <p>Loading...</p>
-        </div>
-      );
+    if(this.state.loading === true) {
+      return <img className="loadinggif" src={loadinggif} alt="loading" />
+    } else {
+      this.props.history.replace("/profile")
     }
 
     const makeInput = name => (
@@ -129,7 +126,7 @@ class Authorization extends React.Component {
                 />
             </div>
           ) : (
-            <div className="container">
+            <div className="auth-container">
               <p>Welcome Back!</p>
               <button className="btn-feel-2" onClick={() => history.replace("/profile")}>
                 Continue To Profile

@@ -19,6 +19,7 @@ import NavBar from "../NavBar/NavBar";
 import GenerateTeams from "./generateTeams";
 import Happy from "../PNG/nobackgroundHappy.png";
 import Footer from "../Footer/footer";
+import loadinggif from '../callback/loading.svg'
 
 class Profile extends React.Component {
   constructor() {
@@ -28,9 +29,9 @@ class Profile extends React.Component {
       name: "",
       team_code: 0,
       team_id: 0,
-      loaded: false,
       jointeam: "",
-      createTeam: ""
+      createTeam: "",
+      loading: true
     };
   }
 
@@ -43,9 +44,6 @@ class Profile extends React.Component {
     //   this.fetchAuth(code);
     // }
     this.props.getSurvey(this.props.singleTeamMembers[0].id);
-    this.setState({
-      loaded: true
-    });
     this.props.getPreFeeling();
   }
 
@@ -66,13 +64,13 @@ class Profile extends React.Component {
     if (
       this.props.surveyIsFetching === false &&
       this.props.survey.length > 0 &&
-      this.state.loaded === true
+      this.state.loading === true
     ) {
       this.props.fetchSingleSurvey(this.props.survey[0].survey_time_stamp);
       this.props.getSingleTeam(this.props.singleTeamMembers[0].team_id);
       this.props.getSingleTeamMembers(localStorage.getItem("email"));
       this.setState({
-        loaded: false
+        loading: false
       });
     }
   }
@@ -167,6 +165,11 @@ class Profile extends React.Component {
     //   this.props.history.push('/home')
     // }
 
+    if(this.state.loading === true) {
+      return <img className="loadinggif" src={loadinggif} alt="loading" />
+    }
+    
+
     const view = this.state.view;
 
     const uri = "https://botsentiment.herokuapp.com/api/slackauth";
@@ -175,7 +178,7 @@ class Profile extends React.Component {
 
     if (this.props.singleTeamMembers[0].team_id != null) {
       return (
-        <div>
+        <div className="background-color">
           <NavBar />
           <div className="main-container">
             <div className="name-container">
@@ -250,7 +253,7 @@ class Profile extends React.Component {
     }
     if (view === "") {
       return (
-        <div>
+        <div className="background-color">
           <NavBar />
           <div className="main-container">
             <div className="sub-container-3">
@@ -313,6 +316,7 @@ class Profile extends React.Component {
       );
     } else if (view === "create") {
       return (
+        <div className="background-color">
         <div className="create-container">
           {/* <p>Loading...</p> */}
           <NavBar />
@@ -361,9 +365,11 @@ class Profile extends React.Component {
           </form> */}
           <Footer />
         </div>
+        </div>
       );
     } else if (view === "join") {
       return (
+        <div className="background-color">
         <div className="container">
           <p>Loading...</p>
           {/* <NavBar />
@@ -402,6 +408,7 @@ class Profile extends React.Component {
             </button>
           </form> */}
           <Footer />
+        </div>
         </div>
       );
     }

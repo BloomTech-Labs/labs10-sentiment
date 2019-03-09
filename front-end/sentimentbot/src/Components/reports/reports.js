@@ -10,23 +10,18 @@ function Reports(props) {
     props.history.push('/home')
   }
   return (
-    <>
+    <div className="background-color">
      <NavBar />
      <div className="main-reports-container">
      
-      <h2> Generate a new report: </h2>
+      <h2> Reports </h2>
       <button className="main-reports-container-button" onClick={() => props.history.push('/generatereport')}>Here</button>
       <div className="pie-container">
       <PieChart history={props.history} />
       </div>
       </div>
-      {/* <div className="reportsfooter">
-          <p className="reportscopyright-words">© Copyright M.O.O.D All Rights Reserved.</p>
-          <div className="reportsfooterimg-box">
-            <img  className="reportsfooter-img" alt="footer" src={FooterBanner} />
-          </div>
-        </div> */}
-    </>
+
+    </div>
   );
 }
 

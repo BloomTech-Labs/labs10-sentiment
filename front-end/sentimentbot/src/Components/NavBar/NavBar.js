@@ -17,6 +17,7 @@ import {
   DropdownItem
 } from "reactstrap";
 import history from '../history'
+import Eh from '../PNG/nobackgroundEh.png';
 
 const auth = new Auth();
 
@@ -54,7 +55,7 @@ class NavBar extends React.Component {
           <>
             <div>
               <Navbar expand="md">
-                <NavbarBrand href="/home">MOOD</NavbarBrand>
+                <NavbarBrand href="/home"><img className="navbot" src={Eh}  alt="ehbot"/></NavbarBrand>
                 <NavbarToggler onClick={this.toggle} />
                 <Collapse isOpen={this.state.isOpen} navbar>
                   <Nav className="ml-auto" navbar>
