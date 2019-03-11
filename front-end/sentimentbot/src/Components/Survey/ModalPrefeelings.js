@@ -25,23 +25,8 @@ class ModalPrefeelings extends React.Component {
     super(props);
     this.state = {
       modal: false,
-      option1: null,
-      option2: null,
-      option3: null,
-      option4: null,
-      preFeelingIdsArray: [],
     };
     this.toggle = this.toggle.bind(this);
-  }
-
-  componentDidMount() {
-    this.setState({
-      option1: this.props.prefeelings[0].id,
-      option2: this.props.prefeelings[0].id,
-      option3: this.props.prefeelings[0].id,
-      option4: this.props.prefeelings[0].id,
-      
-    })
   }
 
   toggle() {
@@ -82,12 +67,12 @@ class ModalPrefeelings extends React.Component {
     });
   }
   
-  addCustom = event => {
-    event.preventDefault();
-    const custom = {feeling_text: this.state.custom};
-    this.props.addPreFeeling(custom)
-    this.props.history.push("/emojiloading")
-  }
+  // addCustom = event => {
+  //   event.preventDefault();
+  //   const custom = {feeling_text: this.state.custom};
+  //   this.props.addPreFeeling(custom)
+  //   this.props.history.push("/emojiloading")
+  // }
 
   onConfirmation = event => {
     event.preventDefault();
@@ -114,10 +99,10 @@ class ModalPrefeelings extends React.Component {
       <div>
         <Button color="danger" onClick={this.toggle}>{this.props.buttonLabel}</Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-          <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
+          <ModalHeader toggle={this.toggle}>Choose your potential responses</ModalHeader>
           <ModalBody>
             <div className="survey-responsebox">
-            <button className="survey-modalbutton">Add Custom Emoji <ModalEmoji state={this.props.state} addCustom={this.props.addCustom} emojiPicker={this.props.emojiPicker} /></button>
+            <button className="survey-modalbutton">Add a Custom Emoji <ModalEmoji state={this.props.state} addCustom={this.props.addCustom} emojiPicker={this.props.emojiPicker} /></button>
                 <PreFeelingsChosen 
                     onSelectTest1={this.props.onSelectTest1} 
                     onSelectTest2={this.props.onSelectTest2}

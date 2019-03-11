@@ -11,12 +11,12 @@
 
 
 h1 {
-    font-family: 'Fredoka One', cursive;
+    font-family: var(--headers-font-style);
 }
 
 p {
-    padding-left: 10px;
-    font-family: 'Lora', serif;
+    /* padding-left: 10px; */
+    font-family: var(--p-font-style);
     font-size: 1.3rem;
 }
 

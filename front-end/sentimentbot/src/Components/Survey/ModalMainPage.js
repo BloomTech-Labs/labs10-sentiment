@@ -19,7 +19,8 @@ import { getSurvey } from "../../actions/survey";
 import { editSurvey } from "../../actions/survey";
 import { deleteSurvey } from "../../actions/survey";
 import { fetchSingleSurvey } from "../../actions/survey";
-import { addPreFeeling } from "../../actions";
+import { addPreFeeling, getFeelings, getPreFeeling } from "../../actions";
+import loadinggif from '../callback/loading.svg'
 
 import Footer from '../Footer/footer';
 // import FooterBanner from "../PNG/MOODfooterBANNER6.png";
@@ -41,19 +42,46 @@ class ModalSurvey extends React.Component {
         option3: null,
         option4: null,
         preFeelingIdsArray: [],
-        custom: ""
+        custom: "",
+        loading: true,
+        added: false
       }
     }
 
     componentDidMount() {
-    this.setState({
-      option1: this.props.prefeelings[0].id,
-      option2: this.props.prefeelings[0].id,
-      option3: this.props.prefeelings[0].id,
-      option4: this.props.prefeelings[0].id,
-      
-    })
-  }
+      this.props.getSingleTeamMembers(localStorage.getItem("email"));
+      this.props.getSurvey(localStorage.getItem('id'));
+      this.props.getSingleTeam(localStorage.getItem('team_id'));
+      this.props.getFeelings(localStorage.getItem('id'));
+      this.props.getPreFeeling();
+        if (this.props.survey.length > 0) {
+        this.props.fetchSingleSurvey(this.props.survey[0].survey_time_stamp);
+        this.setState({
+          loading: false
+        })
+        } else {
+        this.setState({
+          loading: false,
+        })
+      }
+    }
+  
+    componentDidUpdate(prevProps, prevState) {
+      if(this.props.prefeelings.length !== prevProps.prefeelings.length) {
+        this.setState({
+          option1: this.props.prefeelings[0].id,
+          option2: this.props.prefeelings[0].id,
+          option3: this.props.prefeelings[0].id,
+          option4: this.props.prefeelings[0].id,
+        })
+      }
+      if(this.state.added === true && this.props.isFetching === false) {
+        this.props.getPreFeeling();
+        this.setState({
+          added: false
+        })
+      }
+    }
 
   onChangeHandler = event => {
     this.setState({
@@ -72,7 +100,11 @@ class ModalSurvey extends React.Component {
     event.preventDefault();
     const custom = {feeling_text: this.state.custom};
     this.props.addPreFeeling(custom)
-    this.props.history.push("/emojiloading")
+    this.setState({
+      added: true,
+      custom: ''
+    })
+    // this.props.history.push("/emojiloading")
   }
   
   onChangeDropDown = event => {
@@ -172,7 +204,25 @@ class ModalSurvey extends React.Component {
       preFeelingIdsArray: preFeelingIdsArray
     }
       this.props.addSurvey(combine)
-      this.props.history.push("/surveysubmitloading")
+      this.props.getSurvey(localStorage.getItem('id'));
+      alert('Survey has been submitted')
+      this.setState({
+        title: "",
+        description: "",
+        manager_id: 0,
+        dailyWeeklyMonthly: "daily",
+        hour: 1,
+        min: 1,
+        amPm: "AM",
+        timeZone: "EST",
+        option1: null,
+        option2: null,
+        option3: null,
+        option4: null,
+        preFeelingIdsArray: [],
+        custom: "",
+      })
+      // this.props.history.push("/surveysubmitloading")
     };
 
     render() {
@@ -190,7 +240,7 @@ class ModalSurvey extends React.Component {
                         <button className="survey-modalbutton">Title <ModalTitles state={this.state} onChangeHandler={this.onChangeHandler} /></button>
                         <button className="survey-modalbutton">Responses <ModalPrefeelings state={this.state} onConfirmation={this.onConfirmation} onSelectTest1={this.onSelectTest1} onSelectTest2={this.onSelectTest2} onSelectTest3={this.onSelectTest3} onSelectTest4={this.onSelectTest4} emojiPicker={this.emojiPicker} addCustom={this.addCustom} /></button>
                         <button className="survey-modalbutton">Schedule <ModalSchedule state={this.state} onChangeDropDown ={this.onChangeDropDown} /></button>
-                        <button className="surveysubmit-button" onSubmit={this.createSurvey}>Submit</button>
+                        <button className="surveysubmit-button" onClick={this.createSurvey}>Submit</button>
                     </div>
                 </div>
                 <Footer />
@@ -215,6 +265,7 @@ function mapStateToProps(state) {
       surveyIsFetching: state.surveyReducer.surveyIsFetching,
       singleSurvey: state.surveyReducer.singleSurvey,
       prefeelings: state.prefeelingsReducer.prefeelings,
+      isFetching: state.prefeelingsReducer.isFetching,
     };
   }
   
@@ -233,6 +284,8 @@ function mapStateToProps(state) {
       editSurvey,
       deleteSurvey,
       fetchSingleSurvey,
-      addPreFeeling
+      addPreFeeling,
+      getFeelings,
+      getPreFeeling
     }
   )(ModalSurvey);
