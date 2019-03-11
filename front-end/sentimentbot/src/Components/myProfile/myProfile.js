@@ -13,7 +13,8 @@ import {
   fetchSingleSurvey,
   getSurvey,
   joinTeam,
-  getPreFeeling
+  getPreFeeling,
+  getFeelings
 } from "../../actions/index";
 import NavBar from "../NavBar/NavBar";
 import GenerateTeams from "./generateTeams";
@@ -31,25 +32,82 @@ class Profile extends React.Component {
       team_id: 0,
       jointeam: "",
       createTeam: "",
-      loading: true
+      loading: true,
+      added: false
     };
   }
 
   componentDidMount() {
-    // this.props.getSingleTeamMembers(localStorage.getItem("email"));
-
-    // const code = this.props.match.params.code;
-    // console.log(code);
-    // if (code) {
-    //   this.fetchAuth(code);
-    // }
-    this.props.getSurvey(this.props.singleTeamMembers[0].id);
-    this.props.getPreFeeling();
+    //new code
+    this.props.getSingleTeamMembers(localStorage.getItem("email"));
+    this.props.getSurvey(localStorage.getItem('id'));
+    this.props.getTeams();
+    this.props.getSingleTeam(localStorage.getItem('team_id'));
+      this.props.getFeelings(localStorage.getItem('id'));
+      if (this.props.survey.length > 0) {
+      this.props.fetchSingleSurvey(this.props.survey[0].survey_time_stamp);
+      this.setState({
+        loading: false
+      })
+      } else {
+      this.setState({
+        loading: false
+      })
+    }
+    //old code
+    // this.props.getSurvey(this.props.singleTeamMembers[0].id);
+    // this.props.getPreFeeling();
   }
 
-  // this.props.teamMembers.length !== prevProps.teamMembers.length
+  componentDidUpdate(prevProps, prevState) {
 
-  componentDidUpdate(prevProps) {
+    if(this.props.survey.length !== prevProps.survey.length) {
+      this.props.fetchSingleSurvey(this.props.survey[0].survey_time_stamp)
+    }
+
+    if(this.state.added === true) {
+      this.props.getSingleTeamMembers(localStorage.getItem('email'))
+      this.setState({
+        added: false
+      })
+    }
+
+    if(this.props.teams.length !== prevProps.teams.length) {
+      this.props.getSingleTeamMembers(localStorage.getItem('email'))
+    }
+
+    if(this.props.singleTeamMembers.length > 0 && localStorage.getItem('team_id') === null) {
+    if (this.props.singleTeamMembers[0].team_id !== localStorage.getItem('team_id')) {
+      this.props.getSingleTeamMembers(localStorage.getItem('email'))
+    }
+  }
+
+    // if (localStorage.getItem('team_id') === null) {
+    //   localStorage.setItem('team_id', this.props.singleTeamMembers[0].team_id)
+    //   this.props.getSingleTeam(localStorage.getItem('team_id'))
+    // }
+
+    // if(this.props.singleTeamMembers.team_id !== null) {
+    //   localStorage.setItem('team_id', this.props.singleTeamMembers[0].team_id)
+    // }
+  //   //new code
+  //   if (
+  //     this.props.singleTeamMembers.length !== prevProps.singleTeamMembers.length
+  //   ) {
+  //     this.props.getSingleTeam(localStorage.getItem('team_id'));
+  //     this.props.getFeelings(localStorage.getItem('id'));
+  //     if (this.props.survey.length > 0) {
+  //     this.props.fetchSingleSurvey(this.props.survey[0].survey_time_stamp);
+  //     this.setState({
+  //       loading: false
+  //     })
+  //     } else {
+  //     this.setState({
+  //       loading: false
+  //     })
+  //   }
+    }
+
     // if (this.props.singleTeamMembers !== prevProps.singleTeamMembers) {
     //   this.props.getSingleTeamMembers(localStorage.getItem("email"));
     //   console.log(this.props.singleTeamMembers);
@@ -61,19 +119,21 @@ class Profile extends React.Component {
     // if (code !== prevProps.match.params.code) {
     //   this.fetchAuth(code);
     // }
-    if (
-      this.props.surveyIsFetching === false &&
-      this.props.survey.length > 0 &&
-      this.state.loading === true
-    ) {
-      this.props.fetchSingleSurvey(this.props.survey[0].survey_time_stamp);
-      this.props.getSingleTeam(this.props.singleTeamMembers[0].team_id);
-      this.props.getSingleTeamMembers(localStorage.getItem("email"));
-      this.setState({
-        loading: false
-      });
-    }
-  }
+
+    //old code
+    // if (
+    //   this.props.surveyIsFetching === false &&
+    //   this.props.survey.length > 0 &&
+    //   this.state.loading === true
+    // ) {
+    //   this.props.fetchSingleSurvey(this.props.survey[0].survey_time_stamp);
+    //   this.props.getSingleTeam(this.props.singleTeamMembers[0].team_id);
+    //   this.props.getSingleTeamMembers(localStorage.getItem("email"));
+    //   this.setState({
+    //     loading: false
+    //   });
+    // }
+  // }
 
   // fetchAuth = code => {
   //   const uri = "https://sentimentbot.netlify.com/profile";
@@ -98,12 +158,18 @@ class Profile extends React.Component {
     console.log(this.state.createTeam);
     this.setState({
       ...this.state,
-      view: "create",
-      createTeam: ""
+      createTeam: "",
+      added: true,
+      view: 'create'
     });
     let currentMember = this.props.singleTeamMembers[0];
     currentMember.type = "manager";
     this.props.getSingleTeamMembers(localStorage.getItem("email"));
+    // localStorage.setItem('type', 'manager')
+    // this.props.getTeams();
+    setTimeout(() => {
+      this.props.history.push('/survey');
+    }, 3000);
   };
 
   addCodeToMember = event => {
@@ -134,14 +200,17 @@ class Profile extends React.Component {
 
     this.props.joinTeam(member.id, { team_code: code });
     this.setState({
-      view: "join",
-      team_code: 0
+      team_code: 0,
+      added: true
     });
     let currentMember = this.props.singleTeamMembers[0];
+    this.props.getSingleTeamMembers(localStorage.getItem('email'))
 
     currentMember.type = member.type;
     currentMember.team_id = futureTeamId;
-    this.props.history.push("/loading");
+    localStorage.setItem('team_id', futureTeamId)
+    localStorage.setItem('type', 'team_member')
+    // this.props.history.push("/loading");
   };
 
   handleChange = event => {
@@ -161,13 +230,11 @@ class Profile extends React.Component {
   // };
 
   render() {
-    // if(!localStorage.getItem('email')){
-    //   this.props.history.push('/home')
-    // }
-
-    if(this.state.loading === true) {
-      return <img className="loadinggif" src={loadinggif} alt="loading" />
+    if(!localStorage.getItem('email')){
+      this.props.history.push('/home')
     }
+
+
     
 
     const view = this.state.view;
@@ -175,8 +242,9 @@ class Profile extends React.Component {
     const uri = "https://botsentiment.herokuapp.com/api/slackauth";
     // const uri = "http://localhost:3000/authorization";
     console.log(view);
-
-    if (this.props.singleTeamMembers[0].team_id != null) {
+    if(this.state.loading === true) {
+      return <img className="loadinggif" src={loadinggif} alt="loading" />
+    } else if (this.props.singleTeams.length > 0 && localStorage.getItem('team_id') != null) {
       return (
         <div className="background-color">
           <NavBar />
@@ -334,17 +402,15 @@ class Profile extends React.Component {
             />
           </a> */}
           <div className="container-pandb">
-            <p className="p-tag">
-              Congratulations on creating your team! Click below to allow us to
-              update your site access.
-            </p>
+            {localStorage.getItem('team_id') !== null ? (<p className="p-tag">
+              Congratulations on creating your team! Our bots will update you access in just a moment. Once the page refreshes, feel free to explore the site.</p>) : (<p>Feel free to explore the site.</p>)}
             <br />
-            <button
+            {/* <button
               className="btn-feel-2 "
               onClick={() => this.props.history.push("/loading")}
             >
               Here!
-            </button>
+            </button> */}
           </div>
           {/* <form onSubmit={this.submitHandler} autoComplete="nope">
             <input
@@ -367,51 +433,52 @@ class Profile extends React.Component {
         </div>
         </div>
       );
-    } else if (view === "join") {
-      return (
-        <div className="background-color">
-        <div className="container">
-          <p>Loading...</p>
-          {/* <NavBar />
-          <a
-            href={`https://slack.com/oauth/authorize?scope=commands&client_id=553324377632.554405336645&redirect_uri=${uri}&state=${
-              this.props.singleTeamMembers[0].id
-            }`}
-          >
-            <img
-              alt="Add to Slack"
-              height="40"
-              width="139"
-              src="https://platform.slack-edge.com/img/add_to_slack.png"
-              srcSet="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x"
-            />
-          </a>
-          <p>Congratulations on joining your team. Click the button above to join your team on Slack. Or, click below to see your profile.</p>
-          <button onClick={() => this.setState({
-            view: ""
-          })}>Here</button> */}
-          {/* <form onSubmit={this.submitHandler} autoComplete="nope">
-            <input
-              autoComplete="off"
-              type="text"
-              onChange={this.handleChange}
-              name="team_code"
-              placeholder="Add Team Code"
-              value={this.state.team_code}
-            />
-            <button
-              onClick={() => {
-                this.addCodeToMember();
-              }}
-            >
-              Submit Team Code
-            </button>
-          </form> */}
-          <Footer />
-        </div>
-        </div>
-      );
-    }
+        }
+    // } else if (view === "join") {
+    //   return (
+    //     <div className="background-color">
+    //     <div className="container">
+    //       <p>Loading...</p>
+    //       {/* <NavBar />
+    //       <a
+    //         href={`https://slack.com/oauth/authorize?scope=commands&client_id=553324377632.554405336645&redirect_uri=${uri}&state=${
+    //           this.props.singleTeamMembers[0].id
+    //         }`}
+    //       >
+    //         <img
+    //           alt="Add to Slack"
+    //           height="40"
+    //           width="139"
+    //           src="https://platform.slack-edge.com/img/add_to_slack.png"
+    //           srcSet="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x"
+    //         />
+    //       </a>
+    //       <p>Congratulations on joining your team. Click the button above to join your team on Slack. Or, click below to see your profile.</p>
+    //       <button onClick={() => this.setState({
+    //         view: ""
+    //       })}>Here</button> */}
+    //       {/* <form onSubmit={this.submitHandler} autoComplete="nope">
+    //         <input
+    //           autoComplete="off"
+    //           type="text"
+    //           onChange={this.handleChange}
+    //           name="team_code"
+    //           placeholder="Add Team Code"
+    //           value={this.state.team_code}
+    //         />
+    //         <button
+    //           onClick={() => {
+    //             this.addCodeToMember();
+    //           }}
+    //         >
+    //           Submit Team Code
+    //         </button>
+    //       </form> */}
+    //       {/* <Footer /> */}
+    //     </div>
+    //     </div>
+    //   );
+    // }
   }
 }
 
@@ -442,7 +509,8 @@ export default connect(
     fetchSingleSurvey,
     getSurvey,
     joinTeam,
-    getPreFeeling
+    getPreFeeling,
+    getFeelings
   }
 )(Profile);
 

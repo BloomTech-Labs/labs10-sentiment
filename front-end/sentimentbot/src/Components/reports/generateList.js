@@ -8,9 +8,18 @@ function GenerateList(props) {
 
   let count = props.survey.length;
 
+
+
+  // setTimeout(function move() {
+  //   props.history.push('/reports')
+  // }, 2000)
+
   function generateReport(i) {
     props.fetchSingleSurvey(i)
-    props.history.push('/reports')
+    setTimeout(function move() {
+      props.history.push('/reports')
+    }, 1000)
+    // props.history.push('/reports')
   }
 
   //   for (let i=0; i<count; i++) {
@@ -35,8 +44,9 @@ function GenerateList(props) {
     } else {
     for (let i = 0; i < count; i++) {
       if(props.survey[i].survey_time_stamp === null){
-        divs.push(<div key={i} className="report-button-combo"><p>Survey Title: {props.survey[i].title}</p><button onClick={() => generateReport(props.survey[i].survey_time_stamp)}>Generate</button></div>)
-        divs.shift()
+        // divs.push(<div key={i} className="report-button-combo"><p>Survey Title: {props.survey[i].title}</p><button onClick={() => generateReport(props.survey[i].survey_time_stamp)}>Generate</button></div>)
+        // divs.shift()
+        i++
       } else {
       divs.push(<div key={i} className="report-button-combo"><p>Survey Title: {props.survey[i].title}</p><button onClick={() => generateReport(props.survey[i].survey_time_stamp)}>Generate</button></div>)
       }
