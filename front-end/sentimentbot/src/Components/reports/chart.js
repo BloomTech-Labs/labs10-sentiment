@@ -285,6 +285,7 @@ class PieChart extends React.Component {
       );
       console.log(responses, "responses");
 
+
       // for (let i = 0; i < this.count; i++) {
       //   let data = this.props.singleSurvey.data;
       //   let testText = data[i].feeling_text;
@@ -494,14 +495,19 @@ class PieChart extends React.Component {
       // date: this.date
     });
     }
+    // if(this.props.singleSurvey.response === undefined) {
+    //   this.date = new Date();
+    // } else if(this.props.singleSurvey.response !== undefined && this.props.singleSurvey.length !== 0) {
+    //   this.date = new Date(`${this.props.singleSurvey.response[0].created_at}`)
+    // }
   }
 
   render() {
-if (this.props.loading === true && this.props.surveyIsFetching === true && this.state.complete === false) {
-  return <img className="loadinggif" src={loadinggif} alt="loading" />
+if (this.state.complete === false || this.props.loading === true || this.props.surveyIsFetching === true) {
+  return (<><p>Make surveys and get responses to see reports!</p><img className="loadinggif" src={loadinggif} alt="loading" /></>)
 } else if (
-      this.props.survey.length === 0 &&
       this.props.surveyIsFetching === false &&
+      this.props.survey.length === 0 &&
       this.props.singleSurvey.length === 0 &&
       this.state.complete === false
     ) {
@@ -510,9 +516,11 @@ if (this.props.loading === true && this.props.surveyIsFetching === true && this.
       this.props.survey.length > 0 &&
       this.props.surveyIsFetching === false &&
       this.props.singleSurvey.length === 0 &&
-      this.state.complete === true
+      this.state.complete === false
     ) { return <p>Make surveys to display data</p>
     } else if (this.props.singleSurvey.length === 0) {
+      return <p>Make surveys to display data</p>
+    } else if(typeof this.props.singleSurvey.response.length === undefined){
       return <p>Make surveys to display data</p>
     } else {
       const data = {

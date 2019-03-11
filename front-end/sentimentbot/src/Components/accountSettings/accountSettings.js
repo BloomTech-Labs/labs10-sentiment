@@ -121,7 +121,7 @@ class accountSettings extends React.Component {
       return <img className="loadinggif" src={loadinggif} alt="loading" />
     }
     return (
-      <>
+      <div className="background-color">
         <NavBar />
         <div className="container">
           {this.state.response === 200 ? (
@@ -164,7 +164,7 @@ class accountSettings extends React.Component {
           )}
         </div>
         <Footer />
-      </>
+      </div>
     );
   }
 }

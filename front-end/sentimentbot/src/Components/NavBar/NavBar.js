@@ -88,7 +88,7 @@ class NavBar extends React.Component {
                     </NavItem>
                     <UncontrolledDropdown nav inNavbar>
                       <DropdownToggle style={fontColor} nav caret>
-                        {localStorage.getItem('img_url') ? (<img className="navbar-image" src={source} />) : ("Options")}
+                        {localStorage.getItem('img_url') ? (<img className="navbar-image" src={source} alt="profile-img" />) : ("Options")}
                       </DropdownToggle>
                       <DropdownMenu right style={backgroundColor}>
                         <DropdownItem>
@@ -125,7 +125,7 @@ class NavBar extends React.Component {
         </NavItem>
           <UncontrolledDropdown nav inNavbar>
             <DropdownToggle style={fontColor} nav caret>
-            {localStorage.getItem('img_url') ? (<img className="navbar-image" src={source} />) : ("Options")}
+            {localStorage.getItem('img_url') ? (<img className="navbar-image" src={source} alt="profile-img" />) : ("Options")}
             </DropdownToggle>
             <DropdownMenu right style={backgroundColor}>
               <DropdownItem>

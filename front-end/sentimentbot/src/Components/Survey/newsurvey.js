@@ -434,7 +434,7 @@ function mapStateToProps(state) {
     surveyIsFetching: state.surveyReducer.surveyIsFetching,
     singleSurvey: state.surveyReducer.singleSurvey,
     prefeelings: state.prefeelingsReducer.prefeelings,
-    isFetching: state.prefeelingsReducer.isFetching
+    isFetching: state.prefeelingsReducer.isFetching,
   };
 }
 
