@@ -90,7 +90,7 @@ toggle4() {
       <div className="landingIntro">
         <div className="home-container-text">
           <h1>
-            Hello, I'm am your Miniature Organization Observation Drone, or M.O.O.D,
+            Hello, I'm am the Miniature Organization Observation Drone, or M.O.O.D.
             Let me help you enjoy working with your team.
           </h1>
           <Login auth={auth} />

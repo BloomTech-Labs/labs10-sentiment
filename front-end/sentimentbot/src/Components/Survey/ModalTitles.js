@@ -30,7 +30,7 @@ class ModalTitles extends React.Component {
       <div>
         <Button color="danger" onClick={this.toggle}>{this.props.buttonLabel}</Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-          <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
+          <ModalHeader toggle={this.toggle}>Survey Title and Description</ModalHeader>
           <ModalBody>
                 <div className="survey-inputbox">
                   <label className="survey-inputlabel">Title</label>
@@ -38,7 +38,7 @@ class ModalTitles extends React.Component {
                     type="text"
                     value={this.props.state.title}
                     name="title"
-                    placeholder="title of survey"
+                    placeholder="Title of survey"
                     onChange={this.props.onChangeHandler}
                   /> 
                 </div>
@@ -48,7 +48,7 @@ class ModalTitles extends React.Component {
                     type="text"
                     value={this.props.state.description}
                     name="description"
-                    placeholder="survey question"
+                    placeholder="Survey question"
                     onChange={this.props.onChangeHandler}
                   />
                 </div>

@@ -1,18 +1,17 @@
 .btn-feel-3 {
   width: 12rem;
   padding: 0.5rem;
-  color: #212529;
-  background-color: #7cdbd5;
+  color: white;
+  background-color: var(--main-btn-color);
   font-size: 1.2rem;
   border-radius: 0.5rem;
-  font-family: "Fredoka One", cursive;
+  font-family: var(--p-font-style);
   cursor: pointer;
-  box-shadow: -10px 10px 5px 0px #212529;
 }
 .btn-feel-3:hover {
-  color: #96040e;
-  background-color: #f9be02;
-  border: 2px solid #f58a91;
+  color: white;
+  background-color: var(--hover-color);
+  border: 1px solid var(--hover-border-color);
 }
 
 @media (max-width: 900px) {

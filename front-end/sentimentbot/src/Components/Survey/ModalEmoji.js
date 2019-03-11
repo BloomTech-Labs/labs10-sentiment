@@ -41,7 +41,7 @@ class ModalEmoji extends React.Component {
       <div>
         <Button color="danger" onClick={this.toggle}>{this.props.buttonLabel}</Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-          <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
+          <ModalHeader toggle={this.toggle}>Add your own Emojis</ModalHeader>
           <ModalBody>
             <div className="emoji-picker">
               <Picker
@@ -60,11 +60,11 @@ class ModalEmoji extends React.Component {
                 name="custom"
                 onChange={this.props.onChangeHandler}>
               </input>
-              <button className="survey-buttons" onClick={this.props.addCustom}></button>
+              <button className="survey-buttons" onClick={this.props.addCustom}>Confirm choice</button>
             </div>
           </ModalBody>
           <ModalFooter>
-            <Button color="primary" onClick={this.toggle}>Do Something</Button>{' '}
+            <Button color="primary" onClick={this.toggle}>Done</Button>{' '}
           </ModalFooter>
         </Modal>
       </div>
