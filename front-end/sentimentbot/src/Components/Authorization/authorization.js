@@ -26,6 +26,7 @@ class Authorization extends React.Component {
     team_id: null,
     view: "",
     loading: true,
+    initial: false
   };
 
   componentDidMount() {
@@ -33,6 +34,9 @@ class Authorization extends React.Component {
     this.props.getTeamMembers();
     this.props.getTeams();
     this.props.getPreFeeling();
+    this.setState({
+      initial: true
+    })
   }
 
   componentDidUpdate(prevProps) {
@@ -84,18 +88,12 @@ class Authorization extends React.Component {
       view: "done"
     });
     this.props.getTeamMembers();
+    setTimeout(() => {
+      this.props.history.push('profile')
+    }, 2000);
   };
 
   render() {
-    if (!localStorage.getItem("jwt")) {
-      this.props.history.push("/home");
-    }
-
-    if(this.state.loading === true) {
-      return <img className="loadinggif" src={loadinggif} alt="loading" />
-    } else {
-      this.props.history.replace("/profile")
-    }
 
     const makeInput = name => (
       <input
@@ -108,11 +106,15 @@ class Authorization extends React.Component {
       />
     );
 
-    if (this.state.view === "") {
+    if (!localStorage.getItem("jwt")) {
+      this.props.history.push("/home");
+    }
+
+    if (this.state.view === "" && this.state.loading === true && this.state.initial === true) {
       return (
         <>
           <div className="fake-nav" />
-          {this.props.singleTeamMembers.length === 0 ? (
+          {this.props.tmIsFetching === false ? (
             <div className="container-form">
               <p>Please finish registering before continuing...</p>
               <form onSubmit={this.submitHandler} autoComplete="nope">
@@ -132,30 +134,37 @@ class Authorization extends React.Component {
           ) : (
             <div className="auth-container">
               <p>Welcome Back!</p>
-              <button className="btn-feel-2" onClick={() => history.replace("/profile")}>
+              {/* <button className="btn-feel-2" onClick={() => history.replace("/profile")}>
                 Continue To Profile
-              </button>
+              </button> */}
             </div>
           )}
         </>
       );
-    } else {
-      return (
-        <>
-        <div className="fake-nav" />
-        <div className="auth-container">
-          
-          <p>
-            Thanks for registering! Please allow us a moment to finish
-            registering you
-          </p>
-          <button className="btn-feel-2" onClick={() => this.props.history.push("/loading")}>
-            Thank you
-          </button>
-        </div>
-        </>
-      );
+    } else if(this.state.loading === true) {
+      return <img className="loadinggif" src={loadinggif} alt="loading" />
+    } else if(this.state.loading === false && this.state.initial === true) {
+      this.props.history.replace("/profile")
+      window.location.reload();
     }
+
+//  else {
+//       return (
+//         <>
+//         <div className="fake-nav" />
+//         <div className="auth-container">
+          
+//           <p>
+//             Thanks for registering! Please allow us a moment to finish
+//             registering you
+//           </p>
+//           <button className="btn-feel-2" onClick={() => this.props.history.push("/loading")}>
+//             Thank you
+//           </button>
+//         </div>
+//         </>
+//       );
+//     }
   }
 }
 

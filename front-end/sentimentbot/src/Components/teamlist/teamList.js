@@ -1,16 +1,24 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { getTeamsMembers, editTeamMembers, getSingleTeamMembers, getSurvey, getSingleTeam, getFeelings, fetchSingleSurvey } from '../../actions/index';
-import './teamlist.css';
-import NavBar from '../NavBar/NavBar';
-import Eh from '../PNG/nobackgroundEh.png';
+import React from "react";
+import { connect } from "react-redux";
+import {
+  getTeamsMembers,
+  editTeamMembers,
+  getSingleTeamMembers,
+  getSurvey,
+  getSingleTeam,
+  getFeelings,
+  fetchSingleSurvey
+} from "../../actions/index";
+import "./teamlist.css";
+import NavBar from "../NavBar/NavBar";
+import Eh from "../PNG/nobackgroundEh.png";
 import Footer from "../Footer/footer";
-import loadinggif from '../callback/loading.svg'
+import loadinggif from "../callback/loading.svg";
 
 class TeamList extends React.Component {
   state = {
     loading: true
-  }
+  };
 
   componentWillMount() {
     this.props.getSingleTeam(localStorage.getItem('team_id'));
@@ -19,19 +27,19 @@ class TeamList extends React.Component {
   componentDidMount() {
     //new code
     this.props.getSingleTeamMembers(localStorage.getItem("email"));
-    this.props.getSurvey(localStorage.getItem('id'));
-    this.props.getTeamsMembers(localStorage.getItem('team_id'));
-    this.props.getSingleTeam(localStorage.getItem('team_id'));
-    this.props.getFeelings(localStorage.getItem('id'));
+    this.props.getSurvey(localStorage.getItem("id"));
+    this.props.getTeamsMembers(localStorage.getItem("team_id"));
+    this.props.getSingleTeam(localStorage.getItem("team_id"));
+    this.props.getFeelings(localStorage.getItem("id"));
     if (this.props.survey.length > 0) {
       this.props.fetchSingleSurvey(this.props.survey[0].survey_time_stamp);
       this.setState({
         loading: false
-      })
+      });
     } else {
       this.setState({
         loading: false
-      })
+      });
     }
 
     //old code
@@ -40,9 +48,8 @@ class TeamList extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-
     if (this.props.survey.length !== prevProps.survey.length) {
-      this.props.fetchSingleSurvey(this.props.survey[0].survey_time_stamp)
+      this.props.fetchSingleSurvey(this.props.survey[0].survey_time_stamp);
     }
     //   //new code
     //   if (
@@ -65,8 +72,7 @@ class TeamList extends React.Component {
 
   handleClick(data) {
     this.props.editTeamMembers(data.id, data);
-    console.log(data.id)
-
+    console.log(data.id);
   }
 
   render() {
@@ -80,9 +86,10 @@ class TeamList extends React.Component {
           <div className="mainTeam-container">
             <h1>{this.props.singleTeams[0].name}</h1>
             <a
-              href={`https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645&redirect_uri=${uri}&state=${localStorage.getItem('id')}`}
-            >
-            </a>
+              href={`https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645&redirect_uri=${uri}&state=${localStorage.getItem(
+                "id"
+              )}`}
+            />
             <p>Team Join Code: {this.props.singleTeams[0].team_code}</p>
             <div className="eh-moodbot">
               <h3>Team Members</h3>
@@ -97,12 +104,39 @@ class TeamList extends React.Component {
             </div>
             <div className="teamlist-container team-scrollbar">
               {this.props.teamMembers.map(user => {
-                return (
+                if(user.type === "manager"){
+                  return (
                   <div>
-                    <p>{user.firstName} {user.lastName}</p>
-                    <button className="teamlist-button" onClick={() => this.handleClick({ id: user.id, firstName: user.firstName, lastName: user.lastName, email: user.email, phone: user.phone, type: null, team_id: null })}>Remove</button>
+                    <p>
+                      {user.firstName} {user.lastName}
+                    </p>
                   </div>
-                )
+                );
+                }else{
+                  return (
+                  <div>
+                    <p>
+                      {user.firstName} {user.lastName}
+                    </p>
+                    <button
+                      className="teamlist-button"
+                      onClick={() =>
+                        this.handleClick({
+                          id: user.id,
+                          firstName: user.firstName,
+                          lastName: user.lastName,
+                          email: user.email,
+                          phone: user.phone,
+                          type: null,
+                          team_id: null
+                        })
+                      }
+                    >
+                      Remove
+                    </button>
+                  </div>
+                );
+                }
               })}
             </div>
           </div>
@@ -126,5 +160,13 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { getTeamsMembers, editTeamMembers, getSingleTeamMembers, getSurvey, getSingleTeam, getFeelings, fetchSingleSurvey }
+  {
+    getTeamsMembers,
+    editTeamMembers,
+    getSingleTeamMembers,
+    getSurvey,
+    getSingleTeam,
+    getFeelings,
+    fetchSingleSurvey
+  }
 )(TeamList);

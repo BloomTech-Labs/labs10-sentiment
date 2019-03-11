@@ -32,6 +32,7 @@
     align-items: center;
 }
 
+
 /* input[type=text]:focus,
 input[type=email]:focus,
 input[type=password]:focus {
@@ -51,7 +52,7 @@ input[type=password]:focus {
     border-radius: .25rem;
     /* font-size: 1.4rem; */
     width: 50%;
-    margin-top: 10px;
+    /* margin-top: 10px; */
 }
 
 .btn-style:hover {
@@ -74,12 +75,15 @@ input[type=password]:focus {
 .email-field {
     width: 50%;
 }
+
+
 /* .form-check-inline {
     position: absolute;
     top: 20px;
     left: 250px;
     width: 10%;
 } */
+
 .account-form {
     width: 100%;
     display: flex;
@@ -88,6 +92,7 @@ input[type=password]:focus {
     align-items: center;
     margin: 0 auto;
 }
+
 
 /* .checkbox-div {
     display: flex;
@@ -121,15 +126,16 @@ input[type=password]:focus {
     .btn-style {
         width: 100%;
     }
-    .col-sm-6{
+    .col-sm-6 {
         width: 100%;
     }
-
     .form-group {
         width: 100%;
         margin-left: 5%;
     }
-
+    .container {
+        margin-bottom: 75px;
+    }
 }
 
 @media (max-width: 420px) {
@@ -142,5 +148,4 @@ input[type=password]:focus {
     .reset {
         margin-bottom: 12%;
     }
-
 }

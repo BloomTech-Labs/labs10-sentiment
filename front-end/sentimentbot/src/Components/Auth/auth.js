@@ -9,8 +9,8 @@ export default class Auth {
   auth0 = new auth0.WebAuth({
     domain: "bikbik.auth0.com",
     clientID: "BnXSvU6tE4W8WGMt3gDWra24hXr8qY0e",
-    redirectUri: "https://sentimentbot.netlify.com/callback",
-    // redirectUri: "http://localhost:3000/callback",
+    // redirectUri: "https://sentimentbot.netlify.com/callback",
+    redirectUri: "http://localhost:3000/callback",
     responseType: "token id_token",
     scope: "openid profile email"
   });
@@ -126,9 +126,9 @@ export default class Auth {
     localStorage.removeItem("img_url");
     localStorage.removeItem("lsid");
     localStorage.removeItem("name");
-    localStorage.removeItem('id');
-    localStorage.removeItem('team_id')
-    localStorage.removeItem('type')
+    localStorage.removeItem("id");
+    localStorage.removeItem("team_id");
+    localStorage.removeItem("type");
     // navigate to the home route
     history.replace("/home");
   }

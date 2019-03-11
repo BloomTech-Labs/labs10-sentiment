@@ -134,8 +134,10 @@
 
 /* Mobile */
 
-@media (max-width:600px) {
-
+@media (max-width:700px) {
+    .mainTeam-container {
+        margin-bottom: 75px;
+    }
     .teamlist-container {
         width: 100%;
     }
