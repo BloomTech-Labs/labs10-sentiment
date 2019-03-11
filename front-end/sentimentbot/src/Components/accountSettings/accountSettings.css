@@ -129,6 +129,9 @@ input[type=password]:focus {
         width: 100%;
         margin-left: 5%;
     }
+    .container {
+        margin-bottom: 75px;
+    }
 
 }
 
