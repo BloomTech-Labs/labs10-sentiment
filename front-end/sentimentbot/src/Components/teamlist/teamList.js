@@ -21,7 +21,7 @@ class TeamList extends React.Component {
   };
 
   componentWillMount() {
-    this.props.getSingleTeam(localStorage.getItem("team_id"));
+    this.props.getSingleTeam(localStorage.getItem('team_id'));
   }
 
   componentDidMount() {
@@ -78,10 +78,10 @@ class TeamList extends React.Component {
   render() {
     const uri = "https://sentimentbot.netlify.com/authorization";
     if (this.state.loading === true || this.props.singleTeams.length < 1) {
-      return <img className="loadinggif" src={loadinggif} alt="loading" />;
+      return <img className="loadinggif" src={loadinggif} alt="loading" />
     } else if (this.props.singleTeams.length > 0) {
       return (
-        <>
+        <div className="background-color">
           <NavBar />
           <div className="mainTeam-container">
             <h1>{this.props.singleTeams[0].name}</h1>
@@ -94,7 +94,12 @@ class TeamList extends React.Component {
             <div className="eh-moodbot">
               <h3>Team Members</h3>
               <div className="eh-moodbot2">
-                <img src={Eh} alt="Eh MoodBot" width="150" height="150" />
+                <img
+                  src={Eh}
+                  alt="Eh MoodBot"
+                  width="150"
+                  height="150"
+                />
               </div>
             </div>
             <div className="teamlist-container team-scrollbar">
@@ -132,13 +137,12 @@ class TeamList extends React.Component {
                   </div>
                 );
                 }
-              
               })}
             </div>
           </div>
           <Footer />
-        </>
-      );
+        </div>
+      )
     }
   }
 }

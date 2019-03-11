@@ -61,7 +61,7 @@
 }
 
 @media (max-width: 600px) {
-  .billing-card-body {
-    margin-bottom: 75px;
+   h1 {
+    padding-right: 0;
   }
 }

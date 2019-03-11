@@ -60,6 +60,11 @@
   height: 3.5rem;
 }
 
+.sub-container-2 a {
+  width: 12rem;
+  height: 3.5rem;
+}
+
 /* .welcome-container {
   font-size: 4rem;
 } */
@@ -256,7 +261,7 @@
     width: 100%;
     margin-bottom: 1rem;
   }
-  .reactions {
-    margin-bottom: 75px;
+  .main-container {
+    width: 100%;
   }
 }
