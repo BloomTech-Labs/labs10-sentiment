@@ -170,6 +170,8 @@
 
   .p-tag{
       margin-top: 2rem;
+      width: 80%;
+      margin: 0 auto;
   }
 
   .container-pandb{

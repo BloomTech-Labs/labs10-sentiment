@@ -41,6 +41,10 @@ class Authorization extends React.Component {
     ) {
       this.props.getSingleTeam(this.props.singleTeamMembers[0].team_id);
       this.props.getFeelings(this.props.singleTeamMembers[0].id);
+      this.props.getSurvey(this.props.singleTeamMembers[0].id);
+      localStorage.setItem('id', this.props.singleTeamMembers[0].id)
+      localStorage.setItem('type', this.props.singleTeamMembers[0].type)
+      localStorage.setItem('team_id', this.props.singleTeamMembers[0].team_id)
       this.setState({
         loading: false
       })

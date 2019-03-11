@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchSingleSurvey } from "../../actions/index";
+import { fetchSingleSurvey, getSingleTeamMembers, getSurvey, getSingleTeam, getFeelings } from "../../actions/index";
 import { Pie } from "react-chartjs-2";
 import { Emoji } from "emoji-mart";
 import loadinggif from '../callback/loading.svg';
@@ -24,7 +24,253 @@ class PieChart extends React.Component {
     };
   }
 
-  componentWillMount() {
+  // componentWillMount() {
+  //   this.setState({ complete: false });
+  //   this.count = 0;
+  //   this.response1 = "";
+  //   this.response2 = "";
+  //   this.response3 = "";
+  //   this.response4 = "";
+  //   this.complete = false;
+
+  //   if (this.props.survey.length > 0 && this.props.singleSurvey.length !== 0) {
+  //     const responses = this.props.singleSurvey.data.map(
+  //       response => (this.count += 1)
+  //     );
+  //     console.log(responses, "responses");
+
+  //     // for (let i = 0; i < this.count; i++) {
+  //     //   let data = this.props.singleSurvey.data;
+  //     //   let testText = data[i].feeling_text;
+  //     //   let breakTest = testText.split(" ");
+  //     //   this.result = [];
+  //     //   for (let i = 0; i < breakTest.length; i++) {
+  //     //     if (breakTest[i].indexOf(":") === -1) {
+  //     //       let textP = breakTest[i] + " ";
+  //     //       this.result.push(textP);
+  //     //     } else if (breakTest[i].indexOf(":") > -1) {
+  //     //       let textE = <Emoji emoji={breakTest[i]} size={16} />;
+  //     //       this.result.push(textE);
+  //     //     }
+  //     //   }
+  //     // }
+
+  //     if (this.count < 4) {
+  //       for (let i = 0; i < this.count; i++) {
+  //         let data = this.props.singleSurvey.data;
+
+  //         for (let i = 0; i < this.count; i++) {
+  //           let testText = data[i].feeling_text;
+  //           let breakTest = testText.split(" ");
+  //           this.result = [];
+  //           for (let i = 0; i < breakTest.length; i++) {
+  //             if (breakTest[i].indexOf(":") === -1) {
+  //               let textP = breakTest[i] + " ";
+  //               this.result.push(textP);
+  //             } else if (breakTest[i].indexOf(":") > -1) {
+  //               let textE = <Emoji emoji={breakTest[i]} size={16} />;
+  //               this.result.push(textE);
+  //             }
+  //           }
+  //         }
+  //         let temp = data[i].feeling_text;
+  //         if (this.response1 === "") {
+  //           this.response1 = temp;
+  //           if (this.count === 1) {
+  //             this.complete = true;
+  //           }
+  //         } else if (this.response1 === temp && this.response2 === "") {
+  //           this.response2 = temp;
+  //           if (this.count === 2) {
+  //             this.complete = true;
+  //           }
+  //         } else if (
+  //           this.response1 === temp &&
+  //           this.response3 === "" &&
+  //           this.response2 === temp
+  //         ) {
+  //           this.response3 = temp;
+  //           if (this.count === 3) {
+  //             this.complete = true;
+  //           }
+  //         } else if (
+  //           this.response1 === temp &&
+  //           this.response4 === "" &&
+  //           this.response2 === temp &&
+  //           this.response3 === temp
+  //         ) {
+  //           this.response4 = temp;
+  //           this.complete = true;
+  //         } else {
+  //           this.complete = true
+  //         }
+  //       }
+  //     }
+
+  //     for (let i = 0; i < this.count; i++) {
+  //       let data = this.props.singleSurvey.data;
+
+  //       let temp = data[i].feeling_text;
+  //       if (this.response1 === "") {
+  //         this.response1 = temp;
+  //       } else if (this.response1 !== temp && this.response2 === "") {
+  //         this.response2 = temp;
+  //       } else if (
+  //         this.response1 !== temp &&
+  //         this.response3 === "" &&
+  //         this.response2 !== temp
+  //       ) {
+  //         this.response3 = temp;
+  //       } else if (
+  //         this.response1 !== temp &&
+  //         this.response4 === "" &&
+  //         this.response2 !== temp &&
+  //         this.response3 !== temp
+  //       ) {
+  //         this.response4 = temp;
+  //         this.complete = true;
+  //       }
+  //     }
+
+  //     //     this.responsesEmojis = []
+
+  //     //     for(let i=1; i<=4; i++) {
+  //     //       let testText = this.response[i]
+  //     //       let breakTest = testText.split(" ");
+  //     //       let result = [];
+  //     //       for (let i = 0; i < breakTest.length; i++) {
+  //     //         if (breakTest[i].indexOf(":") === -1) {
+  //     //           let textP = breakTest[i] + " ";
+  //     //           result.push(textP);
+  //     //         } else if (breakTest[i].indexOf(":") > -1) {
+  //     //           let textE = <Emoji emoji={breakTest[i]} size={16} />;
+  //     //           result.push(textE);
+  //     //         }
+  //     //       }
+  //     //       this.responsesEmojis = result;
+  //     //   }
+  //     //   console.log(this.responsesEmojis)
+  //     // }
+  //   }
+
+  //   if (
+  //     this.props.survey.length > 0 &&
+  //     this.props.singleSurvey.length !== 0 &&
+  //     this.complete === true
+  //   ) {
+  //     this.emoji1 = [];
+  //     this.emoji2 = [];
+  //     this.emoji3 = [];
+  //     this.emoji4 = [];
+
+  //     for (let i = 0; i < this.result.length; i++) {
+  //       if (this.emoji1.length === 0) {
+  //         if (typeof this.result[i] === "string") {
+  //           this.emoji1.push(this.result[i]);
+  //           this.emoji1.push(this.result[i + 1]);
+  //           i = i + 2;
+  //         } else {
+  //           this.emoji1 = this.result[i];
+  //           i = i + 1;
+  //         }
+  //       } else if (
+  //         this.emoji1[0] !== this.result[i] &&
+  //         this.emoji2.length === 0
+  //       ) {
+  //         if (typeof this.result[i] === "string") {
+  //           this.emoji2.push(this.result[i]);
+  //           this.emoji2.push(this.result[i + 1]);
+  //           i = i + 2;
+  //         } else {
+  //           this.emoji2 = this.result[i];
+  //           i = i + 1;
+  //         }
+  //       } else if (
+  //         this.emoji1[0] !== this.result[i] &&
+  //         this.emoji2[0] !== this.result[i] &&
+  //         this.emoji3.length === 0
+  //       ) {
+  //         if (typeof this.result[i] === "string") {
+  //           this.emoji3.push(this.result[i]);
+  //           this.emoji3.push(this.result[i + 1]);
+  //           i = i + 2;
+  //         } else {
+  //           this.emoji3 = this.result[i];
+  //           i = i + 1;
+  //         }
+  //       } else if (
+  //         this.emoji1[0] !== this.result[i] &&
+  //         this.emoji2[0] !== this.result[i] &&
+  //         this.emoji3[0] !== this.result[i] &&
+  //         this.emoji4.length === 0
+  //       ) {
+  //         if (typeof this.result[i] === "string") {
+  //           this.emoji4.push(this.result[i]);
+  //           this.emoji4.push(this.result[i + 1]);
+  //           i = i + 2;
+  //         } else {
+  //           this.emoji4 = this.result[i];
+  //           i = i + 1;
+  //         }
+  //       }
+  //     }
+  //     console.log(this.emoji1, this.emoji2);
+  //   }
+
+  //   this.responseArray = [];
+  //   for (let i = 0; i < this.count; i++) {
+  //     let temp = this.props.singleSurvey.data[i].feeling_text;
+  //     this.responseArray.push(temp);
+  //   }
+
+  //   let counts = {};
+  //   this.responseArray.forEach(function(x) {
+  //     counts[x] = (counts[x] || 0) + 1;
+  //   });
+
+  //   // if(this.props.singleSurvey.response.length === 0) {
+  //   //   this.date = new Date();
+  //   // } else {
+  //   // this.date = new Date(`${this.props.singleSurvey.response[0].created_at}`);
+  //   // }
+
+  //   this.setState({
+  //     response1: this.response1,
+  //     response2: this.response2,
+  //     response3: this.response3,
+  //     response4: this.response4,
+  //     count1: counts[this.response1],
+  //     count2: counts[this.response2],
+  //     count3: counts[this.response3],
+  //     count4: counts[this.response4],
+  //     complete: this.complete,
+  //     loading: false
+  //     // date: this.date
+  //   });
+  // }
+
+  componentDidMount() {
+    this.props.getSingleTeamMembers(localStorage.getItem("email"));
+    this.props.getSurvey(localStorage.getItem('id'));
+    this.props.getSingleTeam(localStorage.getItem('team_id'));
+      this.props.getFeelings(localStorage.getItem('id'));
+      if (this.props.survey.length > 0 && this.props.singleSurvey.length === 0) {
+      this.props.fetchSingleSurvey(this.props.survey[0].survey_time_stamp);
+      // this.setState({
+      //   loading: false
+      // })
+      } 
+    //   this.setState({
+    //     loading: false
+    //   })
+    // }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.surveyIsFetching !== prevProps.surveyIsFetching) {
+      if (this.props.survey.length !== prevProps.survey.length) {
+        this.props.fetchSingleSurvey(this.props.survey[0].survey_time_stamp)
+      }
     this.setState({ complete: false });
     this.count = 0;
     this.response1 = "";
@@ -247,18 +493,11 @@ class PieChart extends React.Component {
       loading: false
       // date: this.date
     });
+    }
   }
 
-  // componentDidUpdate(prevProps) {
-  //   if (this.props.singleSurvey.response[0].id !== prevProps.singleSurvey.response[0].id) {
-  //     return (
-  //       <div>Loading...</div>
-  //     )
-  //   }
-  // }
-
   render() {
-if (this.props.loading === true) {
+if (this.props.loading === true && this.props.surveyIsFetching === true && this.state.complete === false) {
   return <img className="loadinggif" src={loadinggif} alt="loading" />
 } else if (
       this.props.survey.length === 0 &&
@@ -273,7 +512,7 @@ if (this.props.loading === true) {
       this.props.singleSurvey.length === 0 &&
       this.state.complete === true
     ) { return <p>Make surveys to display data</p>
-    } else if (this.props.singleSurvey.response.length === 0) {
+    } else if (this.props.singleSurvey.length === 0) {
       return <p>Make surveys to display data</p>
     } else {
       const data = {
@@ -401,5 +640,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { fetchSingleSurvey }
+  { fetchSingleSurvey, getSingleTeamMembers, getSurvey, getSingleTeam, getFeelings }
 )(PieChart);
