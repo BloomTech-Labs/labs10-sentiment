@@ -12,7 +12,7 @@ import { Provider } from "react-redux";
 import rootReducer from "../reducers/index";
 import Profile from "./myProfile/myProfile";
 import Billing from "./billing/billing";
-import Survey from "./Survey/newsurvey";
+// import Survey from "./Survey/newsurvey";
 import Reports from "./reports/reports";
 import AccountSettings from "./accountSettings/accountSettings";
 import GenerateReport from "./reports/generateReport";
@@ -20,6 +20,7 @@ import TeamList from "../Components/teamlist/teamList";
 import Loading from './myProfile/loading';
 import EmojiLoading from './Survey/loading';
 import SurveySubmitLoading from './Survey/surveysubmitloading';
+import ModalSurvey from './Survey/ModalSurveyPage';
 
 
 const auth = new Auth();
@@ -74,9 +75,13 @@ export const makeMainRoutes = () => {
             path="/billing"
             render={props => <Billing {...props} auth={auth} />}
           />
+          {/* <Route
+            path="/survey"
+            render={props => <Survey  {...props} auth={auth} />}
+          /> */}
           <Route
             path="/survey"
-            render={props => <Survey {...props} auth={auth} />}
+            render={props => <ModalSurvey  {...props} auth={auth} />}
           />
           <Route
             path="/reports"

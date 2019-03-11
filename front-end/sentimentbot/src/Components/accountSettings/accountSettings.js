@@ -4,7 +4,7 @@ import axios from "axios";
 import { editTeamMembers } from "../../actions/index";
 import { connect } from "react-redux";
 import "./accountSettings.css";
-import Footer from "../Footer/footer";
+import FooterBanner from "../PNG/MOODfooterBANNER6.png";
 
 import { Col, FormGroup, Label, Input } from "reactstrap";
 
@@ -90,7 +90,7 @@ class accountSettings extends React.Component {
     //   props.history.push("/home");
     // }
     return (
-      <>
+      <div className="accsetpage-container">
         <NavBar />
         <div className="container">
           {this.state.response === 200 ? (
@@ -169,8 +169,13 @@ class accountSettings extends React.Component {
             </div>
           )}
         </div>
-        <Footer />
-      </>
+        <div className="accsetfooter">
+            <p className="accsetcopyright-words">© Copyright M.O.O.D All Rights Reserved.</p>
+            <div className="accsetfooterimg-box">
+              <img  className="accsetfooter-img" alt="footer" src={FooterBanner} />
+            </div>
+          </div>
+      </div>
     );
   }
 }

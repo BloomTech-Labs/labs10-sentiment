@@ -9,7 +9,7 @@ import {
   CardSubtitle,
 } from "reactstrap";
 // import "../App.css";
-import Footer from "../Footer/footer";
+import FooterBanner from "../PNG/MOODfooterBANNER6.png";
 import "./billing.css";
 
 class Billing extends React.Component {
@@ -73,18 +73,16 @@ class Billing extends React.Component {
 
     if (this.state.complete) {
       return (
-        <>
+        <div className="billingpage-container">
           <NavBar />
-
           <div className="purchase-complete billing-container">
             <h1>Purchase Complete</h1>
           </div>
-          <Footer />
-        </>
+        </div>
       );
     } else {
       return (
-        <>
+        <div className="billingpage-container">
           <NavBar />
           <div className="billing-container">
             <h1 className="billing-title"> Billing Page </h1>
@@ -119,7 +117,6 @@ class Billing extends React.Component {
                   name="M.O.O.D."
                 />
               </div>
-
               <div className="billing-card-body">
                 <h2 className="billing-card-title">Professional</h2>
                 <h3 className="billing-card-subtitle">$50/mo</h3>
@@ -142,8 +139,13 @@ class Billing extends React.Component {
               </div>
             </div>
           </div>
-          <Footer />
-        </>
+          <footer className="billingfooter">
+            <p className="billingcopyright-words">© Copyright M.O.O.D All Rights Reserved.</p>
+            <div className="billingfooterimg-box">
+              <img  className="billingfooter-img" alt="footer" src={FooterBanner} />
+            </div>
+          </footer>
+        </div>
       );
     }
   }

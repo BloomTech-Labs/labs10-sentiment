@@ -5,7 +5,22 @@
     margin-top: 1.875rem;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 25%;
+    position: relative;
+    overflow: auto;
+    padding-bottom: 150px;
+    border: 1px solid rgb(34, 0, 255);
 }
+@media (min-width: 600px) {
+    .mainTeam-container {
+      margin-bottom: 22%;
+    }
+  }
+  @media (min-width: 700px) {
+    .mainTeam-container {
+      margin-bottom: 12%;
+    }
+  }
 
 .mainTeam-container h1 {
     font-family: 'Fredoka One', cursive;

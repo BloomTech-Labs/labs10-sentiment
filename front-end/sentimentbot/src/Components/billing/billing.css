@@ -1,11 +1,29 @@
+body {
+  height: 100%;
+}
+.billingpage-container {
+  position: relative;
+  min-height: 100%;
+  padding-bottom: 100px;
+}
 .billing-container {
-  margin: 0 auto;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  height:100%;
+  overflow: auto;
+  margin-bottom: 20%;
   width: 80%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-content: center;
   /* border: 1px solid red; */
+}
+@media (min-width: 600px) {
+  .main-container {
+    margin-bottom: 30%;
+  }
 }
 
 .billing-title {
@@ -19,6 +37,7 @@
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
+  margin-top: 50px;
   /* border: 1px solid red; */
 }
 
@@ -34,6 +53,27 @@
 .stripe-checkout {
   width: 50%;
   background: linear-gradient(#7cdbd5, #7cdbd5, #7cdbd5);
+}
+/* Billing Footer */
+.billingfooter {
+  height: 50px;
+  position: absolute;
+  bottom: 0;
+  clear: both;
+}
+.billingcopyright-words {
+  font-size: .8rem;
+  display: flex;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+.billingfooterimg-box {
+  overflow: hidden;
+}
+.billingfooter-img {
+  width: 100%;
+  max-height: 50px;
 }
 
 @media (max-width: 900px) {
