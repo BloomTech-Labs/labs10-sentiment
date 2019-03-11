@@ -12,6 +12,7 @@
   margin-top: 2rem;
   /* border: 1px solid red; */
   margin-bottom: 1rem;
+  font-family: var(--headers-font-style);
 }
 
 .billing-card-container {
@@ -22,13 +23,24 @@
   /* border: 1px solid red; */
 }
 
+.billing-card-title {
+  font-family: var(--headers-font-style);
+}
+
+.billing-card-subtitle {
+  font-family: var(--headers-font-style);
+}
+
+.billing-card-text {
+  font-family: var(--p-font-style);
+}
+
 .billing-card-body {
   width: 48%;
   padding: 2rem;
   margin-bottom: 1rem;
-  border: 1px solid #f58a91;
-  border-radius: 8px;
-  box-shadow: -10px 10px 5px 0px #7cdbd5;
+  border: 1px solid var(--hover-border-color);
+  border-radius: .25rem;
 }
 
 .stripe-checkout {

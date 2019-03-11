@@ -62,6 +62,8 @@ export const getSingleTeamMembers = email => dispatch => {
     .get(`https://botsentiment.herokuapp.com/api/team_members/Email/${email}`)
     .then(response => {
       dispatch({ type: SINGLE_TEAMMEMBERS_SUCCESS, payload: response.data });
+      localStorage.setItem('team_id', response.data[0].team_id)
+      localStorage.setItem('type', response.data[0].type)
     })
     .catch(err => dispatch({ type: SINGLE_TEAMMEMBERS_FAILURE, payload: err }));
 };

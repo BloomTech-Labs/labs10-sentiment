@@ -1,10 +1,22 @@
 import React from "react";
 import NavBar from "../NavBar/NavBar";
 import axios from "axios";
-import { editTeamMembers } from "../../actions/index";
+import {   getSingleTeamMembers,
+  addTeamMembers,
+  getTeamMembers,
+  addTeam,
+  getTeams,
+  editTeamMembers,
+  getSingleTeam,
+  fetchSingleSurvey,
+  getSurvey,
+  joinTeam,
+  getPreFeeling,
+  getFeelings } from "../../actions/index";
 import { connect } from "react-redux";
 import "./accountSettings.css";
 import Footer from "../Footer/footer";
+import loadinggif from '../callback/loading.svg'
 
 import { Col, FormGroup, Label, Input } from "reactstrap";
 
@@ -16,10 +28,22 @@ class accountSettings extends React.Component {
       isText: false,
       email: "",
       password: "",
-      response: null
+      response: null,
+      loading: true
     };
     this.handleInputChange = this.handleInputChange.bind(this);
   }
+
+  componentDidMount() {
+      //new code
+      this.props.getSingleTeamMembers(localStorage.getItem("email"));
+      this.props.getSurvey(localStorage.getItem('id'));
+      this.props.getSingleTeam(localStorage.getItem('team_id'));
+        this.props.getFeelings(localStorage.getItem('id'));
+        this.setState({
+          loading: false
+        })
+    }
 
   handleInputChange = event => {
     const target = event.target;
@@ -78,19 +102,26 @@ class accountSettings extends React.Component {
       team_id: team_id
     };
     this.props.editTeamMembers(id, combine);
-    this.props.history.push("/loading");
-    let currentMember = this.props.singleTeamMembers[0];
-    currentMember.type = null;
-    currentMember.team_id = null;
+    localStorage.setItem('team_id', null)
+    localStorage.setItem('type', null)
+      this.props.history.push('/profile')
+    // this.props.history.push("/loading");
+    // let currentMember = this.props.singleTeamMembers[0];
+    // currentMember.type = null;
+    // currentMember.team_id = null;
     // this.props.history.push('/profile')
   };
 
   render() {
-    // if (!localStorage.getItem("email")) {
-    //   props.history.push("/home");
-    // }
+    if (!localStorage.getItem("jwt")) {
+      this.props.history.push("/home");
+    }
+
+    if(this.state.loading === true) {
+      return <img className="loadinggif" src={loadinggif} alt="loading" />
+    }
     return (
-      <>
+      <div className="background-color">
         <NavBar />
         <div className="container">
           {this.state.response === 200 ? (
@@ -115,44 +146,7 @@ class accountSettings extends React.Component {
                     />
                   </Col>
                 </FormGroup>
-                <FormGroup row>
-                  <Label for="phoneNumber" sm={2}>
-                    Phone
-                  </Label>
-                  <Col sm={6}>
-                    <Input
-                      type="text"
-                      name="phone"
-                      id="phoneNumber"
-                      placeholder="555-555-5555"
-                    />
-                  </Col>
-                </FormGroup>
                 <br />
-                <div className="checkbox-div">
-                <FormGroup check inline>
-                  <Label check>
-                    <Input
-                      type="checkbox"
-                      name="isEmail"
-                      checked={this.state.isEmail}
-                      onchange={this.handleInputChange}
-                    />
-                    Email
-                  </Label>
-                </FormGroup>
-                <FormGroup check inline>
-                  <Label check>
-                    <Input
-                      type="checkbox"
-                      name="isText"
-                      checked={this.state.isText}
-                      onchange={this.handleInputChange}
-                    />
-                    Text
-                  </Label>
-                </FormGroup>
-                </div>
                 <br />
 
                 <button
@@ -170,7 +164,7 @@ class accountSettings extends React.Component {
           )}
         </div>
         <Footer />
-      </>
+      </div>
     );
   }
 }
@@ -181,5 +175,16 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { editTeamMembers }
+  {     getSingleTeamMembers,
+    addTeamMembers,
+    getTeamMembers,
+    addTeam,
+    getTeams,
+    editTeamMembers,
+    getSingleTeam,
+    fetchSingleSurvey,
+    getSurvey,
+    joinTeam,
+    getPreFeeling,
+    getFeelings }
 )(accountSettings);

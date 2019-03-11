@@ -1,15 +1,66 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getTeamsMembers, editTeamMembers } from '../../actions/index';
+import { getTeamsMembers, editTeamMembers, getSingleTeamMembers, getSurvey, getSingleTeam, getFeelings, fetchSingleSurvey } from '../../actions/index';
 import './teamlist.css';
 import NavBar from '../NavBar/NavBar';
 import Eh from '../PNG/nobackgroundEh.png';
 import Footer from "../Footer/footer";
+import loadinggif from '../callback/loading.svg'
 
 class TeamList extends React.Component {
+  state = {
+    loading: true
+  }
 
-  componentWillMount() {
-    this.props.getTeamsMembers(this.props.singleTeamMembers[0].team_id)
+componentWillMount() {
+    this.props.getSingleTeam(localStorage.getItem('team_id'));
+  }
+
+  componentDidMount() {
+    //new code
+    this.props.getSingleTeamMembers(localStorage.getItem("email"));
+    this.props.getSurvey(localStorage.getItem('id'));
+    this.props.getTeamsMembers(localStorage.getItem('team_id'));
+    this.props.getSingleTeam(localStorage.getItem('team_id'));
+      this.props.getFeelings(localStorage.getItem('id'));
+      if (this.props.survey.length > 0) {
+      this.props.fetchSingleSurvey(this.props.survey[0].survey_time_stamp);
+      this.setState({
+        loading: false
+      })
+      } else {
+      this.setState({
+        loading: false
+      })
+    }
+
+    //old code
+    // this.props.getSurvey(this.props.singleTeamMembers[0].id);
+    // this.props.getPreFeeling();
+  }
+
+  componentDidUpdate(prevProps) {
+
+    if(this.props.survey.length !== prevProps.survey.length) {
+      this.props.fetchSingleSurvey(this.props.survey[0].survey_time_stamp)
+    }
+  //   //new code
+  //   if (
+  //     this.props.singleTeamMembers.length !== prevProps.singleTeamMembers.length
+  //   ) {
+  //     this.props.getSingleTeam(localStorage.getItem('team_id'));
+  //     this.props.getFeelings(localStorage.getItem('id'));
+  //     // if (this.props.survey.length > 0) {
+  //     // // this.props.fetchSingleSurvey(this.props.survey[0].survey_time_stamp);
+  //     // this.setState({
+  //     //   loading: false
+  //     // })
+  //     // } else {
+  //     this.setState({
+  //       loading: false
+  //     })
+  //   // }
+  //   }
   }
 
   handleClick(data) {
@@ -20,13 +71,16 @@ class TeamList extends React.Component {
 
   render() {
     const uri = "https://sentimentbot.netlify.com/authorization";
+    if(this.state.loading === true ||this.props.singleTeams.length < 1) {
+      return <img className="loadinggif" src={loadinggif} alt="loading" />
+    } else if (this.props.singleTeams.length > 0) {
     return (
       <>
         <NavBar />
         <div className="mainTeam-container">
           <h1>{this.props.singleTeams[0].name}</h1>
           <a
-            href={`https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645&redirect_uri=${uri}&state=${this.props.singleTeamMembers[0].id}`}
+            href={`https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645&redirect_uri=${uri}&state=${localStorage.getItem('id')}`}
           >
           </a>
           <p>Team Join Code: {this.props.singleTeams[0].team_code}</p>
@@ -57,17 +111,20 @@ class TeamList extends React.Component {
     )
   }
 }
+}
 
 function mapStateToProps(state) {
   return {
     teamMembers: state.teamsReducer.teamMembers,
     teams: state.teamsReducer.teams,
     singleTeams: state.teamsReducer.singleTeams,
-    singleTeamMembers: state.teamMembersReducer.singleTeamMembers
+    singleTeamMembers: state.teamMembersReducer.singleTeamMembers,
+    teamsIsFetching: state.teamsReducer.teamsIsFetching,
+    survey: state.surveyReducer.survey
   };
 }
 
 export default connect(
   mapStateToProps,
-  { getTeamsMembers, editTeamMembers }
+  { getTeamsMembers, editTeamMembers, getSingleTeamMembers, getSurvey, getSingleTeam, getFeelings, fetchSingleSurvey }
 )(TeamList);

@@ -22,10 +22,11 @@ import { getSurvey } from "../../actions/survey";
 import { editSurvey } from "../../actions/survey";
 import { deleteSurvey } from "../../actions/survey";
 import { fetchSingleSurvey } from "../../actions/survey";
-import { addPreFeeling } from "../../actions";
+import { addPreFeeling, getFeelings, getPreFeeling } from "../../actions";
 
 import FooterBanner from "../PNG/MOODfooterBANNER6.png";
 import MoodAwe from "../PNG/nobackgroundAwe.png";
+import loadinggif from '../callback/loading.svg'
 
 class NewSurvey extends Component {
   constructor() {
@@ -44,18 +45,45 @@ class NewSurvey extends Component {
       option3: null,
       option4: null,
       preFeelingIdsArray: [],
-      custom: ""
+      custom: "",
+      loading: true,
+      added: false
     };
   }
 
   componentDidMount() {
-    this.setState({
-      option1: this.props.prefeelings[0].id,
-      option2: this.props.prefeelings[0].id,
-      option3: this.props.prefeelings[0].id,
-      option4: this.props.prefeelings[0].id,
-      
-    })
+    this.props.getSingleTeamMembers(localStorage.getItem("email"));
+    this.props.getSurvey(localStorage.getItem('id'));
+    this.props.getSingleTeam(localStorage.getItem('team_id'));
+    this.props.getFeelings(localStorage.getItem('id'));
+    this.props.getPreFeeling();
+      if (this.props.survey.length > 0) {
+      this.props.fetchSingleSurvey(this.props.survey[0].survey_time_stamp);
+      this.setState({
+        loading: false
+      })
+      } else {
+      this.setState({
+        loading: false,
+      })
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if(this.props.prefeelings.length !== prevProps.prefeelings.length) {
+      this.setState({
+        option1: this.props.prefeelings[0].id,
+        option2: this.props.prefeelings[0].id,
+        option3: this.props.prefeelings[0].id,
+        option4: this.props.prefeelings[0].id,
+      })
+    }
+    if(this.state.added === true) {
+      this.props.getPreFeeling();
+      this.setState({
+        added: false
+      })
+    }
   }
 
   emojiPicker = (emoji, event) =>  {
@@ -75,8 +103,15 @@ class NewSurvey extends Component {
     event.preventDefault();
     const custom = {feeling_text: this.state.custom};
     this.props.addPreFeeling(custom)
-    this.props.history.push("/emojiloading")
+    if(this.state.added === false) {
+    this.setState({
+      added: true,
+      custom: ''
+    })
   }
+  }
+
+    // this.props.history.push("/emojiloading")
   
   onChangeDropDown = event => {
     console.log(event.target.value, event.target.id);
@@ -175,10 +210,15 @@ class NewSurvey extends Component {
       preFeelingIdsArray: preFeelingIdsArray
     }
       this.props.addSurvey(combine)
-      this.props.history.push("/surveysubmitloading")
+      this.props.getSurvey(localStorage.getItem('id'));
+      // this.props.history.push("/surveysubmitloading")
     };
 
   render() {
+
+    if(this.state.loading === true) {
+      return <img className="loadinggif" src={loadinggif} alt="loading" />
+    }
     
     return (
       <div>
@@ -394,6 +434,7 @@ function mapStateToProps(state) {
     surveyIsFetching: state.surveyReducer.surveyIsFetching,
     singleSurvey: state.surveyReducer.singleSurvey,
     prefeelings: state.prefeelingsReducer.prefeelings,
+    isFetching: state.prefeelingsReducer.isFetching,
   };
 }
 
@@ -412,6 +453,8 @@ export default connect(
     editSurvey,
     deleteSurvey,
     fetchSingleSurvey,
-    addPreFeeling
+    addPreFeeling,
+    getFeelings,
+    getPreFeeling
   }
 )(NewSurvey);

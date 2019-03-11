@@ -48,10 +48,12 @@ class NavBar extends React.Component {
       color: "white"
     };
 
+    let source = localStorage.getItem('img_url')
+
 
     return (
       <>
-        {this.props.singleTeamMembers[0].type === "manager" ? (
+        {localStorage.getItem('type') === "manager" ? (
           <>
             <div>
               <Navbar expand="md">
@@ -86,7 +88,7 @@ class NavBar extends React.Component {
                     </NavItem>
                     <UncontrolledDropdown nav inNavbar>
                       <DropdownToggle style={fontColor} nav caret>
-                        Options
+                        {localStorage.getItem('img_url') ? (<img className="navbar-image" src={source} alt="profile-img" />) : ("Options")}
                       </DropdownToggle>
                       <DropdownMenu right style={backgroundColor}>
                         <DropdownItem>
@@ -123,7 +125,7 @@ class NavBar extends React.Component {
         </NavItem>
           <UncontrolledDropdown nav inNavbar>
             <DropdownToggle style={fontColor} nav caret>
-              Options
+            {localStorage.getItem('img_url') ? (<img className="navbar-image" src={source} alt="profile-img" />) : ("Options")}
             </DropdownToggle>
             <DropdownMenu right style={backgroundColor}>
               <DropdownItem>

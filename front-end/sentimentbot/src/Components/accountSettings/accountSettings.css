@@ -23,6 +23,14 @@
     box-shadow: none;
 }
 
+.settings-page {
+    width: 60%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
 
 /* input[type=text]:focus,
 input[type=email]:focus,
@@ -31,28 +39,40 @@ input[type=password]:focus {
 } */
 
 .settings-header {
-    color: #7CDBD5;
-    font-family: 'Fredoka One', cursive;
+    color: black;
+    font-family: var(--headers-font-style);
     font-size: 3.6rem;
+    margin-top: 3%;
 }
 
 .btn-style {
-    background-color: #02B4A0;
+    background-color: var(--main-btn-color);
     color: #fff;
-    border-radius: 5px;
-    font-size: 1.4rem;
-    width: 100%;
+    border-radius: .25rem;
+    /* font-size: 1.4rem; */
+    width: 50%;
     margin-top: 10px;
 }
 
 .btn-style:hover {
     color: #fff;
-    background-color: #02B4A0;
-    border: 2px solid #f58a91;
+    background-color: var(--hover-color);
+    border: 1px solid var(--hover-border-color);
 }
 
 .reset {
     margin-top: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    align-items: center;
+}
+
+.email-field {
+    width: 50%;
 }
 /* .form-check-inline {
     position: absolute;
@@ -60,35 +80,38 @@ input[type=password]:focus {
     left: 250px;
     width: 10%;
 } */
-/* .account-form {
+.account-form {
+    width: 100%;
     display: flex;
-    width: 90%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     margin: 0 auto;
-} */
+}
 
-.checkbox-div {
+/* .checkbox-div {
     display: flex;
     justify-content: center;    
     margin-top: -4%;
-}
+} */
 
 .btn-style2 {
     margin-top: 3%;
 }
 
 @media (max-width: 900px) {
-    .account-form {
+    /* .account-form {
         display: flex;
         flex-direction: column;
         align-items: center;
-    }
-    .settings-header {
+    } */
+    /* .settings-header {
         text-align: center;
         font-size: 3rem;
-    }
-    .form-control {
+    } */
+    /* .form-control {
         width: 180%;
-    }
+    } */
 }
 
 @media (max-width: 600px) {
