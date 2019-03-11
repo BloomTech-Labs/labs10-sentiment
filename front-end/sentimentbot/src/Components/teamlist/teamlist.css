@@ -1,7 +1,7 @@
 /* Main Team Container */
 
 .mainTeam-container {
-    width: 80%;
+    width: 50%;
     margin-top: 1.875rem;
     margin-left: auto;
     margin-right: auto;
@@ -30,12 +30,12 @@
 /* TeamList Container */
 
 .teamlist-container {
-    /* width: 80%; */
+    /* width: 90%; */
     height: 19rem;
     color: #000;
-    border: 4px solid #f58a91;
+    border: 4px solid #02C8A7;
     border-radius: 8px;
-    box-shadow: 10px 10px 5px 0px #7cdbd5;
+    /* box-shadow: 10px 10px 5px 0px #7cdbd5; */
         overflow-y: scroll;
         /* height: 200px; */
 }
@@ -53,12 +53,14 @@
    
   /* Handle */
   .team-scrollbar::-webkit-scrollbar-thumb {
-    background: #888888; 
+    /* background: #888888;  */
+    background: #aeaeae; 
   }
   
   /* Handle on hover */
   .team-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: #909090; 
+    /* background: #909090;  */
+    background: #b8a3a3;
   }
 
 .teamlist-container div {
