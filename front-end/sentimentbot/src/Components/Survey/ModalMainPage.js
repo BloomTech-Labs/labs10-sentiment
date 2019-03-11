@@ -21,7 +21,8 @@ import { deleteSurvey } from "../../actions/survey";
 import { fetchSingleSurvey } from "../../actions/survey";
 import { addPreFeeling } from "../../actions";
 
-import FooterBanner from "../PNG/MOODfooterBANNER6.png";
+import Footer from '../Footer/footer';
+// import FooterBanner from "../PNG/MOODfooterBANNER6.png";
 
 class ModalSurvey extends React.Component {
     constructor() {
@@ -192,12 +193,13 @@ class ModalSurvey extends React.Component {
                         <button className="surveysubmit-button" onSubmit={this.createSurvey}>Submit</button>
                     </div>
                 </div>
-                <div className="modalfooter">
+                <Footer />
+                {/* <div className="modalfooter">
                   <p className="modalcopyright-words">© Copyright M.O.O.D All Rights Reserved.</p>
                   <div className="modalfooterimg-box">
                     <img  className="modalfooter-img" alt="footer" src={FooterBanner} />
                   </div>
-                </div>
+                </div> */}
             </div>
 
         )
