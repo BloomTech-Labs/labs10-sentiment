@@ -187,8 +187,7 @@ class ModalSurvey extends React.Component {
                     </div>
                     <div className="modalsurvey-buttonbox">
                         <button className="survey-modalbutton">Title <ModalTitles state={this.state} onChangeHandler={this.onChangeHandler} /></button>
-                        <button className="survey-modalbutton">Responses <ModalPrefeelings state={this.state} onConfirmation={this.onConfirmation} /></button>
-                       
+                        <button className="survey-modalbutton">Responses <ModalPrefeelings state={this.state} onConfirmation={this.onConfirmation} onSelectTest1={this.onSelectTest1} onSelectTest2={this.onSelectTest2} onSelectTest3={this.onSelectTest3} onSelectTest4={this.onSelectTest4} emojiPicker={this.emojiPicker} addCustom={this.addCustom} /></button>
                         <button className="survey-modalbutton">Schedule <ModalSchedule state={this.state} onChangeDropDown ={this.onChangeDropDown} /></button>
                         <button className="surveysubmit-button" onSubmit={this.createSurvey}>Submit</button>
                     </div>
