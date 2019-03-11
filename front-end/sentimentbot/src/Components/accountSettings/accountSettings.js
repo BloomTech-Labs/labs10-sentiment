@@ -1,7 +1,8 @@
 import React from "react";
 import NavBar from "../NavBar/NavBar";
 import axios from "axios";
-import {   getSingleTeamMembers,
+import {
+  getSingleTeamMembers,
   addTeamMembers,
   getTeamMembers,
   addTeam,
@@ -12,11 +13,12 @@ import {   getSingleTeamMembers,
   getSurvey,
   joinTeam,
   getPreFeeling,
-  getFeelings } from "../../actions/index";
+  getFeelings
+} from "../../actions/index";
 import { connect } from "react-redux";
 import "./accountSettings.css";
 import Footer from "../Footer/footer";
-import loadinggif from '../callback/loading.svg'
+import loadinggif from "../callback/loading.svg";
 
 import { Col, FormGroup, Label, Input } from "reactstrap";
 
@@ -35,15 +37,15 @@ class accountSettings extends React.Component {
   }
 
   componentDidMount() {
-      //new code
-      this.props.getSingleTeamMembers(localStorage.getItem("email"));
-      this.props.getSurvey(localStorage.getItem('id'));
-      this.props.getSingleTeam(localStorage.getItem('team_id'));
-        this.props.getFeelings(localStorage.getItem('id'));
-        this.setState({
-          loading: false
-        })
-    }
+    //new code
+    this.props.getSingleTeamMembers(localStorage.getItem("email"));
+    this.props.getSurvey(localStorage.getItem("id"));
+    this.props.getSingleTeam(localStorage.getItem("team_id"));
+    this.props.getFeelings(localStorage.getItem("id"));
+    this.setState({
+      loading: false
+    });
+  }
 
   handleInputChange = event => {
     const target = event.target;
@@ -102,9 +104,9 @@ class accountSettings extends React.Component {
       team_id: team_id
     };
     this.props.editTeamMembers(id, combine);
-    localStorage.setItem('team_id', null)
-    localStorage.setItem('type', null)
-      this.props.history.push('/profile')
+    localStorage.setItem("team_id", null);
+    localStorage.setItem("type", null);
+    this.props.history.push("/profile");
     // this.props.history.push("/loading");
     // let currentMember = this.props.singleTeamMembers[0];
     // currentMember.type = null;
@@ -117,8 +119,8 @@ class accountSettings extends React.Component {
       this.props.history.push("/home");
     }
 
-    if(this.state.loading === true) {
-      return <img className="loadinggif" src={loadinggif} alt="loading" />
+    if (this.state.loading === true) {
+      return <img className="loadinggif" src={loadinggif} alt="loading" />;
     }
     return (
       <div className="background-color">
@@ -130,7 +132,6 @@ class accountSettings extends React.Component {
             <div className="settings-page">
               <h3 className="settings-header">Settings</h3>
 
-              
               <p>Reset your password here:</p>
               <form className="account-form" onSubmit={this.handleSubmit}>
                 <FormGroup row>
@@ -147,7 +148,6 @@ class accountSettings extends React.Component {
                   </Col>
                 </FormGroup>
                 <br />
-                <br />
 
                 <button
                   className="btn-style"
@@ -157,7 +157,10 @@ class accountSettings extends React.Component {
                   Submit
                 </button>
               </form>
-              <button className="btn-style btn-style2" onClick={this.handleLeaveTeam}>
+              <button
+                className="btn-style btn-style2"
+                onClick={this.handleLeaveTeam}
+              >
                 Leave Team
               </button>
             </div>
@@ -175,7 +178,8 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  {     getSingleTeamMembers,
+  {
+    getSingleTeamMembers,
     addTeamMembers,
     getTeamMembers,
     addTeam,
@@ -186,5 +190,6 @@ export default connect(
     getSurvey,
     joinTeam,
     getPreFeeling,
-    getFeelings }
+    getFeelings
+  }
 )(accountSettings);
