@@ -8,6 +8,11 @@
     background-color: var(--main-btn-color);
 }
 
+.navbar-nav {
+    display: flex;
+    align-items: center;
+}
+
 /* .navbar-expand-md a {
     color: white;
 }
@@ -55,4 +60,10 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
+}
+
+@media (max-width:500px) {
+    .navbar-nav {
+        align-items: flex-start;
+    }
 }

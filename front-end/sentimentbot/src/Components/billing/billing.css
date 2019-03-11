@@ -61,4 +61,7 @@
 }
 
 @media (max-width: 600px) {
+   h1 {
+    padding-right: 0;
+  }
 }

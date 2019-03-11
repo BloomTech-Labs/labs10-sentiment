@@ -60,6 +60,11 @@
   height: 3.5rem;
 }
 
+.sub-container-2 a {
+  width: 12rem;
+  height: 3.5rem;
+}
+
 /* .welcome-container {
   font-size: 4rem;
 } */
@@ -255,5 +260,8 @@
   .input-div {
     width: 100%;
     margin-bottom: 1rem;
+  }
+  .main-container {
+    width: 100%;
   }
 }

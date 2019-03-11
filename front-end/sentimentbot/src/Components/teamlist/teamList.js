@@ -12,7 +12,7 @@ class TeamList extends React.Component {
     loading: true
   }
 
-componentWillMount() {
+  componentWillMount() {
     this.props.getSingleTeam(localStorage.getItem('team_id'));
   }
 
@@ -22,13 +22,13 @@ componentWillMount() {
     this.props.getSurvey(localStorage.getItem('id'));
     this.props.getTeamsMembers(localStorage.getItem('team_id'));
     this.props.getSingleTeam(localStorage.getItem('team_id'));
-      this.props.getFeelings(localStorage.getItem('id'));
-      if (this.props.survey.length > 0) {
+    this.props.getFeelings(localStorage.getItem('id'));
+    if (this.props.survey.length > 0) {
       this.props.fetchSingleSurvey(this.props.survey[0].survey_time_stamp);
       this.setState({
         loading: false
       })
-      } else {
+    } else {
       this.setState({
         loading: false
       })
@@ -41,26 +41,26 @@ componentWillMount() {
 
   componentDidUpdate(prevProps) {
 
-    if(this.props.survey.length !== prevProps.survey.length) {
+    if (this.props.survey.length !== prevProps.survey.length) {
       this.props.fetchSingleSurvey(this.props.survey[0].survey_time_stamp)
     }
-  //   //new code
-  //   if (
-  //     this.props.singleTeamMembers.length !== prevProps.singleTeamMembers.length
-  //   ) {
-  //     this.props.getSingleTeam(localStorage.getItem('team_id'));
-  //     this.props.getFeelings(localStorage.getItem('id'));
-  //     // if (this.props.survey.length > 0) {
-  //     // // this.props.fetchSingleSurvey(this.props.survey[0].survey_time_stamp);
-  //     // this.setState({
-  //     //   loading: false
-  //     // })
-  //     // } else {
-  //     this.setState({
-  //       loading: false
-  //     })
-  //   // }
-  //   }
+    //   //new code
+    //   if (
+    //     this.props.singleTeamMembers.length !== prevProps.singleTeamMembers.length
+    //   ) {
+    //     this.props.getSingleTeam(localStorage.getItem('team_id'));
+    //     this.props.getFeelings(localStorage.getItem('id'));
+    //     // if (this.props.survey.length > 0) {
+    //     // // this.props.fetchSingleSurvey(this.props.survey[0].survey_time_stamp);
+    //     // this.setState({
+    //     //   loading: false
+    //     // })
+    //     // } else {
+    //     this.setState({
+    //       loading: false
+    //     })
+    //   // }
+    //   }
   }
 
   handleClick(data) {
@@ -71,46 +71,46 @@ componentWillMount() {
 
   render() {
     const uri = "https://sentimentbot.netlify.com/authorization";
-    if(this.state.loading === true ||this.props.singleTeams.length < 1) {
+    if (this.state.loading === true || this.props.singleTeams.length < 1) {
       return <img className="loadinggif" src={loadinggif} alt="loading" />
     } else if (this.props.singleTeams.length > 0) {
-    return (
-      <>
-        <NavBar />
-        <div className="mainTeam-container">
-          <h1>{this.props.singleTeams[0].name}</h1>
-          <a
-            href={`https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645&redirect_uri=${uri}&state=${localStorage.getItem('id')}`}
-          >
-          </a>
-          <p>Team Join Code: {this.props.singleTeams[0].team_code}</p>
-          <div className="eh-moodbot">
-            <h3>Team Members</h3>
-            <div className="eh-moodbot2">
-              <img
-                src={Eh}
-                alt="Eh MoodBot"
-                width="150"
-                height="150"
-              />
+      return (
+        <div className="background-color">
+          <NavBar />
+          <div className="mainTeam-container">
+            <h1>{this.props.singleTeams[0].name}</h1>
+            <a
+              href={`https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645&redirect_uri=${uri}&state=${localStorage.getItem('id')}`}
+            >
+            </a>
+            <p>Team Join Code: {this.props.singleTeams[0].team_code}</p>
+            <div className="eh-moodbot">
+              <h3>Team Members</h3>
+              <div className="eh-moodbot2">
+                <img
+                  src={Eh}
+                  alt="Eh MoodBot"
+                  width="150"
+                  height="150"
+                />
+              </div>
+            </div>
+            <div className="teamlist-container team-scrollbar">
+              {this.props.teamMembers.map(user => {
+                return (
+                  <div>
+                    <p>{user.firstName} {user.lastName}</p>
+                    <button className="teamlist-button" onClick={() => this.handleClick({ id: user.id, firstName: user.firstName, lastName: user.lastName, email: user.email, phone: user.phone, type: null, team_id: null })}>Remove</button>
+                  </div>
+                )
+              })}
             </div>
           </div>
-          <div className="teamlist-container team-scrollbar">
-            {this.props.teamMembers.map(user => {
-              return (
-                <div>
-                  <p>{user.firstName} {user.lastName}</p>
-                  <button className="teamlist-button" onClick={() => this.handleClick({ id: user.id, firstName: user.firstName, lastName: user.lastName, email: user.email, phone: user.phone, type: null, team_id: null })}>Remove</button>
-                </div>
-              )
-            })}
-          </div>
+          <Footer />
         </div>
-        <Footer />
-      </>
-    )
+      )
+    }
   }
-}
 }
 
 function mapStateToProps(state) {
