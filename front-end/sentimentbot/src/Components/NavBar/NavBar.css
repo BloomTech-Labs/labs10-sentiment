@@ -18,10 +18,15 @@
 } */
 
 .navbot {
-    height: 5.5%;
-    width: 5.5%;
+    height: 45px;
+    width: 45px;
     margin: 0;
     padding: -2%;
+}
+
+.navbar-image {
+    height: 40px;
+    width: 40px;
 }
 
 .dropdown-menu .dropdown-item {
