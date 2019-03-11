@@ -56,7 +56,7 @@ export default class Auth {
         this.profile = authResult.idTokenPayload;
         // set the time that the id token will expire at
         this.expiresAt = authResult.idTokenPayload.exp * 1000;
-        
+
         // assign gathered values to localStorage for persistence in the application
         localStorage.setItem("jwt", authResult.idToken);
         localStorage.setItem("email", authResult.idTokenPayload.email);
@@ -126,9 +126,9 @@ export default class Auth {
     localStorage.removeItem("img_url");
     localStorage.removeItem("lsid");
     localStorage.removeItem("name");
-    localStorage.removeItem('id');
-    localStorage.removeItem('team_id')
-    localStorage.removeItem('type')
+    localStorage.removeItem("id");
+    localStorage.removeItem("team_id");
+    localStorage.removeItem("type");
     // navigate to the home route
     history.replace("/home");
   }
