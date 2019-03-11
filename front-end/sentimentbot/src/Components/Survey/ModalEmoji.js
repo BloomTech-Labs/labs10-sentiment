@@ -52,7 +52,7 @@ class ModalEmoji extends React.Component {
                   search: "Search",
                   categories: { search: "Search Results", recent: "Recents" }
                   }}
-                  onClick={this.emojiPicker}
+                  onClick={this.props.emojiPicker}
               />
               <input 
                 placeholder={this.props.state.custom} 
@@ -65,7 +65,6 @@ class ModalEmoji extends React.Component {
           </ModalBody>
           <ModalFooter>
             <Button color="primary" onClick={this.toggle}>Do Something</Button>{' '}
-            <Button color="secondary" onClick={this.toggle}>Cancel</Button>
           </ModalFooter>
         </Modal>
       </div>

@@ -117,12 +117,12 @@ class ModalPrefeelings extends React.Component {
           <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
           <ModalBody>
             <div className="survey-responsebox">
-            <button className="survey-modalbutton">Add Custom Emoji <ModalEmoji state={this.state} addCustom={this.addCustom} /></button>
+            <button className="survey-modalbutton">Add Custom Emoji <ModalEmoji state={this.props.state} addCustom={this.props.addCustom} emojiPicker={this.props.emojiPicker} /></button>
                 <PreFeelingsChosen 
-                    onSelectTest1={this.state.onSelectTest1} 
-                    onSelectTest2={this.state.onSelectTest2}
-                    onSelectTest3={this.state.onSelectTest3}
-                    onSelectTest4={this.state.onSelectTest4}
+                    onSelectTest1={this.props.onSelectTest1} 
+                    onSelectTest2={this.props.onSelectTest2}
+                    onSelectTest3={this.props.onSelectTest3}
+                    onSelectTest4={this.props.onSelectTest4}
                 />
                 <button className="survey-buttons" onClick={this.props.onConfirmation}>Confirm</button>
             </div>
@@ -133,7 +133,6 @@ class ModalPrefeelings extends React.Component {
           </ModalBody>
           <ModalFooter>
             <Button color="primary" onClick={this.toggle}>Return</Button>{' '}
-            {/* <Button color="secondary" onClick={this.toggle}>Cancel</Button> */}
           </ModalFooter>
         </Modal>
       </div>
