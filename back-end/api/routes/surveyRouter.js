@@ -134,11 +134,16 @@ const surveyScheduler = (timeInfo, postInfo) => {
   let title = postInfo.title;
   let description = postInfo.description;
 
+  let dayLightSavings = 1;
+
   if (timeInfo.timeZone === "PST") {
     if (timeInfo.amPm === "AM") {
-      hour = timeInfo.hour + 8;
+      if (timeInfo.hour === 12) {
+        timeInfo.hour = 0;
+      }
+      hour = timeInfo.hour + 8 + dayLightSavings;
     } else if (timeInfo.amPm === "PM") {
-      hour = timeInfo.hour + 12 + 8;
+      hour = timeInfo.hour + 12 + 8 + dayLightSavings;
       if (hour >= 24) {
         hour = hour - 24;
       }
@@ -148,9 +153,9 @@ const surveyScheduler = (timeInfo, postInfo) => {
       if (timeInfo.hour === 12) {
         timeInfo.hour = 0;
       }
-      hour = timeInfo.hour + 5;
+      hour = timeInfo.hour + 5 + dayLightSavings;
     } else if (timeInfo.amPm === "PM") {
-      hour = timeInfo.hour + 12 + 5;
+      hour = timeInfo.hour + 12 + 5 + dayLightSavings;
       if (hour >= 24) {
         hour = hour - 24;
       }

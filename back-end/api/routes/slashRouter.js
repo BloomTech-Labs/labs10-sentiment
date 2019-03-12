@@ -96,7 +96,7 @@ function postMessage(JSONmessage, token) {
 // https://slack.com/api/chat.postMessage?token=xoxb-553324377632-553511725281-WtIU01FxATAkavAPlFn6BPz2&channel=CG9EQ53QR&text=Test
 
 router.post("/connect-channel-to-survey", urlencodedParser, (req, res) => {
-  res.status(200).end(); // best practice to respond with empty 200 status code
+  // res.status(200).end(); // best practice to respond with empty 200 status code
   let reqBody = req.body;
   console.log("reqBody", reqBody);
   let { channel_id, user_id } = reqBody;
@@ -106,19 +106,28 @@ router.post("/connect-channel-to-survey", urlencodedParser, (req, res) => {
     .getBySlackUserId(user_id)
     .then(data => {
       console.log({ data: data });
-      let { id } = data[0];
+      let { id, member_id } = data[0];
       console.log({ id: id });
       let post = {
         channel_id: channel_id
       };
-      dbAuth
-        .update(id, post)
-        .then(() => {
-          res.status(200).json({
-            message: `Updated Auth ID: ${id} with slack channel ID: ${channel_id}.`
-          });
+      dbTeamMembers
+        .getID(member_id)
+        .then(data => {
+          if(data[0].type !== "manager"){
+            res.status(400).json({error: "Team Members Do not require channel connection!"});
+          }else{
+            dbAuth
+            .update(id, post)
+            .then(() => {
+              res.status(200).json({
+                message: `Updated Auth ID: ${id} with slack channel ID: ${channel_id}.`
+              });
+            })
+            .catch(serverErrorDelete500(res, "Auth"));
+          }
         })
-        .catch(serverErrorDelete500(res, "Auth"));
+        .catch(serverErrorGetID(res));
     })
     .catch(
       serverErrorDelete404(() => {
