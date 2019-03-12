@@ -184,7 +184,13 @@ const surveyScheduler = (timeInfo, postInfo) => {
     .getManagerID(manager_id)
     .then(data => {
       console.log("survey data", data);
-      let survey_id = data[data.length - 1].id; ///////////////
+      let survey_id = Math.max.apply(
+        Math,
+        data.map(function(o) {
+          return o.id;
+        })
+      );
+
       console.log("survey id", survey_id);
       if (data.length === 0) {
         console.log({
@@ -321,9 +327,17 @@ router.post("/", (req, res) => {
             db.getManagerID(postInfo.manager_id)
               .then(data => {
                 console.log("survey manager", data);
+
+                let survey_ID = Math.max.apply(
+                  Math,
+                  data.map(function(o) {
+                    return o.id;
+                  })
+                );
+
                 for (let i = 0; i < preFeelingIdsArray.length; i++) {
                   let post = {
-                    survey_id: data[data.length - 1].id, ///////possible issue
+                    survey_id: survey_ID,
                     feelings_id: preFeelingIdsArray[i]
                   };
                   surveyFeelingsDb
