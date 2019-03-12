@@ -117,16 +117,16 @@ router.post("/connect-channel-to-survey", urlencodedParser, (req, res) => {
           if (data[0].type !== "manager") {
             res
               .status(400)
-              .json({
-                error: "Team Members Do not require channel connection!"
-              });
+              .json(
+                `Team Members do not require channel connection!`
+              );
           } else {
             dbAuth
               .update(id, post)
               .then(() => {
-                res.status(200).json({
-                  message: `Updated Auth ID: ${id} with slack channel ID: ${channel_id}.`
-                });
+                res.json(
+                  `Updated Manager Slack Authenticate ID: ${id} with slack channel ID: ${channel_id}.`
+                );
               })
               .catch(serverErrorDelete500(res, "Auth"));
           }
