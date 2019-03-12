@@ -15,7 +15,7 @@ function Reports(props) {
      <NavBar />
      <div className="main-reports-container">
      
-      <h2> Reports </h2>
+      <h2> View Reports </h2>
       <button className="main-reports-container-button" onClick={() => props.history.push('/generatereport')}>Here</button>
       <div className="pie-container">
       <PieChart history={props.history} />

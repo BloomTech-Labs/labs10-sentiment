@@ -15,6 +15,9 @@ module.exports = {
   getBySlackUserId: function(user_id) {
     return db(table).where("user_id", user_id);
   },
+  getBySlackTeamId: function(team_id) {
+    return db(table).where("team_id", team_id);
+  },
   insert: function(post) {
     return db(table)
       .insert(post)

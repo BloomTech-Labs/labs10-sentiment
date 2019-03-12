@@ -111,7 +111,7 @@ class SurveyPrefeelings extends React.Component {
                 {/* <button className="survey-buttons" onClick={this.props.onConfirmation}>Confirm</button> */}
             </div>
             <div className="emoji-custom">
-            <button className="survey-modalbutton"> <ModalEmoji state={this.props.state} addCustom={this.props.addCustom} emojiPicker={this.props.emojiPicker} onChangeHandler={this.props.onChangeHandler} /></button><p>Not happy with the current selection? Add a new one here.</p>
+            <p>Not happy with the current selection? Add a new one here.</p><button className="survey-modalbutton"> <ModalEmoji state={this.props.state} addCustom={this.props.addCustom} emojiPicker={this.props.emojiPicker} onChangeHandler={this.props.onChangeHandler} /></button>
             </div>
             {/* <div className="survey-instructions">
                 <p className="instruction-p">Hit CONFIRM to add your choosen possible responses to the survey!</p>
