@@ -79,6 +79,12 @@ class ModalSurvey extends React.Component {
       }
     }
 
+    titleChangeHandler= event => {
+      this.setState({
+      [event.target.name]: event.target.value
+      })
+    }
+
   onChangeHandler = event => {
     let string = this.state.custom.join(" ")
     let strArr = string.split(" ")
@@ -267,7 +273,7 @@ class ModalSurvey extends React.Component {
     render() {
       
       const steps = [
-        {name: 'Step 1: Title & Description', component: <ModalTitles state={this.state} onChangeHandler={this.onChangeHandler}/>},
+        {name: 'Step 1: Title & Description', component: <ModalTitles state={this.state} titleChangeHandler={this.titleChangeHandler}/>},
         {name: "Step 2: Select your response options", component: <ModalPrefeelings state={this.state} onConfirmation={this.onConfirmation} onSelectTest1={this.onSelectTest1} onSelectTest2={this.onSelectTest2} onSelectTest3={this.onSelectTest3} onSelectTest4={this.onSelectTest4} emojiPicker={this.emojiPicker} addCustom={this.addCustom} onChangeHandler={this.onChangeHandler} />},
         {name: "Step 3: Schedule when to send it out", component: <ModalSchedule state={this.state} onChangeDropDown ={this.onChangeDropDown} createSurvey={this.createSurvey} />}
       ]

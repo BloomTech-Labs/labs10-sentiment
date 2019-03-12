@@ -40,7 +40,7 @@ class SurveyTitles extends React.Component {
                     value={this.props.state.title}
                     name="title"
                     placeholder="Title of survey"
-                    onChange={this.props.onChangeHandler}
+                    onChange={this.props.titleChangeHandler}
                   /> 
                 </div>
                 <div className="survey-inputbox">
@@ -50,7 +50,7 @@ class SurveyTitles extends React.Component {
                     value={this.props.state.description}
                     name="description"
                     placeholder="Survey question"
-                    onChange={this.props.onChangeHandler}
+                    onChange={this.props.titleChangeHandler}
                   />
                 </div>
           {/* </ModalBody>
