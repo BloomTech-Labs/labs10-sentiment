@@ -114,20 +114,29 @@ router.post("/connect-channel-to-survey", urlencodedParser, (req, res) => {
       dbTeamMembers
         .getID(member_id)
         .then(data => {
-          if(data[0].type !== "manager"){
-            res.status(400).json({error: "Team Members Do not require channel connection!"});
-          }else{
-            dbAuth
-            .update(id, post)
-            .then(() => {
-              res.status(200).json({
-                message: `Updated Auth ID: ${id} with slack channel ID: ${channel_id}.`
+          if (data[0].type !== "manager") {
+            res
+              .status(400)
+              .json({
+                error: "Team Members Do not require channel connection!"
               });
-            })
-            .catch(serverErrorDelete500(res, "Auth"));
+          } else {
+            dbAuth
+              .update(id, post)
+              .then(() => {
+                res.status(200).json({
+                  message: `Updated Auth ID: ${id} with slack channel ID: ${channel_id}.`
+                });
+              })
+              .catch(serverErrorDelete500(res, "Auth"));
           }
         })
-        .catch(serverErrorGetID(res, "Auth", member_id));
+        .catch(
+          err => {
+            res.json({error: `member with ID ${member_id} does not exist.`});
+          }
+          // serverErrorGetID(res, "Auth", member_id)
+        );
     })
     .catch(
       serverErrorDelete404(() => {
