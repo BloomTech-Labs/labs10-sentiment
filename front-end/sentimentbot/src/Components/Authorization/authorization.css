@@ -44,7 +44,6 @@ form input {
     border-radius: 0.5rem;
     font-family: "Fredoka One", cursive;
     cursor: pointer;
-    /* box-shadow: -10px 10px 5px 0px #212529; */
 }
 
 .btn-feel:hover {
@@ -63,7 +62,6 @@ form input {
     border-radius: 0.5rem;
     font-family: "Fredoka One", cursive;
     cursor: pointer;
-    /* box-shadow: -10px 10px 5px 0px #212529; */
 }
 
 .btn-feel-2:hover {
