@@ -23,6 +23,7 @@ function Reports(props) {
       <div className="pie-container">
       <PieChart history={props.history} />
       </div>
+      </div>
       <FooterPage />
     </div>
   );
