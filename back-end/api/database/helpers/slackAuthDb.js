@@ -1,5 +1,5 @@
 db = require("../dbConfig.js");
-
+let teamMembers = db("teamMembers");
 const table = "slackAuth";
 
 module.exports = {
@@ -19,12 +19,12 @@ module.exports = {
     return db("slackAuth")
       .innerJoin(
         db("teamMembers"),
-        db("slackAuth").member_id,
-        db("teamMembers").id
+        "slackAuth.member_id",
+        "teamMembers.id"
       )
-      .where({ 
-        [db("slackAuth").team_id]: team_id,
-        [db("teamMembers").type]: "manager"
+      .where({
+        "slackAuth.team_id": team_id,
+        "teamMembers.type": "manager"
       });
   },
   insert: function(post) {

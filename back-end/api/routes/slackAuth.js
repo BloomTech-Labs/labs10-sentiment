@@ -196,6 +196,22 @@ router.get("/all", (req, res) => {
     .catch(serverErrorGet(res));
 });
 
+router.post("/test", (req, res) => {
+  let postInfo3 = {
+    "access_token": "",
+    "user_id": "", 
+    "team_name": "", 
+    "team_id": "TG99JB3JL", 
+    "bot_user_id": "", 
+    "bot_access_token": "", 
+    "member_id": 1, 
+    "channel_id": ""
+  };
+  db.insert(postInfo3)
+    .then(getSuccess(res))
+    .catch(serverErrorGet(res));
+});
+
 router.get("/:id", (req, res) => {
   const { id } = req.params;
   db.getID(id)
