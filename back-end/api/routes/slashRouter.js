@@ -124,10 +124,10 @@ router.post("/connect-channel-to-survey", urlencodedParser, (req, res) => {
                 message: `Updated Auth ID: ${id} with slack channel ID: ${channel_id}.`
               });
             })
-            .catch(serverErrorDelete500(res, "Auth"));
+            .catch(serverErrorDelete500(res, "Auth", member_id));
           }
         })
-        .catch(serverErrorGetID(res));
+        .catch(serverErrorGetID(res, "Auth", ));
     })
     .catch(
       serverErrorDelete404(() => {
