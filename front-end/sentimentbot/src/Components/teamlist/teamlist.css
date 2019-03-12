@@ -150,11 +150,13 @@
         /* padding-right: 25rem; */
         /* margin-right: 3.8rem; */
         /* width: 60%; */
-        text-align: left;
+        /* text-align: left; */
     }
     .mainTeam-container :nth-child(3) {
-        /* margin-left: 9.5rem; */
-        text-align: left;
+       /* margin-left: 9.5rem; */
+       /* text-align: left; */
+       text-align: center;
+       margin-left: 7rem;
     }
 }
 

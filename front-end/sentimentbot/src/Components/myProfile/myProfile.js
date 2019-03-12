@@ -21,7 +21,6 @@ import GenerateTeams from "./generateTeams";
 import Happy from "../PNG/nobackgroundHappy.png";
 import Footer from "../Footer/footer";
 import loadinggif from '../callback/loading.svg'
-
 class Profile extends React.Component {
   constructor() {
     super();
@@ -43,13 +42,13 @@ class Profile extends React.Component {
     this.props.getSurvey(localStorage.getItem('id'));
     this.props.getTeams();
     this.props.getSingleTeam(localStorage.getItem('team_id'));
-      this.props.getFeelings(localStorage.getItem('id'));
-      if (this.props.survey.length > 0) {
+    this.props.getFeelings(localStorage.getItem('id'));
+    if (this.props.survey.length > 0) {
       this.props.fetchSingleSurvey(this.props.survey[0].survey_time_stamp);
       this.setState({
         loading: false
       })
-      } else {
+    } else {
       this.setState({
         loading: false
       })
@@ -61,26 +60,26 @@ class Profile extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
 
-    if(this.props.survey.length !== prevProps.survey.length) {
+    if (this.props.survey.length !== prevProps.survey.length) {
       this.props.fetchSingleSurvey(this.props.survey[0].survey_time_stamp)
     }
 
-    if(this.state.added === true) {
+    if (this.state.added === true) {
       this.props.getSingleTeamMembers(localStorage.getItem('email'))
       this.setState({
         added: false
       })
     }
 
-    if(this.props.teams.length !== prevProps.teams.length) {
+    if (this.props.teams.length !== prevProps.teams.length) {
       this.props.getSingleTeamMembers(localStorage.getItem('email'))
     }
 
-    if(this.props.singleTeamMembers.length > 0 && localStorage.getItem('team_id') === null) {
-    if (this.props.singleTeamMembers[0].team_id !== localStorage.getItem('team_id')) {
-      this.props.getSingleTeamMembers(localStorage.getItem('email'))
+    if (this.props.singleTeamMembers.length > 0 && localStorage.getItem('team_id') === null) {
+      if (this.props.singleTeamMembers[0].team_id !== localStorage.getItem('team_id')) {
+        this.props.getSingleTeamMembers(localStorage.getItem('email'))
+      }
     }
-  }
 
     // if (localStorage.getItem('team_id') === null) {
     //   localStorage.setItem('team_id', this.props.singleTeamMembers[0].team_id)
@@ -90,49 +89,49 @@ class Profile extends React.Component {
     // if(this.props.singleTeamMembers.team_id !== null) {
     //   localStorage.setItem('team_id', this.props.singleTeamMembers[0].team_id)
     // }
-  //   //new code
-  //   if (
-  //     this.props.singleTeamMembers.length !== prevProps.singleTeamMembers.length
-  //   ) {
-  //     this.props.getSingleTeam(localStorage.getItem('team_id'));
-  //     this.props.getFeelings(localStorage.getItem('id'));
-  //     if (this.props.survey.length > 0) {
-  //     this.props.fetchSingleSurvey(this.props.survey[0].survey_time_stamp);
-  //     this.setState({
-  //       loading: false
-  //     })
-  //     } else {
-  //     this.setState({
-  //       loading: false
-  //     })
-  //   }
-    }
+    //   //new code
+    //   if (
+    //     this.props.singleTeamMembers.length !== prevProps.singleTeamMembers.length
+    //   ) {
+    //     this.props.getSingleTeam(localStorage.getItem('team_id'));
+    //     this.props.getFeelings(localStorage.getItem('id'));
+    //     if (this.props.survey.length > 0) {
+    //     this.props.fetchSingleSurvey(this.props.survey[0].survey_time_stamp);
+    //     this.setState({
+    //       loading: false
+    //     })
+    //     } else {
+    //     this.setState({
+    //       loading: false
+    //     })
+    //   }
+  }
 
-    // if (this.props.singleTeamMembers !== prevProps.singleTeamMembers) {
-    //   this.props.getSingleTeamMembers(localStorage.getItem("email"));
-    //   console.log(this.props.singleTeamMembers);
-    // }
-    // this.props.getSingleTeamMembers(localStorage.getItem("email"));
-    // this.props.getTeamMembers();
-    // const code = this.props.match.params.code;
-    // console.log(code);
-    // if (code !== prevProps.match.params.code) {
-    //   this.fetchAuth(code);
-    // }
+  // if (this.props.singleTeamMembers !== prevProps.singleTeamMembers) {
+  //   this.props.getSingleTeamMembers(localStorage.getItem("email"));
+  //   console.log(this.props.singleTeamMembers);
+  // }
+  // this.props.getSingleTeamMembers(localStorage.getItem("email"));
+  // this.props.getTeamMembers();
+  // const code = this.props.match.params.code;
+  // console.log(code);
+  // if (code !== prevProps.match.params.code) {
+  //   this.fetchAuth(code);
+  // }
 
-    //old code
-    // if (
-    //   this.props.surveyIsFetching === false &&
-    //   this.props.survey.length > 0 &&
-    //   this.state.loading === true
-    // ) {
-    //   this.props.fetchSingleSurvey(this.props.survey[0].survey_time_stamp);
-    //   this.props.getSingleTeam(this.props.singleTeamMembers[0].team_id);
-    //   this.props.getSingleTeamMembers(localStorage.getItem("email"));
-    //   this.setState({
-    //     loading: false
-    //   });
-    // }
+  //old code
+  // if (
+  //   this.props.surveyIsFetching === false &&
+  //   this.props.survey.length > 0 &&
+  //   this.state.loading === true
+  // ) {
+  //   this.props.fetchSingleSurvey(this.props.survey[0].survey_time_stamp);
+  //   this.props.getSingleTeam(this.props.singleTeamMembers[0].team_id);
+  //   this.props.getSingleTeamMembers(localStorage.getItem("email"));
+  //   this.setState({
+  //     loading: false
+  //   });
+  // }
   // }
 
   // fetchAuth = code => {
@@ -167,9 +166,11 @@ class Profile extends React.Component {
     this.props.getSingleTeamMembers(localStorage.getItem("email"));
     // localStorage.setItem('type', 'manager')
     // this.props.getTeams();
+    // this.props.history.push(<Callback />);
     setTimeout(() => {
-      this.props.history.push('/survey');
-    }, 3000);
+      window.location.reload();
+      this.props.history.push('/teamlist');
+    }, 2200);
   };
 
   addCodeToMember = event => {
@@ -210,7 +211,11 @@ class Profile extends React.Component {
     currentMember.team_id = futureTeamId;
     localStorage.setItem('team_id', futureTeamId)
     localStorage.setItem('type', 'team_member')
-    // this.props.history.push("/loading");
+    window.location.reload();
+    setTimeout(() => {
+      this.props.history.push("/profile");
+      window.location.reload();
+    }, 2000);
   };
 
   handleChange = event => {
@@ -230,19 +235,19 @@ class Profile extends React.Component {
   // };
 
   render() {
-    if(!localStorage.getItem('email')){
+    if (!localStorage.getItem('email')) {
       this.props.history.push('/home')
     }
 
 
-    
+
 
     const view = this.state.view;
 
     const uri = "https://botsentiment.herokuapp.com/api/slackauth";
     // const uri = "http://localhost:3000/authorization";
     console.log(view);
-    if(this.state.loading === true) {
+    if (this.state.loading === true) {
       return <img className="loadinggif" src={loadinggif} alt="loading" />
     } else if (this.props.singleTeams.length > 0 && localStorage.getItem('team_id') != null) {
       return (
@@ -261,7 +266,7 @@ class Profile extends React.Component {
                     <a
                       href={`https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645&redirect_uri=${uri}&state=${
                         this.props.singleTeamMembers[0].id
-                      }`}
+                        }`}
                     >
                       <img
                         alt="Add to Slack"
@@ -272,20 +277,20 @@ class Profile extends React.Component {
                       />
                     </a>
                   ) : (
-                    <a
-                      href={`https://slack.com/oauth/authorize?scope=commands&client_id=553324377632.554405336645&redirect_uri=${uri}&state=${
-                        this.props.singleTeamMembers[0].id
-                      }`}
-                    >
-                      <img
-                        alt="Add to Slack"
-                        height="40"
-                        width="139"
-                        src="https://platform.slack-edge.com/img/add_to_slack.png"
-                        srcSet="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x"
-                      />
-                    </a>
-                  )}
+                      <a
+                        href={`https://slack.com/oauth/authorize?scope=commands&client_id=553324377632.554405336645&redirect_uri=${uri}&state=${
+                          this.props.singleTeamMembers[0].id
+                          }`}
+                      >
+                        <img
+                          alt="Add to Slack"
+                          height="40"
+                          width="139"
+                          src="https://platform.slack-edge.com/img/add_to_slack.png"
+                          srcSet="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x"
+                        />
+                      </a>
+                    )}
 
                   <h3>Team: {this.props.singleTeams[0].name}</h3>
                 </div>
@@ -307,8 +312,8 @@ class Profile extends React.Component {
                     <GenerateTeams />
                   </p>
                 ) : (
-                  <p>Oops! You haven't responded to any surveys yet!</p>
-                )}
+                    <p>Oops! You haven't responded to any surveys yet!</p>
+                  )}
               </div>
             </div>
             {/* <div className="btn-div">
@@ -385,10 +390,10 @@ class Profile extends React.Component {
     } else if (view === "create") {
       return (
         <div className="background-color">
-        <div className="create-container">
-          {/* <p>Loading...</p> */}
-          <NavBar />
-          {/* <a
+          <div className="create-container">
+            {/* <p>Loading...</p> */}
+            <NavBar />
+            {/* <a
             href={`https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645&redirect_uri=${uri}&state=${
               this.props.singleTeamMembers[0].id
             }`}
@@ -401,18 +406,18 @@ class Profile extends React.Component {
               srcSet="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x"
             />
           </a> */}
-          <div className="container-pandb">
-            {localStorage.getItem('team_id') !== null ? (<p className="p-tag">
-              Congratulations on creating your team! Our bots will update you access in just a moment. Once the page refreshes, feel free to explore the site.</p>) : (<p>Feel free to explore the site.</p>)}
-            <br />
-            {/* <button
+            <div className="container-pandb">
+              {localStorage.getItem('team_id') !== null ? (<p className="p-tag">
+                Congratulations on creating your team! Our bots will update you access in just a moment. Once the page refreshes, feel free to explore the site.</p>) : (<p>Feel free to explore the site.</p>)}
+              <br />
+              {/* <button
               className="btn-feel-2 "
               onClick={() => this.props.history.push("/loading")}
             >
               Here!
             </button> */}
-          </div>
-          {/* <form onSubmit={this.submitHandler} autoComplete="nope">
+            </div>
+            {/* <form onSubmit={this.submitHandler} autoComplete="nope">
             <input
               autoComplete="off"
               type="text"
@@ -429,11 +434,11 @@ class Profile extends React.Component {
               Submit Team Title
             </button>
           </form> */}
-          <Footer />
-        </div>
+            <Footer />
+          </div>
         </div>
       );
-        }
+    }
     // } else if (view === "join") {
     //   return (
     //     <div className="background-color">
