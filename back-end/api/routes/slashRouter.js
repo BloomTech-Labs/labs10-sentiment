@@ -150,7 +150,7 @@ router.post("/connect-channel-to-survey", urlencodedParser, (req, res) => {
 let surveyIdDep;
 
 router.post("/send-me-buttons", urlencodedParser, (req, res) => {
-  res.status(200).end(); // best practice to respond with empty 200 status code
+  // res.status(200).end(); // best practice to respond with empty 200 status code
   let reqBody = req.body;
   console.log("reqBody", reqBody);
 
