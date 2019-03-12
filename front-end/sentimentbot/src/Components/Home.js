@@ -6,6 +6,7 @@ import Happy from "./PNG/nobackgroundHappy.png";
 import FooterBanner from "./PNG/MOODfooterBANNER6.png";
 import { Card, CardText, CardBody,
   CardTitle, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem  } from 'reactstrap';
+  import NavBar from "./NavBar/NavBar";
 
 
 class Home extends React.Component {
@@ -87,6 +88,7 @@ toggle4() {
     return (
       <>
       <div className="home-container">
+       {localStorage.getItem('isLoggedIn') ? (<NavBar/>) : (null)} 
       <div className="landingIntro">
         <div className="home-container-text">
           <h1>
@@ -164,14 +166,6 @@ toggle4() {
         </DropdownMenu>
       </ButtonDropdown> <br></br>
       </div> <br></br> <br></br>
-
-     { /* <div className="quotes"><div className="quoteTitle">What are people saying about Mood? </div><br></br>
-      <div>Innovative ~Austin </div> <br></br>
-      <div>Warm and cute ~Michelle</div> <br></br>
-      <div>Replaced standupply for our organization ~Anonymous</div> <br></br>
-      <div>The hype train has truly left the station ~Tyrone</div> <br></br>
-      <div> Woah No...Woah NO NO NO NO NO NO NO NO...*wheezing* ~Joseph</div>
-    </div> */ }
       </div>
       </div>
       <div className="homefooter">
@@ -184,4 +178,6 @@ toggle4() {
     );
   }
 }
+
+
 export default Home;
