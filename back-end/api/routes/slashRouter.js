@@ -420,16 +420,11 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
     dbAuth
       .getBySlackTeamId(teamID)
       .then(data => {
-        for (let z = 0; z < data.length; z++) {
-          dbTeamMembers
-            .get()
-            .then(data => {
-              let buttonManagerID;
-              for (let x = 0; x < data.length; x++) {
-                if (data[x].type === "manager") {
-                  buttonManagerID = data[x].id;
-                }
-              }
+   
+              let buttonManagerID = data[0].id;
+              console.log("data", data);
+              console.log("buttonManagerID", buttonManagerID);
+      
               /////////////////////////////////////////////////////////////////////////////
 
               if (callbackIDSlash === "button_tutorial") {
@@ -689,9 +684,8 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                 .catch(err => console.log(err));
 
               //////////////////////////////////////////////////////////////////////////////////////
-            })
-            .catch();
-        }
+
+      
       })
       .catch();
 

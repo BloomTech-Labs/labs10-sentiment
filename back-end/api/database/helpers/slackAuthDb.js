@@ -16,7 +16,16 @@ module.exports = {
     return db(table).where("user_id", user_id);
   },
   getBySlackTeamId: function(team_id) {
-    return db(table).where("team_id", team_id);
+    return db("slackAuth")
+      .innerJoin(
+        db("teamMembers"),
+        db("slackAuth").member_id,
+        db("teamMembers").id
+      )
+      .where({ 
+        [db("slackAuth").team_id]: team_id,
+        [db("teamMembers").type]: "manager"
+      });
   },
   insert: function(post) {
     return db(table)
