@@ -1,9 +1,8 @@
 import React from "react";
 import PieChart from "./chart";
 import NavBar from '../NavBar/NavBar';
-// import FooterBanner from "../PNG/MOODfooterBANNER6.png";
-import Footer from '../Footer/footer';
 import './report.css'
+import FooterPage from '../Footer/footer-test';
 
 function Reports(props) {
 
@@ -11,17 +10,16 @@ function Reports(props) {
     props.history.push('/home')
   }
   return (
-    <div className="background-color">
+    <div className="reportspage-container">
      <NavBar />
      <div className="main-reports-container">
-     
-      <h2> Reports </h2>
-      <button className="main-reports-container-button" onClick={() => props.history.push('/generatereport')}>Here</button>
-      <div className="pie-container">
-      <PieChart history={props.history} />
+        <h2> Reports </h2>
+        <button className="main-reports-container-button" onClick={() => props.history.push('/generatereport')}>Here</button>
+        <div className="pie-container">
+          <PieChart history={props.history} />
+        </div>
       </div>
-      </div>
-      <Footer />
+      <FooterPage />
     </div>
   );
 }

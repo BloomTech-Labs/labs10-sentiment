@@ -1,15 +1,55 @@
-.billing-container {
+/* Standard Page CSS */
+
+.page-container {
   margin: 0 auto;
-  width: 80%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-content: center;
-  /* border: 1px solid red; */
+  border: 1px blue solid;
+  overflow-y: scroll;
+
 }
+.content-container { 
+  height: 720px;
+  padding-bottom: 50px;
+  border: red 1px solid;
+}
+
+/* Billing */
+
+/* #billingpage-container {
+  
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  border: 1px blue solid;
+}
+.font-small pt-4 mt-4 {
+  background-image: url("https://imgur.com/a/QxsXgII");
+}
+
+#billing-container { 
+  height: 800px;
+}
+#footer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  bottom: 0;
+
+}
+
+.footer-img {
+  width: 100%;
+  margin: 0;
+ 
+} */
 
 .billing-title {
   margin-top: 2rem;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
   /* border: 1px solid red; */
   margin-bottom: 1rem;
   font-family: var(--headers-font-style);
@@ -19,7 +59,9 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 100%;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
   /* border: 1px solid red; */
 }
 
@@ -47,6 +89,15 @@
   width: 50%;
   background: linear-gradient(#7cdbd5, #7cdbd5, #7cdbd5);
 }
+.purchase-complete {
+  margin-left: auto;
+  margin-right: auto;
+  
+  text-align: center;
+  margin-top: 100px;
+  padding: 30px;
+  border: 3px solid#7cdbd5;
+}
 
 @media (max-width: 900px) {
   .billing-card-container {
@@ -58,10 +109,14 @@
   .stripe-checkout {
     width: 100%;
   }
+  #billing-container {
+    padding-bottom: 200px;
+  }
 }
 
 @media (max-width: 600px) {
    h1 {
     padding-right: 0;
   }
+  
 }

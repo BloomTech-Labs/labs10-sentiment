@@ -1,7 +1,8 @@
 import React from 'react'
 import { connect } from "react-redux";
 import { getFeelings } from "../../actions";
-import GenerateList from './generateList'
+import GenerateList from './generateList';
+
 
 class GenerateTeams extends React.Component {
 
@@ -9,7 +10,7 @@ class GenerateTeams extends React.Component {
       return (
         <>
           <GenerateList history = {this.props.history} />
-          {/* <Select options={surveyList} /> */}
+            {/* <Select options={surveyList} /> */}
         </>
       );
     }

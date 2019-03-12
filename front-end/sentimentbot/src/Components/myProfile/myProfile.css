@@ -1,3 +1,23 @@
+/* Standard Page CSS */
+.page-container {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  border: 1px blue solid;
+  overflow-y: scroll;
+
+}
+.content-container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+  height: 935px;
+  padding-bottom: 50px;
+  border: red 1px solid;
+}
+
+/* Profile CSS */
+
 .loadinggif {
   position: absolute;
   top: 50%;
@@ -11,15 +31,23 @@
     margin-bottom: 1rem;
   }
 
-.main-container {
-  width: 70%;
+
+/* #profilepage-container {
+  min-height: 100vh;
+  margin: 0 auto;
+  
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin-top: 60px;
+}
+
+.main-container {
+  border: 1px solid orange;
+  width: 70%;
   margin-left: auto;
   margin-right: auto;
-}
+  padding-bottom: 50px;
+} */
+
 
 .main-container h1 {
   font-family: var(--headers-font-style);

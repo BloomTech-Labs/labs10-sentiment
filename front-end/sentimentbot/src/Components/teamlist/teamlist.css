@@ -1,6 +1,25 @@
-/* Main Team Container */
+/* Standard Page CSS */
 
-.background-color {
+.page-container {
+    background-color: #F5F5F5;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    border: 1px blue solid;
+    overflow-y: scroll;
+  
+  }
+  .content-container {
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    height: 935px;
+    padding-bottom: 50px;
+    border: red 1px solid;
+  }
+
+/* Main Team Container */
+/* .background-color {
     background-color: #F5F5F5;
     position: fixed;
     width: 100%;
@@ -8,15 +27,15 @@
     overflow-x: hidden;
     overflow-y: hidden;
 }
-
-.mainTeam-container {
+*/
+/* .mainTeam-container {
     width: 60%;
     display: flex;
     flex-direction: column;
     margin-top: 60px;
     margin-left: auto;
     margin-right: auto;
-}
+}  */
 
 /* .mainTeam-container h1 {
     width: 60%;

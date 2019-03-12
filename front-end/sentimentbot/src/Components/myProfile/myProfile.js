@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 // import "../App.css";
 import "./myProfile.css";
+import FooterPage from '../Footer/footer-test';
 import {
   getSingleTeamMembers,
   addTeamMembers,
@@ -19,7 +20,6 @@ import {
 import NavBar from "../NavBar/NavBar";
 import GenerateTeams from "./generateTeams";
 import Happy from "../PNG/nobackgroundHappy.png";
-import Footer from "../Footer/footer";
 import loadinggif from '../callback/loading.svg'
 
 class Profile extends React.Component {
@@ -233,10 +233,6 @@ class Profile extends React.Component {
     if(!localStorage.getItem('email')){
       this.props.history.push('/home')
     }
-
-
-    
-
     const view = this.state.view;
 
     const uri = "https://botsentiment.herokuapp.com/api/slackauth";
@@ -246,9 +242,9 @@ class Profile extends React.Component {
       return <img className="loadinggif" src={loadinggif} alt="loading" />
     } else if (this.props.singleTeams.length > 0 && localStorage.getItem('team_id') != null) {
       return (
-        <div className="background-color">
+        <div className="page-container" className="background-color">
           <NavBar />
-          <div className="main-container">
+          <div className="content-container">
             <div className="name-container">
               {" "}
               <h1 className="welcome-container">
@@ -315,15 +311,15 @@ class Profile extends React.Component {
               <button className="btn-feel">Responed to Latest Survey</button>
             </div> */}
           </div>
-          <Footer />
+          <FooterPage />
         </div>
       );
     }
     if (view === "") {
       return (
-        <div className="background-color">
+        <div className="page-container" className="background-color">
           <NavBar />
-          <div className="main-container">
+          <div className="content-container">
             <div className="sub-container-3">
               {" "}
               <h1 className="welcome-container">Welcome to Mood!</h1>
@@ -379,13 +375,13 @@ class Profile extends React.Component {
               </div>
             </div>
           </div>
-          <Footer />
+          <FooterPage />
         </div>
       );
     } else if (view === "create") {
       return (
-        <div className="background-color">
-        <div className="create-container">
+        <div id="page-container" className="background-color">
+        <div id="content-container">
           {/* <p>Loading...</p> */}
           <NavBar />
           {/* <a
@@ -429,8 +425,8 @@ class Profile extends React.Component {
               Submit Team Title
             </button>
           </form> */}
-          <Footer />
         </div>
+        <FooterPage />
         </div>
       );
         }

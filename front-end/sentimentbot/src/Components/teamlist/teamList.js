@@ -12,8 +12,8 @@ import {
 import "./teamlist.css";
 import NavBar from "../NavBar/NavBar";
 import Eh from "../PNG/nobackgroundEh.png";
-import Footer from "../Footer/footer";
 import loadinggif from "../callback/loading.svg";
+import FooterPage from '../Footer/footer-test';
 
 class TeamList extends React.Component {
   state = {
@@ -81,9 +81,10 @@ class TeamList extends React.Component {
       return <img className="loadinggif" src={loadinggif} alt="loading" />
     } else if (this.props.singleTeams.length > 0) {
       return (
-        <div className="background-color">
+        // <div id="page-container" className="background-color">
+        <div className="page-container">
           <NavBar />
-          <div className="mainTeam-container">
+          <div className="content-container">
             <h1>{this.props.singleTeams[0].name}</h1>
             <a
               href={`https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645&redirect_uri=${uri}&state=${localStorage.getItem(
@@ -140,7 +141,7 @@ class TeamList extends React.Component {
               })}
             </div>
           </div>
-          <Footer />
+          <FooterPage />
         </div>
       )
     }

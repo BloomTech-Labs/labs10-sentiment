@@ -1,6 +1,7 @@
 import React from "react";
 import StripeCheckout from "react-stripe-checkout";
 import NavBar from "../NavBar/NavBar";
+import FooterPage from '../Footer/footer-test';
 import {
   Card,
   CardText,
@@ -9,7 +10,7 @@ import {
   CardSubtitle,
 } from "reactstrap";
 // import "../App.css";
-import Footer from "../Footer/footer";
+
 import "./billing.css";
 
 class Billing extends React.Component {
@@ -73,20 +74,21 @@ class Billing extends React.Component {
 
     if (this.state.complete) {
       return (
-        <>
+        <div className="page-container">
           <NavBar />
-
-          <div className="purchase-complete billing-container">
-            <h1>Purchase Complete</h1>
+          <div className="content-container">
+            <div className="purchase-complete">
+              <h1>Purchase Complete</h1>
+            </div>
           </div>
-          <Footer />
-        </>
+          <FooterPage />
+        </div>
       );
     } else {
       return (
-        <>
+        <div className="page-container">
           <NavBar />
-          <div className="billing-container">
+          <div className="content-container">
             <h1 className="billing-title"> Billing Page </h1>
 
             {/* <StripeProvider apiKey="pk_test_IWDsGyB9paFAzC5KQEtIOfLG"> */}
@@ -142,8 +144,8 @@ class Billing extends React.Component {
               </div>
             </div>
           </div>
-          <Footer />
-        </>
+          <FooterPage />
+        </div>
       );
     }
   }
