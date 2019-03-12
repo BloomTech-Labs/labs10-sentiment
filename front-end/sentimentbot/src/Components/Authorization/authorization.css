@@ -1,59 +1,42 @@
 .fake-nav {
-  height: 4rem;
-  width: 100%;
-  background: #02c8a7;
-  margin-bottom: 1rem;
+    height: 4rem;
+    width: 100%;
+    background: #02c8a7;
+    margin-bottom: 1rem;
 }
 
 .container-form {
-  width: 50%;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    width: 50%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 form {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .auth-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 form input {
-  width: 100%;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  border: 1px solid #f58a91;
-  border-radius: 8px;
-  vertical-align: center;
-  box-shadow: -10px 10px 5px 0px #7cdbd5;
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #f58a91;
+    border-radius: 8px;
+    vertical-align: center;
+    box-shadow: -10px 10px 5px 0px #7cdbd5;
 }
 
 .btn-feel {
-  width: 100%;
-  padding: 1rem;
-  color: #212529;
-  background-color: #7cdbd5;
-  font-size: 1.2rem;
-  border-radius: 0.5rem;
-  font-family: "Fredoka One", cursive;
-  cursor: pointer;
-  box-shadow: -10px 10px 5px 0px #212529;
-}
-.btn-feel:hover {
-  color: #96040e;
-  background-color: #f9be02;
-  border: 2px solid #f58a91;
-}
-
-.btn-feel-2 {
-    width: 20rem;;
+    width: 100%;
     padding: 1rem;
     color: #212529;
     background-color: #7cdbd5;
@@ -61,28 +44,46 @@ form input {
     border-radius: 0.5rem;
     font-family: "Fredoka One", cursive;
     cursor: pointer;
-    box-shadow: -10px 10px 5px 0px #212529;
-  }
-  .btn-feel-2:hover {
+}
+
+.btn-feel:hover {
     color: #96040e;
     background-color: #f9be02;
     border: 2px solid #f58a91;
-  }
+}
+
+.btn-feel-2 {
+    width: 20rem;
+    ;
+    padding: 1rem;
+    color: #212529;
+    background-color: #7cdbd5;
+    font-size: 1.2rem;
+    border-radius: 0.5rem;
+    font-family: "Fredoka One", cursive;
+    cursor: pointer;
+}
+
+.btn-feel-2:hover {
+    color: #96040e;
+    background-color: #f9be02;
+    border: 2px solid #f58a91;
+}
 
 .happy-auth {
-  margin-top: 1rem;
-  height: 200px;
-  width: 200px;
+    margin-top: 1rem;
+    height: 200px;
+    width: 200px;
 }
 
 @media (max-width: 900px) {
-  .container-form {
-    width: 70%;
-  }
+    .container-form {
+        width: 70%;
+    }
 }
 
 @media (max-width: 600px) {
-  .container-form {
-    width: 90%;
-  }
+    .container-form {
+        width: 90%;
+    }
 }
