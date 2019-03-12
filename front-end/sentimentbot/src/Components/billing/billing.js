@@ -84,7 +84,7 @@ class Billing extends React.Component {
       );
     } else {
       return (
-        <>
+        <div className="background-color">
           <NavBar />
           <div className="billing-container">
             <h1 className="billing-title"> Billing Page </h1>
@@ -143,7 +143,7 @@ class Billing extends React.Component {
             </div>
           </div>
           <Footer />
-        </>
+        </div>
       );
     }
   }
