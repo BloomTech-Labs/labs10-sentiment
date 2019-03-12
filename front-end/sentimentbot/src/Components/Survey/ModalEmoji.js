@@ -40,7 +40,7 @@ class ModalEmoji extends React.Component {
   render() {
     return (
       <div>
-        <Button color="danger" onClick={this.toggle}>{this.props.buttonLabel}</Button>
+        <Button onClick={this.toggle}>Create</Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}>Add your own Responses</ModalHeader>
           <ModalBody>

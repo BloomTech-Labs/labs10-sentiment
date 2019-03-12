@@ -17,9 +17,10 @@
 }
 
 .billing-title {
-  margin-top: 2rem;
+  margin-top: 3%;
   /* border: 1px solid red; */
   margin-bottom: 1rem;
+  font-size: 4rem;
   font-family: var(--headers-font-style);
 }
 

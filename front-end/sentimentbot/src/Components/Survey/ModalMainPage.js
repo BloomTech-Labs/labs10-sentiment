@@ -40,7 +40,7 @@ class ModalSurvey extends React.Component {
         timeZone: "EST",
         option1: null,
         textArray: [':joy:',':sunglasses:',':scream:',':pensive:'],
-        strArr: [],
+        strArr: ["happy", ":joy:"],
         option4: null,
         preFeelingIdsArray: [34, 9, 5, 38],
         custom: ['', ""],
@@ -86,15 +86,18 @@ class ModalSurvey extends React.Component {
     }
 
   onChangeHandler = event => {
-    let string = this.state.custom.join(" ")
+    // this.setState({
+    //   [event.target.name]: [event.target.value, this.state.custom[1]],
+    // })
+    let string = event.target.value
     let strArr = string.split(" ")
     if (strArr.length > 2) {
       strArr.splice(1, strArr.length-2,)
     }
     this.setState({
-      [event.target.name]: [event.target.value, this.state.custom[1]],
-      strArr: strArr
+      strArr: [strArr[0], this.state.strArr[1]]
     })
+
     // this.setState({
     //   [event.target.name]: [event.target.value, this.state.custom[1]]
     // });
@@ -102,21 +105,19 @@ class ModalSurvey extends React.Component {
 
   emojiPicker = (emoji, event) =>  {
     event.preventDefault();
-    let string = this.state.custom.join(" ")
-    let strArr = string.split(" ")
-    if (strArr.length > 2) {
-      strArr.splice(1, strArr.length-2,)
+    // let string = this.state.custom.join(" ")
+    // let strArr = string.split(" ")
+    if (this.state.strArr.length > 2) {
+      this.state.strArr.splice(1, this.state.strArr.length-2,)
       this.setState({
-        custom: [this.state.custom[0], emoji.colons],
-        strArr: strArr
+        strArr: [this.state.strArr[0], emoji.colons]
       })
     }
     this.setState({
-      custom: [this.state.custom[0], emoji.colons],
-      strArr: strArr
+      strArr: [this.state.strArr[0], emoji.colons]
     })
-    console.log(string)
-    console.log(strArr)
+    // console.log(string)
+    // console.log(strArr)
   }
 
   addCustom = event => {
@@ -165,7 +166,7 @@ class ModalSurvey extends React.Component {
   };
 
   onSelectTest1 = event => {
-    console.log(event.currentTarget.getAttribute('value'), event.target.id, "hey!");
+    // console.log(event.currentTarget.getAttribute('value'), event.target.id, "hey!");
     if(this.state.preFeelingIdsArray.length > 3) {
       this.state.preFeelingIdsArray.shift();
       this.state.textArray.shift();
@@ -298,7 +299,7 @@ class ModalSurvey extends React.Component {
                     </div>
                     
                 </div> */}
-                <h1 className="survey-header">Survey
+                <h1 className="survey-header">Create Surveys
                 </h1>
                 <StepZilla steps={steps} />
                 <Footer />

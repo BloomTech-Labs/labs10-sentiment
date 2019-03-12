@@ -34,7 +34,7 @@ body {
     max-width: 500px;
     border: 1px solid var(--main-btn-color);
     border-radius: .25rem;
-    padding: 3%; 
+    padding: 4%; 
 }
 
 .footer-buttons {
@@ -280,6 +280,10 @@ body {
 
 .pre-p {
     border: 1px solid var(--hover-border-color);
+    padding: 1px;
+}
+.pre-p .emoji-mart-emoji {
+    text-align: center;
 }
 
 .dropdown:hover .dropdown-content {
@@ -287,23 +291,40 @@ body {
 }
 
 .modalpage-container .survey-header {
-    margin-top: 60px;
+    margin-top: 3%;
     font-family: var(--headers-font-style);
-    font-size: 3rem;
+    font-size: 3.5rem;
     width: 80%;
     padding-right: 0;
-    margin-left: 8%;
+    margin-left: 10%;
     text-align: center;
 }
 
 .emoji-custom {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
+    margin-top: 5%;
 }
 
 .emoji-custom p {
     margin-bottom: 0;
     font-size: .8rem;
+}
+
+.survey-modalbutton div .btn-secondary {
+    background-color: var(--main-btn-color);
+    color: white;
+    width: 100%;
+    height: 35px;
+    text-align: center;
+    border: none;
+    padding: 6px;
+    font-family: var(--p-font-style);
+}
+
+.survey-modalbutton div .btn-secondary:hover {
+    background-color: var(--hover-color);
+    border: 1px solid var(--hover-border-color);
 }
 
 
@@ -331,4 +352,48 @@ body {
 .modalfooter-img {
     width: 100%;
     max-height: 50px;
+}
+
+@media (max-width: 400px) {
+    .title-label {
+        margin-left: 0;
+    }
+
+    .footer-buttons {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .footer-buttons .pull-right {
+        width: 100%;
+    }
+    .footer-buttons .pull-left {
+        width: 100%;
+    }
+
+    .survey-prefeels {
+        margin: 0 2%;
+    }
+
+    .survey-schedule {
+        margin: 0 2%;
+    }
+}
+
+@media (max-width: 600px) {
+    .title-label {
+        margin-left: 0;
+    }
+
+    .footer-buttons {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .footer-buttons .pull-right {
+        width: 100%;
+    }
+    .footer-buttons .pull-left {
+        width: 100%;
+    }
 }
