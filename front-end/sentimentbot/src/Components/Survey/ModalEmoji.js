@@ -4,6 +4,7 @@ import "emoji-mart/css/emoji-mart.css";
 import { Picker } from "emoji-mart";
 import { connect } from "react-redux";
 import { addPreFeeling } from "../../actions";
+import Loading from './loading';
 
 class ModalEmoji extends React.Component {
   constructor(props) {
@@ -41,8 +42,12 @@ class ModalEmoji extends React.Component {
       <div>
         <Button color="danger" onClick={this.toggle}>{this.props.buttonLabel}</Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-          <ModalHeader toggle={this.toggle}>Add your own Emojis</ModalHeader>
+          <ModalHeader toggle={this.toggle}>Add your own Responses</ModalHeader>
           <ModalBody>
+            <p>You can combine one word and an emoji. Some example responses are:</p>
+            <p>Awesome! :starstruck:</p>
+            <p>Totally :unamused:</p>
+            <p>Or simply click the emoji you want to add, then confirm your choice! Your option will be added to your customization list</p>
             <div className="emoji-picker">
               <Picker
                   set="apple"
@@ -55,12 +60,18 @@ class ModalEmoji extends React.Component {
                   onClick={this.props.emojiPicker}
               />
               <input 
-                placeholder={this.props.state.custom} 
+                placeholder="Get creative!" 
                 type="text" 
                 name="custom"
-                onChange={this.props.onChangeHandler}>
+                onChange={this.props.onChangeHandler}
+                className="emoji-input"
+                >
               </input>
               <button className="survey-buttons" onClick={this.props.addCustom}>Confirm choice</button>
+            </div>
+            <div className="preview-emoji">
+              <p>A preview of what your customized response will look like after confirming:</p>
+            <Loading state={this.props.state} />
             </div>
           </ModalBody>
           <ModalFooter>

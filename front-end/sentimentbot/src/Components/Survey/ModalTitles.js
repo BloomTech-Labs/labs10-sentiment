@@ -1,8 +1,8 @@
 import React from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+// import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 // import { connect } from "react-redux";
 
-class ModalTitles extends React.Component {
+class SurveyTitles extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -27,13 +27,14 @@ class ModalTitles extends React.Component {
 
   render() {
     return (
-      <div>
-        <Button color="danger" onClick={this.toggle}>{this.props.buttonLabel}</Button>
+      <div className="survey-title">
+        {/* <Button color="danger" onClick={this.toggle}>{this.props.buttonLabel}</Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}>Survey Title and Description</ModalHeader>
-          <ModalBody>
+          <ModalBody> */}
+          <p>Step 1: Enter a Title and a Description or Question.</p>
                 <div className="survey-inputbox">
-                  <label className="survey-inputlabel">Title</label>
+                  <label className="survey-inputlabel title-label">Title</label>
                   <input
                     type="text"
                     value={this.props.state.title}
@@ -52,13 +53,13 @@ class ModalTitles extends React.Component {
                     onChange={this.props.onChangeHandler}
                   />
                 </div>
-          </ModalBody>
+          {/* </ModalBody>
           <ModalFooter>
             <Button color="primary" onClick={this.toggle}>Return</Button>{' '}
           </ModalFooter>
-        </Modal>
+        </Modal> */}
       </div>
     );
   }
 }
-export default ModalTitles;
+export default SurveyTitles;

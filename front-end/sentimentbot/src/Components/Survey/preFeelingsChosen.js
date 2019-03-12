@@ -24,12 +24,10 @@ class PreFeelingsChosen extends React.Component {
   render() {
     return (
       <div>
-        <p className="instruction-p survey-instructions "> Which possible responses would you like to have available?</p>
+        {/* <p className="instruction-p survey-instructions "> Which possible responses would you like to have available?</p> */}
         <PreFeelingList 
         onSelectTest1={this.props.onSelectTest1} 
-        onSelectTest2={this.props.onSelectTest2}
-        onSelectTest3={this.props.onSelectTest3}
-        onSelectTest4={this.props.onSelectTest4}
+        state = {this.props.state}
          />
       </div>
     );

@@ -1,90 +1,36 @@
 import React from "react";
-import { connect } from "react-redux";
-import "./survey.css";
-import {
-getSingleTeamMembers,
-  addTeamMembers,
-  getTeamMembers,
-  fetchSingleSurvey,
-  getSurvey,
-  getTeams,
-  getSingleTeam,
-  getFeelings,
-  getPreFeeling
-} from "../../actions/index";
-import MoodThinking from "../PNG/nobackgroundThinking.png";
-import MoodHappy from "../PNG/nobackgroundHappy.png";
+import { Emoji } from 'emoji-mart'
 
-class EmojiLoading extends React.Component {
-    state = {
-        complete1: false,
-        complete2: false,
-    }
+function Loading(props) {
 
-    componentDidMount() {
-        if (this.props.tmIsFetching === false && this.props.isFetching === false) {
-            this.setState({
-                complete1: true,
-                complete2: true
-            })
-            this.props.getPreFeeling()
-        }
-      }
+    let responses = props.state.strArr.length;
 
-      componentDidUpdate(prevProps) {
-          if (prevProps.tmIsFetching === true || prevProps.isFetching === true) {
-              this.setState({
-                  complete1: true,
-                  complete2: true
-              })
-              this.props.getPreFeeling()
+
+
+  function preFeelingChoices() {
+    let responseChoices = [];
+    // {this.props.prefeelings.map(prefeeling =>
+    for (let i = 0; i < responses; i++) {
+      let testText = props.state.strArr[i]
+        let breakTest = testText.split(" ");
+        let result = [];
+        for (let i = 0; i < breakTest.length; i++) {
+          if (breakTest[i].indexOf(":") === -1) {
+            let textP = breakTest[i] + " ";
+            result.push(textP);
+          } else if (breakTest[i].indexOf(":") > -1) {
+            let textE = <Emoji emoji={breakTest[i]} size={24} />;
+            result.push(textE);
           }
-
-      }
-
-  render() {
-      if (this.state.complete2 === true && this.state.complete1 === true) {
-          return (
-            <div className="loading-container">
-              <p>Thanks for waiting! Your custom response has been added.</p>
-              <div className="loadingImg-but">
-                <button onClick={() => this.props.history.push('/survey')}>Click</button>
-                <img className="moodbot-img" src={MoodHappy} alt="happy" />
-              </div>
-            </div>
-          )
-      } else {
-      return (
-        <div className="loading-container">
-          <p>Loading...our bots are loading</p>
-          <div className="loadingImg-but">
-            <img className="moodbot-img" src={MoodThinking} alt="thinking" />
-          </div>
-        </div>
-      )
+        }
+        responseChoices.push(
+          <div key={i} >{result}</div>
+    
+      );
     }
+    return responseChoices;
   }
+  return preFeelingChoices();
 }
-
-function mapStateToProps(state) {
-  return {
-    tmIsFetching: state.teamMembersReducer.tmIsFetching,
-    isFetching: state.prefeelingsReducer.isFetching,
-    singleTeamMembers: state.teamMembersReducer.singleTeamMembers
-  };
-}
-
-export default connect(
-  mapStateToProps,
-  {
-    getSingleTeamMembers,
-    addTeamMembers,
-    getTeamMembers,
-    fetchSingleSurvey,
-    getSurvey,
-    getTeams,
-    getSingleTeam,
-    getFeelings,
-    getPreFeeling,
-  }
-)(EmojiLoading);
+      
+export default Loading;

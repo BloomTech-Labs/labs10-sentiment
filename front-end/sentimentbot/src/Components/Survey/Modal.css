@@ -20,10 +20,49 @@ body {
     align-content: center;
     overflow: auto;
 }
-.modalsurvey-title {
+.survey-title {
     max-width: 500px;
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    border: 1px solid var(--main-btn-color);
+    border-radius: .25rem;
+    padding: 3%;
+}
+
+.survey-prefeels {
+    max-width: 500px;
+    border: 1px solid var(--main-btn-color);
+    border-radius: .25rem;
+    padding: 3%; 
+}
+
+.footer-buttons {
+    display: flex;
+    justify-content: space-evenly;
+    width: 30%;
+}
+
+
+.footer-buttons .btn-primary {
+    background-color: var(--main-btn-color);
+    font-style: var(--p-font-style);
+    font-size: 1.2rem;
+    border: none;
+    margin-top: 5%;
+    /* width: 100%; */
+}
+
+.footer-buttons .pull-right {
+    width: 40%;
+}
+
+.footer-buttons .pull-left {
+    width: 40%;
+}
+.footer-buttons .btn-primary:hover {
+    background-color: var(--hover-color);
+    border: 1px solid var(--hover-border-color);
 }
 .modal-header {
     max-width: 500px;
@@ -43,12 +82,51 @@ body {
     margin-right: auto;
 }
 .survey-modalbutton {
-    width: 250px;
     color: white;
-    background-color: rgb(27, 213, 185);
-    padding: 10px;
-    margin: 10px;
+    background-color: var(--main-bg-color);
     font-family: var(--p-font-style);
+    border: none;
+}
+.multi-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.progtrckr-todo {
+    display: none;
+}
+
+.multi-step div .btn-danger {
+    height: 20px;
+    width: 50px;
+    background-color: blue;
+    margin-bottom: 5%;
+}
+
+.progtrckr-doing{
+    display: none;
+}
+
+.progtrckr-done {
+    display: none;
+}
+
+.preview-emoji {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.preview-emoji div {
+    margin-right: 2%;
+}
+
+.emoji-input {
+    width: 72%;
+    margin-top: 5%;
+    border: 2px solid var(--hover-border-color);
 }
 
 .modalsurvey-buttonbox .survey-modalbutton {
@@ -75,12 +153,37 @@ body {
 }
 
 .survey-modalbutton .btn-danger:hover {
-    background-color: #144447;
-    border: none;
+    background-color: white;
+    border: 1px solid var(--hover-border-color);
 }
 
 .survey-inputlabel {
     color: black;
+}
+
+.survey-schedule {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--main-btn-color);
+    border-radius: .25rem;
+    padding: 3%;
+}
+
+.create-survey {
+    background-color: var(--main-btn-color);
+    border-radius: .25rem;
+    color: white;
+    align-self: flex-end;
+    height: 45px;
+}
+
+.create-survey:hover {
+    background-color: var(--hover-color);
+    border: 1px solid var(--hover-border-color);
+}
+
+.title-label {
+    margin-left: 9%;
 }
 
 .modal-footer .btn-primary{
@@ -108,6 +211,9 @@ body {
     color: white;
     border: none;
     font-family: var(--p-font-style);
+    width: 50%;
+    margin-left: 21%;
+
 }
 
 .survey-buttons:hover {
@@ -116,7 +222,89 @@ body {
     border: 1px solid var(--hover-border-color);
 }
 
-.surveysubmit-button
+.dropbtn {
+    background-color: var(--main-btn-color);
+    color: white;
+    padding: 16px;
+    border: none;
+    cursor: pointer;
+    font-family: var(--p-font-style);
+    width: 100%;
+    border-radius: .25rem;
+}
+
+.survey-responsebox .dropdown {
+    position: relative;
+    display: inline-block;
+    width: 50%;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    background-color: var(--main-bg-color);
+    font-family: var(--p-font-style);
+    color: black;
+    margin-left: -8%;
+    margin-top: 6%;
+    overflow: scroll;
+    max-height: 200px;
+}
+
+.text-area-field {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    margin: 0 auto;
+    height: 100%;
+    padding-top: 3%;
+}
+.text-area-field p {
+    width: 50%;
+    padding: 2%;
+}
+
+.array-area-field {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 50%;
+    border: 1px solid var(--hover-border-color);
+    padding-top: 1%;
+    border-radius: .25rem;
+}
+
+.pre-p {
+    border: 1px solid var(--hover-border-color);
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.modalpage-container .survey-header {
+    margin-top: 60px;
+    font-family: var(--headers-font-style);
+    font-size: 3rem;
+    width: 80%;
+    padding-right: 0;
+    margin-left: 8%;
+    text-align: center;
+}
+
+.emoji-custom {
+    display: flex;
+    align-items: flex-end;
+}
+
+.emoji-custom p {
+    margin-bottom: 0;
+    font-size: .8rem;
+}
 
 
 /* Modal Footer */
