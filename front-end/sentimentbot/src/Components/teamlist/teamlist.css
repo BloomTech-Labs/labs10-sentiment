@@ -37,7 +37,6 @@
     font-size: 150%;
 }
 
-
 .mainTeam-container .eh-moodbot2 {
     position: absolute;
     top: 5%;
@@ -56,6 +55,7 @@
     padding: 2px;
     border-radius: 5px; */
 }
+
 
 /* TeamList Container */
 
@@ -83,19 +83,23 @@
 
 .team-scrollbar::-webkit-scrollbar {
     width: 15px;
-  }
-   
-  /* Handle */
-  .team-scrollbar::-webkit-scrollbar-thumb {
+}
+
+
+/* Handle */
+
+.team-scrollbar::-webkit-scrollbar-thumb {
     /* background: #888888;  */
     background: #aeaeae;
-  }
-  
-  /* Handle on hover */
-  .team-scrollbar::-webkit-scrollbar-thumb:hover {
+}
+
+
+/* Handle on hover */
+
+.team-scrollbar::-webkit-scrollbar-thumb:hover {
     /* background: #909090;  */
     background: #b8a3a3;
-  }
+}
 
 .teamlist-container div {
     margin: 1rem;
@@ -108,27 +112,29 @@
     font-family: 'Roboto';
 }
 
+
 /* TeamList Button */
 
- .teamlist-button {
+.teamlist-button {
     color: white;
     text-transform: uppercase;
     background: #02C8A7;
-    border-radius: 5px;
+    border-radius: 0.25rem;
     display: inline-block;
     border: none;
     font-size: .8rem;
-    }
+}
 
 .teamlist-button:hover {
     color: white;
     background: #f53240;
     letter-spacing: 1px;
-    -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
-    -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
-    box-shadow: 5px 40px -10px rgba(0,0,0,0.57);
+    -webkit-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+    -moz-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+    box-shadow: 5px 40px -10px rgba(0, 0, 0, 0.57);
     transition: all 0.4s ease 0s;
 }
+
 
 /* Tablet */
 
@@ -136,24 +142,22 @@
     .teamlist-container {
         width: 100%;
     }
-
     .mainTeam-container .eh-moodbot2 {
         /* margin-left: 150px; */
         display: none;
     }
-
     .mainTeam-container h1 {
         /* padding-right: 25rem; */
         /* margin-right: 3.8rem; */
         /* width: 60%; */
         text-align: left;
     }
-
     .mainTeam-container :nth-child(3) {
-       /* margin-left: 9.5rem; */
-       text-align: left;
+        /* margin-left: 9.5rem; */
+        text-align: left;
     }
 }
+
 
 /* Mobile */
 
@@ -164,22 +168,18 @@
     .teamlist-container {
         width: 100%;
     }
-
     .mainTeam-container .eh-moodbot2 {
         display: none;
     }
-
     .mainTeam-container h1 {
         /* margin-right: 17rem; */
         text-align: left;
     }
-
     .mainTeam-container :nth-child(3) {
         margin-bottom: 2rem;
         text-align: left;
-     }
-
-     .teamlist-container {
+    }
+    .teamlist-container {
         height: 20rem;
     }
 }
