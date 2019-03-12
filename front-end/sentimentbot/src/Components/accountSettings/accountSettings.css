@@ -55,6 +55,9 @@ input[type=password]:focus {
     border: none;
     font-size: .8rem;
     width: 30%;
+    height: 30px;
+    display: flex;
+    justify-content: center;
 }
 
 .btn-style:hover {
