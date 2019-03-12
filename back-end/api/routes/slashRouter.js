@@ -154,6 +154,9 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
   let reqBody = req.body;
   console.log("reqBody", reqBody);
 
+
+
+
   if (reqBody.command === "/send-me-buttons") {
     let responseURL = reqBody.response_url;
     if (reqBody.token != process.env.VERIFCATION_TOKEN) {
@@ -189,7 +192,7 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                             // let title = data[data.length - 1].title;
                             // let description = data[data.length - 1].description;
 
-                            let survey_id = Math.max.apply(
+                            let survey_id = Math.max.apply(    ////////////////////////want all survey's for loop????
                               Math,
                               data.map(function(o) {
                                 return o.id;
@@ -275,10 +278,12 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                                                 arrayOptions
                                               );
                                               let message = {
-                                                text: `${title}`,
+                                                
                                                 attachments: [
                                                   {
+                                                    title: `${title}`,
                                                     text: `${description}`,
+                                                    pretext: `Survey #${survey_id}`,
                                                     fallback:
                                                       "Shame... buttons aren't supported in this land",
                                                     callback_id:
@@ -383,7 +388,7 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
               {
                 title: `${title}`,
                 text: `${description}`,
-                pretext: `Id #${surveyId}`,
+                pretext: `Survey #${surveyId}`,
                 fallback:
                   "If you could read this message, you'd be picking a feeling right now.",
                 color: "#3AA3E3",
@@ -413,6 +418,12 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
 
     console.log("jsonPayload time stamp", jsonPayload.message_ts);
     // console.log("surveyIdDep", surveyIdDep);
+    let preText = reqBody.attachments.pretext;
+    let ArrayS = preText.split("#")
+    let SurveyID = Number(ArrayS[1]);////////////////////////check
+    console.log('preText', preText);
+    console.log('ArrayS', ArrayS);
+    console.log('SurveyID', SurveyID);
 
     dbAuth
       .getBySlackUserId(jsonPayload.user.id)
@@ -425,7 +436,7 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
               res.json(`Manager's Cannot Respond to Survey's!`);
             } else {
               dbSurveys
-                .getID(surveyIdDep)///////////////////////////////////////////
+                .getID(SurveyID)///////////////////////////////////////////check
                 .then(data => {
                   if (data.length > 0) {
                     console.log("data survey id for time", data);
@@ -445,7 +456,7 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                     }
 
                     dbSurveys
-                      .update(surveyIdDep, putInfo)///////////////////////////////
+                      .update(SurveyID, putInfo)///////////////////////////////
                       .then(() => {
                         ////////////////////////////////
                         let userIdSlack = jsonPayload.user.id;
