@@ -347,7 +347,7 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
     sendMessageToSlackResponseURL(actionJSONPayload.response_url, message);
   } else if (reqBody.message === true) {
     let surveyId = reqBody.survey_id;
-    // console.log("surveyId", surveyId);
+    console.log("surveyId", surveyId);
     // surveyIdDep = surveyId;
     // console.log("surveyIdDep test", surveyIdDep);
     let title = reqBody.title;
@@ -379,11 +379,11 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
           let message = {
             channel: channel_id, //////////////////////////////make dynamic team_id
             text: `${title}`,
-            pretext: `Survey Id: ${surveyId}`,
             as_user: false,
             attachments: [
               {
                 text: `${description}`,
+                pretext: `Survey Id: ${surveyId}`,
                 fallback:
                   "If you could read this message, you'd be picking a feeling right now.",
                 color: "#3AA3E3",
