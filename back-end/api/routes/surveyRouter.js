@@ -134,7 +134,7 @@ const surveyScheduler = (timeInfo, postInfo) => {
   let title = postInfo.title;
   let description = postInfo.description;
 
-  let dayLightSavings = 1;
+  let dayLightSavings = -1;
 
   if (timeInfo.timeZone === "PST") {
     if (timeInfo.amPm === "AM") {
