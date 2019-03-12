@@ -76,7 +76,7 @@
   border-radius: 8px;
   overflow: hidden;
   padding: 10px;
-  border: 1px solid var(--hover-border-color);
+  border: 2px solid var(--hover-border-color);
 }
 
 .reactions p {
