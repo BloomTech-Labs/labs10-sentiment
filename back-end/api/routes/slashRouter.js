@@ -378,12 +378,12 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
         } else {
           let message = {
             channel: channel_id, //////////////////////////////make dynamic team_id
-            text: `${title}`,
             as_user: false,
             attachments: [
               {
+                title: `${title}`,
                 text: `${description}`,
-                pretext: `Survey Id: ${surveyId}`,
+                pretext: `Id #${surveyId}`,
                 fallback:
                   "If you could read this message, you'd be picking a feeling right now.",
                 color: "#3AA3E3",
