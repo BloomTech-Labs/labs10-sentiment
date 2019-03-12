@@ -46,18 +46,16 @@ input[type=password]:focus {
     margin-top: 3%;
 }
 
-
-
 .btn-style {
     color: white;
     text-transform: uppercase;
     background: #02C8A7;
-    border-radius: 5px;
+    border-radius: 0.25rem;
     display: inline-block;
     border: none;
     font-size: .8rem;
     width: 30%;
-    }
+}
 
 .btn-style:hover {
     color: #fff;

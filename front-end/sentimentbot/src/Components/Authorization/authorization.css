@@ -41,7 +41,7 @@ form input {
     color: #212529;
     background-color: #7cdbd5;
     font-size: 1.2rem;
-    border-radius: 0.5rem;
+    border-radius: 0.25rem;
     font-family: "Fredoka One", cursive;
     cursor: pointer;
 }
@@ -59,7 +59,7 @@ form input {
     color: #212529;
     background-color: #7cdbd5;
     font-size: 1.2rem;
-    border-radius: 0.5rem;
+    border-radius: 0.25rem;
     font-family: "Fredoka One", cursive;
     cursor: pointer;
 }
