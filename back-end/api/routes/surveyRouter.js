@@ -134,11 +134,19 @@ const surveyScheduler = (timeInfo, postInfo) => {
   let title = postInfo.title;
   let description = postInfo.description;
 
+  let dayLightSavings = 1;
+
   if (timeInfo.timeZone === "PST") {
     if (timeInfo.amPm === "AM") {
-      hour = timeInfo.hour + 8;
+      if (timeInfo.hour === 12) {
+        timeInfo.hour = 0;
+      }
+      hour = timeInfo.hour + 8 - dayLightSavings;
     } else if (timeInfo.amPm === "PM") {
-      hour = timeInfo.hour + 12 + 8;
+      if (timeInfo.hour === 12) {
+        timeInfo.hour = 0;
+      }
+      hour = timeInfo.hour + 12 + 8 - dayLightSavings;
       if (hour >= 24) {
         hour = hour - 24;
       }
@@ -148,9 +156,12 @@ const surveyScheduler = (timeInfo, postInfo) => {
       if (timeInfo.hour === 12) {
         timeInfo.hour = 0;
       }
-      hour = timeInfo.hour + 5;
+      hour = timeInfo.hour + 5 - dayLightSavings;
     } else if (timeInfo.amPm === "PM") {
-      hour = timeInfo.hour + 12 + 5;
+      if (timeInfo.hour === 12) {
+        timeInfo.hour = 0;
+      }
+      hour = timeInfo.hour + 12 + 5 - dayLightSavings;
       if (hour >= 24) {
         hour = hour - 24;
       }
@@ -173,7 +184,13 @@ const surveyScheduler = (timeInfo, postInfo) => {
     .getManagerID(manager_id)
     .then(data => {
       console.log("survey data", data);
-      let survey_id = data[data.length - 1].id; ///////////////
+      let survey_id = Math.max.apply(
+        Math,
+        data.map(function(o) {
+          return o.id;
+        })
+      );
+
       console.log("survey id", survey_id);
       if (data.length === 0) {
         console.log({
@@ -310,9 +327,17 @@ router.post("/", (req, res) => {
             db.getManagerID(postInfo.manager_id)
               .then(data => {
                 console.log("survey manager", data);
+
+                let survey_ID = Math.max.apply(
+                  Math,
+                  data.map(function(o) {
+                    return o.id;
+                  })
+                );
+
                 for (let i = 0; i < preFeelingIdsArray.length; i++) {
                   let post = {
-                    survey_id: data[data.length - 1].id, ///////possible issue
+                    survey_id: survey_ID,
                     feelings_id: preFeelingIdsArray[i]
                   };
                   surveyFeelingsDb

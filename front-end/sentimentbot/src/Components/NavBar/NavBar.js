@@ -128,10 +128,10 @@ class NavBar extends React.Component {
                       {localStorage.getItem('img_url') ? (<img className="navbar-image" src={source} alt="profile-img" />) : ("Options")}
                     </DropdownToggle>
                     <DropdownMenu right style={backgroundColor}>
-                      <DropdownItem>
+                      <DropdownItem onClick={() => history.push('/accountset')}>
                         <NavItem>
                           <NavLink>
-                            <div onClick={() => history.push('/accountset')}>Account Settings</div>
+                            <div>Account Settings</div>
                           </NavLink>
                         </NavItem>
                       </DropdownItem>

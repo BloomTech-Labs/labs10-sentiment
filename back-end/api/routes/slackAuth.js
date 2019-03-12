@@ -143,15 +143,15 @@ router.get("/", (req, res) => {
             console.log("postInfo", postInfo);
             db.insert(postInfo)
               .then(() => {
-                // sendToAuthorization();
                 res.redirect("https://sentimentbot.netlify.com/authorization");
               })
               .catch(serverErrorPost(res));
           } else {
             let { id } = data[0];
+            let updateInfo;
             console.log("id", id);
             if (!JSONresponse.bot) {
-              postInfo = {
+              updateInfo = {
                 access_token: JSONresponse.access_token,
                 user_id: JSONresponse.user_id,
                 team_name: JSONresponse.team_name,
@@ -162,7 +162,7 @@ router.get("/", (req, res) => {
                 channel_id: ""
               };
             } else if (JSONresponse.bot.bot_user_id) {
-              postInfo = {
+              updateInfo = {
                 access_token: JSONresponse.access_token,
                 user_id: JSONresponse.user_id,
                 team_name: JSONresponse.team_name,
@@ -174,7 +174,7 @@ router.get("/", (req, res) => {
               };
             }
             console.log("postInfo2", postInfo);
-            db.update(id, post)
+            db.update(id, updateInfo)
               .then(() => {
                 // sendToAuthorization();
                 res.redirect("https://sentimentbot.netlify.com/authorization");
