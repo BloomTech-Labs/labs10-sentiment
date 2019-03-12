@@ -418,8 +418,8 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
 
     console.log("jsonPayload time stamp", jsonPayload.message_ts);
     // console.log("surveyIdDep", surveyIdDep);
-    console.log('jsonPayload.attachments', jsonPayload.attachments);
-    let preText = jsonPayload.attachments[0].pretext;
+    console.log('jsonPayload.attachments', jsonPayload.original_message.attachments);
+    let preText = jsonPayload.original_message.attachments[0].pretext;
     let ArrayS = preText.split("#")
     let SurveyID = Number(ArrayS[1]);////////////////////////check
     console.log('preText', preText);
