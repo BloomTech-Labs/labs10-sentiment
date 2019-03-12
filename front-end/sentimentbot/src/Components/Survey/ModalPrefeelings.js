@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+// import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import  ModalEmoji from './ModalEmoji';
 
 import PreFeelingsChosen from './preFeelingsChosen';
@@ -20,52 +20,52 @@ import { deleteSurvey } from "../../actions/survey";
 import { fetchSingleSurvey } from "../../actions/survey";
 import { addPreFeeling } from "../../actions";
 
-class ModalPrefeelings extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      modal: false,
-    };
-    this.toggle = this.toggle.bind(this);
-  }
+class SurveyPrefeelings extends React.Component {
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     modal: true,
+  //   };
+  //   this.toggle = this.toggle.bind(this);
+  // }
 
-  toggle() {
-    this.setState(prevState => ({
-      modal: !prevState.modal
-    }));
-  }
+  // toggle() {
+  //   this.setState(prevState => ({
+  //     modal: !prevState.modal
+  //   }));
+  // }
 
-  onSelectTest1 = event => {
-    console.log(event.target.value, event.target.id, "hey!");
-    this.setState({
-      ...this.state,
-      option1: parseInt(event.target.value)
-    });
-  }
+  // onSelectTest1 = event => {
+  //   console.log(event.target.value, event.target.id, "hey!");
+  //   this.setState({
+  //     ...this.state,
+  //     option1: parseInt(event.target.value)
+  //   });
+  // }
 
-  onSelectTest2 = event => {
-    console.log(event.target.value, event.target.id, "hey!");
-    this.setState({
-      ...this.state,
-      option2: parseInt(event.target.value)
-    });
-  }
+  // onSelectTest2 = event => {
+  //   console.log(event.target.value, event.target.id, "hey!");
+  //   this.setState({
+  //     ...this.state,
+  //     option2: parseInt(event.target.value)
+  //   });
+  // }
 
-  onSelectTest3 = event => {
-    console.log(event.target.value, event.target.id, "hey!");
-    this.setState({
-      ...this.state,
-      option3: parseInt(event.target.value)
-    });
-  }
+  // onSelectTest3 = event => {
+  //   console.log(event.target.value, event.target.id, "hey!");
+  //   this.setState({
+  //     ...this.state,
+  //     option3: parseInt(event.target.value)
+  //   });
+  // }
 
-  onSelectTest4 = event => {
-    console.log(event.target.value, event.target.id, "hey!");
-    this.setState({
-      ...this.state,
-      option4: parseInt(event.target.value)
-    });
-  }
+  // onSelectTest4 = event => {
+  //   console.log(event.target.value, event.target.id, "hey!");
+  //   this.setState({
+  //     ...this.state,
+  //     option4: parseInt(event.target.value)
+  //   });
+  // }
   
   // addCustom = event => {
   //   event.preventDefault();
@@ -96,30 +96,32 @@ class ModalPrefeelings extends React.Component {
 
   render() {
     return (
-      <div>
-        <Button color="danger" onClick={this.toggle}>{this.props.buttonLabel}</Button>
+      <div className="survey-prefeels">
+        {/* <Button color="danger" onClick={this.toggle}>{this.props.buttonLabel}</Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}>Choose your potential responses</ModalHeader>
-          <ModalBody>
+          <ModalBody> */}
+          <p>Step 2: Customize your four possible survey responses.</p>
             <div className="survey-responsebox">
-            <button className="survey-modalbutton">Add a Custom Emoji <ModalEmoji state={this.props.state} addCustom={this.props.addCustom} emojiPicker={this.props.emojiPicker} /></button>
+            {/* <button className="survey-modalbutton">Add a Custom Emoji <ModalEmoji state={this.props.state} addCustom={this.props.addCustom} emojiPicker={this.props.emojiPicker} /></button> */}
                 <PreFeelingsChosen 
-                    onSelectTest1={this.props.onSelectTest1} 
-                    onSelectTest2={this.props.onSelectTest2}
-                    onSelectTest3={this.props.onSelectTest3}
-                    onSelectTest4={this.props.onSelectTest4}
+                    onSelectTest1={this.props.onSelectTest1}
+                    state = {this.props.state} 
                 />
-                <button className="survey-buttons" onClick={this.props.onConfirmation}>Confirm</button>
+                {/* <button className="survey-buttons" onClick={this.props.onConfirmation}>Confirm</button> */}
             </div>
-            <div className="survey-instructions">
+            <div className="emoji-custom">
+            <p>Not happy with the current selection? Add a new one here.</p><button className="survey-modalbutton"> <ModalEmoji state={this.props.state} addCustom={this.props.addCustom} emojiPicker={this.props.emojiPicker} onChangeHandler={this.props.onChangeHandler} /></button>
+            </div>
+            {/* <div className="survey-instructions">
                 <p className="instruction-p">Hit CONFIRM to add your choosen possible responses to the survey!</p>
-            </div>
-            
+            </div> */}
+{/*             
           </ModalBody>
           <ModalFooter>
             <Button color="primary" onClick={this.toggle}>Return</Button>{' '}
           </ModalFooter>
-        </Modal>
+        </Modal> */}
       </div>
     );
   }
@@ -154,6 +156,6 @@ function mapStateToProps(state) {
       fetchSingleSurvey,
       addPreFeeling
     }
-  )( ModalPrefeelings);
+  )( SurveyPrefeelings);
 
  ;

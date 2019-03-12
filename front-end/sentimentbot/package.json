@@ -17,6 +17,7 @@
         "react-router-dom": "^4.3.1",
         "react-scripts": "2.1.5",
         "react-select": "^2.4.1",
+        "react-stepzilla": "^6.0.0",
         "react-stripe-checkout": "^2.6.3",
         "react-stripe-elements": "^2.0.3",
         "reactstrap": "^7.1.0",

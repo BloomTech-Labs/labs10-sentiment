@@ -42,17 +42,22 @@ input[type=password]:focus {
 .settings-header {
     color: black;
     font-family: var(--headers-font-style);
-    font-size: 3.6rem;
+    font-size: 4rem;
     margin-top: 3%;
 }
 
 .btn-style {
-    background-color: var(--main-btn-color);
-    color: #fff;
-    border-radius: .25rem;
-    /* font-size: 1.4rem; */
-    width: 50%;
-    /* margin-top: 10px; */
+    color: white;
+    text-transform: uppercase;
+    background: #02C8A7;
+    border-radius: 0.25rem;
+    display: inline-block;
+    border: none;
+    font-size: .8rem;
+    width: 30%;
+    height: 30px;
+    display: flex;
+    justify-content: center;
 }
 
 .btn-style:hover {
@@ -68,7 +73,8 @@ input[type=password]:focus {
 .form-group {
     display: flex;
     flex-direction: column;
-    width: 80%;
+    /* width: 80%; */
+    width: 35rem;
     align-items: center;
 }
 
@@ -119,31 +125,37 @@ input[type=password]:focus {
     } */
 }
 
-@media (max-width: 600px) {
+@media (max-width: 900px) {
     input {
         width: 100%;
     }
     .btn-style {
-        width: 100%;
+        width: 40%;
     }
     .col-sm-6 {
         width: 100%;
     }
     .form-group {
-        width: 100%;
+        /* width: 100%; */
+        width: 30rem;
         margin-left: 5%;
     }
 
 }
 
-@media (max-width: 420px) {
+@media (max-width: 600px) {
     .container {
         width: 100%;
     }
     .btn-style {
-        width: 100%;
+        /* width: 60%; */
+        width: 10rem;
     }
     .reset {
         margin-bottom: 12%;
+    }
+    .form-group {
+        width: 17rem;
+        margin-left: 5%;
     }
 }

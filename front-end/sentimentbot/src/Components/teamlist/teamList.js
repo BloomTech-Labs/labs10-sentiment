@@ -86,11 +86,11 @@ class TeamList extends React.Component {
           <NavBar />
           <div className="content-container">
             <h1>{this.props.singleTeams[0].name}</h1>
-            <a
+            {/* <a
               href={`https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645&redirect_uri=${uri}&state=${localStorage.getItem(
                 "id"
               )}`}
-            />
+            /> */}
             <p>Team Join Code: {this.props.singleTeams[0].team_code}</p>
             <div className="eh-moodbot">
               <h3>Team Members</h3>
@@ -98,45 +98,45 @@ class TeamList extends React.Component {
                 <img
                   src={Eh}
                   alt="Eh MoodBot"
-                  width="150"
-                  height="150"
+                  width="160"
+                  height="190"
                 />
               </div>
             </div>
             <div className="teamlist-container team-scrollbar">
               {this.props.teamMembers.map(user => {
-                if(user.type === "manager"){
+                if (user.type === "manager") {
                   return (
-                  <div>
-                    <p>
-                      {user.firstName} {user.lastName}
-                    </p>
-                  </div>
-                );
-                }else{
+                    <div>
+                      <p>
+                        {user.firstName} {user.lastName}
+                      </p>
+                    </div>
+                  );
+                } else {
                   return (
-                  <div>
-                    <p>
-                      {user.firstName} {user.lastName}
-                    </p>
-                    <button
-                      className="teamlist-button"
-                      onClick={() =>
-                        this.handleClick({
-                          id: user.id,
-                          firstName: user.firstName,
-                          lastName: user.lastName,
-                          email: user.email,
-                          phone: user.phone,
-                          type: null,
-                          team_id: null
-                        })
-                      }
-                    >
-                      Remove
+                    <div>
+                      <p>
+                        {user.firstName} {user.lastName}
+                      </p>
+                      <button
+                        className="teamlist-button"
+                        onClick={() =>
+                          this.handleClick({
+                            id: user.id,
+                            firstName: user.firstName,
+                            lastName: user.lastName,
+                            email: user.email,
+                            phone: user.phone,
+                            type: null,
+                            team_id: null
+                          })
+                        }
+                      >
+                        Remove
                     </button>
-                  </div>
-                );
+                    </div>
+                  );
                 }
               })}
             </div>

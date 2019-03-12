@@ -62,6 +62,12 @@
     background-position: center center;
 }
 
+@media (max-width: 767px) {
+    .navbar-nav {
+        align-items: flex-start;
+    }
+}
+
 @media (max-width:500px) {
     .navbar-nav {
         align-items: flex-start;

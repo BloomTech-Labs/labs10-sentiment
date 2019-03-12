@@ -18,6 +18,10 @@ function Reports(props) {
         <div className="pie-container">
           <PieChart history={props.history} />
         </div>
+      <h2> View Reports </h2>
+      <button className="main-reports-container-button" onClick={() => props.history.push('/generatereport')}>Here</button>
+      <div className="pie-container">
+      <PieChart history={props.history} />
       </div>
       <FooterPage />
     </div>

@@ -130,42 +130,41 @@ class accountSettings extends React.Component {
           {this.state.response === 200 ? (
             <div>Email will be sent shortly</div>
           ) : (
-            <div className="settings-page">
-              <h3 className="settings-header">Settings</h3>
+              <div className="settings-page">
+                <h3 className="settings-header">Settings</h3>
 
-              <p>Reset your password here:</p>
-              <form className="account-form" onSubmit={this.handleSubmit}>
-                <FormGroup row>
-                  <Label for="emailField" sm={2}>
-                    Email
+                <p>Reset your password here:</p>
+                <form className="account-form" onSubmit={this.handleSubmit}>
+                  <FormGroup row>
+                    <Label for="emailField" sm={2}>
+                      Email
                   </Label>
-                  <Col sm={6}>
-                    <Input
-                      type="email"
-                      name="email"
-                      id="emailField"
-                      placeholder="Enter email here"
-                    />
-                  </Col>
-                </FormGroup>
-                <br />
+                    <Col sm={6}>
+                      <Input
+                        type="email"
+                        name="email"
+                        id="emailField"
+                        placeholder="Enter email here"
+                      />
+                    </Col>
+                  </FormGroup>
 
-                <button
-                  className="btn-style"
-                  onSubmit={this.handleSubmit}
-                  color="primary"
-                >
-                  Submit
+                  <button
+                    className="btn-style"
+                    onSubmit={this.handleSubmit}
+                    color="primary"
+                  >
+                    Reset Password
                 </button>
-              </form>
-              <button
-                className="btn-style btn-style2"
-                onClick={this.handleLeaveTeam}
-              >
-                Leave Team
+                </form>
+                <button
+                  className="btn-style btn-style2"
+                  onClick={this.handleLeaveTeam}
+                >
+                  Leave Team
               </button>
-            </div>
-          )}
+              </div>
+            )}
         </div>
       </div>
       <FooterPage />

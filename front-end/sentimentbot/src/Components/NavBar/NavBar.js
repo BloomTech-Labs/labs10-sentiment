@@ -57,7 +57,7 @@ class NavBar extends React.Component {
           <>
             <div>
               <Navbar expand="md">
-                <NavbarBrand href="/home"><img className="navbot" src={Eh}  alt="ehbot"/></NavbarBrand>
+                <NavbarBrand href="/home"><img className="navbot" src={Eh} alt="ehbot" /></NavbarBrand>
                 <NavbarToggler onClick={this.toggle} />
                 <Collapse isOpen={this.state.isOpen} navbar>
                   <Nav className="ml-auto" navbar>
@@ -68,22 +68,22 @@ class NavBar extends React.Component {
                     </NavItem>
                     <NavItem>
                       <NavLink>
-                      <div onClick={() => history.push('/teamlist')}>Teamlist</div>
+                        <div onClick={() => history.push('/teamlist')}>Teamlist</div>
                       </NavLink>
                     </NavItem>
                     <NavItem>
                       <NavLink>
-                      <div onClick={() => history.push('/survey')}>Survey</div>
+                        <div onClick={() => history.push('/survey')}>Survey</div>
                       </NavLink>
                     </NavItem>
                     <NavItem>
                       <NavLink>
-                      <div onClick={() => history.push('/reports')}>Reports</div>
+                        <div onClick={() => history.push('/reports')}>Reports</div>
                       </NavLink>
                     </NavItem>
                     <NavItem>
                       <NavLink>
-                      <div onClick={() => history.push('/billing')}>Billing</div>
+                        <div onClick={() => history.push('/billing')}>Billing</div>
                       </NavLink>
                     </NavItem>
                     <UncontrolledDropdown nav inNavbar>
@@ -91,10 +91,10 @@ class NavBar extends React.Component {
                         {localStorage.getItem('img_url') ? (<img className="navbar-image" src={source} alt="profile-img" />) : ("Options")}
                       </DropdownToggle>
                       <DropdownMenu right style={backgroundColor}>
-                        <DropdownItem>
+                        <DropdownItem onClick={() => history.push('/accountset')}>
                           <NavItem>
                             <NavLink>
-                            <div onClick={() => history.push('/accountset')}>Account Settings</div>
+                              <div>Account Settings</div>
                             </NavLink>
                           </NavItem>
                         </DropdownItem>
@@ -111,46 +111,47 @@ class NavBar extends React.Component {
                 </Collapse>
               </Navbar>
             </div>
-        </>
-      ) : (
-        <Navbar expand="md">
-        <NavbarBrand href="/home">MOOD</NavbarBrand>
-        <NavbarToggler onClick={this.toggle} style={whiteBackground} />
-        <Collapse isOpen={this.state.isOpen} navbar>
-          <Nav className="ml-auto" navbar>
-          <NavItem>
-          <NavLink>
-          <div onClick={() => history.push('/profile')}>Profile</div>
-          </NavLink>
-        </NavItem>
-          <UncontrolledDropdown nav inNavbar>
-            <DropdownToggle style={fontColor} nav caret>
-            {localStorage.getItem('img_url') ? (<img className="navbar-image" src={source} alt="profile-img" />) : ("Options")}
-            </DropdownToggle>
-            <DropdownMenu right style={backgroundColor}>
-              <DropdownItem>
-                <NavItem>
-                  <NavLink>
-                  <div onClick={() => history.push('/accountset')}>Account Settings</div>
-                  </NavLink>
-                </NavItem>
-              </DropdownItem>
-             <DropdownItem>
-                          <NavItem>
-                            <NavLink>
-                              <Logout auth={auth} />
-                            </NavLink>
-                          </NavItem>
-                        </DropdownItem>
-            </DropdownMenu>
-          </UncontrolledDropdown>
-        </Nav>
-      </Collapse>
-    </Navbar>
-      )}
-  </>
-  );
-}};
+          </>
+        ) : (
+            <Navbar expand="md">
+              <NavbarBrand href="/home"><img className="navbot" src={Eh} alt="ehbot" /></NavbarBrand>
+              <NavbarToggler onClick={this.toggle} style={whiteBackground} />
+              <Collapse isOpen={this.state.isOpen} navbar>
+                <Nav className="ml-auto" navbar>
+                  <NavItem>
+                    <NavLink>
+                      <div onClick={() => history.push('/profile')}>Profile</div>
+                    </NavLink>
+                  </NavItem>
+                  <UncontrolledDropdown nav inNavbar>
+                    <DropdownToggle style={fontColor} nav caret>
+                      {localStorage.getItem('img_url') ? (<img className="navbar-image" src={source} alt="profile-img" />) : ("Options")}
+                    </DropdownToggle>
+                    <DropdownMenu right style={backgroundColor}>
+                      <DropdownItem onClick={() => history.push('/accountset')}>
+                        <NavItem>
+                          <NavLink>
+                            <div>Account Settings</div>
+                          </NavLink>
+                        </NavItem>
+                      </DropdownItem>
+                      <DropdownItem>
+                        <NavItem>
+                          <NavLink>
+                            <Logout auth={auth} />
+                          </NavLink>
+                        </NavItem>
+                      </DropdownItem>
+                    </DropdownMenu>
+                  </UncontrolledDropdown>
+                </Nav>
+              </Collapse>
+            </Navbar>
+          )}
+      </>
+    );
+  }
+};
 
 function mapStateToProps(state) {
   return {

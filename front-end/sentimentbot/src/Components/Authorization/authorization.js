@@ -9,7 +9,8 @@ import {
   getTeams,
   getSingleTeam,
   getFeelings,
-  getPreFeeling
+  getPreFeeling,
+  getManagers
 } from "../../actions/index";
 import history from "../history";
 import "./authorization.css";
@@ -34,6 +35,7 @@ class Authorization extends React.Component {
     this.props.getTeamMembers();
     this.props.getTeams();
     this.props.getPreFeeling();
+    this.props.getManagers(localStorage.getItem('id'));
     this.setState({
       initial: true
     })
@@ -180,7 +182,8 @@ function mapStateToProps(state) {
     singleSurvey: state.surveyReducer.singleSurvey,
     teams: state.teamsReducer.teams,
     singleTeams: state.teamsReducer.singleTeams,
-    feelings: state.feelingsReducer.feelings
+    feelings: state.feelingsReducer.feelings,
+    managers: state.managersReducer.managers
   };
 }
 
@@ -195,6 +198,7 @@ export default connect(
     getTeams,
     getSingleTeam,
     getFeelings,
-    getPreFeeling
+    getPreFeeling,
+    getManagers,
   }
 )(Authorization);

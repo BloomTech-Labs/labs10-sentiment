@@ -7574,6 +7574,11 @@ react-select@^2.4.1:
     react-input-autosize "^2.2.1"
     react-transition-group "^2.2.1"
 
+react-stepzilla@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/react-stepzilla/-/react-stepzilla-6.0.0.tgz#30b045d85e41ef6ffd85e2b249bf2761f07886ea"
+  integrity sha512-0OcqqGuKDbMSHoqy5C3fMoEWN0O0DwooFP1eli8rHc7Kpnmc6JonwAN39dI71AjV5W5OsziB0L//fdePWqZHPw==
+
 react-stripe-checkout@^2.6.3:
   version "2.6.3"
   resolved "https://registry.yarnpkg.com/react-stripe-checkout/-/react-stripe-checkout-2.6.3.tgz#3173a870b04e5a3c321a06d24cd53c6030111c45"
