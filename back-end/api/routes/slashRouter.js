@@ -421,7 +421,7 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
           .getID(id)
           .then(data => {
             if (data.type === "manager") {
-              res.status(400).json({ message: "manager responded to survey" });
+              res.json(`Manager's Cannot Respond to Survey's!`);
             } else {
               dbSurveys
                 .getID(surveyIdDep)
@@ -481,20 +481,15 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                               )
                               .then(data => {
                                 console.log("data mem sur", data);
-                                // if (data.length === 0) {
                                 dbFeelings
                                   .insert(postFeel)
                                   .then(() => {
-                                    res.redirect(
-                                      "https://sentimentbot.netlify.com/authorization"
-                                    );
+                                    // res.redirect(
+                                    //   "https://sentimentbot.netlify.com/authorization" ///////////////
+                                    // );
+                                    res.json(`Submited Feeling: ${postFeel.feeling_text}`);
                                   })
                                   .catch(serverErrorPost(res));
-                                // } else {
-                                //   res.status(400).json({
-                                //     error: "Feeling Exists for Team Member and Survey"
-                                //   });
-                                // }
                               })
                               .catch(serverErrorGet(res));
                           })
