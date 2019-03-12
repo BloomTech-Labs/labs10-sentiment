@@ -431,10 +431,12 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
     dbAuth
       .getBySlackUserId(jsonPayload.user.id)
       .then(data => {
+        console.log('getBySlackUserId',data);
         let id = data.member_id;
         dbTeamMembers
           .getID(id)
           .then(data => {
+            console.log('data member',data);
             if (data.type === "manager") {
               res.json(`Manager's Cannot Respond to Survey's!`);
             } else {
