@@ -133,7 +133,7 @@ router.post("/connect-channel-to-survey", urlencodedParser, (req, res) => {
         })
         .catch(
           err => {
-            res.json({error: `member with ID ${member_id} does not exist.`});
+            res.json(`Error: member with ID ${member_id} does not exist.`);
           }
           // serverErrorGetID(res, "Auth", member_id)
         );
