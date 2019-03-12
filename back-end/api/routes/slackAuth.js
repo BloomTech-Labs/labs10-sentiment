@@ -239,4 +239,11 @@ router.put("/slackAuth/:id", (req, res) => {
   });
 });
 
+router.get("/single/:id", (req, res) => {
+  const { id } = req.params;
+  db.get().where({ member_id: id })
+    .then(getSuccess(res))
+    .catch(serverErrorGetID(res, type, id));
+});
+
 module.exports = router;

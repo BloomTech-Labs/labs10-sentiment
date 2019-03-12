@@ -64,6 +64,7 @@ export const getSingleTeamMembers = email => dispatch => {
       dispatch({ type: SINGLE_TEAMMEMBERS_SUCCESS, payload: response.data });
       localStorage.setItem('team_id', response.data[0].team_id)
       localStorage.setItem('type', response.data[0].type)
+      localStorage.setItem('id', response.data[0].id)
     })
     .catch(err => dispatch({ type: SINGLE_TEAMMEMBERS_FAILURE, payload: err }));
 };

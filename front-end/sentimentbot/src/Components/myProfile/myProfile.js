@@ -14,7 +14,8 @@ import {
   getSurvey,
   joinTeam,
   getPreFeeling,
-  getFeelings
+  getFeelings,
+  getManagers
 } from "../../actions/index";
 import NavBar from "../NavBar/NavBar";
 import GenerateTeams from "./generateTeams";
@@ -42,6 +43,7 @@ class Profile extends React.Component {
     this.props.getSingleTeamMembers(localStorage.getItem("email"));
     this.props.getSurvey(localStorage.getItem('id'));
     this.props.getTeams();
+    this.props.getManagers(localStorage.getItem('id'));
     this.props.getSingleTeam(localStorage.getItem('team_id'));
       this.props.getFeelings(localStorage.getItem('id'));
       if (this.props.survey.length > 0) {
@@ -219,6 +221,7 @@ class Profile extends React.Component {
     });
   };
 
+
   // submitHandler = event => {
   //   event.preventDefault();
   //   this.props.addTeamMembers(this.state);
@@ -233,9 +236,6 @@ class Profile extends React.Component {
     if(!localStorage.getItem('email')){
       this.props.history.push('/home')
     }
-
-
-    
 
     const view = this.state.view;
 
@@ -256,7 +256,7 @@ class Profile extends React.Component {
               </h1>
               <div className="sub-container-1">
                 <div className="sub-container-2">
-                  <h2>Join your team on Slack!</h2>
+                  {this.props.managers.length === 0 ? (<h2>Join your team on Slack!</h2>) : (<p>You've already implemented Mood on Slack. You can update your workspace by clicking the button below.</p>)}
                   {this.props.singleTeamMembers[0].type === "manager" ? (
                     <a
                       href={`https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645&redirect_uri=${uri}&state=${
@@ -492,7 +492,9 @@ function mapStateToProps(state) {
     singleSurvey: state.surveyReducer.singleSurvey,
     singleTeams: state.teamsReducer.singleTeams,
     feelings: state.feelingsReducer.feelings,
-    teams: state.teamsReducer.teams
+    teams: state.teamsReducer.teams,
+    managers: state.managersReducer.managers,
+    managersIsFetching: state.managersReducer.managersIsFetching
   };
 }
 
@@ -510,7 +512,8 @@ export default connect(
     getSurvey,
     joinTeam,
     getPreFeeling,
-    getFeelings
+    getFeelings,
+    getManagers
   }
 )(Profile);
 

@@ -280,7 +280,7 @@ class ModalSurvey extends React.Component {
       ]
 
         return (
-            <div className="modalpage-container">
+            <div className="modalpage-container background-color">
                 <NavBar />
                 {/* <div className="modalsurvey-container">
                     <div className="modalsurvey-title">
