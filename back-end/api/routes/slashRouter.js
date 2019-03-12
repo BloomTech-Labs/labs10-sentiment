@@ -348,8 +348,8 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
   } else if (reqBody.message === true) {
     let surveyId = reqBody.survey_id;
     // console.log("surveyId", surveyId);
-    surveyIdDep = surveyId;
-    console.log("surveyIdDep test", surveyIdDep);
+    // surveyIdDep = surveyId;
+    // console.log("surveyIdDep test", surveyIdDep);
     let title = reqBody.title;
     let description = reqBody.description;
     let options = reqBody.options;
@@ -379,6 +379,7 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
           let message = {
             channel: channel_id, //////////////////////////////make dynamic team_id
             text: `${title}`,
+            pretext: `Survey Id: ${surveyId}`,
             as_user: false,
             attachments: [
               {
@@ -411,7 +412,7 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
     /////////////////////////////////////////////
 
     console.log("jsonPayload time stamp", jsonPayload.message_ts);
-    console.log("surveyIdDep", surveyIdDep);
+    // console.log("surveyIdDep", surveyIdDep);
 
     dbAuth
       .getBySlackUserId(jsonPayload.user.id)
@@ -424,7 +425,7 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
               res.json(`Manager's Cannot Respond to Survey's!`);
             } else {
               dbSurveys
-                .getID(surveyIdDep)
+                .getID(surveyIdDep)///////////////////////////////////////////
                 .then(data => {
                   if (data.length > 0) {
                     console.log("data survey id for time", data);
@@ -444,7 +445,7 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                     }
 
                     dbSurveys
-                      .update(surveyIdDep, putInfo)
+                      .update(surveyIdDep, putInfo)///////////////////////////////
                       .then(() => {
                         ////////////////////////////////
                         let userIdSlack = jsonPayload.user.id;
