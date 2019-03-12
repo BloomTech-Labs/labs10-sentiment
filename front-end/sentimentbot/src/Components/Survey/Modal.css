@@ -276,6 +276,7 @@ body {
     border: 1px solid var(--hover-border-color);
     padding-top: 1%;
     border-radius: .25rem;
+    min-height: 100px;
 }
 
 .pre-p {
