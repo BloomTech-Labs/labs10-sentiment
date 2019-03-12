@@ -16,10 +16,10 @@ export const SINGLE_MANAGERS_START = 'SINGLE_MANAGERS_START';
 export const SINGLE_MANAGERS_SUCCESS = 'SINGLE_MANAGERS_SUCCESS';
 export const SINGLE_MANAGERS_FAILURE = 'SINGLE_MANAGERS_FAILURE';
 
-export const getManagers = () => dispatch => {
+export const getManagers = id => dispatch => {
     dispatch({ type: FETCH_MANAGERS_START });
     axios
-    .get('https://botsentiment.herokuapp.com/api/managers')
+    .get(`https://botsentiment.herokuapp.com/api/slackauth/single/${id}`)
     .then(response => {
         dispatch({ type: FETCH_MANAGERS_SUCCESS, payload: response.data })
     })
