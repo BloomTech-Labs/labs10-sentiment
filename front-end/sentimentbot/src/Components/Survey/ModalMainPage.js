@@ -21,6 +21,7 @@ import { deleteSurvey } from "../../actions/survey";
 import { fetchSingleSurvey } from "../../actions/survey";
 import { addPreFeeling, getFeelings, getPreFeeling } from "../../actions";
 import loadinggif from '../callback/loading.svg'
+import StepZilla from 'react-stepzilla';
 
 import Footer from '../Footer/footer';
 // import FooterBanner from "../PNG/MOODfooterBANNER6.png";
@@ -38,11 +39,11 @@ class ModalSurvey extends React.Component {
         amPm: "AM",
         timeZone: "EST",
         option1: null,
-        option2: null,
-        option3: null,
+        textArray: [':joy:',':sunglasses:',':scream:',':pensive:'],
+        strArr: [],
         option4: null,
-        preFeelingIdsArray: [],
-        custom: "",
+        preFeelingIdsArray: [34, 9, 5, 38],
+        custom: ['', ""],
         loading: true,
         added: false
       }
@@ -67,43 +68,77 @@ class ModalSurvey extends React.Component {
     }
   
     componentDidUpdate(prevProps, prevState) {
-      if(this.props.prefeelings.length !== prevProps.prefeelings.length) {
-        this.setState({
-          option1: this.props.prefeelings[0].id,
-          option2: this.props.prefeelings[0].id,
-          option3: this.props.prefeelings[0].id,
-          option4: this.props.prefeelings[0].id,
-        })
-      }
-      if(this.state.added === true && this.props.isFetching === false) {
+      // if(this.props.prefeelings.length !== prevProps.prefeelings.length) {
+      // }
+      if(this.props.isFetching === false && this.state.added === true)  {
         this.props.getPreFeeling();
         this.setState({
-          added: false
+          added: false,
+          custom: ''
         })
       }
     }
 
-  onChangeHandler = event => {
-    this.setState({
+    titleChangeHandler= event => {
+      this.setState({
       [event.target.name]: event.target.value
-    });
+      })
+    }
+
+  onChangeHandler = event => {
+    let string = this.state.custom.join(" ")
+    let strArr = string.split(" ")
+    if (strArr.length > 2) {
+      strArr.splice(1, strArr.length-2,)
+    }
+    this.setState({
+      [event.target.name]: [event.target.value, this.state.custom[1]],
+      strArr: strArr
+    })
+    // this.setState({
+    //   [event.target.name]: [event.target.value, this.state.custom[1]]
+    // });
   };
 
   emojiPicker = (emoji, event) =>  {
     event.preventDefault();
+    let string = this.state.custom.join(" ")
+    let strArr = string.split(" ")
+    if (strArr.length > 2) {
+      strArr.splice(1, strArr.length-2,)
+      this.setState({
+        custom: [this.state.custom[0], emoji.colons],
+        strArr: strArr
+      })
+    }
     this.setState({
-      custom: emoji.colons
+      custom: [this.state.custom[0], emoji.colons],
+      strArr: strArr
     })
+    console.log(string)
+    console.log(strArr)
   }
 
   addCustom = event => {
     event.preventDefault();
-    const custom = {feeling_text: this.state.custom};
+    // let string = this.state.custom.join(" ")
+    // let strArr = string.split(" ")
+    // if (strArr.length > 2) {
+    //   strArr.splice(1, strArr.length-2,)
+    // }
+    // this.setState({
+    //   custom: [, this.state.custom[1]],
+    //   strArr: strArr
+    // })
+    const custom = {feeling_text: this.state.strArr.join(" ")};
     this.props.addPreFeeling(custom)
+    this.props.getPreFeeling();
     this.setState({
       added: true,
-      custom: ''
+      custom: ["",""],
+      strArr: ['','']
     })
+    alert('Your custom emoji was added!')
     // this.props.history.push("/emojiloading")
   }
   
@@ -130,15 +165,25 @@ class ModalSurvey extends React.Component {
   };
 
   onSelectTest1 = event => {
-    console.log(event.target.value, event.target.id, "hey!");
+    console.log(event.currentTarget.getAttribute('value'), event.target.id, "hey!");
+    if(this.state.preFeelingIdsArray.length > 3) {
+      this.state.preFeelingIdsArray.shift();
+      this.state.textArray.shift();
+      this.setState({
+        ...this.state,
+        textArray: [...this.state.textArray,event.currentTarget.getAttribute('name')],
+        preFeelingIdsArray: [...this.state.preFeelingIdsArray, parseInt(event.currentTarget.getAttribute('value'))],
+      });
+    }
     this.setState({
       ...this.state,
-      option1: parseInt(event.target.value)
+      textArray: [...this.state.textArray,event.currentTarget.getAttribute('name')],
+      preFeelingIdsArray: [...this.state.preFeelingIdsArray, parseInt(event.currentTarget.getAttribute('value'))],
     });
   }
 
   onSelectTest2 = event => {
-    console.log(event.target.value, event.target.id, "hey!");
+    console.log(event.target.value, event.target.id, event.target.key, "hey!");
     this.setState({
       ...this.state,
       option2: parseInt(event.target.value)
@@ -226,10 +271,17 @@ class ModalSurvey extends React.Component {
     };
 
     render() {
+      
+      const steps = [
+        {name: 'Step 1: Title & Description', component: <ModalTitles state={this.state} titleChangeHandler={this.titleChangeHandler}/>},
+        {name: "Step 2: Select your response options", component: <ModalPrefeelings state={this.state} onConfirmation={this.onConfirmation} onSelectTest1={this.onSelectTest1} onSelectTest2={this.onSelectTest2} onSelectTest3={this.onSelectTest3} onSelectTest4={this.onSelectTest4} emojiPicker={this.emojiPicker} addCustom={this.addCustom} onChangeHandler={this.onChangeHandler} />},
+        {name: "Step 3: Schedule when to send it out", component: <ModalSchedule state={this.state} onChangeDropDown ={this.onChangeDropDown} createSurvey={this.createSurvey} />}
+      ]
+
         return (
             <div className="modalpage-container">
                 <NavBar />
-                <div className="modalsurvey-container">
+                {/* <div className="modalsurvey-container">
                     <div className="modalsurvey-title">
                         <h1 className="modal-header">Survey Maker</h1>
                     </div>
@@ -237,12 +289,18 @@ class ModalSurvey extends React.Component {
                         <MoodBotCarousel />
                     </div>
                     <div className="modalsurvey-buttonbox">
-                        <button className="survey-modalbutton">Title <ModalTitles state={this.state} onChangeHandler={this.onChangeHandler} /></button>
-                        <button className="survey-modalbutton">Responses <ModalPrefeelings state={this.state} onConfirmation={this.onConfirmation} onSelectTest1={this.onSelectTest1} onSelectTest2={this.onSelectTest2} onSelectTest3={this.onSelectTest3} onSelectTest4={this.onSelectTest4} emojiPicker={this.emojiPicker} addCustom={this.addCustom} /></button>
+                        <button className="survey-modalbutton 1">Title <ModalTitles state={this.state} onChangeHandler={this.onChangeHandler} /></button>
+                        <button className="survey-modalbutton 2">Responses <ModalPrefeelings state={this.state} onConfirmation={this.onConfirmation} onSelectTest1={this.onSelectTest1} onSelectTest2={this.onSelectTest2} onSelectTest3={this.onSelectTest3} onSelectTest4={this.onSelectTest4} emojiPicker={this.emojiPicker} addCustom={this.addCustom} /></button>
                         <button className="survey-modalbutton">Schedule <ModalSchedule state={this.state} onChangeDropDown ={this.onChangeDropDown} /></button>
                         <button className="surveysubmit-button" onClick={this.createSurvey}>Submit</button>
+
+                        
                     </div>
-                </div>
+                    
+                </div> */}
+                <h1 className="survey-header">Survey
+                </h1>
+                <StepZilla steps={steps} />
                 <Footer />
                 {/* <div className="modalfooter">
                   <p className="modalcopyright-words">© Copyright M.O.O.D All Rights Reserved.</p>

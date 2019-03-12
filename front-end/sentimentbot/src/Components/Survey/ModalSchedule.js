@@ -1,27 +1,27 @@
 import React from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+// import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 class ModalSchedule extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      modal: false,
-      manager_id: 0,
-      dailyWeeklyMonthly: "daily",
-      hour: 1,
-      min: 1,
-      amPm: "AM",
-      timeZone: "EST",
-    };
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     modal: true,
+  //     manager_id: 0,
+  //     dailyWeeklyMonthly: "daily",
+  //     hour: 1,
+  //     min: 1,
+  //     amPm: "AM",
+  //     timeZone: "EST",
+  //   };
 
-    this.toggle = this.toggle.bind(this);
-  }
+  //   this.toggle = this.toggle.bind(this);
+  // }
 
-  toggle() {
-    this.setState(prevState => ({
-      modal: !prevState.modal
-    }));
-  }
+  // toggle() {
+  //   this.setState(prevState => ({
+  //     modal: !prevState.modal
+  //   }));
+  // }
 
   onChangeDropDown = event => {
     console.log(event.target.value, event.target.id);
@@ -47,14 +47,15 @@ class ModalSchedule extends React.Component {
 
   render() {
     return (
-      <div>
-        <Button color="danger" onClick={this.toggle}>{this.props.buttonLabel}</Button>
+      <div className="survey-schedule">
+        {/* <Button color="danger" onClick={this.toggle}>{this.props.buttonLabel}</Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}>Schedule</ModalHeader>
-          <ModalBody>
-            <div className="survey-instructions">
+          <ModalBody> */}
+            {/* <div className="survey-instructions">
                 <p className="instruction-p">Set up a schedule for your survey to be sent out!</p>
-            </div>
+            </div> */}
+            <p>Step 3: Schedule a time for your survey to be sent out.</p>
             <div className="survey-inputbox">
                 <label className="survey-inputlabel">Recurrence</label>
                 <select id="dailyWeeklyMonthly" value={this.props.state.dailyWeeklyMonthly} onChange={this.props.onChangeDropDown}>
@@ -159,11 +160,12 @@ class ModalSchedule extends React.Component {
                 <option value="PST">pst</option>
                 </select>
             </div>
-          </ModalBody>
+            <button className="create-survey" onClick={this.props.createSurvey}>Create Survey</button>
+          {/* </ModalBody>
           <ModalFooter>
             <Button color="primary" onClick={this.toggle}>Return</Button>{' '}
           </ModalFooter>
-        </Modal>
+        </Modal> */}
       </div>
     );
   }

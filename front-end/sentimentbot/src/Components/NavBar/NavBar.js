@@ -114,7 +114,7 @@ class NavBar extends React.Component {
         </>
       ) : (
         <Navbar expand="md">
-        <NavbarBrand href="/home">MOOD</NavbarBrand>
+        <NavbarBrand href="/home"><img className="navbot" src={Eh}  alt="ehbot"/></NavbarBrand>
         <NavbarToggler onClick={this.toggle} style={whiteBackground} />
         <Collapse isOpen={this.state.isOpen} navbar>
           <Nav className="ml-auto" navbar>

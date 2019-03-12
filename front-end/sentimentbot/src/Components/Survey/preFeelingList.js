@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Emoji } from 'emoji-mart'
 
 
 import { 
@@ -13,8 +14,6 @@ import {
 function PreFeelingList(props) {
   let responses = props.prefeelings.length;
 
-  console.log(props.prefeelings[0]);
-
   // function pickedResponse(i) {
   //   const id = props.singlePreFeelings[0].id;
     // props.addPreFeeling(id); // POST?
@@ -25,22 +24,76 @@ function PreFeelingList(props) {
     let responseChoices = [];
     // {this.props.prefeelings.map(prefeeling =>
     for (let i = 0; i < responses; i++) {
+      let testText = props.prefeelings[i].feeling_text
+        let breakTest = testText.split(" ");
+        let result = [];
+        for (let i = 0; i < breakTest.length; i++) {
+          if (breakTest[i].indexOf(":") === -1) {
+            let textP = breakTest[i] + " ";
+            result.push(textP);
+          } else if (breakTest[i].indexOf(":") > -1) {
+            let textE = <Emoji emoji={breakTest[i]} size={24} />;
+            result.push(textE);
+          }
+        }
+
       responseChoices.push(
-    
-          <option key={props.prefeelings[i].id} value={props.prefeelings[i].id}>{props.prefeelings[i].feeling_text}</option>
+          <div className="pre-p" onClick={props.onSelectTest1} key={props.prefeelings[i].id} value={props.prefeelings[i].id} name={props.prefeelings[i].feeling_text}>{result}</div>
     
       );
     }
     return responseChoices;
   }
 
+  function ArrayChoices() {
+    // if(props.state.textArray.length = 0) {
+    //   return null
+    // }
+    let responses = props.state.preFeelingIdsArray.length;
+
+      let responseChoices = [];
+      // {this.props.prefeelings.map(prefeeling =>
+      for (let i = 0; i < responses; i++) {
+        let testText = props.state.textArray[i]
+          let breakTest = testText.split(" ");
+          let result = [];
+          for (let i = 0; i < breakTest.length; i++) {
+            if (breakTest[i].indexOf(":") === -1) {
+              let textP = breakTest[i] + " ";
+              result.push(textP);
+            } else if (breakTest[i].indexOf(":") > -1) {
+              let textE = <Emoji emoji={breakTest[i]} size={24} />;
+              result.push(textE);
+            }
+          }
+  
+        responseChoices.push(
+            <div key={i}>{result}</div>
+      
+        );
+      }
+      return responseChoices;
+    }
+
+  
+
+
   return (
-    <div>
-      <select onChange={props.onSelectTest1}>{preFeelingChoices()}</select>
-      <select onChange={props.onSelectTest2}>{preFeelingChoices()}</select>
-      <select onChange={props.onSelectTest3}>{preFeelingChoices()}</select>
-      <select onChange={props.onSelectTest4}>{preFeelingChoices()}</select>
-    </div>
+    <>
+    <div className="dropdown">
+    <button className="dropbtn"> Customize
+    <div className="dropdown-content">
+      {preFeelingChoices()}
+      </div>
+      </button>
+      </div>
+      <div className="text-area-field">
+      <p>These are the pre-set responses to your survey. Feel free to customize above. Please pick four unique options!</p>
+      <div className="array-area-field">
+      {ArrayChoices()}
+      </div>
+      </div>
+    </>
   )};
 
 
