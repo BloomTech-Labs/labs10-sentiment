@@ -117,9 +117,7 @@ router.post("/connect-channel-to-survey", urlencodedParser, (req, res) => {
           if (data[0].type !== "manager") {
             res
               .status(400)
-              .json(
-                `Team Members do not require channel connection!`
-              );
+              .json(`Team Members do not require channel connection!`);
           } else {
             dbAuth
               .update(id, post)
@@ -153,9 +151,6 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
   // res.status(200).end(); // best practice to respond with empty 200 status code
   let reqBody = req.body;
   console.log("reqBody", reqBody);
-
-
-
 
   if (reqBody.command === "/send-me-buttons") {
     let responseURL = reqBody.response_url;
@@ -192,7 +187,8 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                             // let title = data[data.length - 1].title;
                             // let description = data[data.length - 1].description;
 
-                            let survey_id = Math.max.apply(    ////////////////////////want all survey's for loop????
+                            let survey_id = Math.max.apply(
+                              ////////////////////////want all survey's for loop????
                               Math,
                               data.map(function(o) {
                                 return o.id;
@@ -278,7 +274,6 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                                                 arrayOptions
                                               );
                                               let message = {
-                                                
                                                 attachments: [
                                                   {
                                                     title: `${title}`,
@@ -418,13 +413,20 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
 
     console.log("jsonPayload time stamp", jsonPayload.message_ts);
     // console.log("surveyIdDep", surveyIdDep);
-    console.log('jsonPayload.attachments', jsonPayload.original_message.attachments);
+    console.log(
+      "jsonPayload.original_message",
+      jsonPayload.original_message
+    );
+    console.log(
+      "jsonPayload.original_message.attachments",
+      jsonPayload.original_message.attachments
+    );
     let preText = jsonPayload.original_message.attachments[0].pretext;
-    let ArrayS = preText.split("#")
-    let SurveyID = Number(ArrayS[1]);////////////////////////check
-    console.log('preText', preText);
-    console.log('ArrayS', ArrayS);
-    console.log('SurveyID', SurveyID);
+    let ArrayS = preText.split("#");
+    let SurveyID = Number(ArrayS[1]); ////////////////////////check
+    console.log("preText", preText);
+    console.log("ArrayS", ArrayS);
+    console.log("SurveyID", SurveyID);
 
     dbAuth
       .getBySlackUserId(jsonPayload.user.id)
@@ -437,7 +439,7 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
               res.json(`Manager's Cannot Respond to Survey's!`);
             } else {
               dbSurveys
-                .getID(SurveyID)///////////////////////////////////////////check
+                .getID(SurveyID) ///////////////////////////////////////////check
                 .then(data => {
                   if (data.length > 0) {
                     console.log("data survey id for time", data);
@@ -457,7 +459,7 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                     }
 
                     dbSurveys
-                      .update(SurveyID, putInfo)///////////////////////////////
+                      .update(SurveyID, putInfo) ///////////////////////////////
                       .then(() => {
                         ////////////////////////////////
                         let userIdSlack = jsonPayload.user.id;
@@ -500,7 +502,11 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                                     // res.redirect(
                                     //   "https://sentimentbot.netlify.com/authorization" ///////////////
                                     // );
-                                    res.json(`Submited Feeling: ${postFeel.feeling_text}`);
+                                    res.json(
+                                      `Submited Feeling: ${
+                                        postFeel.feeling_text
+                                      }`
+                                    );
                                   })
                                   .catch(serverErrorPost(res));
                               })
