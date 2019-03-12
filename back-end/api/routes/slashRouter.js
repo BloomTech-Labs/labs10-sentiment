@@ -427,12 +427,13 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
     console.log("preText", preText);
     console.log("ArrayS", ArrayS);
     console.log("SurveyID", SurveyID);
+    console.log("jsonPayload.user.id", jsonPayload.user.id);
 
     dbAuth
       .getBySlackUserId(jsonPayload.user.id)
       .then(data => {
         console.log('getBySlackUserId',data);
-        let id = data.member_id;
+        let id = data[0].member_id;
         dbTeamMembers
           .getID(id)
           .then(data => {
