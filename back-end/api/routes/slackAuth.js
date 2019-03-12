@@ -143,7 +143,7 @@ router.get("/", (req, res) => {
             console.log("postInfo", postInfo);
             db.insert(postInfo)
               .then(() => {
-                res.redirect("https://sentimentbot.netlify.com/authorization");
+                res.redirect("https://sentimentbot.netlify.com/profile");
               })
               .catch(serverErrorPost(res));
           } else {
@@ -173,11 +173,11 @@ router.get("/", (req, res) => {
                 channel_id: ""
               };
             }
-            console.log("postInfo2", postInfo);
+            console.log("postInfo2", updateInfo);
             db.update(id, updateInfo)
               .then(() => {
                 // sendToAuthorization();
-                res.redirect("https://sentimentbot.netlify.com/authorization");
+                res.redirect("https://sentimentbot.netlify.com/profile");
               })
               .catch(serverErrorUpdate500(res, "Auth"));
             // res.status(400).json({
