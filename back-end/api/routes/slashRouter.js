@@ -438,7 +438,7 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
           .getID(id)
           .then(data => {
             console.log('data member',data);
-            if (data.type === "manager") {
+            if (data[0].type === "manager") {
               res.json(`Manager's Cannot Respond to Survey's!`);
             } else {
               dbSurveys
