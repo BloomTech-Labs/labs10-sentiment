@@ -85,11 +85,11 @@ class TeamList extends React.Component {
           <NavBar />
           <div className="mainTeam-container">
             <h1>{this.props.singleTeams[0].name}</h1>
-            <a
+            {/* <a
               href={`https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645&redirect_uri=${uri}&state=${localStorage.getItem(
                 "id"
               )}`}
-            />
+            /> */}
             <p>Team Join Code: {this.props.singleTeams[0].team_code}</p>
             <div className="eh-moodbot">
               <h3>Team Members</h3>
