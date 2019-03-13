@@ -1,5 +1,5 @@
 db = require("../dbConfig.js");
-let teamMembers = db("teamMembers");
+const dbTeamMembers = require("./teamMembersDb");
 const table = "slackAuth";
 
 module.exports = {
@@ -16,15 +16,15 @@ module.exports = {
     return db(table).where("user_id", user_id);
   },
   getBySlackTeamId: function(team_id) {
-    return db("slackAuth")
-      .innerJoin(
-        db("teamMembers"),
-        "slackAuth.member_id",
-        "teamMembers.id"
-      )
-      .where({
-        "slackAuth.team_id": team_id,
-        "teamMembers.type": "manager"
+    return db(table)
+      .where({ team_id: team_id })
+      .then(data => {
+        for (let y = 0; y < data.length; y++) {
+          return db("teamMembers").where({
+            id: data[y].member_id,
+            type: "manager"
+          });
+        }
       });
   },
   insert: function(post) {

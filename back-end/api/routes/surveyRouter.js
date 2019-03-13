@@ -4,6 +4,7 @@ const request = require("request");
 const schedule = require("node-schedule");
 const db = require("../database/helpers/surveysDb");
 const server = require("../server.js");
+import moment from "moment";
 
 const teamMembersDb = require("../database/helpers/teamMembersDb");
 const surveyDb = require("../database/helpers/surveysDb");
@@ -133,9 +134,17 @@ const surveyScheduler = (timeInfo, postInfo) => {
   let manager_id = postInfo.manager_id;
   let title = postInfo.title;
   let description = postInfo.description;
+  let dayLightSavingsTest = moment().isDST()
+  let dayLightSavings;
 
-  let dayLightSavings = 1;
+  console.log("dayLightSavingsTest", dayLightSavingsTest);
 
+  if(dayLightSavingsTest === true){
+    dayLightSavings = 1;
+  }else{
+    dayLightSavings = 0;
+  }
+  
   if (timeInfo.timeZone === "PST") {
     if (timeInfo.amPm === "AM") {
       if (timeInfo.hour === 12) {
