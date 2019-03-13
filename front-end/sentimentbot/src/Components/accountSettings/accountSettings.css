@@ -3,14 +3,12 @@
     margin: 0 ;
     display: flex;
     flex-direction: column;
-    border: 1px blue solid;
     overflow-y: scroll;
 
   }
   .content-container { 
     height: 935px;
     padding-bottom: 50px;
-    border: red 1px solid;
   }
 
 /* Account Settings CSS */
