@@ -1,14 +1,14 @@
 /* Standard Page CSS */
 
-.page-container {
+.teampage-container {
     background-color: #F5F5F5;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    overflow-y: scroll;
+    overflow-y: hidden;
   
   }
-  .content-container {
+  .teamcontent-container {
     margin-top: 5%;
     margin-left: auto;
     margin-right: auto;
@@ -35,7 +35,7 @@
     margin-right: auto;
 }  */
 
-.content-container h1 {
+.teamcontent-container h1 {
     /* width: 60%; */
     /* width: 10px; */
     /* position: relative; */
@@ -45,33 +45,32 @@
     /* width: 200px; */
 }
 
-.content-container .eh-moodbot {
+.teamcontent-container .eh-moodbot {
     /* position: relative; */
     /* width: 93%; */
     display: flex;
     flex-direction: row;
 }
 
-.content-container .eh-moodbot h3 {
+.teamcontent-container .eh-moodbot h3 {
     margin-bottom: 1rem;
     font-size: 150%;
 }
 
-.content-container .eh-moodbot2 {
+.teamcontent-container .eh-moodbot2 {
     position: absolute;
     left: 67%;
     margin-top: -9rem;
 }
 
-.content-container :nth-child(3) {
-    /* width: 70%; */
-    margin-top: 3rem;
-    margin-left: .3rem;
+.teamcontent-container p:nth-of-type(1) {
+    /* margin-top: 3rem; */
+    /* margin-left: 2.5rem; */
     /* border: 2px solid #02C8A7; */
-    width: 15rem;
-    /* text-align: center;
-    padding: 2px;
-    border-radius: 5px; */
+    /* width: 15rem; */
+    /* text-align: left; */
+    /* padding: 2px; */
+    /* border-radius: 5px; */
 }
 
 
@@ -89,7 +88,7 @@
     color: #000;
     border: 2px solid #02C8A7;
     border-radius: 8px;
-    overflow: hidden;
+    overflow: auto;
 }
 
 /* .team-scrollbar {
@@ -155,23 +154,31 @@
 /* Tablet */
 
 @media (max-width:900px) and (min-width:701px) {
+    .teamcontent-container {
+        margin-top: 5%;
+        margin-left: auto;
+        margin-right: auto;
+        width: 70%;
+        height: 535px;
+        padding-bottom: 50px;
+      }
     .teamlist-container {
         width: 100%;
     }
-    .content-container .eh-moodbot2 {
+    .teamcontent-container .eh-moodbot2 {
         /* margin-left: 150px; */
         display: none;
     }
-    .content-container h1 {
-        padding-right: 21rem;
+    .teamcontent-container h1 {
+        padding-right: 26rem;
         /* margin-right: 3.8rem; */
         /* width: 60%; */
         /* text-align: left; */
     }
-    .content-container :nth-child(3) {
+    .teamcontent-container :nth-child(3) {
        /* margin-left: 9.5rem; */
        /* text-align: left; */
-       text-align: center;
+       /* text-align: center; */
        /* margin-left: 11rem; */
     }
 }
@@ -180,20 +187,25 @@
 /* Mobile */
 
 @media (max-width:700px) {
-    .content-container {
-        margin-bottom: 75px;
+    .teamcontent-container {
+        margin-top: 5%;
+        margin-left: auto;
+        margin-right: auto;
+        width: 70%;
+        height: 535px;
+        padding-bottom: 50px;
     }
     .teamlist-container {
         width: 100%;
     }
-    .content-container .eh-moodbot2 {
+    .teamcontent-container .eh-moodbot2 {
         display: none;
     }
-    .content-container h1 {
+    .teamcontent-container h1 {
         /* margin-right: 17rem; */
         text-align: left;
     }
-    /* .content-container :nth-child(3) {
+    /* .teamcontent-container :nth-child(3) {
         margin-bottom: 2rem;
         text-align: left;
     } */

@@ -262,9 +262,9 @@ class Profile extends React.Component {
       localStorage.getItem("team_id") != null
     ) {
       return (
-        <div className="page-container background-color">
+        <div className="profilepage-container background-color">
           <NavBar />
-          <div className="profile-container">
+          <div className="profilecontent-container">
             <div className="name-container">
               {" "}
               <h1 className="welcome-container">

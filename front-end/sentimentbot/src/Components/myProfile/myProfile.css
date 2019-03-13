@@ -1,18 +1,18 @@
 /* Standard Page CSS */
-
-.page-container {
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    overflow-y: scroll;
+.profilepage-container {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  overflow-y: hidden;
+  background-color: #F5F5F5;
 }
-
-.profile-container {
-    margin-left: auto;
-    margin-right: auto;
-    width: 70%;
-    height: 935px;
-    padding-bottom: 50px;
+.profilecontent-container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+  height: 935px;
+  padding-bottom: 50px;
+  margin-top: 2rem;
 }
 
 
@@ -104,7 +104,7 @@
     height: 250px;
     color: #000;
     border-radius: 8px;
-    overflow: hidden;
+    overflow: auto;
     padding: 10px;
     border: 2px solid var(--hover-border-color);
     margin-left: 3%;
@@ -114,11 +114,6 @@
     margin-top: 1rem;
     font-family: var(--p-font-style);
     padding-left: 1%;
-}
-
-.reactions-scroll {
-    overflow-y: scroll;
-    height: 200px;
 }
 
 .happy {
@@ -220,6 +215,15 @@
 }
 
 @media (max-width: 900px) {
+    .profilecontent-container {
+        margin-left: auto;
+        margin-right: auto;
+        width: 70%;
+        height: 535px;
+        padding-bottom: 50px;
+        margin-top: 2rem;
+      }
+      
     h1 {
         /* text-align: center; */
         font-size: 3rem;
@@ -259,6 +263,14 @@
 }
 
 @media (max-width: 600px) {
+    .profilecontent-container {
+        margin-left: auto;
+        margin-right: auto;
+        width: 70%;
+        height: 600px;
+        padding-bottom: 50px;
+        margin-top: 2rem;
+      }
     h1 {
         text-align: center;
         font-size: 2.2rem;
