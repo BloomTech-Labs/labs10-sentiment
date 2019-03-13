@@ -1,8 +1,8 @@
 /* Survey Page */
 /* SKY #7CDBDS BRIGHT CORAL #FS3240 GOLDEN #F9BE02 AQUAMARINE #02C8A7 */
 .moodbot {
-    width: 200px;
-    height: 200px;
+    width: 50%;
+    height: 50%;
 }
 .survey-container {
     max-width: 900px;

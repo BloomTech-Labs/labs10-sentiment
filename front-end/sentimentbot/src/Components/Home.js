@@ -6,6 +6,7 @@ import Happy from "./PNG/nobackgroundHappy.png";
 import { Card, CardText, CardBody,
   CardTitle, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem  } from 'reactstrap';
   import NavBar from "./NavBar/NavBar";
+  import MoodbotCarousel from '../Components/Survey/Carousel/carousel'
 
 
 class Home extends React.Component {
@@ -96,14 +97,15 @@ toggle4() {
           </h1>
           <Login auth={auth} />
         </div>
-        <div className="home-container-img">
+        <MoodbotCarousel />
+        {/* <div className="home-container-img">
           <img
             src={Happy}
             alt="Happy MoodBot"
             width="200"
             height="200"
           />
-        </div>
+        </div> */}
         </div>
 <div className="restofPage">
         <Card className="card">
