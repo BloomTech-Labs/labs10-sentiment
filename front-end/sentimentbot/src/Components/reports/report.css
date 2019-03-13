@@ -20,8 +20,9 @@
     padding-bottom: 50px;
     margin: 0 auto;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    /* align-items: center; */
     background-color: var(--main-bg-color); 
   }
 
@@ -227,6 +228,7 @@
     }
     .generateReport {
         background-color: var(--main-bg-color);
+        width: 50%;
     }
 
     .report-gif {

@@ -3,6 +3,7 @@ import PieChart from "./chart";
 import NavBar from '../NavBar/NavBar';
 import './report.css'
 import FooterPage from '../Footer/footer-test';
+import Generatereport from './generateReport';
 
 function Reports(props) {
 
@@ -13,8 +14,11 @@ function Reports(props) {
     <div className="reportspage-container">
      <NavBar />
      <div className="main-reports-container">
+     <div className="generateReport">
       <h2> View Reports </h2>
-      <button className="main-reports-container-button" onClick={() => props.history.push('/generatereport')}>Here</button>
+      <Generatereport />
+      </div>
+      {/* <button className="main-reports-container-button" onClick={() => props.history.push('/generatereport')}>Here</button> */}
       <div className="pie-container">
       <PieChart history={props.history} />
       </div>

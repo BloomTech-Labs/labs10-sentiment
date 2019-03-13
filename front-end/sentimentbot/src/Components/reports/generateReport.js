@@ -1,9 +1,7 @@
 import React from 'react'
 import { connect } from "react-redux";
 import { fetchSingleSurvey } from "../../actions/index";
-import NavBar from '../NavBar/NavBar';
 import GenerateList from './generateList'
-import FooterPage from '../Footer/footer-test';
 import './report.css'
 
 class GenerateReport extends React.Component {
@@ -15,12 +13,10 @@ class GenerateReport extends React.Component {
 
       return (
         <>
-        <NavBar/>
-        <div className="generateReport">
+        <div>
           <GenerateList history = {this.props.history} />
           {/* <Select options={surveyList} /> */}
         </div> 
-        <FooterPage />
         </>
       );
     }

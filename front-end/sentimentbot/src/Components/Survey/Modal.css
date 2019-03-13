@@ -11,13 +11,13 @@ body {
     flex-direction: column;
 }
 .modalsurvey-container {
-    max-width: 500px;
+    max-width: 600px;
     width: 100%;
     height: 935px;
     position: relative;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 200px;
+    /* margin-bottom: 200px; */
     padding-bottom: 120px;
     /* display: flex;
     flex-direction: column;
@@ -105,6 +105,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin-bottom: 10%;
 }
 
 .progtrckr-todo {
