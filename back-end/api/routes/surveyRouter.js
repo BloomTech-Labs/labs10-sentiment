@@ -57,6 +57,10 @@ const onServerStartScheduleSurveys = () => {
           let survey_id = data[t].id;
           let { manager_id, title, description, ex_time } = data[t];
 
+          // if(!data[t].active){
+          //   continue;
+          // }else{
+
           surveyFeelingsDb
             .getSurveyID(survey_id)
             .then(data => {
@@ -118,9 +122,10 @@ const onServerStartScheduleSurveys = () => {
               });
             })
             .catch(err => console.log(err));
+          }
         }
         /////////////////////////////////
-      }
+      // }
     })
     .catch(err => console.log(err));
 
@@ -140,12 +145,12 @@ const surveyScheduler = (timeInfo, postInfo) => {
 
   console.log("dayLightSavingsTest", dayLightSavingsTest);
 
-  if(dayLightSavingsTest === true){
+  if (dayLightSavingsTest === true) {
     dayLightSavings = 1;
-  }else{
+  } else {
     dayLightSavings = 0;
   }
-  
+
   if (timeInfo.timeZone === "PST") {
     if (timeInfo.amPm === "AM") {
       if (timeInfo.hour === 12) {
@@ -446,7 +451,37 @@ router.put("/:id", (req, res) => {
   });
 });
 
-router.get("/test/moment", (req, res)=>{
+// router.get("/changeActivity/:id", (req, res) => {
+//   const { id } = req.params;
+//   db.getID(id).then(data => {
+//     if (data) {
+//       let activity = data[0].active;
+//       change = {
+//         active: !activity
+//       };
+//       db.update(id, changes)
+//         .then(() => {
+//           db.get().then(getSuccess(res));
+//         })
+//         .catch(() => {
+//           serverErrorUpdate500(res, type);
+//         });
+//     } else {
+//       serverErrorUpdate404(res, type, id);
+//     }
+//   });
+// });
+
+// router.get("/requestActivity/:id", (req, res) => {
+//   const { id } = req.params;
+//   db.getID(id)
+//     .then(data => {
+//       res.status(200).json(data[0].active);
+//     })
+//     .catch(serverErrorGetID(res, type, id));
+// });
+
+router.get("/test/moment", (req, res) => {
   let test = moment().isDST();
   let time = moment();
   res.json(time);
