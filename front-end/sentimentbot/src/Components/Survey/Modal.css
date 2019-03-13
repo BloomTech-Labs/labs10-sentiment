@@ -82,7 +82,7 @@ body {
     margin-right: auto;
 }
 
-.modalpage-container .background-color {
+.routes-div .modalpage-container {
     background-color: var(--main-bg-color);
     position: fixed;
     width: 100vw;

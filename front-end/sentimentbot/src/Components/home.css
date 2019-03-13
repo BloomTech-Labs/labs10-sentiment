@@ -168,3 +168,18 @@
     text-align: center;
   }
 }
+
+@media (max-width: 420px) {
+  .home-container .restofPage {
+    margin: 0 auto;
+  }
+
+  .home-container .restofPage .faq .btn-group {
+    width: 400px;
+  }
+
+  .home-container .restofPage .faq .btn-group .dropdown-menu {
+    width: 400px;
+    overflow: scroll;
+  }
+}
