@@ -20,11 +20,11 @@ import { editSurvey } from "../../actions/survey";
 import { deleteSurvey } from "../../actions/survey";
 import { fetchSingleSurvey } from "../../actions/survey";
 import { addPreFeeling, getFeelings, getPreFeeling } from "../../actions";
-import loadinggif from '../callback/loading.svg'
+// import loadinggif from '../callback/loading.svg'
 import StepZilla from 'react-stepzilla';
 
-import Footer from '../Footer/footer';
-// import FooterBanner from "../PNG/MOODfooterBANNER6.png";
+import FooterPage from '../Footer/footer-test';
+
 
 class ModalSurvey extends React.Component {
     constructor() {
@@ -282,27 +282,29 @@ class ModalSurvey extends React.Component {
         return (
             <div className="modalpage-container background-color">
                 <NavBar />
-                {/* <div className="modalsurvey-container">
-                    <div className="modalsurvey-title">
-                        <h1 className="modal-header">Survey Maker</h1>
-                    </div>
-                    <div className="modalsurvey-carousel">
-                        <MoodBotCarousel />
-                    </div>
-                    <div className="modalsurvey-buttonbox">
-                        <button className="survey-modalbutton 1">Title <ModalTitles state={this.state} onChangeHandler={this.onChangeHandler} /></button>
-                        <button className="survey-modalbutton 2">Responses <ModalPrefeelings state={this.state} onConfirmation={this.onConfirmation} onSelectTest1={this.onSelectTest1} onSelectTest2={this.onSelectTest2} onSelectTest3={this.onSelectTest3} onSelectTest4={this.onSelectTest4} emojiPicker={this.emojiPicker} addCustom={this.addCustom} /></button>
-                        <button className="survey-modalbutton">Schedule <ModalSchedule state={this.state} onChangeDropDown ={this.onChangeDropDown} /></button>
-                        <button className="surveysubmit-button" onClick={this.createSurvey}>Submit</button>
+                  <div className="modalsurvey-container">
+                  {/* <div className="modalsurvey-container">
+                      <div className="modalsurvey-title">
+                          <h1 className="modal-header">Survey Maker</h1>
+                      </div>
+                      <div className="modalsurvey-carousel">
+                          <MoodBotCarousel />
+                      </div>
+                      <div className="modalsurvey-buttonbox">
+                          <button className="survey-modalbutton 1">Title <ModalTitles state={this.state} onChangeHandler={this.onChangeHandler} /></button>
+                          <button className="survey-modalbutton 2">Responses <ModalPrefeelings state={this.state} onConfirmation={this.onConfirmation} onSelectTest1={this.onSelectTest1} onSelectTest2={this.onSelectTest2} onSelectTest3={this.onSelectTest3} onSelectTest4={this.onSelectTest4} emojiPicker={this.emojiPicker} addCustom={this.addCustom} /></button>
+                          <button className="survey-modalbutton">Schedule <ModalSchedule state={this.state} onChangeDropDown ={this.onChangeDropDown} /></button>
+                          <button className="surveysubmit-button" onClick={this.createSurvey}>Submit</button>
 
-                        
-                    </div>
-                    
-                </div> */}
-                <h1 className="survey-header">Create Surveys
-                </h1>
-                <StepZilla steps={steps} />
-                <Footer />
+                          
+                      </div>
+                      
+                  </div> */}
+                  <h1 className="survey-header">Create Surveys
+                  </h1>
+                  <StepZilla steps={steps} />
+                </div>
+                <FooterPage />
                 {/* <div className="modalfooter">
                   <p className="modalcopyright-words">© Copyright M.O.O.D All Rights Reserved.</p>
                   <div className="modalfooterimg-box">
