@@ -12,16 +12,12 @@
     background-color: var(--main-bg-color);
     margin: 0 auto;
     display: flex;
-    flex-direction: column;
-    border: 1px blue solid;
-
-    
-  
+    flex-direction: column;  
   }
+
   .main-reports-container { 
     height: 1400px;
     padding-bottom: 50px;
-    border: red 1px solid;
     margin: 0 auto;
     display: flex;
     flex-direction: column;

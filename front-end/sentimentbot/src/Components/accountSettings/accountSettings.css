@@ -1,17 +1,17 @@
 /* Standard Page CSS */
+
 .page-container {
-    margin: 0 ;
+    margin: 0;
     display: flex;
     flex-direction: column;
-    border: 1px blue solid;
     overflow-y: scroll;
+}
 
-  }
-  .content-container { 
+.settings-container {
     height: 935px;
     padding-bottom: 50px;
-    border: red 1px solid;
-  }
+}
+
 
 /* Account Settings CSS */
 
@@ -140,7 +140,6 @@ input[type=password]:focus {
         width: 30rem;
         margin-left: 5%;
     }
-
 }
 
 @media (max-width: 600px) {

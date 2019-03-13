@@ -4,6 +4,7 @@ const request = require("request");
 const schedule = require("node-schedule");
 const db = require("../database/helpers/surveysDb");
 const server = require("../server.js");
+const moment = require("moment");
 
 const teamMembersDb = require("../database/helpers/teamMembersDb");
 const surveyDb = require("../database/helpers/surveysDb");
@@ -55,6 +56,10 @@ const onServerStartScheduleSurveys = () => {
         for (let t = 0; t < data.length; t++) {
           let survey_id = data[t].id;
           let { manager_id, title, description, ex_time } = data[t];
+
+          // if(!data[t].active){
+          //   continue;
+          // }else{
 
           surveyFeelingsDb
             .getSurveyID(survey_id)
@@ -117,9 +122,10 @@ const onServerStartScheduleSurveys = () => {
               });
             })
             .catch(err => console.log(err));
+          }
         }
         /////////////////////////////////
-      }
+      // }
     })
     .catch(err => console.log(err));
 
@@ -133,20 +139,29 @@ const surveyScheduler = (timeInfo, postInfo) => {
   let manager_id = postInfo.manager_id;
   let title = postInfo.title;
   let description = postInfo.description;
+  let dayLightSavingsTest = moment().isDST();
+  let dayLightSavings;
+  let HerokuTimeFactor = 4;
 
-  let dayLightSavings = 1;
+  console.log("dayLightSavingsTest", dayLightSavingsTest);
+
+  if (dayLightSavingsTest === true) {
+    dayLightSavings = 1;
+  } else {
+    dayLightSavings = 0;
+  }
 
   if (timeInfo.timeZone === "PST") {
     if (timeInfo.amPm === "AM") {
       if (timeInfo.hour === 12) {
         timeInfo.hour = 0;
       }
-      hour = timeInfo.hour + 8 - dayLightSavings;
+      hour = timeInfo.hour + 8 - dayLightSavings - HerokuTimeFactor;
     } else if (timeInfo.amPm === "PM") {
       if (timeInfo.hour === 12) {
         timeInfo.hour = 0;
       }
-      hour = timeInfo.hour + 12 + 8 - dayLightSavings;
+      hour = timeInfo.hour + 12 + 8 - dayLightSavings - HerokuTimeFactor;
       if (hour >= 24) {
         hour = hour - 24;
       }
@@ -156,12 +171,12 @@ const surveyScheduler = (timeInfo, postInfo) => {
       if (timeInfo.hour === 12) {
         timeInfo.hour = 0;
       }
-      hour = timeInfo.hour + 5 - dayLightSavings;
+      hour = timeInfo.hour + 5 - dayLightSavings - HerokuTimeFactor;
     } else if (timeInfo.amPm === "PM") {
       if (timeInfo.hour === 12) {
         timeInfo.hour = 0;
       }
-      hour = timeInfo.hour + 12 + 5 - dayLightSavings;
+      hour = timeInfo.hour + 12 + 5 - dayLightSavings - HerokuTimeFactor;
       if (hour >= 24) {
         hour = hour - 24;
       }
@@ -434,6 +449,42 @@ router.put("/:id", (req, res) => {
       serverErrorUpdate404(res, type, id);
     }
   });
+});
+
+// router.get("/changeActivity/:id", (req, res) => {
+//   const { id } = req.params;
+//   db.getID(id).then(data => {
+//     if (data) {
+//       let activity = data[0].active;
+//       change = {
+//         active: !activity
+//       };
+//       db.update(id, changes)
+//         .then(() => {
+//           db.get().then(getSuccess(res));
+//         })
+//         .catch(() => {
+//           serverErrorUpdate500(res, type);
+//         });
+//     } else {
+//       serverErrorUpdate404(res, type, id);
+//     }
+//   });
+// });
+
+// router.get("/requestActivity/:id", (req, res) => {
+//   const { id } = req.params;
+//   db.getID(id)
+//     .then(data => {
+//       res.status(200).json(data[0].active);
+//     })
+//     .catch(serverErrorGetID(res, type, id));
+// });
+
+router.get("/test/moment", (req, res) => {
+  let test = moment().isDST();
+  let time = moment();
+  res.json(time);
 });
 
 module.exports = { router, onServerStartScheduleSurveys };

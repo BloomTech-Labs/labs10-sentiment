@@ -5,17 +5,16 @@
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    border: 1px blue solid;
     overflow-y: scroll;
   
   }
   .content-container {
+    margin-top: 5%;
     margin-left: auto;
     margin-right: auto;
     width: 70%;
     height: 935px;
     padding-bottom: 50px;
-    border: red 1px solid;
   }
 
 /* Main Team Container */
@@ -36,7 +35,7 @@
     margin-right: auto;
 }  */
 
-.mainTeam-container h1 {
+.content-container h1 {
     /* width: 60%; */
     /* width: 10px; */
     /* position: relative; */
@@ -46,28 +45,28 @@
     /* width: 200px; */
 }
 
-.mainTeam-container .eh-moodbot {
-    position: relative;
-    width: 93%;
+.content-container .eh-moodbot {
+    /* position: relative; */
+    /* width: 93%; */
+    display: flex;
+    flex-direction: row;
 }
 
-.mainTeam-container .eh-moodbot h3 {
+.content-container .eh-moodbot h3 {
     margin-bottom: 1rem;
     font-size: 150%;
 }
 
-.mainTeam-container .eh-moodbot2 {
+.content-container .eh-moodbot2 {
     position: absolute;
-    top: 5%;
-    left: 40%;
-    margin-left: 40%;
-    margin-top: -120px;
+    left: 67%;
+    margin-top: -9rem;
 }
 
-.mainTeam-container :nth-child(3) {
+.content-container :nth-child(3) {
     /* width: 70%; */
+    margin-top: 3rem;
     margin-left: .3rem;
-    margin-bottom: 4rem;
     /* border: 2px solid #02C8A7; */
     width: 15rem;
     /* text-align: center;
@@ -93,7 +92,7 @@
     overflow: hidden;
 }
 
-.team-scrollbar {
+/* .team-scrollbar {
     right: 0;
     top: 0;
     overflow-x: hidden;
@@ -102,13 +101,12 @@
 
 .team-scrollbar::-webkit-scrollbar {
     width: 15px;
-}
+} */
 
 
 /* Handle */
 
 .team-scrollbar::-webkit-scrollbar-thumb {
-    /* background: #888888;  */
     background: #aeaeae;
 }
 
@@ -116,7 +114,6 @@
 /* Handle on hover */
 
 .team-scrollbar::-webkit-scrollbar-thumb:hover {
-    /* background: #909090;  */
     background: #b8a3a3;
 }
 
@@ -161,21 +158,21 @@
     .teamlist-container {
         width: 100%;
     }
-    .mainTeam-container .eh-moodbot2 {
+    .content-container .eh-moodbot2 {
         /* margin-left: 150px; */
         display: none;
     }
-    .mainTeam-container h1 {
-        /* padding-right: 25rem; */
+    .content-container h1 {
+        padding-right: 21rem;
         /* margin-right: 3.8rem; */
         /* width: 60%; */
         /* text-align: left; */
     }
-    .mainTeam-container :nth-child(3) {
+    .content-container :nth-child(3) {
        /* margin-left: 9.5rem; */
        /* text-align: left; */
        text-align: center;
-       margin-left: 7rem;
+       /* margin-left: 11rem; */
     }
 }
 
@@ -183,23 +180,23 @@
 /* Mobile */
 
 @media (max-width:700px) {
-    .mainTeam-container {
+    .content-container {
         margin-bottom: 75px;
     }
     .teamlist-container {
         width: 100%;
     }
-    .mainTeam-container .eh-moodbot2 {
+    .content-container .eh-moodbot2 {
         display: none;
     }
-    .mainTeam-container h1 {
+    .content-container h1 {
         /* margin-right: 17rem; */
         text-align: left;
     }
-    .mainTeam-container :nth-child(3) {
+    /* .content-container :nth-child(3) {
         margin-bottom: 2rem;
         text-align: left;
-    }
+    } */
     .teamlist-container {
         height: 20rem;
     }
