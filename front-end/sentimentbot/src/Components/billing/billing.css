@@ -1,14 +1,15 @@
 
 /* Standard Page CSS */
 
-.page-container {
+.billingpage-container {
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  overflow-y: scroll;
+  overflow-y: hidden;
+  background-color: #F5F5F5;
 }
-.content-container { 
-  height: 720px;
+.billingcontent-container { 
+  /* height: 720px; */
   padding-bottom: 50px;
 }
 
