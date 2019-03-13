@@ -81,6 +81,14 @@ body {
     margin-left: auto;
     margin-right: auto;
 }
+
+.modalpage-container .background-color {
+    background-color: var(--main-bg-color);
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    overflow: scroll;
+}
 .survey-modalbutton {
     color: white;
     background-color: var(--main-bg-color);

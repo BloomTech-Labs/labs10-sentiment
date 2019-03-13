@@ -52,7 +52,7 @@
 }
 
 .cardTitle {
-  font-family: "Fredoka One", cursive;
+  font-family: var(--headers-font-style);
   display: flex;
   flex-direction: column;
   font-weight: 700;
@@ -61,7 +61,7 @@
 
 .cardText {
   font-size: 1.1rem;
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: var(--p-font-style);
 }
 
 .faq {
@@ -71,7 +71,7 @@
   flex-direction: column;
   font-size: 2.5rem;
   background-color: #02C8A7;
-  font-family: "Fredoka One", cursive;
+  font-family: var(--headers-font-style);
 }
 
 .faqButton {
@@ -92,12 +92,12 @@
 .quotes {
   display: block;
   text-align: center;
-  font-family: "Yrsa", Times New Roman, serif;
+  font-family: var(--p-font-style);
   font-size: 2.5rem;
 }
 
 .quoteTitle {
-  font-family: "Fredoka One", cursive;
+  font-family: var(--headers-font-style);
 }
 /* Home Footer */
 .home-footer {
