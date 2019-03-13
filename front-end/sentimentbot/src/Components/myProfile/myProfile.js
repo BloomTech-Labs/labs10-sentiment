@@ -255,7 +255,7 @@ class Profile extends React.Component {
       return <img className="loadinggif" src={loadinggif} alt="loading" />
     } else if (this.props.singleTeams.length > 0 && localStorage.getItem('team_id') != null) {
       return (
-        <div className="page-container" className="background-color">
+        <div className="page-container background-color">
           <NavBar />
           <div className="content-container">
             <div className="name-container">
@@ -330,7 +330,7 @@ class Profile extends React.Component {
     }
     if (view === "") {
       return (
-        <div className="page-container" className="background-color">
+        <div className="page-container background-color">
           <NavBar />
           <div className="content-container">
             <div className="sub-container-3">

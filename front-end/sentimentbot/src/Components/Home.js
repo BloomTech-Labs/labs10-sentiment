@@ -85,7 +85,7 @@ toggle4() {
   render() {
     const auth = new Auth();
     return (
-      <>
+      <div className='background-color'>
       <div className="home-container">
        {localStorage.getItem('isLoggedIn') ? (<NavBar/>) : (null)} 
       <div className="landingIntro">
@@ -167,7 +167,7 @@ toggle4() {
       </div> <br></br> <br></br>
       </div>
       </div>
-      </>
+      </div>
     );
   }
 }
