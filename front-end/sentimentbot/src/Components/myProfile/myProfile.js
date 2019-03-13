@@ -255,9 +255,9 @@ class Profile extends React.Component {
       return <img className="loadinggif" src={loadinggif} alt="loading" />
     } else if (this.props.singleTeams.length > 0 && localStorage.getItem('team_id') != null) {
       return (
-        <div className="page-container background-color">
+        <div className="profilepage-container background-color">
           <NavBar />
-          <div className="content-container">
+          <div className="profilecontent-container">
             <div className="name-container">
               {" "}
               <h1 className="welcome-container">
@@ -394,10 +394,10 @@ class Profile extends React.Component {
     } else if (view === "create") {
       return (
         <div id="page-container" className="background-color">
-        <div id="content-container">
-          {/* <p>Loading...</p> */}
-          <NavBar />
-          {/* <a
+          <div id="content-container">
+            {/* <p>Loading...</p> */}
+            <NavBar />
+            {/* <a
             href={`https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645&redirect_uri=${uri}&state=${
               this.props.singleTeamMembers[0].id
             }`}
@@ -438,8 +438,8 @@ class Profile extends React.Component {
               Submit Team Title
             </button>
           </form> */}
-        </div>
-        <FooterPage />
+          </div>
+          <FooterPage />
         </div>
       );
     }

@@ -1,17 +1,18 @@
 /* Standard Page CSS */
-.page-container {
+.profilepage-container {
   margin: 0;
   display: flex;
   flex-direction: column;
-  overflow-y: scroll;
-
+  overflow-y: hidden;
+  background-color: #F5F5F5;
 }
-.content-container {
+.profilecontent-container {
   margin-left: auto;
   margin-right: auto;
   width: 70%;
   height: 935px;
   padding-bottom: 50px;
+  margin-top: 2rem;
 }
 
 /* Profile CSS */
@@ -100,7 +101,7 @@
     height: 250px;
     color: #000;
     border-radius: 8px;
-    overflow: hidden;
+    overflow: auto;
     padding: 10px;
     border: 2px solid var(--hover-border-color);
 }
@@ -109,11 +110,6 @@
     margin-top: 1rem;
     font-family: var(--p-font-style);
     padding-left: 1%;
-}
-
-.reactions-scroll {
-    overflow-y: scroll;
-    height: 200px;
 }
 
 .happy {

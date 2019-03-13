@@ -82,9 +82,9 @@ class TeamList extends React.Component {
     } else if (this.props.singleTeams.length > 0) {
       return (
         // <div id="page-container" className="background-color">
-        <div className="page-container">
+        <div className="teampage-container">
           <NavBar />
-          <div className="content-container">
+          <div className="teamcontent-container">
             <h1>{this.props.singleTeams[0].name}</h1>
             {/* <a
               href={`https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645&redirect_uri=${uri}&state=${localStorage.getItem(
