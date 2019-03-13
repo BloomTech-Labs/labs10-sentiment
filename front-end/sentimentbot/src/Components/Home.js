@@ -3,7 +3,6 @@ import Login from './login/login'
 import Auth from "./Auth/auth";
 import "./home.css";
 import Happy from "./PNG/nobackgroundHappy.png";
-import FooterBanner from "./PNG/MOODfooterBANNER6.png";
 import { Card, CardText, CardBody,
   CardTitle, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem  } from 'reactstrap';
   import NavBar from "./NavBar/NavBar";
@@ -168,12 +167,6 @@ toggle4() {
       </div> <br></br> <br></br>
       </div>
       </div>
-      <div className="homefooter">
-          <p className="homecopyright-words">© Copyright M.O.O.D All Rights Reserved.</p>
-          <div className="homefooterimg-box">
-            <img  className="homefooter-img" alt="footer" src={FooterBanner} />
-          </div>
-        </div>
       </>
     );
   }

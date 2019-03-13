@@ -7,23 +7,43 @@
     --p-font-style: "Roboto", sans-serif;
     --headers-font-style: 'Roboto Slab', serif;
 }
+/* Standard Page CSS */
+.reportspage-container {
+    background-color: var(--main-bg-color);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    border: 1px blue solid;
+    
+  
+  }
+  .main-reports-container { 
+    height: 1400px;
+    padding-bottom: 50px;
+    border: red 1px solid;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+  }
 
-.background-color {
+/* .background-color {
     background-color: var(--main-bg-color);
     position: fixed;
     width: 100vw;
     height: 100vh;
     overflow: scroll;
-}
+} */
 
-.main-reports-container {
+/* .main-reports-container {
         width: 80%;
         margin: 0 auto;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-    }
+    } */
 
     p {
         font-family: var(--p-font-style);
@@ -207,7 +227,7 @@
         height: 90%;
     }
     .generateReport {
-        margin-bottom: 75px;
+        margin-bottom: 50px;
     }
 }
 

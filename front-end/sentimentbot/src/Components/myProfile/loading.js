@@ -10,7 +10,7 @@ import {
   getSingleTeam,
   getFeelings
 } from "../../actions/index";
-import Footer from "../Footer/footer";
+
 import "./myProfile.css";
 
 class Loading extends React.Component {
@@ -59,7 +59,6 @@ class Loading extends React.Component {
               Click
             </button>
           </div>
-          <Footer />
         </>
       );
     } else {
@@ -69,7 +68,6 @@ class Loading extends React.Component {
           <div className="container">
             <p>Loading...</p>
           </div>
-          <Footer />
         </>
       );
     }
