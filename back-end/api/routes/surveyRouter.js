@@ -11,6 +11,7 @@ const surveyDb = require("../database/helpers/surveysDb");
 const surveyFeelingsDb = require("../database/helpers/surveysFeelingsDb");
 const preFeelingsDb = require("../database/helpers/preFeelingsDb");
 const feelingsdb = require("../database/helpers/feelingsDb");
+const surveyAcitveDb = require("../database/helpers/surveysActiveDb");
 
 const {
   postSuccess,
@@ -57,75 +58,80 @@ const onServerStartScheduleSurveys = () => {
           let survey_id = data[t].id;
           let { manager_id, title, description, ex_time } = data[t];
 
-          // if(!data[t].active){
-          //   continue;
-          // }else{
-
-          surveyFeelingsDb
-            .getSurveyID(survey_id)
+          surveyAcitveDb
+            .getBySurveyID(survey_id)
             .then(data => {
-              // console.log("survey feeling array", data);
-              let feelingTextArray = [];
-
-              for (let i = 0; i < data.length; i++) {
-                let { feelings_id } = data[i];
-                preFeelingsDb
-                  .getID(feelings_id)
+              console.log("data check",data);
+              if (data[0].active === 0) {
+                return;
+              } else {
+                surveyFeelingsDb
+                  .getSurveyID(survey_id)
                   .then(data => {
-                    // console.log("pre feeling array", data);
-                    if (data.length === 0) {
-                      // res.status(404).json({
-                      console.log({
-                        error: `Pre Feeling with Id: ${feelings_id} does not exist.`
-                      });
-                    } else {
-                      let { feeling_text } = data[0];
-                      feelingTextArray.push(feeling_text);
+                    // console.log("survey feeling array", data);
+                    let feelingTextArray = [];
+
+                    for (let i = 0; i < data.length; i++) {
+                      let { feelings_id } = data[i];
+                      preFeelingsDb
+                        .getID(feelings_id)
+                        .then(data => {
+                          // console.log("pre feeling array", data);
+                          if (data.length === 0) {
+                            // res.status(404).json({
+                            console.log({
+                              error: `Pre Feeling with Id: ${feelings_id} does not exist.`
+                            });
+                          } else {
+                            let { feeling_text } = data[0];
+                            feelingTextArray.push(feeling_text);
+                          }
+                        })
+                        .catch(err => console.log(err));
                     }
+
+                    console.log(feelingTextArray);
+                    let botInfo = {
+                      message: true,
+                      member_id: manager_id,
+                      survey_id: survey_id,
+                      title: title,
+                      description: description,
+                      // channelID:
+                      options: feelingTextArray
+                    };
+
+                    console.log("botInfo", botInfo);
+                    /////////////////////////////////////////////////////////survey_id to string
+                    let stringSurveyId = survey_id.toString();
+                    console.log("stringSurveyId", stringSurveyId);
+                    schedule.scheduleJob(stringSurveyId, ex_time, function() {
+                      console.log("Schedule Processed");
+                      console.log("botInfo2", botInfo);
+                      let postOptions = {
+                        uri:
+                          "https://botsentiment.herokuapp.com/api/slash/send-me-buttons",
+                        method: "POST",
+                        headers: {
+                          "Content-type": "application/json"
+                        },
+                        json: botInfo
+                      };
+                      request(postOptions, (error, response, body) => {
+                        if (error) {
+                          // handle errors as you see fit
+                          res.json({ error: "Error." });
+                        }
+                      });
+                    });
                   })
                   .catch(err => console.log(err));
               }
-
-              console.log(feelingTextArray);
-              let botInfo = {
-                message: true,
-                member_id: manager_id,
-                survey_id: survey_id,
-                title: title,
-                description: description,
-                // channelID:
-                options: feelingTextArray
-              };
-
-              console.log("botInfo", botInfo);
-              /////////////////////////////////////////////////////////survey_id to string
-              let stringSurveyId = survey_id.toString();
-              console.log("stringSurveyId", stringSurveyId);
-              schedule.scheduleJob(stringSurveyId, ex_time, function() {
-                console.log("Schedule Processed");
-                console.log("botInfo2", botInfo);
-                let postOptions = {
-                  uri:
-                    "https://botsentiment.herokuapp.com/api/slash/send-me-buttons",
-                  method: "POST",
-                  headers: {
-                    "Content-type": "application/json"
-                  },
-                  json: botInfo
-                };
-                request(postOptions, (error, response, body) => {
-                  if (error) {
-                    // handle errors as you see fit
-                    res.json({ error: "Error." });
-                  }
-                });
-              });
             })
-            .catch(err => console.log(err));
-          }
+            .catch();
         }
         /////////////////////////////////
-      // }
+      }
     })
     .catch(err => console.log(err));
 
@@ -250,7 +256,6 @@ const surveyScheduler = (timeInfo, postInfo) => {
                   survey_id: survey_id,
                   title: title,
                   description: description,
-                  // channelID:
                   options: feelingTextArray
                 };
 
@@ -334,7 +339,17 @@ router.post("/", (req, res) => {
         let preFeelingIdsArray = postInfo.preFeelingIdsArray;
 
         db.insert(insertInfo)
-          .then(() => {
+          .then(data => {
+            console.log("insert data", data.id);
+            let postActive = {
+              survey_id: data.id,
+              active: true
+            };
+            surveyAcitveDb
+              .insert(postActive)
+              .then(postSuccess(res))
+              .catch(serverErrorPost(res));
+
             console.log({
               timeInfo: timeInfo,
               insertInfo: insertInfo
@@ -413,7 +428,6 @@ router.delete(`/:id`, (req, res) => {
       if (data.length > 0) {
         db.remove(id).then(() => {
           db.get().then(() => {
-            // onDeleteSurvey(res);
             console.log("delete id", id);
             let stringSurveyId = id.toString();
             console.log("stringSurveyId", stringSurveyId);
@@ -451,40 +465,62 @@ router.put("/:id", (req, res) => {
   });
 });
 
-// router.get("/changeActivity/:id", (req, res) => {
-//   const { id } = req.params;
-//   db.getID(id).then(data => {
-//     if (data) {
-//       let activity = data[0].active;
-//       change = {
-//         active: !activity
-//       };
-//       db.update(id, changes)
-//         .then(() => {
-//           db.get().then(getSuccess(res));
-//         })
-//         .catch(() => {
-//           serverErrorUpdate500(res, type);
-//         });
-//     } else {
-//       serverErrorUpdate404(res, type, id);
-//     }
-//   });
-// });
+router.get("/changeActivity/:id", (req, res) => {
+  let { id } = req.params;
+  id = Number(id);
+  let change;
+  surveyAcitveDb.getBySurveyID(id).then(data => {
+    if (data.length > 0) {
+      console.log("data change", data);
+      let activity = data[0].active;
+      let surveyActiveID = data[0].id;
+      console.log("activity", activity);
 
-// router.get("/requestActivity/:id", (req, res) => {
-//   const { id } = req.params;
-//   db.getID(id)
-//     .then(data => {
-//       res.status(200).json(data[0].active);
-//     })
-//     .catch(serverErrorGetID(res, type, id));
-// });
+      if (activity === 1) {
+        change = {
+          active: false
+        };
+      } else {
+        change = {
+          active: false
+        };
+      }
+      surveyAcitveDb
+        .update(surveyActiveID, change)
+        .then(() => {
+          // surveyAcitveDb.get().then(getSuccess(res));
 
-router.get("/test/moment", (req, res) => {
-  let test = moment().isDST();
-  let time = moment();
-  res.json(time);
+          let stringSurveyId = id.toString();
+          console.log("stringSurveyId", stringSurveyId);
+          var my_job = schedule.scheduledJobs[stringSurveyId];
+          my_job.cancel();
+          res.status(200).json({ message: `Survey ID: ${id} canceled` });
+        })
+        .catch(() => {
+          serverErrorUpdate500(res, type);
+        });
+    } else {
+      serverErrorUpdate404(res, type, id);
+    }
+  });
 });
+
+router.get("/requestActivity/:id", (req, res) => {
+  const { id } = req.params;
+  console.log("id req", id);
+
+  surveyAcitveDb
+    .getBySurveyID(id)
+    .then(data => {
+      res.status(200).json(data[0].active);
+    })
+    .catch(serverErrorGetID(res, type, id));
+});
+
+// router.get("/test/moment", (req, res) => {
+//   let test = moment().isDST();
+//   let time = moment();
+//   res.json(time);
+// });
 
 module.exports = { router, onServerStartScheduleSurveys };
