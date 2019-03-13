@@ -12,67 +12,40 @@ import {
 } from "../../actions/index";
 import Footer from "../Footer/footer";
 import "./myProfile.css";
+import loadinggif from '../callback/loading.svg'
 
 class Loading extends React.Component {
-  state = {
-    complete1: false,
-    complete2: false
-  };
+
 
   componentDidMount() {
-    if (
-      this.props.tmIsFetching === false &&
-      this.props.teamsIsFetching === false
-    ) {
-      this.setState({
-        complete1: true,
-        complete2: true
-      });
-      this.props.getSingleTeamMembers(localStorage.getItem("email"));
-    }
+    this.props.getSingleTeamMembers(localStorage.getItem('email'))
+   
+      setTimeout(() =>{
+        this.props.history.push('/profile')
+      }, 1500)
+ 
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.tmIsFetching === true || prevProps.teamsIsFetching === true) {
-      this.setState({
-        complete1: true,
-        complete2: true
-      });
-      this.props.getSingleTeam(this.props.singleTeamMembers[0].team_id);
-      this.props.getFeelings(this.props.singleTeamMembers[0].id);
-    }
-  }
 
   render() {
-    if (this.state.complete2 === true && this.state.complete1 === true) {
-      return (
-        <>
-          <div className="fake-nav" />
-          <div className="container">
-            <p>
-              Thanks for waiting! Click here to go back to your profile page.
-            </p>
-            <button
-              className="btn-feel-2"
-              onClick={() => this.props.history.push("/profile")}
-            >
-              Click
-            </button>
-          </div>
-          <Footer />
-        </>
-      );
-    } else {
-      return (
-        <>
-          <div className="fake-nav" />
-          <div className="container">
-            <p>Loading...</p>
-          </div>
-          <Footer />
-        </>
-      );
+
+    if (localStorage.getItem('joined') || localStorage.getItem('abandoned')) {
+      localStorage.removeItem('joined')
+      localStorage.removeItem('abandoned')
+      this.props.getSingleTeamMembers(localStorage.getItem('email'))
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
     }
+      return (
+         <> 
+          <div className="fake-nav" />
+          <div className="container">
+            <img src={loadinggif} alt="loading" className="loadinggif" />
+          </div>
+          <Footer />
+        </>
+      );
   }
 }
 

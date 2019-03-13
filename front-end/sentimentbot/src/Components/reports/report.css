@@ -209,6 +209,10 @@
     .generateReport {
         margin-bottom: 75px;
     }
+
+    .report-gif {
+        display: none;
+    }
 }
 
 @media (max-width: 400px) {

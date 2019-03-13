@@ -161,18 +161,20 @@ class Profile extends React.Component {
       ...this.state,
       createTeam: "",
       added: true,
-      view: 'create'
+      // view: 'create'
     });
     let currentMember = this.props.singleTeamMembers[0];
     currentMember.type = "manager";
-    this.props.getSingleTeamMembers(localStorage.getItem("email"));
+    // this.props.getSingleTeamMembers(localStorage.getItem("email"));
+    localStorage.setItem('joined', true)
+    alert('Our Mood Bots are on it')
     // localStorage.setItem('type', 'manager')
     // this.props.getTeams();
     // this.props.history.push(<Callback />);
     setTimeout(() => {
-      window.location.reload();
-      this.props.history.push('/teamlist');
-    }, 2200);
+      // window.location.reload();
+      this.props.history.push('/loading');
+    }, 500);
   };
 
   addCodeToMember = event => {
@@ -211,13 +213,16 @@ class Profile extends React.Component {
 
     currentMember.type = member.type;
     currentMember.team_id = futureTeamId;
-    localStorage.setItem('team_id', futureTeamId)
-    localStorage.setItem('type', 'team_member')
-    window.location.reload();
-    setTimeout(() => {
-      this.props.history.push("/profile");
-      window.location.reload();
-    }, 2000);
+    // localStorage.setItem('team_id', futureTeamId)
+    // localStorage.setItem('type', 'team_member')
+    localStorage.setItem('joined', true)
+    alert('Our Mood Bots are on it')
+
+    // window.location.reload();
+    this.props.history.push("/loading");
+    // setTimeout(() => {
+    //   window.location.reload();
+    // }, 2200);
   };
 
   handleChange = event => {
