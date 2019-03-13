@@ -8,6 +8,7 @@
         "bootstrap": "^4.3.1",
         "chart.js": "^2.7.3",
         "emoji-mart": "^2.9.2",
+        "mdbreact": "^4.11.0",
         "react": "^16.8.1",
         "react-chartjs-2": "^2.7.4",
         "react-dom": "^16.8.1",

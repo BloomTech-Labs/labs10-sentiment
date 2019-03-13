@@ -17,8 +17,8 @@ import {
 } from "../../actions/index";
 import { connect } from "react-redux";
 import "./accountSettings.css";
-import Footer from "../Footer/footer";
 import loadinggif from "../callback/loading.svg";
+import FooterPage from '../Footer/footer-test';
 
 import { Col, FormGroup, Label, Input } from "reactstrap";
 
@@ -128,9 +128,10 @@ class accountSettings extends React.Component {
       return <img className="loadinggif" src={loadinggif} alt="loading" />;
     }
     return (
-      <div className="background-color">
+      <>
+      <div className="page-container">
         <NavBar />
-        <div className="container">
+        <div className="content-container">
           {this.state.response === 200 ? (
             <div>Email will be sent shortly</div>
           ) : (
@@ -170,8 +171,9 @@ class accountSettings extends React.Component {
               </div>
             )}
         </div>
-        <Footer />
       </div>
+      <FooterPage />
+      </>
     );
   }
 }

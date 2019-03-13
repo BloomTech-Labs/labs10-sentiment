@@ -20,13 +20,15 @@ class App extends Component {
     return (
       <Router history={history}>
         <div className="App">
-         <NavBar />
-          <Route exact path="/home" component={Home} />
-          <Route path="/billing" component={Billing} />
-          <Route path="/profile" component={Profile} />
-          <Route path="/survey" component={Survey} />
-          <Route path="/reports" component={Reports} />
-          <Route path="/accountset" component={AccountSettings} />
+          <div>
+            <NavBar />
+            <Route exact path="/home" component={Home} />
+            <Route path="/billing" component={Billing} />
+            <Route path="/profile" component={Profile} />
+            <Route path="/survey" component={Survey} />
+            <Route path="/reports" component={Reports} />
+            <Route path="/accountset" component={AccountSettings} />
+          </div>
         </div>
       </Router>
     );
