@@ -1,18 +1,20 @@
 /* Standard Page CSS */
-.page-container {
+.profilepage-container {
   margin: 0;
   display: flex;
   flex-direction: column;
-  overflow-y: scroll;
-
+  overflow-y: hidden;
+  background-color: #F5F5F5;
 }
-.content-container {
+.profilecontent-container {
   margin-left: auto;
   margin-right: auto;
   width: 70%;
   height: 935px;
   padding-bottom: 50px;
+  margin-top: 2rem;
 }
+
 
 /* Profile CSS */
 
@@ -28,6 +30,7 @@
     background: var(--main-btn-color);
     margin-bottom: 1rem;
 }
+
 
 /* #profilepage-container {
   min-height: 100vh;
@@ -65,7 +68,8 @@
 }
 
 .name-container {
-    width: 80%;
+    width: 90%;
+    margin-left: 3%;
 }
 
 .sub-container-1 {
@@ -96,24 +100,20 @@
 } */
 
 .reactions {
-    width: 80%;
+    width: 90%;
     height: 250px;
     color: #000;
     border-radius: 8px;
-    overflow: hidden;
+    overflow: auto;
     padding: 10px;
     border: 2px solid var(--hover-border-color);
+    margin-left: 3%;
 }
 
 .reactions p {
     margin-top: 1rem;
     font-family: var(--p-font-style);
     padding-left: 1%;
-}
-
-.reactions-scroll {
-    overflow-y: scroll;
-    height: 200px;
 }
 
 .happy {
@@ -215,12 +215,21 @@
 }
 
 @media (max-width: 900px) {
+    .profilecontent-container {
+        margin-left: auto;
+        margin-right: auto;
+        width: 70%;
+        height: 535px;
+        padding-bottom: 50px;
+        margin-top: 2rem;
+      }
+      
     h1 {
-        text-align: center;
+        /* text-align: center; */
         font-size: 3rem;
     }
     h2 {
-        text-align: center;
+        /* text-align: center; */
         font-size: 1.4rem;
     }
     h3 {
@@ -254,6 +263,14 @@
 }
 
 @media (max-width: 600px) {
+    .profilecontent-container {
+        margin-left: auto;
+        margin-right: auto;
+        width: 70%;
+        height: 600px;
+        padding-bottom: 50px;
+        margin-top: 2rem;
+      }
     h1 {
         text-align: center;
         font-size: 2.2rem;
@@ -265,8 +282,10 @@
     h3 {
         font-size: 1.2rem;
     }
-    .sub-container-2 a {
-        text-align: center;
+    .sub-container-2  {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
     /* .sub-container-2 img {
       width: 100%;
@@ -292,5 +311,9 @@
     }
     .main-container {
         width: 100%;
+    }
+
+    .reactions {
+        width: 94%;
     }
 }

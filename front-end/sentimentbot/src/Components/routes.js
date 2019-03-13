@@ -45,7 +45,7 @@ export const makeMainRoutes = () => {
   return (
     <Provider store={store}>
       <Router history={history}>
-        <div>
+        <div className="routes-div">
           <Route
             exact
             path="/"

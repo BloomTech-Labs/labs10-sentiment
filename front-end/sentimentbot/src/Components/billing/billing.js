@@ -86,9 +86,9 @@ class Billing extends React.Component {
       );
     } else {
       return (
-        <div className="page-container">
+        <div className="billingpage-container">
           <NavBar />
-          <div className="content-container">
+          <div className="billingcontent-container">
             <h1 className="billing-title"> Billing Page </h1>
 
             {/* <StripeProvider apiKey="pk_test_IWDsGyB9paFAzC5KQEtIOfLG"> */}

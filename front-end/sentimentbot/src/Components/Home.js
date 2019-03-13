@@ -86,8 +86,8 @@ toggle4() {
     const auth = new Auth();
     return (
       <div className='background-color'>
+         {localStorage.getItem('isLoggedIn') ? (<NavBar/>) : (null)} 
       <div className="home-container">
-       {localStorage.getItem('isLoggedIn') ? (<NavBar/>) : (null)} 
       <div className="landingIntro">
         <div className="home-container-text">
           <h1>

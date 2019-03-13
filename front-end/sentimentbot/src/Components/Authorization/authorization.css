@@ -29,45 +29,43 @@ form input {
     width: 100%;
     padding: 1rem;
     margin-bottom: 1rem;
-    border: 1px solid #f58a91;
-    border-radius: 8px;
+    border: 1px solid var(--hover-border-color);
+    border-radius: .25rem;
     vertical-align: center;
-    box-shadow: -10px 10px 5px 0px #7cdbd5;
 }
 
 .btn-feel {
     width: 100%;
     padding: 1rem;
-    color: #212529;
-    background-color: #7cdbd5;
+    color: white;
+    background-color: var(--main-btn-color);
     font-size: 1.2rem;
     border-radius: 0.25rem;
-    font-family: "Fredoka One", cursive;
+    font-family: var(--headers-font-style);
     cursor: pointer;
 }
 
 .btn-feel:hover {
-    color: #96040e;
-    background-color: #f9be02;
-    border: 2px solid #f58a91;
+    color: white;
+    background-color: var(--hover-color);
+    border: 1px solid var(--hover-border-color);
 }
 
 .btn-feel-2 {
     width: 20rem;
-    ;
     padding: 1rem;
-    color: #212529;
-    background-color: #7cdbd5;
+    color: white;
+    background-color: var(--main-btn-color);
     font-size: 1.2rem;
     border-radius: 0.25rem;
-    font-family: "Fredoka One", cursive;
+    font-family: var(--headers-font-style);
     cursor: pointer;
 }
 
 .btn-feel-2:hover {
-    color: #96040e;
-    background-color: #f9be02;
-    border: 2px solid #f58a91;
+    color: white;
+    background-color: var(--hover-color);
+    border: 1px solid var(--hover-border-color);
 }
 
 .happy-auth {
