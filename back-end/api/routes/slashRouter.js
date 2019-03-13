@@ -420,165 +420,23 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
     dbAuth
       .getBySlackTeamId(teamID)
       .then(data => {
-        for (let z = 0; z < data.length; z++) {
-          dbTeamMembers
-            .get()
+        let buttonManagerID = data[0].id;
+        console.log("data", data);
+        console.log("buttonManagerID", buttonManagerID);
+
+        /////////////////////////////////////////////////////////////////////////////
+
+        if (callbackIDSlash === "button_tutorial") {
+          dbSurveys
+            .getManagerID(buttonManagerID)
             .then(data => {
-              let buttonManagerID;
-              for (let x = 0; x < data.length; x++) {
-                if (data[x].type === "manager") {
-                  buttonManagerID = data[x].id;
-                }
-              }
-              /////////////////////////////////////////////////////////////////////////////
-
-              if (callbackIDSlash === "button_tutorial") {
-                dbSurveys
-                  .getManagerID(buttonManagerID)
-                  .then(data => {
-                    SurveyID = Math.max.apply(
-                      Math,
-                      data.map(function(o) {
-                        return o.id;
-                      })
-                    );
-                    ///////////////////////////////////////////////////////////////////////////////////////////
-
-                    dbAuth
-                      .getBySlackUserId(jsonPayload.user.id)
-                      .then(data => {
-                        console.log("getBySlackUserId", data);
-                        let id = data[0].member_id;
-                        dbTeamMembers
-                          .getID(id)
-                          .then(data => {
-                            console.log("data member", data);
-                            if (data[0].type === "manager") {
-                              res.json(`Manager's Cannot Respond to Survey's!`);
-                            } else {
-                              dbSurveys
-                                .getID(SurveyID) 
-                                .then(data => {
-                                  if (data.length > 0) {
-                                    console.log(
-                                      "data survey id for time",
-                                      data
-                                    );
-                                    let putInfo;
-                                    let survey_time_stamp;
-                                    if (data[0].survey_time_stamp === null) {
-                                      putInfo = {
-                                        survey_time_stamp:
-                                          jsonPayload.message_ts
-                                      };
-                                      survey_time_stamp =
-                                        jsonPayload.message_ts;
-                                    } else {
-                                      putInfo = {
-                                        survey_time_stamp:
-                                          data[0].survey_time_stamp
-                                      };
-                                      survey_time_stamp =
-                                        data[0].survey_time_stamp;
-                                    }
-
-                                    dbSurveys
-                                      .update(SurveyID, putInfo) 
-                                      .then(() => {
-                                        dbAuth
-                                          .getBySlackUserId(userIdSlack)
-                                          .then(data => {
-                                            console.log(
-                                              "data slack user id",
-                                              data[0]
-                                            );
-                                            let team_member_id =
-                                              data[0].member_id;
-                                            console.log(
-                                              "team_member_id",
-                                              team_member_id
-                                            );
-                                            let postFeel;
-                                            if (
-                                              callbackIDSlash ===
-                                              "button_tutorial"
-                                            ) {
-                                              postFeel = {
-                                                feeling_text:
-                                                  jsonPayload.actions[0].value,
-                                                team_member_id: team_member_id,
-                                                survey_time_stamp: survey_time_stamp
-                                              };
-                                            } else {
-                                              postFeel = {
-                                                feeling_text:
-                                                  jsonPayload.actions[0]
-                                                    .selected_options[0].value,
-                                                team_member_id: team_member_id,
-                                                survey_time_stamp: survey_time_stamp
-                                              };
-                                            }
-
-                                            console.log("postFeel", postFeel);
-                                            dbFeelings
-                                              .getByMemberAndSurveyTimeStamp(
-                                                team_member_id,
-                                                survey_time_stamp
-                                              )
-                                              .then(data => {
-                                                console.log(
-                                                  "data mem sur",
-                                                  data
-                                                );
-                                                dbFeelings
-                                                  .insert(postFeel)
-                                                  .then(() => {
-                                                    res.json(
-                                                      `Submited Feeling: ${
-                                                        postFeel.feeling_text
-                                                      }`
-                                                    );
-                                                  })
-                                                  .catch(serverErrorPost(res));
-                                              })
-                                              .catch(serverErrorGet(res));
-                                          })
-                                          .catch(serverErrorGet(res));
-                                      })
-                                      .catch(err => console.log(err));
-                                  } else {
-                                    console.log({
-                                      error: "survey does not exist"
-                                    });
-                                  }
-                                })
-                                .catch(err => console.log(err));
-                            }
-                          })
-                          .catch(err => console.log(err));
-                      })
-                      .catch(err => console.log(err));
-                    /////////////////////////////////////////////////////////////////////////////
-                  })
-                  .catch();
-              } else {
-                console.log(
-                  "jsonPayload.original_message",
-                  jsonPayload.original_message
-                );
-                console.log(
-                  "jsonPayload.original_message.attachments",
-                  jsonPayload.original_message.attachments
-                );
-                let preText =
-                  jsonPayload.original_message.attachments[0].pretext;
-                let ArrayS = preText.split("#");
-                SurveyID = Number(ArrayS[1]); ////////////////////////check
-                console.log("preText", preText);
-                console.log("ArrayS", ArrayS);
-                console.log("SurveyID", SurveyID);
-                console.log("jsonPayload.user.id", jsonPayload.user.id);
-              }
+              SurveyID = Math.max.apply(
+                Math,
+                data.map(function(o) {
+                  return o.id;
+                })
+              );
+              ///////////////////////////////////////////////////////////////////////////////////////////
 
               dbAuth
                 .getBySlackUserId(jsonPayload.user.id)
@@ -593,14 +451,13 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                         res.json(`Manager's Cannot Respond to Survey's!`);
                       } else {
                         dbSurveys
-                          .getID(SurveyID) ///////////////////////////////////////////check
+                          .getID(SurveyID)
                           .then(data => {
                             if (data.length > 0) {
                               console.log("data survey id for time", data);
                               let putInfo;
                               let survey_time_stamp;
                               if (data[0].survey_time_stamp === null) {
-                                //////////////////////////
                                 putInfo = {
                                   survey_time_stamp: jsonPayload.message_ts
                                 };
@@ -613,10 +470,8 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                               }
 
                               dbSurveys
-                                .update(SurveyID, putInfo) ///////////////////////////////
+                                .update(SurveyID, putInfo)
                                 .then(() => {
-                                  ////////////////////////////////
-
                                   dbAuth
                                     .getBySlackUserId(userIdSlack)
                                     .then(data => {
@@ -660,9 +515,6 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                                           dbFeelings
                                             .insert(postFeel)
                                             .then(() => {
-                                              // res.redirect(
-                                              //   "https://sentimentbot.netlify.com/authorization" ///////////////
-                                              // );
                                               res.json(
                                                 `Submited Feeling: ${
                                                   postFeel.feeling_text
@@ -674,11 +526,12 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                                         .catch(serverErrorGet(res));
                                     })
                                     .catch(serverErrorGet(res));
-                                  ////////////////////////////////
                                 })
                                 .catch(err => console.log(err));
                             } else {
-                              console.log({ error: "survey does not exist" });
+                              console.log({
+                                error: "survey does not exist"
+                              });
                             }
                           })
                           .catch(err => console.log(err));
@@ -687,11 +540,127 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                     .catch(err => console.log(err));
                 })
                 .catch(err => console.log(err));
-
-              //////////////////////////////////////////////////////////////////////////////////////
+              /////////////////////////////////////////////////////////////////////////////
             })
             .catch();
+        } else {
+          console.log(
+            "jsonPayload.original_message",
+            jsonPayload.original_message
+          );
+          console.log(
+            "jsonPayload.original_message.attachments",
+            jsonPayload.original_message.attachments
+          );
+          let preText = jsonPayload.original_message.attachments[0].pretext;
+          let ArrayS = preText.split("#");
+          SurveyID = Number(ArrayS[1]); ////////////////////////check
+          console.log("preText", preText);
+          console.log("ArrayS", ArrayS);
+          console.log("SurveyID", SurveyID);
+          console.log("jsonPayload.user.id", jsonPayload.user.id);
         }
+
+        dbAuth
+          .getBySlackUserId(jsonPayload.user.id)
+          .then(data => {
+            console.log("getBySlackUserId", data);
+            let id = data[0].member_id;
+            dbTeamMembers
+              .getID(id)
+              .then(data => {
+                console.log("data member", data);
+                if (data[0].type === "manager") {
+                  res.json(`Manager's Cannot Respond to Survey's!`);
+                } else {
+                  dbSurveys
+                    .getID(SurveyID) ///////////////////////////////////////////check
+                    .then(data => {
+                      if (data.length > 0) {
+                        console.log("data survey id for time", data);
+                        let putInfo;
+                        let survey_time_stamp;
+                        if (data[0].survey_time_stamp === null) {
+                          //////////////////////////
+                          putInfo = {
+                            survey_time_stamp: jsonPayload.message_ts
+                          };
+                          survey_time_stamp = jsonPayload.message_ts;
+                        } else {
+                          putInfo = {
+                            survey_time_stamp: data[0].survey_time_stamp
+                          };
+                          survey_time_stamp = data[0].survey_time_stamp;
+                        }
+
+                        dbSurveys
+                          .update(SurveyID, putInfo) ///////////////////////////////
+                          .then(() => {
+                            ////////////////////////////////
+
+                            dbAuth
+                              .getBySlackUserId(userIdSlack)
+                              .then(data => {
+                                console.log("data slack user id", data[0]);
+                                let team_member_id = data[0].member_id;
+                                console.log("team_member_id", team_member_id);
+                                let postFeel;
+                                if (callbackIDSlash === "button_tutorial") {
+                                  postFeel = {
+                                    feeling_text: jsonPayload.actions[0].value,
+                                    team_member_id: team_member_id,
+                                    survey_time_stamp: survey_time_stamp
+                                  };
+                                } else {
+                                  postFeel = {
+                                    feeling_text:
+                                      jsonPayload.actions[0].selected_options[0]
+                                        .value,
+                                    team_member_id: team_member_id,
+                                    survey_time_stamp: survey_time_stamp
+                                  };
+                                }
+
+                                console.log("postFeel", postFeel);
+                                dbFeelings
+                                  .getByMemberAndSurveyTimeStamp(
+                                    team_member_id,
+                                    survey_time_stamp
+                                  )
+                                  .then(data => {
+                                    console.log("data mem sur", data);
+                                    dbFeelings
+                                      .insert(postFeel)
+                                      .then(() => {
+                                        // res.redirect(
+                                        //   "https://sentimentbot.netlify.com/authorization" ///////////////
+                                        // );
+                                        res.json(
+                                          `Submited Feeling: ${
+                                            postFeel.feeling_text
+                                          }`
+                                        );
+                                      })
+                                      .catch(serverErrorPost(res));
+                                  })
+                                  .catch(serverErrorGet(res));
+                              })
+                              .catch(serverErrorGet(res));
+                            ////////////////////////////////
+                          })
+                          .catch(err => console.log(err));
+                      } else {
+                        console.log({ error: "survey does not exist" });
+                      }
+                    })
+                    .catch(err => console.log(err));
+                }
+              })
+              .catch(err => console.log(err));
+          })
+          .catch(err => console.log(err));
+
+        //////////////////////////////////////////////////////////////////////////////////////
       })
       .catch();
 
@@ -759,7 +728,20 @@ router.post("/2", (req, res) => {
   }
 });
 
-// error: err,
+router.get("/test/auth", (req, res) => {
+  dbAuth
+    .getBySlackTeamId('TG99JB3JL')
+    .then(data=>{
+      res.status(200).json(data);
+    })
+    .catch(err=>{
+      res.status(400).json(err);
+    });
+});
+
 module.exports = router;
 
 // heroku logs --tail -a botsentiment
+
+// chnage heroku time zone for moment.js to work
+// heroku config:add TZ="America/New_York" -a botsentiment
