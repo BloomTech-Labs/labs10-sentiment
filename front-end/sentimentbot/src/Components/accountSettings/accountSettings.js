@@ -18,7 +18,7 @@ import {
 import { connect } from "react-redux";
 import "./accountSettings.css";
 import loadinggif from "../callback/loading.svg";
-import FooterPage from '../Footer/footer-test';
+import FooterPage from "../Footer/footer-test";
 
 import { Col, FormGroup, Label, Input } from "reactstrap";
 
@@ -106,8 +106,8 @@ class accountSettings extends React.Component {
     this.props.editTeamMembers(id, combine);
     // localStorage.setItem("team_id", null);
     // localStorage.setItem("type", null);
-    localStorage.setItem('abandoned', true)
-    alert('Our Mood Bots are on it')
+    localStorage.setItem("abandoned", true);
+    alert("Our Mood Bots are on it");
 
     setTimeout(() => {
       this.props.history.push("/loading");
@@ -129,12 +129,12 @@ class accountSettings extends React.Component {
     }
     return (
       <>
-      <div className="page-container">
-        <NavBar />
-        <div className="content-container">
-          {this.state.response === 200 ? (
-            <div>Email will be sent shortly</div>
-          ) : (
+        <div className="page-container">
+          <NavBar />
+          <div className="settings-container">
+            {this.state.response === 200 ? (
+              <div>Email will be sent shortly</div>
+            ) : (
               <div className="settings-page">
                 <h3 className="settings-header">Settings</h3>
 
@@ -143,7 +143,7 @@ class accountSettings extends React.Component {
                   <FormGroup row>
                     <Label for="emailField" sm={2}>
                       Email
-                  </Label>
+                    </Label>
                     <Col sm={6}>
                       <Input
                         type="email"
@@ -160,19 +160,19 @@ class accountSettings extends React.Component {
                     color="primary"
                   >
                     Reset Password
-                </button>
+                  </button>
                 </form>
                 <button
                   className="btn-style btn-style2"
                   onClick={this.handleLeaveTeam}
                 >
                   Leave Team
-              </button>
+                </button>
               </div>
             )}
+          </div>
         </div>
-      </div>
-      <FooterPage />
+        <FooterPage />
       </>
     );
   }
