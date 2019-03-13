@@ -211,6 +211,15 @@
 }
 
 @media (max-width: 900px) {
+    .profilecontent-container {
+        margin-left: auto;
+        margin-right: auto;
+        width: 70%;
+        height: 535px;
+        padding-bottom: 50px;
+        margin-top: 2rem;
+      }
+      
     h1 {
         text-align: center;
         font-size: 3rem;
@@ -250,6 +259,14 @@
 }
 
 @media (max-width: 600px) {
+    .profilecontent-container {
+        margin-left: auto;
+        margin-right: auto;
+        width: 70%;
+        height: 600px;
+        padding-bottom: 50px;
+        margin-top: 2rem;
+      }
     h1 {
         text-align: center;
         font-size: 2.2rem;
