@@ -134,8 +134,9 @@ const surveyScheduler = (timeInfo, postInfo) => {
   let manager_id = postInfo.manager_id;
   let title = postInfo.title;
   let description = postInfo.description;
-  let dayLightSavingsTest = moment().isDST()
+  let dayLightSavingsTest = moment().isDST();
   let dayLightSavings;
+  let HerokuTimeFactor = 4;
 
   console.log("dayLightSavingsTest", dayLightSavingsTest);
 
@@ -150,12 +151,12 @@ const surveyScheduler = (timeInfo, postInfo) => {
       if (timeInfo.hour === 12) {
         timeInfo.hour = 0;
       }
-      hour = timeInfo.hour + 8 - dayLightSavings;
+      hour = timeInfo.hour + 8 - dayLightSavings - HerokuTimeFactor;
     } else if (timeInfo.amPm === "PM") {
       if (timeInfo.hour === 12) {
         timeInfo.hour = 0;
       }
-      hour = timeInfo.hour + 12 + 8 - dayLightSavings;
+      hour = timeInfo.hour + 12 + 8 - dayLightSavings - HerokuTimeFactor;
       if (hour >= 24) {
         hour = hour - 24;
       }
@@ -165,12 +166,12 @@ const surveyScheduler = (timeInfo, postInfo) => {
       if (timeInfo.hour === 12) {
         timeInfo.hour = 0;
       }
-      hour = timeInfo.hour + 5 - dayLightSavings;
+      hour = timeInfo.hour + 5 - dayLightSavings - HerokuTimeFactor;
     } else if (timeInfo.amPm === "PM") {
       if (timeInfo.hour === 12) {
         timeInfo.hour = 0;
       }
-      hour = timeInfo.hour + 12 + 5 - dayLightSavings;
+      hour = timeInfo.hour + 12 + 5 - dayLightSavings - HerokuTimeFactor;
       if (hour >= 24) {
         hour = hour - 24;
       }
@@ -443,6 +444,12 @@ router.put("/:id", (req, res) => {
       serverErrorUpdate404(res, type, id);
     }
   });
+});
+
+router.get("/test/moment", (req, res)=>{
+  let test = moment().isDST();
+  let time = moment();
+  res.json(time);
 });
 
 module.exports = { router, onServerStartScheduleSurveys };

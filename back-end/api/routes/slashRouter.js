@@ -739,7 +739,9 @@ router.get("/test/auth", (req, res) => {
     });
 });
 
-// error: err,
 module.exports = router;
 
 // heroku logs --tail -a botsentiment
+
+// chnage heroku time zone for moment.js to work
+// heroku config:add TZ="America/New_York" -a botsentiment
