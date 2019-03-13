@@ -504,7 +504,7 @@ class PieChart extends React.Component {
 
   render() {
 if (this.state.complete === false || this.props.loading === true || this.props.surveyIsFetching === true) {
-  return (<><p>Make surveys and get responses to see reports!</p><img className="loadinggif" src={loadinggif} alt="loading" /></>)
+  return (<><p>Make surveys and get responses to see reports!</p><img className="loadinggif report-gif" src={loadinggif} alt="loading" /></>)
 } else if (
       this.props.surveyIsFetching === false &&
       this.props.survey.length === 0 &&

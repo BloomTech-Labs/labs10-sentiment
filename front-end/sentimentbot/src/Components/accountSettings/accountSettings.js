@@ -104,9 +104,14 @@ class accountSettings extends React.Component {
       team_id: team_id
     };
     this.props.editTeamMembers(id, combine);
-    localStorage.setItem("team_id", null);
-    localStorage.setItem("type", null);
-    this.props.history.push("/profile");
+    // localStorage.setItem("team_id", null);
+    // localStorage.setItem("type", null);
+    localStorage.setItem('abandoned', true)
+    alert('Our Mood Bots are on it')
+
+    setTimeout(() => {
+      this.props.history.push("/loading");
+    }, 1000);
     // this.props.history.push("/loading");
     // let currentMember = this.props.singleTeamMembers[0];
     // currentMember.type = null;
