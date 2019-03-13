@@ -4,7 +4,7 @@ const request = require("request");
 const schedule = require("node-schedule");
 const db = require("../database/helpers/surveysDb");
 const server = require("../server.js");
-import moment from "moment";
+const moment = require("moment");
 
 const teamMembersDb = require("../database/helpers/teamMembersDb");
 const surveyDb = require("../database/helpers/surveysDb");
