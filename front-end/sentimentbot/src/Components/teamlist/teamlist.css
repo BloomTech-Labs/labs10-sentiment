@@ -154,6 +154,14 @@
 /* Tablet */
 
 @media (max-width:900px) and (min-width:701px) {
+    .teamcontent-container {
+        margin-top: 5%;
+        margin-left: auto;
+        margin-right: auto;
+        width: 70%;
+        height: 535px;
+        padding-bottom: 50px;
+      }
     .teamlist-container {
         width: 100%;
     }
@@ -162,7 +170,7 @@
         display: none;
     }
     .teamcontent-container h1 {
-        padding-right: 21rem;
+        padding-right: 26rem;
         /* margin-right: 3.8rem; */
         /* width: 60%; */
         /* text-align: left; */
@@ -180,7 +188,12 @@
 
 @media (max-width:700px) {
     .teamcontent-container {
-        margin-bottom: 75px;
+        margin-top: 5%;
+        margin-left: auto;
+        margin-right: auto;
+        width: 70%;
+        height: 535px;
+        padding-bottom: 50px;
     }
     .teamlist-container {
         width: 100%;

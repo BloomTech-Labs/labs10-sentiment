@@ -9,7 +9,7 @@
   background-color: #F5F5F5;
 }
 .billingcontent-container { 
-  /* height: 720px; */
+  height: 815px;
   padding-bottom: 50px;
 }
 
@@ -115,6 +115,9 @@
 }
 
 @media (max-width: 600px) {
+  .billingcontent-container {
+    height: 900px;
+  }
    h1 {
     padding-right: 0;
   }
