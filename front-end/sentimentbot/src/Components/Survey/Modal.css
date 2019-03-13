@@ -14,10 +14,10 @@ body {
     margin-right: auto;
     margin-bottom: 200px;
     padding-bottom: 120px;
-    display: flex;
+    /* display: flex;
     flex-direction: column;
     justify-content: center;
-    align-content: center;
+    align-content: center; */
     overflow: auto;
 }
 .survey-title {
