@@ -38,10 +38,12 @@ class ModalSurvey extends React.Component {
         min: 1,
         amPm: "AM",
         timeZone: "EST",
-        option1: null,
         textArray: [':joy:',':sunglasses:',':scream:',':pensive:'],
         strArr: ["happy", ":joy:"],
-        option4: null,
+        option1: ['',''],
+        option2: ['',''],
+        options3: ['',''],
+        option4: ['',''],
         preFeelingIdsArray: [34, 9, 5, 38],
         custom: ['', ""],
         loading: true,
@@ -95,7 +97,7 @@ class ModalSurvey extends React.Component {
       strArr.splice(1, strArr.length-2,)
     }
     this.setState({
-      strArr: [strArr[0], this.state.strArr[1]]
+      [event.target.name]: [strArr[0], this.state.strArr[1]]
     })
 
     // this.setState({

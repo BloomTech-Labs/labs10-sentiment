@@ -63,7 +63,7 @@
     margin-top: -9rem;
 }
 
-.teamcontent-container p:nth-of-type(1) {
+/* .teamcontent-container p:nth-of-type(1) { */
     /* margin-top: 3rem; */
     /* margin-left: 2.5rem; */
     /* border: 2px solid #02C8A7; */
@@ -71,7 +71,7 @@
     /* text-align: left; */
     /* padding: 2px; */
     /* border-radius: 5px; */
-}
+/* } */
 
 
 /* TeamList Container */
@@ -175,12 +175,12 @@
         /* width: 60%; */
         /* text-align: left; */
     }
-    .teamcontent-container :nth-child(3) {
+    /* .teamcontent-container :nth-child(3) { */
        /* margin-left: 9.5rem; */
        /* text-align: left; */
        /* text-align: center; */
        /* margin-left: 11rem; */
-    }
+    /* } */
 }
 
 
