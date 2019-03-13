@@ -7,12 +7,13 @@
   background-color: #F5F5F5;
 }
 .profilecontent-container {
+width: 70%;
   margin-left: auto;
   margin-right: auto;
-  width: 70%;
   height: 935px;
   padding-bottom: 50px;
   margin-top: 2rem;
+  
 }
 
 
