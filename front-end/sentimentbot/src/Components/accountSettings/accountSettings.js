@@ -176,8 +176,7 @@ class accountSettings extends React.Component {
           <div className="sidebanner-box">
             <img clasName="sidebanner" height="600"width="250" src={SideBanner} alt="side banner" />
           </div>
-        </div>
-        
+        </div> 
       </>
     );
   }

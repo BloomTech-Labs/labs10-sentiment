@@ -9,9 +9,11 @@
 }
 
 .settings-container {
-    padding-bottom: 50px;
+    
     margin: 0 auto; 
-    width: 70%; 
+    max-width: 900px;
+    width: 100%;
+ 
 }
 .accsetcontent-container {
     width: 100%;
@@ -24,7 +26,6 @@
     justify-content: center;
 }
 
-
 .form-control {
     box-shadow: none;
 }
@@ -34,7 +35,7 @@
 }
 
 .settings-page {
-    width: 60%;
+    /* width: 60%; */
     /* margin: 0 auto; */
     margin-left: auto;
     margin-right: auto;
@@ -62,7 +63,7 @@ input[type=password]:focus {
 .accbuttons-box {
     display: flex;
      flex-direction: row;
-     justify-content: space-evenly;
+     justify-content: center;
      padding: 5px;
 }
 .btn-style {
@@ -77,9 +78,7 @@ input[type=password]:focus {
     height: 40px;
     display: flex;
     justify-content: center;
-}
-.btn-style2 {
-    /* margin-top: 3%; */
+    margin: 5px;
 }
 
 .btn-style:hover {
@@ -90,6 +89,8 @@ input[type=password]:focus {
 .resetwords-box {
     margin: 10px;
     padding: 10px;
+    display: flex;
+    justify-content: center;
 }
 .reset {
     margin-top: 20px;
@@ -116,7 +117,7 @@ input[type=password]:focus {
     width: 10%;
 } */
 
-.account-form {
+#account-form {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -180,5 +181,9 @@ input[type=password]:focus {
     .form-group {
         width: 17rem;
         margin-left: 5%;
+    }
+    .settings-container {
+        
+        width: 100%;
     }
 }
