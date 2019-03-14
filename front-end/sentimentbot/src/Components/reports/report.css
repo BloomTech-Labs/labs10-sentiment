@@ -7,6 +7,19 @@
     --p-font-style: "Roboto", sans-serif;
     --headers-font-style: 'Roboto Slab', serif;
 }
+
+.routes-div h1 {
+    font-family: var(--headers-font-style);
+}
+.routes-div h2 {
+    font-family: var(--headers-font-style);
+}
+.routes-div h3 {
+    font-family: var(--headers-font-style);
+}
+.routes-div p {
+    font-family: var(--p-font-style);
+}
 /* Standard Page CSS */
 .reportspage-container {
     background-color: var(--main-bg-color);
