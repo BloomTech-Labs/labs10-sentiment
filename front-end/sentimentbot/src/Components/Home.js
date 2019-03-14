@@ -55,32 +55,32 @@ toggle4() {
   });
 }
 
-  componentDidMount() {
-    // change this line to grab the id passed on the URL
-    const code = this.props.match.params.code;
-    console.log(code);
-    if (code) {
-      this.fetchAuth(code);
-    }
-  }
+  // componentDidMount() {
+  //   // change this line to grab the id passed on the URL
+  //   const code = this.props.match.params.code;
+  //   console.log(code);
+  //   if (code) {
+  //     this.fetchAuth(code);
+  //   }
+  // }
 
-  componentDidUpdate(prev) {
-    const code = this.props.match.params.code;
-    console.log(code);
-    if (code !== prev.match.params.code) {
-      this.fetchAuth(code);
-    }
-  }
+  // componentDidUpdate(prev) {
+  //   const code = this.props.match.params.code;
+  //   console.log(code);
+  //   if (code !== prev.match.params.code) {
+  //     this.fetchAuth(code);
+  //   }
+  // }
 
-  handleSubmit(event) {
-    event.preventDefault();
-    const code = this.props.match.params.code;
-    console.log(code);
-    // this.setState({
-    //   ...this.state,
-    //   code: code
-    // });
-  }
+  // handleSubmit(event) {
+  //   event.preventDefault();
+  //   const code = this.props.match.params.code;
+  //   console.log(code);
+  //   // this.setState({
+  //   //   ...this.state,
+  //   //   code: code
+  //   // });
+  // }
 
   render() {
     const auth = new Auth();
@@ -91,7 +91,7 @@ toggle4() {
       <div className="landingIntro">
         <div className="home-container-text">
           <h1>
-            Hello, I'm am the Miniature Organization Observation Drone, or M.O.O.D.
+            Hello, I am the Miniature Organization Observation Drone, or M.O.O.D.
             Let me help you enjoy working with your team.
           </h1>
           <Login auth={auth} />
