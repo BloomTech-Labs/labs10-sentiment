@@ -21,13 +21,23 @@ const items = [
    
   },
   {
+    src: MoodCringe,
+    altText: ':cringe:',
+  },
+  {
+    src: MoodDrool,
+    altText: ':drool:',
+    
+  },
+  {
     src: MoodSeriously,
     altText: ':seriously:',
     
   },
   {
-    src: MoodCringe,
-    altText: ':cringe:',
+    src: MoodLove ,
+    altText: ':love:',
+    
   }, 
   {
     src: MoodDisgust,
@@ -41,16 +51,6 @@ const items = [
     
   },
   {
-    src: MoodDrool,
-    altText: ':drool:',
-    
-  },
-  {
-    src: MoodLove ,
-    altText: ':love:',
-    
-  },
-  {
     src: MoodSad,
     altText: ':sad:',
     
@@ -61,14 +61,14 @@ const items = [
     
   },
   {
-    src: MoodWeep,
-    altText: ':weep:',
-   
-  },
-  {
     src: MoodHappy,
     altText: ':happy:',
     
+  },
+  {
+    src: MoodWeep,
+    altText: ':weep:',
+   
   },
   {
     src: MoodThinking,
