@@ -30,21 +30,19 @@
   }
 
   .main-reports-container { 
-    
     padding-bottom: 50px;
     margin: 0 auto;
-    margin-top: 3%;
-    margin-right: 20rem;
+    margin-top: 3% auto;
     display: flex;
     flex-direction: row;
-    /* width: 100%; */
+    width: 100%;
     /* align-items: center; */
     background-color: var(--main-bg-color); 
   }
 
   .main-reports-container .generateReport { 
-    /* margin-right: 200px; */
-    margin-right: 10rem;
+    width: 50%;
+    margin: 0 auto;
   }
 
 /* .background-color {
@@ -77,7 +75,8 @@
     }
 
     .main-reports-container .generateReport h2 {
-        margin-left: 17rem;
+        /* margin-left: 17rem; */
+        text-align: center;
     }
 
     .main-reports-container button {
@@ -262,7 +261,7 @@
     }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 420px) {
     .main-reports-container {
         width: 90%;
         margin: 0 auto;
@@ -357,14 +356,30 @@
 
 @media (max-width: 420px) {
     .reports-container {
-        width: 90%;
+        width: 100%;
         display: flex;
+        flex-direction: column;
         flex-wrap: wrap;
     }
+
+    .main-reports-container .generateReport {
+        width: 100%;
+    }
+
+    .generateReport h2 {
+        margin-top: 10%;
+        font-size: 2rem;
+    }
+
+    .generateReport .bot-container p {
+        font-size: 1.2rem;
+    }
+
 
     .reports-container .bot-container img {
         width: 60%;
         height: 60%;
+        display: none;
     }
 
     .bot-container {
@@ -373,10 +388,10 @@
         justify-content: center;
     }
 
-    .bot-container p {
-        text-align: center;
-        font-size: 1.2rem;
+    .combo-container p {
+        padding: 4%;
     }
+
 
     .report-button-combo {
         display: flex;
@@ -421,24 +436,42 @@
         border: 1px solid var(--hover-border-color);
     }
 
+    .pie-container p {
+        width: 90%;
+        margin-top: 5%;
+    }
+
+    .footer-img {
+        display: none;
+    }
+
 }
 
-@media (max-width: 600px) {
-    .reports-container {
-        width: 90%;
+@media (max-width: 600px) and (min-width: 420px) {
+
+    .main-reports-container .generateReport {
+        width: 100%;
+    }
+    .generateReport .reports-container {
+        width: 100%;
         display: flex;
         flex-wrap: wrap;
+        margin-top: 15%;
     }
 
     .bot-container img {
-        width: 28%;
-        height: 200px;
+        display: none;
+    }
+
+    .footer-img {
+        display: none;
     }
 
     .bot-container {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
+        margin-top: 180%;
     }
 
     .bot-container p {
@@ -579,6 +612,11 @@
 
 .pie-container {
     margin-top: 1.5%;
+    width: 50%;
+}
+
+.pie-container p {
+    text-align: center;
 }
 
 /* Main Report Styles */

@@ -378,7 +378,7 @@ body {
     display: block;
 }
 
-.modalpage-container .survey-header {
+.modalpage-container  .modalsurvey-container .survey-header {
     margin-top: 3%;
     font-family: var(--headers-font-style);
     font-size: 3.5rem;
@@ -386,6 +386,7 @@ body {
     padding-right: 0;
     margin-left: 10%;
     text-align: center;
+    margin-bottom: 20%;
 }
 
 .emoji-custom {
