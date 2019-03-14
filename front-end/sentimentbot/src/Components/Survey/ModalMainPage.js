@@ -23,7 +23,7 @@ import { addPreFeeling, getFeelings, getPreFeeling } from "../../actions";
 // import loadinggif from '../callback/loading.svg'
 import StepZilla from 'react-stepzilla';
 
-import FooterPage from '../Footer/footer-test';
+// import FooterPage from '../Footer/footer-test';
 
 
 class ModalSurvey extends React.Component {
@@ -270,7 +270,7 @@ class ModalSurvey extends React.Component {
         preFeelingIdsArray: [],
         custom: "",
       })
-      // this.props.history.push("/surveysubmitloading")
+      this.props.history.push("/profile")
     };
 
     render() {
@@ -306,7 +306,7 @@ class ModalSurvey extends React.Component {
                   </h1>
                   <StepZilla steps={steps} />
                 </div>
-                <FooterPage />
+                {/* <FooterPage /> */}
                 {/* <div className="modalfooter">
                   <p className="modalcopyright-words">© Copyright M.O.O.D All Rights Reserved.</p>
                   <div className="modalfooterimg-box">

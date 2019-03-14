@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 // import "../App.css";
 import "./myProfile.css";
-import FooterPage from "../Footer/footer-test";
+// import FooterPage from "../Footer/footer-test";
 import {
   getSingleTeamMembers,
   addTeamMembers,
@@ -349,7 +349,7 @@ class Profile extends React.Component {
               <button className="btn-feel">Responed to Latest Survey</button>
             </div> */}
           </div>
-          <FooterPage />
+          {/* <FooterPage /> */}
         </div>
       );
     }
@@ -413,7 +413,7 @@ class Profile extends React.Component {
               </div>
             </div>
           </div>
-          <FooterPage />
+          {/* <FooterPage /> */}
         </div>
       );
     } else if (view === "create") {
@@ -471,7 +471,7 @@ class Profile extends React.Component {
             </button>
           </form> */}
           </div>
-          <FooterPage />
+          {/* <FooterPage /> */}
         </div>
       );
     }

@@ -2,7 +2,7 @@ import React from "react";
 import PieChart from "./chart";
 import NavBar from '../NavBar/NavBar';
 import './report.css'
-import FooterPage from '../Footer/footer-test';
+// import FooterPage from '../Footer/footer-test';
 import Generatereport from './generateReport';
 
 function Reports(props) {
@@ -23,7 +23,7 @@ function Reports(props) {
       <PieChart history={props.history} />
       </div>
       </div>
-      <FooterPage />
+      {/* <FooterPage /> */}
     </div>
   );
 }

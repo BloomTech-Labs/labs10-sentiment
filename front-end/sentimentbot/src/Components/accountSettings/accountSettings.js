@@ -129,7 +129,7 @@ class accountSettings extends React.Component {
     }
     return (
       <>
-        <div className="page-container">
+        <div className="accsetpage-container">
           <NavBar />
           <div className="settings-container">
             {this.state.response === 200 ? (

@@ -13,7 +13,7 @@ import "./teamlist.css";
 import NavBar from "../NavBar/NavBar";
 import Eh from "../PNG/nobackgroundEh.png";
 import loadinggif from "../callback/loading.svg";
-import FooterPage from '../Footer/footer-test';
+// import FooterPage from '../Footer/footer-test';
 
 class TeamList extends React.Component {
   state = {
@@ -141,7 +141,7 @@ class TeamList extends React.Component {
               })}
             </div>
           </div>
-          <FooterPage />
+          {/* <FooterPage /> */}
         </div>
       )
     }

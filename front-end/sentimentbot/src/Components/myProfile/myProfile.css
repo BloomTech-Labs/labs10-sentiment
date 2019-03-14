@@ -1,19 +1,16 @@
 
 .profilepage-container {
-  margin: 0;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  overflow-y: hidden;
   background-color: #F5F5F5;
+  height: 1208px;
 }
 .profilecontent-container {
-width: 70%;
-  margin-left: auto;
-  margin-right: auto;
-  height: 935px;
-  padding-bottom: 50px;
-  margin-top: 2rem;
-  
+    width: 70%;
+    padding-bottom: 50px;
+    margin: 0 auto; 
+    background-color: var(--main-bg-color); 
 }
 
 
