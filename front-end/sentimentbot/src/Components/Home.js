@@ -2,7 +2,6 @@ import React from "react";
 import Login from './login/login'
 import Auth from "./Auth/auth";
 import "./home.css";
-import Happy from "./PNG/nobackgroundHappy.png";
 import { Card, CardText, CardBody,
   CardTitle, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem  } from 'reactstrap';
   import NavBar from "./NavBar/NavBar";

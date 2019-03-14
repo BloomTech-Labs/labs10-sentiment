@@ -76,7 +76,6 @@ class TeamList extends React.Component {
   }
 
   render() {
-    const uri = "https://sentimentbot.netlify.com/authorization";
     if (this.state.loading === true || this.props.singleTeams.length < 1) {
       return <img className="loadinggif" src={loadinggif} alt="loading" />
     } else if (this.props.singleTeams.length > 0) {
@@ -85,15 +84,15 @@ class TeamList extends React.Component {
         <div className="teampage-container">
           <NavBar />
           <div className="teamcontent-container">
-            <h1>{this.props.singleTeams[0].name}</h1>
+            <h1 style= {{fontSize: '4rem' }}>{this.props.singleTeams[0].name}</h1>
             {/* <a
               href={`https://slack.com/oauth/authorize?scope=commands,bot&client_id=553324377632.554405336645&redirect_uri=${uri}&state=${localStorage.getItem(
                 "id"
               )}`}
             /> */}
-            <p>Team Join Code: {this.props.singleTeams[0].team_code}</p>
+            <p style={{marginBottom:'5%', marginTop: '3%', fontSize:'1.2rem'}}>Team Join Code: {this.props.singleTeams[0].team_code}</p>
             <div className="eh-moodbot">
-              <h3>Team Members</h3>
+              <h3 style= {{marginBottom:'2%', fontFamily:'Roboto Slab', fontWeight: "unset", fontSize:'1.3rem'}}>Team Members</h3>
               <div className="eh-moodbot2">
                 <img
                   src={Eh}

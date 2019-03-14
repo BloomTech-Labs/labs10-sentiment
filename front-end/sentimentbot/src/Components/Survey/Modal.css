@@ -183,12 +183,72 @@ body {
     padding: 3%;
 }
 
-.create-survey {
-    background-color: var(--main-btn-color);
-    border-radius: .25rem;
-    color: white;
-    align-self: flex-end;
-    height: 45px;
+.confirmation-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 600px;
+    border: 1px solid var(--hover-border-color);
+    padding: 2%;
+}
+
+.confirmation-container .create-survey {
+        background-color: var(--main-btn-color);
+        border-radius: .25rem;
+        color: white;
+        align-self: flex-end;
+        height: 45px;
+        margin-left: 5%;
+
+    }
+
+
+
+.confirmation-title {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.confirmation-title p {
+    padding-top: .3%;
+    margin-right: 5%;
+    font-weight: bold;
+}
+
+.confirmation-description {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.confirmation-description p {
+    padding-top: .3%;
+    margin-right: 5%;
+    font-weight: bold;
+}
+
+.confirmation-frequency {
+    margin-top: 3%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.confirmation-time {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.confirmation-frequency p {
+    padding-top: .3%;
+    margin-right: 5%;
+    font-weight: bold;
+}
+
+.confirmation-time p {
+    padding-top: .3%;
+    margin-right: 5%;
+    font-weight: bold;
 }
 
 .create-survey:hover {
@@ -197,7 +257,7 @@ body {
 }
 
 .title-label {
-    margin-left: 9%;
+    margin-left: 12%;
 }
 
 .modal-footer .btn-primary{
@@ -247,10 +307,9 @@ body {
     border-radius: .25rem;
 }
 
-.survey-responsebox .dropdown {
-    position: relative;
-    display: inline-block;
-    width: 50%;
+.survey-responsebox {
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .dropdown-content {
@@ -269,16 +328,17 @@ body {
 
 .text-area-field {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     width: 100%;
     align-items: center;
-    margin: 0 auto;
+    margin-left: -3%;
     height: 100%;
     padding-top: 3%;
 }
 .text-area-field p {
     width: 50%;
     padding: 2%;
+    margin-right: 5%;
 }
 
 .array-area-field {
@@ -286,11 +346,12 @@ body {
     align-items: center;
     flex-direction: column;
     justify-content: space-evenly;
-    width: 50%;
+    width: 25%;
     border: 1px solid var(--hover-border-color);
     padding-top: 1%;
     border-radius: .25rem;
     min-height: 100px;
+    margin-left: 8%;
 }
 
 .pre-p {
@@ -369,6 +430,20 @@ body {
     max-height: 50px;
 }
 
+.input-emoji-combo {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 45%;
+}
+
+.input-emoji-combo input {
+    margin-bottom: 3%;
+    margin-top: 2%;
+    margin-right: 5%;
+    width: 75%;
+}
+
 @media (max-width: 400px) {
     .title-label {
         margin-left: 0;
@@ -393,6 +468,7 @@ body {
     .survey-schedule {
         margin: 0 2%;
     }
+    
 }
 
 @media (max-width: 600px) {
@@ -410,5 +486,14 @@ body {
     }
     .footer-buttons .pull-left {
         width: 100%;
+    }
+
+    .confirmation-container {
+        width: 98%;
+    }
+
+    .confirmation-container .create-survey {
+        width: 52%;
+        margin-left: 24%;
     }
 }

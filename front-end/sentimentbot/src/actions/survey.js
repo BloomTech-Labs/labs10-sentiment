@@ -15,8 +15,16 @@ export const EDIT_SURVEY_FAILURE = 'EDIT_SURVEY_FAILURE';
 export const SINGLE_SURVEY_START = 'SINGLE_SURVEY_START';
 export const SINGLE_SURVEY_SUCCESS = 'SINGLE_SURVEY_SUCCESS';
 export const SINGLE_SURVEY_FAILURE = 'SINGLE_SURVEY_FAILURE';
+export const REQ_ACTIVITY_SURVEY_START = 'REQ_ACTIVITY_SURVEY_START';
+export const REQ_ACTIVITY_SURVEY_SUCCESS = 'REQ_ACTIVITY_SURVEY_SUCCESS';
+export const REQ_ACTIVITY_SURVEY_FAILURE = 'REQ_ACTIVITY_SURVEY_FAILURE';
+export const CHANGE_ACTIVITY_SURVEY_START = 'CHANGE_ACTIVITY_SURVEY_START';
+export const CHANGE_ACTIVITY_SURVEY_SUCCESS = 'CHANGE_ACTIVITY_SURVEY_SUCCESS';
+export const CHANGE_ACTIVITY_SURVEY_FAILURE = 'CHANGE_ACTIVITY_SURVEY_FAILURE';
 
 //these routes relate to the use of our surveys between the managers and the users they are communicating with
+let url = "https://botsentiment.herokuapp.com"
+// let url = "http://localhost:5002"
 
 export const getSurvey = id => dispatch => {
     dispatch({ type: FETCH_SURVEY_START });
@@ -26,6 +34,26 @@ export const getSurvey = id => dispatch => {
         dispatch({ type: FETCH_SURVEY_SUCCESS, payload: response.data })
     })
     .catch(err => dispatch({ type: FETCH_SURVEY_FAILURE, payload: err }))
+}
+
+export const changeSurveyActivity = id => dispatch => {
+    dispatch({ type: CHANGE_ACTIVITY_SURVEY_START });
+    axios
+    .get(`https://botsentiment.herokuapp.com/api/surveys/changeActivity/${id}`)
+    .then(response => {
+        dispatch({ type: CHANGE_ACTIVITY_SURVEY_SUCCESS, payload: response.data })
+    })
+    .catch(err => dispatch({ type: CHANGE_ACTIVITY_SURVEY_FAILURE, payload: err }))
+}
+
+export const getSurveyActivity = () => dispatch => {
+    dispatch({ type: REQ_ACTIVITY_SURVEY_START });
+    axios
+    .get(`${url}/api/survey_active`)
+    .then(response => {
+        dispatch({ type: REQ_ACTIVITY_SURVEY_SUCCESS, payload: response.data })
+    })
+    .catch(err => dispatch({ type: REQ_ACTIVITY_SURVEY_FAILURE, payload: err }))
 }
 
 export const addSurvey = note => dispatch => {
