@@ -61,7 +61,7 @@ const onServerStartScheduleSurveys = () => {
           surveyAcitveDb
             .getBySurveyID(survey_id)
             .then(data => {
-              console.log("data check",data);
+              console.log("data check", data);
               if (data[0].active === 0) {
                 return;
               } else {
@@ -339,45 +339,55 @@ router.post("/", (req, res) => {
         let preFeelingIdsArray = postInfo.preFeelingIdsArray;
 
         db.insert(insertInfo)
-          .then(data => {
-            console.log("insert data", data);
-            let postActive = {
-              survey_id: data[0].id,
-              active: true
-            };
-            surveyAcitveDb
-              .insert(postActive)
-              .then(postSuccess(res))
-              .catch(serverErrorPost(res));
-
-            console.log({
-              timeInfo: timeInfo,
-              insertInfo: insertInfo
-            });
-            db.getManagerID(postInfo.manager_id)
+          .then(() => {
+            db.get()
               .then(data => {
-                console.log("survey manager", data);
-
-                let survey_ID = Math.max.apply(
+                let newID = Math.max.apply(
                   Math,
                   data.map(function(o) {
                     return o.id;
                   })
                 );
+                console.log("insert data", newID);
+                let postActive = {
+                  survey_id: newID,
+                  active: true
+                };
+                surveyAcitveDb
+                  .insert(postActive)
+                  .then(postSuccess(res))
+                  .catch(serverErrorPost(res));
 
-                for (let i = 0; i < preFeelingIdsArray.length; i++) {
-                  let post = {
-                    survey_id: survey_ID,
-                    feelings_id: preFeelingIdsArray[i]
-                  };
-                  surveyFeelingsDb
-                    .insert(post)
-                    .then(getSuccess(res))
-                    .catch(serverErrorGet(res));
-                }
-              })
-              .then(() => {
-                surveyScheduler(timeInfo, insertInfo);
+                console.log({
+                  timeInfo: timeInfo,
+                  insertInfo: insertInfo
+                });
+                db.getManagerID(postInfo.manager_id)
+                  .then(data => {
+                    console.log("survey manager", data);
+
+                    let survey_ID = Math.max.apply(
+                      Math,
+                      data.map(function(o) {
+                        return o.id;
+                      })
+                    );
+
+                    for (let i = 0; i < preFeelingIdsArray.length; i++) {
+                      let post = {
+                        survey_id: survey_ID,
+                        feelings_id: preFeelingIdsArray[i]
+                      };
+                      surveyFeelingsDb
+                        .insert(post)
+                        .then(getSuccess(res))
+                        .catch(serverErrorGet(res));
+                    }
+                  })
+                  .then(() => {
+                    surveyScheduler(timeInfo, insertInfo);
+                  })
+                  .catch(serverErrorGet(res));
               })
               .catch(serverErrorGet(res));
           })
