@@ -16,10 +16,12 @@ import {
   joinTeam,
   getPreFeeling,
   getFeelings,
-  getManagers
+  getManagers,
+  getSurveyActivity
 } from "../../actions/index";
 import NavBar from "../NavBar/NavBar";
 import GenerateTeams from "./generateTeams";
+import GenerateSurveys from "./generateSurveys";
 import Happy from "../PNG/nobackgroundHappy.png";
 import loadinggif from "../callback/loading.svg";
 class Profile extends React.Component {
@@ -45,6 +47,7 @@ class Profile extends React.Component {
     this.props.getManagers(localStorage.getItem("id"));
     this.props.getSingleTeam(localStorage.getItem("team_id"));
     this.props.getFeelings(localStorage.getItem("id"));
+    this.props.getSurveyActivity();
     if (this.props.survey.length > 0) {
       this.props.fetchSingleSurvey(this.props.survey[0].survey_time_stamp);
       this.setState({
@@ -323,9 +326,21 @@ class Profile extends React.Component {
             </div>
 
             <div className="reactions">
-              <p>Your Reactions:</p>
+              {this.props.singleTeamMembers[0].type === "manager" ? (
+                <p>Your Surveys:</p>
+              ) : (
+                <p>Your Reactions:</p>
+              )}
               <div className="reactions-scroll">
-                {this.props.feelings.length > 0 ? (
+                {this.props.singleTeamMembers[0].type === "manager" ? (
+                  this.props.survey.length > 0 ? (
+                    <p>
+                      <GenerateSurveys />
+                    </p>
+                  ) : (
+                    <p>Oops! You haven't created any surveys yet!</p>
+                  )
+                ) : this.props.feelings.length > 0 ? (
                   <p>
                     <GenerateTeams />
                   </p>
@@ -524,7 +539,8 @@ function mapStateToProps(state) {
     feelings: state.feelingsReducer.feelings,
     teams: state.teamsReducer.teams,
     managers: state.managersReducer.managers,
-    managersIsFetching: state.managersReducer.managersIsFetching
+    managersIsFetching: state.managersReducer.managersIsFetching,
+    active: state.surveyReducer.active
   };
 }
 
@@ -543,7 +559,8 @@ export default connect(
     joinTeam,
     getPreFeeling,
     getFeelings,
-    getManagers
+    getManagers,
+    getSurveyActivity
   }
 )(Profile);
 
