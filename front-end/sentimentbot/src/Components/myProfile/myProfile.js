@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 // import "../App.css";
 import "./myProfile.css";
-// import FooterPage from "../Footer/footer-test";
+import FooterPage from "../Footer/footer-test";
 import {
   getSingleTeamMembers,
   addTeamMembers,
@@ -182,6 +182,11 @@ class Profile extends React.Component {
     }, 500);
   };
 
+  goToSurveyMaker = event => {
+    event.preventDefault();
+    this.props.history.push("/survey");
+  }
+
   addCodeToMember = event => {
     event.preventDefault();
     const code = parseInt(this.state.team_code);
@@ -312,15 +317,21 @@ class Profile extends React.Component {
 
                   <h3>Team: {this.props.singleTeams[0].name}</h3>
                 </div>
-                <img
-                  className="happy"
-                  src={Happy}
-                  alt="Happy MoodBot"
-                  width="200"
-                  height="200"
-                />
-              </div>
+                <div className="secondcolumn">
+                  <img
+                    className="happy"
+                    src={Happy}
+                    alt="Happy MoodBot"
+                    width="58"
+                    height="58"
+                  />
+                  <div>
+                    <div id="gotosurveymaker" onClick={this.goToSurveyMaker}>Create Survey</div>
+                  </div>
+                </div>
+              </div>   
             </div>
+            
 
             <div className="reactions">
               <p>Your Reactions:</p>
@@ -338,13 +349,13 @@ class Profile extends React.Component {
               <button className="btn-feel">Responed to Latest Survey</button>
             </div> */}
           </div>
-          {/* <FooterPage /> */}
+          <FooterPage />
         </div>
       );
     }
     if (view === "") {
       return (
-        <div className="page-container background-color">
+        <div className="profilepage-container background-color">
           <NavBar />
           <div className="profilecontent-container">
             <div className="sub-container-3">
@@ -402,13 +413,13 @@ class Profile extends React.Component {
               </div>
             </div>
           </div>
-          {/* <FooterPage /> */}
+          <FooterPage />
         </div>
       );
     } else if (view === "create") {
       return (
-        <div id="page-container" className="background-color">
-          <div id="profilecontent-container">
+        <div className="page-container" className="background-color">
+          <div className="profilecontent-container">
             {/* <p>Loading...</p> */}
             <NavBar />
             {/* <a
@@ -460,7 +471,7 @@ class Profile extends React.Component {
             </button>
           </form> */}
           </div>
-          {/* <FooterPage /> */}
+          <FooterPage />
         </div>
       );
     }
