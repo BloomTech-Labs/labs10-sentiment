@@ -62,7 +62,7 @@ function GenerateSurveyList(props) {
       } else {
         divs.push(
           <div className="survey-container-div" key={i}>
-            <span>In Active</span>
+            <span>Inactive</span>
             <p>
               #{id} {title}
             </p>
