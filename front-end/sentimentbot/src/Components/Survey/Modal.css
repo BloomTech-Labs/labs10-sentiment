@@ -11,7 +11,6 @@ body {
     flex-direction: column;
 }
 .modalsurvey-container {
-    max-width: 600px;
     width: 100%;
     height: 935px;
     position: relative;
