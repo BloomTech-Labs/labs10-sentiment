@@ -505,17 +505,26 @@ router.get("/changeActivity/:id", (req, res) => {
   });
 });
 
-router.get("/requestActivity/:id", (req, res) => {
-  const { id } = req.params;
-  console.log("id req", id);
+// router.get("/requestActivity", (req, res) => {
+//   surveyAcitveDb
+//     .get()
+//     .then(data => {
+//       res.status(200).json(data);
+//     })
+//     .catch(serverErrorGet(res));
+// });
 
-  surveyAcitveDb
-    .getBySurveyID(id)
-    .then(data => {
-      res.status(200).json(data[0].active);
-    })
-    .catch(serverErrorGetID(res, type, id));
-});
+// router.get("/requestActivity/:id", (req, res) => {
+//   const { id } = req.params;
+//   console.log("id req", id);
+
+//   surveyAcitveDb
+//     .getBySurveyID(id)
+//     .then(data => {
+//       res.status(200).json(data[0].active);
+//     })
+//     .catch(serverErrorGetID(res, type, id));
+// });
 
 // router.get("/test/moment", (req, res) => {
 //   let test = moment().isDST();

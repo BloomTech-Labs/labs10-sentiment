@@ -215,6 +215,40 @@ width: 70%;
     align-items: center;
 }
 
+.survey-container-div{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+.survey-container-div p{
+    margin: 0 0;
+    width: 50%;
+}
+
+.survey-container-button {
+    color: white;
+    text-transform: uppercase;
+    background: #02C8A7;
+    border-radius: 0.25rem;
+    display: inline-block;
+    border: none;
+    font-size: .8rem;
+    margin-left: 1rem;
+}
+
+.survey-container-button:hover {
+    color: white;
+    background: #f53240;
+    letter-spacing: 1px;
+    -webkit-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+    -moz-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+    box-shadow: 5px 40px -10px rgba(0, 0, 0, 0.57);
+    transition: all 0.4s ease 0s;
+}
+
 @media (max-width: 900px) {
     .profilecontent-container {
         margin-left: auto;

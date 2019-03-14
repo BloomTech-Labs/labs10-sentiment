@@ -13,7 +13,13 @@ import {
     DELETE_SURVEY_FAILURE,
     SINGLE_SURVEY_START,
     SINGLE_SURVEY_SUCCESS,
-    SINGLE_SURVEY_FAILURE
+    SINGLE_SURVEY_FAILURE,
+    REQ_ACTIVITY_SURVEY_START,
+    REQ_ACTIVITY_SURVEY_SUCCESS,
+    REQ_ACTIVITY_SURVEY_FAILURE,
+    CHANGE_ACTIVITY_SURVEY_START,
+    CHANGE_ACTIVITY_SURVEY_SUCCESS,
+    CHANGE_ACTIVITY_SURVEY_FAILURE
 } from '../actions/index';
 
 const initialState = {
@@ -21,6 +27,7 @@ const initialState = {
     surveyIsFetching: false,
     error: null,
     singleSurvey: [],
+    active: []
   };
   
   const surveyReducer = (state = initialState, action) => {
@@ -107,6 +114,41 @@ const initialState = {
           ...state,
           surveyIsFetching: false,
           singleSurvey: [],
+          error: action.payload
+        };
+        case REQ_ACTIVITY_SURVEY_START:
+        return {
+          ...state,
+          surveyIsFetching: true
+        };
+        case REQ_ACTIVITY_SURVEY_SUCCESS:
+        return {
+          ...state,
+          surveyIsFetching: false,
+          active: action.payload
+        };
+        case REQ_ACTIVITY_SURVEY_FAILURE:
+        return {
+          ...state,
+          surveyIsFetching: false,
+          active: [],
+          error: action.payload
+        };
+        case CHANGE_ACTIVITY_SURVEY_START:
+        return {
+          ...state,
+          surveyIsFetching: true
+        };
+        case CHANGE_ACTIVITY_SURVEY_SUCCESS:
+        return {
+          ...state,
+          surveyIsFetching: false,
+          error: null
+        };
+        case CHANGE_ACTIVITY_SURVEY_FAILURE:
+        return {
+          ...state,
+          surveyIsFetching: false,
           error: action.payload
         };
       default:
