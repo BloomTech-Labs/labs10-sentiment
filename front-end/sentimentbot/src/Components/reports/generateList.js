@@ -59,7 +59,7 @@ function GenerateList(props) {
     <div className="reports-container">
       <div className="bot-container">
         <img src={WHAAT} alt="whaaat" />
-        <p>Which report would you like M.O.O.D to bring up for you.</p>
+        <p>Which report would you like M.O.O.D to bring up for you?</p>
       </div>
       <div className="combo-container">
         {displayDivs()}
