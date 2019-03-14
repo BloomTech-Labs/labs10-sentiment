@@ -51,6 +51,7 @@ width: 70%;
 
 .main-container h1 {
     font-family: var(--headers-font-style);
+    font-size: 4rem !important;
 }
 
 .sub-container-2 h2 {
