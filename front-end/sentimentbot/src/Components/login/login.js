@@ -9,6 +9,14 @@ class Login extends React.Component {
     this.props.auth.logout();
   }
 
+  // let options = {
+  //   theme: {
+  //     logo: 'https://i.imgur.com/eyYdCvf.jpg',
+  //     primaryColor: '#02C8A7'
+  //   }
+  // };
+
+
   // componentDidMount() {
   //   const { renewSession } = this.props.auth;
 
