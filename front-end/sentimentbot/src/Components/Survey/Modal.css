@@ -94,7 +94,7 @@ body {
     position: fixed;
     width: 100vw;
     height: 100vh;
-    overflow: scroll;
+    /* overflow: scroll; */
 }
 .survey-modalbutton {
     color: white;
