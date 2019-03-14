@@ -563,7 +563,9 @@
 }
 
 
-
+.pie-container {
+    margin-top: 1.5%;
+}
 
 /* Main Report Styles */
 /* .main-reports-container {
