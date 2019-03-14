@@ -1,8 +1,11 @@
 import React from "react";
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import { fetchSingleSurvey } from "../../actions";
 import '../history';
-import WHAAT from '../PNG/nobackgroundWhaat.png'
+import WHAAT from '../PNG/nobackgroundWhaat.png';
+import './reportLoading'
+// import '../myProfile/loading'
+import './loading'
 
 function GenerateList(props) {
 
@@ -16,9 +19,7 @@ function GenerateList(props) {
 
   function generateReport(i) {
     props.fetchSingleSurvey(i)
-    setTimeout(function move() {
-      props.history.push('/reports')
-    }, 1000)
+    localStorage.setItem('i', true)
     // props.history.push('/reports')
   }
 
@@ -39,21 +40,23 @@ function GenerateList(props) {
 
   function displayDivs() {
     let divs = [];
-    if(count === 0) {
+    if (count === 0) {
       return <p>You don't have any surveys that have been responsed to yet!</p>
     } else {
-    for (let i = 0; i < count; i++) {
-      if(props.survey[i].survey_time_stamp === null){
-        // divs.push(<div key={i} className="report-button-combo"><p>Survey Title: {props.survey[i].title}</p><button onClick={() => generateReport(props.survey[i].survey_time_stamp)}>Generate</button></div>)
-        // divs.shift()
-        i++
-      } else {
-      divs.push(<div key={i} className="report-button-combo"><p>Survey Title: {props.survey[i].title}</p><button onClick={() => generateReport(props.survey[i].survey_time_stamp)}>Generate</button></div>)
+      for (let i = 0; i < count; i++) {
+        if (props.survey[i].survey_time_stamp === null) {
+          // divs.push(<div key={i} className="report-button-combo"><p>Survey Title: {props.survey[i].title}</p><button onClick={() => generateReport(props.survey[i].survey_time_stamp)}>Generate</button></div>)
+          // divs.shift()
+          i++
+        } else {
+          divs.push(<div key={i} className="report-button-combo"><p>Survey Title: {props.survey[i].title}</p><button onClick={() => generateReport(props.survey[i].survey_time_stamp)}>Generate</button></div>)
+        }
       }
+      return divs
     }
-    return divs
   }
-}
+
+
 
   return (
     <div className="reports-container">
@@ -66,10 +69,9 @@ function GenerateList(props) {
 
       </div>
       {/* <Button onClick={() => props.history.push('/reports')} color="secondary" size="lg" block>See New Report</Button> */}
-      <button onClick={() => props.history.push('/reports')} className="combo-container-button">Go back</button>
+      {/* <button onClick={() => props.history.push('/reports')} className="combo-container-button">Go back</button> */}
     </div>
   )
-
 }
 
 function mapStateToProps(state) {
