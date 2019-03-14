@@ -378,7 +378,7 @@ class ModalSurvey extends React.Component {
 
       
       const steps = [
-        {name: 'Step 1: Title & Description', component: <ModalTitles state={this.state} titleChangeHandler={this.titleChangeHandler}/>},
+        {name: "Step 1: Title & Description", component: <ModalTitles state={this.state} titleChangeHandler={this.titleChangeHandler}/>},
         {name: "Step 2: Select your response options", component: <ModalPrefeelings state={this.state} onConfirmation={this.onConfirmation} onSelectTest1={this.onSelectTest1} emojiPicker={this.emojiPicker} emojiPicker2={this.emojiPicker2} emojiPicker3={this.emojiPicker3} emojiPicker4={this.emojiPicker4} addCustom={this.addCustom} onChangeHandler={this.onChangeHandler} onChangeHandler2={this.onChangeHandler2} onChangeHandler3={this.onChangeHandler3} onChangeHandler4={this.onChangeHandler4}/>},
         {name: "Step 3: Schedule when to send it out", component: <ModalSchedule state={this.state} onChangeDropDown ={this.onChangeDropDown} />},
         {name: "Step 4: Finalize and create", component: <Confirmation state={this.state} createSurvey={this.createSurvey} history={this.props.history} />}
