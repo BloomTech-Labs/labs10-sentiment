@@ -12,7 +12,6 @@ import {
   getPreFeeling,
   getManagers
 } from "../../actions/index";
-import history from "../history";
 import "./authorization.css";
 import Happy from "../PNG/nobackgroundHappy.png";
 import loadinggif from '../callback/loading.svg'

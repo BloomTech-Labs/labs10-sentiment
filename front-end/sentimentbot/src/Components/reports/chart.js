@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { fetchSingleSurvey, getSingleTeamMembers, getSurvey, getSingleTeam, getFeelings } from "../../actions/index";
 import { Pie } from "react-chartjs-2";
 import { Emoji } from "emoji-mart";
-import loadinggif from '../callback/loading.svg';
 // MVP use pie chart to show average feelings over the last 7 days.
 
 class PieChart extends React.Component {

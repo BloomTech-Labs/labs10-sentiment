@@ -2,13 +2,6 @@ import React from "react";
 import StripeCheckout from "react-stripe-checkout";
 import NavBar from "../NavBar/NavBar";
 import FooterPage from '../Footer/footer-test';
-import {
-  Card,
-  CardText,
-  CardBody,
-  CardTitle,
-  CardSubtitle,
-} from "reactstrap";
 // import "../App.css";
 
 import "./billing.css";
