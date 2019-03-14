@@ -22,9 +22,6 @@ import { fetchSingleSurvey } from "../../actions/survey";
 import { addPreFeeling, getFeelings, getPreFeeling } from "../../actions";
 import StepZilla from 'react-stepzilla';
 
-import Footer from '../Footer/footer';
-// import FooterBanner from "../PNG/MOODfooterBANNER6.png";
-
 class ModalSurvey extends React.Component {
     constructor() {
       super();
@@ -370,6 +367,7 @@ class ModalSurvey extends React.Component {
         option4: ['',':skull:'],
         preFeelingIdsArray: [],
       })
+
       setTimeout(() => {
         this.props.history.push('/profile')
       }, 1000);
@@ -380,7 +378,7 @@ class ModalSurvey extends React.Component {
 
       
       const steps = [
-        {name: 'Step 1: Title & Description', component: <ModalTitles state={this.state} titleChangeHandler={this.titleChangeHandler}/>},
+        {name: "Step 1: Title & Description", component: <ModalTitles state={this.state} titleChangeHandler={this.titleChangeHandler}/>},
         {name: "Step 2: Select your response options", component: <ModalPrefeelings state={this.state} onConfirmation={this.onConfirmation} onSelectTest1={this.onSelectTest1} emojiPicker={this.emojiPicker} emojiPicker2={this.emojiPicker2} emojiPicker3={this.emojiPicker3} emojiPicker4={this.emojiPicker4} addCustom={this.addCustom} onChangeHandler={this.onChangeHandler} onChangeHandler2={this.onChangeHandler2} onChangeHandler3={this.onChangeHandler3} onChangeHandler4={this.onChangeHandler4}/>},
         {name: "Step 3: Schedule when to send it out", component: <ModalSchedule state={this.state} onChangeDropDown ={this.onChangeDropDown} />},
         {name: "Step 4: Finalize and create", component: <Confirmation state={this.state} createSurvey={this.createSurvey} history={this.props.history} />}
@@ -389,8 +387,8 @@ class ModalSurvey extends React.Component {
         return (
             <div className="modalpage-container background-color">
                 <NavBar />
-                {/* <div className="modalsurvey-container">
-                    <div className="modalsurvey-title">
+                 <div className="modalsurvey-container">
+                    {/*<div className="modalsurvey-title">
                         <h1 className="modal-header">Survey Maker</h1>
                     </div>
                     <div className="modalsurvey-carousel">
@@ -402,14 +400,14 @@ class ModalSurvey extends React.Component {
                         <button className="survey-modalbutton">Schedule <ModalSchedule state={this.state} onChangeDropDown ={this.onChangeDropDown} /></button>
                         <button className="surveysubmit-button" onClick={this.createSurvey}>Submit</button>
 
-                        
-                    </div>
-                    
-                </div> */}
-                <h1 className="survey-header">Create Surveys
-                </h1>
-                <StepZilla steps={steps} />
-                <Footer />
+                      </div>
+                      
+                  </div> */}
+                  <h1 className="survey-header">Create Survey</h1>
+                  <StepZilla steps={steps} />
+                </div>
+                {/* <FooterPage /> */}
+
                 {/* <div className="modalfooter">
                   <p className="modalcopyright-words">© Copyright M.O.O.D All Rights Reserved.</p>
                   <div className="modalfooterimg-box">
@@ -417,7 +415,6 @@ class ModalSurvey extends React.Component {
                   </div>
                 </div> */}
             </div>
-
         )
     }
 };

@@ -113,10 +113,10 @@ class Authorization extends React.Component {
 
     if (this.state.view === "" && this.state.loading === true && this.state.initial === true) {
       return (
-        <>
+        <div className="auth-container">
           <div className="fake-nav" />
           {this.props.tmIsFetching === false ? (
-            <div className="container-form">
+            <div className="authcontainer-form">
               <p>Please finish registering before continuing...</p>
               <form onSubmit={this.submitHandler} autoComplete="nope">
                 {makeInput("firstName")}
@@ -140,7 +140,7 @@ class Authorization extends React.Component {
               </button> */}
             </div>
           )}
-        </>
+        </div>
       );
     } else if(this.state.loading === true) {
       return <img className="loadinggif" src={loadinggif} alt="loading" />

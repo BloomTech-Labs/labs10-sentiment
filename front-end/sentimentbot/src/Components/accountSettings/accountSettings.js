@@ -18,7 +18,7 @@ import {
 import { connect } from "react-redux";
 import "./accountSettings.css";
 import loadinggif from "../callback/loading.svg";
-import FooterPage from "../Footer/footer-test";
+// import FooterPage from "../Footer/footer-test";
 
 import { Col, FormGroup, Label, Input } from "reactstrap";
 
@@ -129,7 +129,7 @@ class accountSettings extends React.Component {
     }
     return (
       <>
-        <div className="page-container">
+        <div className="accsetpage-container">
           <NavBar />
           <div className="settings-container">
             {this.state.response === 200 ? (
@@ -172,7 +172,7 @@ class accountSettings extends React.Component {
             )}
           </div>
         </div>
-        <FooterPage />
+        {/* <FooterPage /> */}
       </>
     );
   }
