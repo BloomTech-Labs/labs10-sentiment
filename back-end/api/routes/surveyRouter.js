@@ -340,9 +340,9 @@ router.post("/", (req, res) => {
 
         db.insert(insertInfo)
           .then(data => {
-            console.log("insert data", data.id);
+            console.log("insert data", data);
             let postActive = {
-              survey_id: data.id,
+              survey_id: data[0].id,
               active: true
             };
             surveyAcitveDb
