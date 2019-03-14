@@ -3,7 +3,7 @@ import PieChart from "./chart";
 import NavBar from '../NavBar/NavBar';
 import './report.css'
 // import FooterPage from '../Footer/footer-test';
-import Generatereport from './generateReport';
+import GenerateReport from './generateReport';
 
 function Reports(props) {
 
