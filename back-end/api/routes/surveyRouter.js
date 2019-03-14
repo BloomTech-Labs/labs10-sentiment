@@ -62,7 +62,7 @@ const onServerStartScheduleSurveys = () => {
             .getBySurveyID(survey_id)
             .then(data => {
               console.log("data check", data);
-              if (data[0].active === 0) {
+              if (data[0].active === false) {
                 return;
               } else {
                 surveyFeelingsDb
