@@ -283,7 +283,7 @@ class Profile extends React.Component {
                   {this.props.managers.length === 0 ? (
                     <h2>Join your team on Slack!</h2>
                   ) : (
-                    <p>
+                    <p className="optional-text">
                       You've already implemented Mood on Slack. You can update
                       your workspace by clicking the button below.
                     </p>
@@ -317,7 +317,14 @@ class Profile extends React.Component {
                       />
                     </a>
                   )}
-
+                  {this.props.managers.length === 1 ? (
+                  this.props.singleTeamMembers[0].type === "manager" ? (
+                  <h2>Once you're connected to a slack work space, connect your mood bot to a channel with the slash command: <span className="span">/connect_channel_to_survey</span></h2>
+                  ) : (
+                    <h2>Hint once connect to a slack workspace, you can use the slash command: <span className="span">/send-me-buttons</span> to receive existing surveys!</h2>
+                  )
+                  ): (null)
+                  }
                   <h3>Team: {this.props.singleTeams[0].name}</h3>
                 </div>
                 <div className="secondcolumn">
@@ -328,7 +335,7 @@ class Profile extends React.Component {
                     width="58"
                     height="58"
                   />
-                  <div>
+                  <div className="div-create-survey">
                     <div id="gotosurveymaker" onClick={this.goToSurveyMaker}>Create Survey</div>
                   </div>
                 </div>

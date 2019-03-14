@@ -18,7 +18,7 @@ import {
 import { connect } from "react-redux";
 import "./accountSettings.css";
 import loadinggif from "../callback/loading.svg";
-// import FooterPage from "../Footer/footer-test";
+import SideBanner from "../PNG/MOODsideBANNER.png";
 
 import { Col, FormGroup, Label, Input } from "reactstrap";
 
@@ -137,13 +137,13 @@ class accountSettings extends React.Component {
             ) : (
               <div className="settings-page">
                 <h3 className="settings-header">Settings</h3>
-
-                <p>Reset your password here:</p>
-                <form className="account-form" style={{fontFamily:'Roboto'}}  onSubmit={this.handleSubmit}>
+                <div className="accsetcontent-container">
+                <p className="resetwords-box">Reset your password here:</p>
+                <form id="account-form" style={{fontFamily:'Roboto'}}  onSubmit={this.handleSubmit}>
                   <FormGroup row>
-                    <Label for="emailField" sm={2}>
+                    {/* <Label for="emailField" sm={2}>
                       Email
-                    </Label>
+                    </Label> */}
                     <Col sm={6}>
                       <Input
                         type="email"
@@ -153,26 +153,31 @@ class accountSettings extends React.Component {
                       />
                     </Col>
                   </FormGroup>
-
-                  <button
-                    className="btn-style"
-                    onSubmit={this.handleSubmit}
-                    color="primary"
-                  >
-                    Reset Password
-                  </button>
                 </form>
-                <button
-                  className="btn-style btn-style2"
-                  onClick={this.handleLeaveTeam}
-                >
-                  Leave Team
-                </button>
+                <div className="accbuttons-box">
+                  <button
+                      className="btn-style"
+                      onSubmit={this.handleSubmit}
+                      color="primary"
+                    >
+                      Reset Password
+                  </button>
+                  <button
+                    className="btn-style btn-style2"
+                    onClick={this.handleLeaveTeam}
+                  >
+                    Leave Team
+                  </button>
+                </div>
+                </div>
               </div>
             )}
           </div>
+          <div className="sidebanner-box">
+            <img clasName="sidebanner" height="600"width="250" src={SideBanner} alt="side banner" />
+          </div>
         </div>
-        {/* <FooterPage /> */}
+        
       </>
     );
   }

@@ -206,7 +206,6 @@
 
 .btn-feel-2 {
     width: 20rem;
-    ;
     padding: 1rem;
     color: white;
     background-color: var(--main-btn-color);
@@ -268,7 +267,27 @@
     transition: all 0.4s ease 0s;
 }
 
+.span{
+    color: #02C8A7;
+    font-weight: bold;
+}
+
+.optional-text{
+    margin-top: 1.2rem;
+    width:90%;
+    color: #02C8A7;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
 @media (max-width: 900px) {
+    .optional-text{
+        margin-top: 4.5rem;
+        width:100%;
+    }
+    .div-create-survey{
+        margin-top: 6rem;
+    }
     .profilecontent-container {
         margin-left: auto;
         margin-right: auto;
@@ -317,6 +336,13 @@
 }
 
 @media (max-width: 600px) {
+    .optional-text{
+        margin-top: 8rem;
+        width:100%;
+    }
+    .div-create-survey{
+        margin-top: 8rem;
+    }
     .profilecontent-container {
         margin-left: auto;
         margin-right: auto;

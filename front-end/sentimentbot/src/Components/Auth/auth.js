@@ -10,7 +10,11 @@ export default class Auth {
     domain: "bikbik.auth0.com",
     clientID: "BnXSvU6tE4W8WGMt3gDWra24hXr8qY0e",
     redirectUri: "https://sentimentbot.netlify.com/callback",
+<<<<<<< HEAD
     // redirectUri: "http://localhost:3000/callback",
+=======
+    //  redirectUri: "http://localhost:3000/callback",
+>>>>>>> 3050a1292121752985b6c59a9f09c03514bb00fa
     responseType: "token id_token",
     scope: "openid profile email"
   });
