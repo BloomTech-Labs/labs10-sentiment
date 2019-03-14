@@ -19,11 +19,18 @@
     height: 1400px;
     padding-bottom: 50px;
     margin: 0 auto;
+    margin-top: 3%;
+    margin-right: 20rem;
     display: flex;
     flex-direction: row;
-    width: 100%;
+    /* width: 100%; */
     /* align-items: center; */
     background-color: var(--main-bg-color); 
+  }
+
+  .main-reports-container .generateReport { 
+    /* margin-right: 200px; */
+    margin-right: 10rem;
   }
 
 /* .background-color {
@@ -49,9 +56,14 @@
 
     .main-reports-container h2 {
         margin-top: 3%;
+        margin-left: 10px;
         font-size: 3.5rem;
         font-family: var(--headers-font-style);
         color: black;
+    }
+
+    .main-reports-container .generateReport h2 {
+        margin-left: 17rem;
     }
 
     .main-reports-container button {
@@ -542,10 +554,12 @@
     width: 90%;
     height: 380px;
     margin: 8% 4% 0 4%;
-    overflow: scroll;
+    overflow: auto;
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
+    border: 2px solid #02C8A7;
+    border-radius: 8px;
 }
 
 
