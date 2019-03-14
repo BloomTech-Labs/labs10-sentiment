@@ -387,8 +387,8 @@ class ModalSurvey extends React.Component {
         return (
             <div className="modalpage-container background-color">
                 <NavBar />
-                {/* <div className="modalsurvey-container">
-                    <div className="modalsurvey-title">
+                 <div className="modalsurvey-container">
+                    {/*<div className="modalsurvey-title">
                         <h1 className="modal-header">Survey Maker</h1>
                     </div>
                     <div className="modalsurvey-carousel">
@@ -403,8 +403,7 @@ class ModalSurvey extends React.Component {
                       </div>
                       
                   </div> */}
-                  <h1 className="survey-header">Create Surveys
-                  </h1>
+                  <h1 className="survey-header">Create Survey</h1>
                   <StepZilla steps={steps} />
                 </div>
                 {/* <FooterPage /> */}
