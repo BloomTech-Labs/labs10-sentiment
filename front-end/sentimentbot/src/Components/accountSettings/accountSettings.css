@@ -11,11 +11,19 @@
 .settings-container {
     padding-bottom: 50px;
     margin: 0 auto; 
-    
+    width: 70%; 
+}
+.accsetcontent-container {
+    width: 100%;
+    border: 2px solid var(--hover-border-color);
+    border-radius: .25rem; 
+    overflow:hidden;
+}
+.sidebanner-box {
+    display: flex;
+    justify-content: center;
 }
 
-
-/* Account Settings CSS */
 
 .form-control {
     box-shadow: none;
@@ -27,11 +35,13 @@
 
 .settings-page {
     width: 60%;
-    margin: 0 auto;
+    /* margin: 0 auto; */
+    margin-left: auto;
+    margin-right: auto;
     display: flex;
     justify-content: center;
     flex-direction: column;
-    align-items: center;
+    /* align-items: center; */
 }
 
 
@@ -46,8 +56,15 @@ input[type=password]:focus {
     font-family: var(--headers-font-style);
     font-size: 4rem;
     margin-top: 3%;
+    display: flex;
+    justify-content: flex-start;
 }
-
+.accbuttons-box {
+    display: flex;
+     flex-direction: row;
+     justify-content: space-evenly;
+     padding: 5px;
+}
 .btn-style {
     color: white;
     text-transform: uppercase;
@@ -56,10 +73,13 @@ input[type=password]:focus {
     display: inline-block;
     border: none;
     font-size: .8rem;
-    width: 30%;
+    width: 150px;
     height: 40px;
     display: flex;
     justify-content: center;
+}
+.btn-style2 {
+    /* margin-top: 3%; */
 }
 
 .btn-style:hover {
@@ -67,7 +87,10 @@ input[type=password]:focus {
     background-color: var(--hover-color);
     border: 1px solid var(--hover-border-color);
 }
-
+.resetwords-box {
+    margin: 10px;
+    padding: 10px;
+}
 .reset {
     margin-top: 20px;
 }
@@ -82,6 +105,7 @@ input[type=password]:focus {
 
 .email-field {
     width: 50%;
+    border: 1 px solid red;
 }
 
 
@@ -108,9 +132,7 @@ input[type=password]:focus {
     margin-top: -4%;
 } */
 
-.btn-style2 {
-    margin-top: 3%;
-}
+
 
 @media (max-width: 900px) {
     /* .account-form {
