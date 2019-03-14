@@ -139,7 +139,7 @@ class accountSettings extends React.Component {
                 <h3 className="settings-header">Settings</h3>
 
                 <p>Reset your password here:</p>
-                <form className="account-form" onSubmit={this.handleSubmit}>
+                <form className="account-form" style={{fontFamily:'Roboto'}}  onSubmit={this.handleSubmit}>
                   <FormGroup row>
                     <Label for="emailField" sm={2}>
                       Email
