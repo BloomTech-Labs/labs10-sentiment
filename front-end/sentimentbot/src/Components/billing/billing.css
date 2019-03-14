@@ -5,11 +5,12 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  overflow-y: hidden;
+  height: 1208px;
   background-color: #F5F5F5;
 }
 .billingcontent-container { 
-  height: 815px;
+  
+  background-color: var(--main-bg-color); 
   padding-bottom: 50px;
 }
 
