@@ -270,7 +270,7 @@ class Profile extends React.Component {
           <div className="profilecontent-container">
             <div className="name-container">
               {" "}
-              <h1 className="welcome-container">
+              <h1 className="welcome-container" style={{fontFamily: 'Roboto Slab, serif', fontSize: '4rem', marginTop: '4%' }}>
                 Welcome, {this.props.singleTeamMembers[0].firstName}!
               </h1>
               <div className="sub-container-1">
