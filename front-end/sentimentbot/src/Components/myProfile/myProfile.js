@@ -16,10 +16,12 @@ import {
   joinTeam,
   getPreFeeling,
   getFeelings,
-  getManagers
+  getManagers,
+  getSurveyActivity
 } from "../../actions/index";
 import NavBar from "../NavBar/NavBar";
 import GenerateTeams from "./generateTeams";
+import GenerateSurveys from "./generateSurveys";
 import Happy from "../PNG/nobackgroundHappy.png";
 import loadinggif from "../callback/loading.svg";
 class Profile extends React.Component {
@@ -45,6 +47,7 @@ class Profile extends React.Component {
     this.props.getManagers(localStorage.getItem("id"));
     this.props.getSingleTeam(localStorage.getItem("team_id"));
     this.props.getFeelings(localStorage.getItem("id"));
+    this.props.getSurveyActivity();
     if (this.props.survey.length > 0) {
       this.props.fetchSingleSurvey(this.props.survey[0].survey_time_stamp);
       this.setState({
@@ -182,6 +185,11 @@ class Profile extends React.Component {
     }, 500);
   };
 
+  goToSurveyMaker = event => {
+    event.preventDefault();
+    this.props.history.push("/survey");
+  }
+
   addCodeToMember = event => {
     event.preventDefault();
     const code = parseInt(this.state.team_code);
@@ -267,7 +275,7 @@ class Profile extends React.Component {
           <div className="profilecontent-container">
             <div className="name-container">
               {" "}
-              <h1 className="welcome-container">
+              <h1 className="welcome-container" style={{fontFamily: 'Roboto Slab, serif', fontSize: '4rem', marginTop: '4%' }}>
                 Welcome, {this.props.singleTeamMembers[0].firstName}!
               </h1>
               <div className="sub-container-1">
@@ -312,20 +320,38 @@ class Profile extends React.Component {
 
                   <h3>Team: {this.props.singleTeams[0].name}</h3>
                 </div>
-                <img
-                  className="happy"
-                  src={Happy}
-                  alt="Happy MoodBot"
-                  width="200"
-                  height="200"
-                />
-              </div>
+                <div className="secondcolumn">
+                  <img
+                    className="happy"
+                    src={Happy}
+                    alt="Happy MoodBot"
+                    width="58"
+                    height="58"
+                  />
+                  <div>
+                    <div id="gotosurveymaker" onClick={this.goToSurveyMaker}>Create Survey</div>
+                  </div>
+                </div>
+              </div>   
             </div>
+            
 
             <div className="reactions">
-              <p>Your Reactions:</p>
+              {this.props.singleTeamMembers[0].type === "manager" ? (
+                <p>Your Surveys:</p>
+              ) : (
+                <p>Your Reactions:</p>
+              )}
               <div className="reactions-scroll">
-                {this.props.feelings.length > 0 ? (
+                {this.props.singleTeamMembers[0].type === "manager" ? (
+                  this.props.survey.length > 0 ? (
+                    <p>
+                      <GenerateSurveys />
+                    </p>
+                  ) : (
+                    <p>Oops! You haven't created any surveys yet!</p>
+                  )
+                ) : this.props.feelings.length > 0 ? (
                   <p>
                     <GenerateTeams />
                   </p>
@@ -344,7 +370,7 @@ class Profile extends React.Component {
     }
     if (view === "") {
       return (
-        <div className="page-container background-color">
+        <div className="profilepage-container background-color">
           <NavBar />
           <div className="profilecontent-container">
             <div className="sub-container-3">
@@ -407,8 +433,8 @@ class Profile extends React.Component {
       );
     } else if (view === "create") {
       return (
-        <div id="page-container" className="background-color">
-          <div id="profilecontent-container">
+        <div className="page-container" className="background-color">
+          <div className="profilecontent-container">
             {/* <p>Loading...</p> */}
             <NavBar />
             {/* <a
@@ -524,7 +550,8 @@ function mapStateToProps(state) {
     feelings: state.feelingsReducer.feelings,
     teams: state.teamsReducer.teams,
     managers: state.managersReducer.managers,
-    managersIsFetching: state.managersReducer.managersIsFetching
+    managersIsFetching: state.managersReducer.managersIsFetching,
+    active: state.surveyReducer.active
   };
 }
 
@@ -543,7 +570,8 @@ export default connect(
     joinTeam,
     getPreFeeling,
     getFeelings,
-    getManagers
+    getManagers,
+    getSurveyActivity
   }
 )(Profile);
 

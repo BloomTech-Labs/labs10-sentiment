@@ -1,19 +1,16 @@
-/* Standard Page CSS */
+
 .profilepage-container {
-  margin: 0;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  overflow-y: hidden;
   background-color: #F5F5F5;
+  height: 1208px;
 }
 .profilecontent-container {
-width: 70%;
-  margin-left: auto;
-  margin-right: auto;
-  height: 935px;
-  padding-bottom: 50px;
-  margin-top: 2rem;
-  
+    width: 70%;
+    padding-bottom: 50px;
+    margin: 0 auto; 
+    background-color: var(--main-bg-color); 
 }
 
 
@@ -32,7 +29,20 @@ width: 70%;
     margin-bottom: 1rem;
 }
 
-
+#gotosurveymaker {
+    margin: 10px;
+    max-width: 100%;
+    width: 160px;
+    justify-content: center;
+    border: 1px solid green;
+    padding: 1rem;
+    color: white;
+    background-color: var(--main-btn-color);
+    font-size: 1.2rem;
+    border-radius: 0.25rem;
+    font-family: var(--p-font-style);
+    cursor: pointer;
+}
 /* #profilepage-container {
   min-height: 100vh;
   margin: 0 auto;
@@ -51,6 +61,7 @@ width: 70%;
 
 .main-container h1 {
     font-family: var(--headers-font-style);
+    font-size: 4rem !important;
 }
 
 .sub-container-2 h2 {
@@ -71,6 +82,14 @@ width: 70%;
 .name-container {
     width: 90%;
     margin-left: 3%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.secondcolumn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .sub-container-1 {
@@ -213,6 +232,40 @@ width: 70%;
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.survey-container-div{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+.survey-container-div p{
+    margin: 0 0;
+    width: 50%;
+}
+
+.survey-container-button {
+    color: white;
+    text-transform: uppercase;
+    background: #02C8A7;
+    border-radius: 0.25rem;
+    display: inline-block;
+    border: none;
+    font-size: .8rem;
+    margin-left: 1rem;
+}
+
+.survey-container-button:hover {
+    color: white;
+    background: #f53240;
+    letter-spacing: 1px;
+    -webkit-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+    -moz-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+    box-shadow: 5px 40px -10px rgba(0, 0, 0, 0.57);
+    transition: all 0.4s ease 0s;
 }
 
 @media (max-width: 900px) {

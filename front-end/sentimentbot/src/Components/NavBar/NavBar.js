@@ -71,11 +71,11 @@ class NavBar extends React.Component {
                         <div onClick={() => history.push('/teamlist')}>Teamlist</div>
                       </NavLink>
                     </NavItem>
-                    <NavItem>
+                    {/* <NavItem>
                       <NavLink>
                         <div onClick={() => history.push('/survey')}>Survey</div>
                       </NavLink>
-                    </NavItem>
+                    </NavItem> */}
                     <NavItem>
                       <NavLink>
                         <div onClick={() => history.push('/reports')}>Reports</div>
