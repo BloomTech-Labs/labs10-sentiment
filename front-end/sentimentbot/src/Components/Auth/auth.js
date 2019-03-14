@@ -11,6 +11,7 @@ export default class Auth {
     clientID: "BnXSvU6tE4W8WGMt3gDWra24hXr8qY0e",
     redirectUri: "https://sentimentbot.netlify.com/callback",
     //  redirectUri: "http://localhost:3000/callback",
+
     responseType: "token id_token",
     scope: "openid profile email"
   });

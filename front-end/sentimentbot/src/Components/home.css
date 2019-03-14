@@ -75,7 +75,7 @@
 }
 
 .faqButton {
-  color: #d0e9e5;
+  color: #d0e9e5 !important;
   width: 500px;
 }
 

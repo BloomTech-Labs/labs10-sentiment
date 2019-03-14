@@ -8,29 +8,28 @@ class GenerateReport extends React.Component {
 
 
 
-  
+
   render() {
 
-      return (
-        <>
+    return (
+      <>
         <div>
-          <GenerateList history = {this.props.history} />
+          <GenerateList history={this.props.history} />
           {/* <Select options={surveyList} /> */}
-        </div> 
-        </>
-      );
-    }
+        </div>
+      </>
+    );
   }
-  
-  function mapStateToProps(state) {
-    return {
-      singleSurvey: state.surveyReducer.singleSurvey,
-      survey: state.surveyReducer.survey
-    };
-  }
-  
-  export default connect(
-    mapStateToProps,
-    { fetchSingleSurvey }
-  )(GenerateReport);
-  
+}
+
+function mapStateToProps(state) {
+  return {
+    singleSurvey: state.surveyReducer.singleSurvey,
+    survey: state.surveyReducer.survey
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  { fetchSingleSurvey }
+)(GenerateReport);
