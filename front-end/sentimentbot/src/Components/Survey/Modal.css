@@ -32,6 +32,7 @@ body {
     border: 1px solid var(--main-btn-color);
     border-radius: .25rem;
     padding: 3%;
+    margin-top: -20%;
 }
 
 .survey-prefeels {
@@ -39,12 +40,14 @@ body {
     border: 1px solid var(--main-btn-color);
     border-radius: .25rem;
     padding: 4%; 
+    margin-top: -15%;
 }
 
 .footer-buttons {
     display: flex;
     justify-content: space-evenly;
     width: 50%;
+    align-items: center;
 }
 
 
@@ -105,6 +108,8 @@ body {
     align-items: center;
     justify-content: center;
     margin-bottom: 10%;
+    min-height: 100%;
+    max-height: 110%;
 }
 
 .progtrckr-todo {
@@ -180,14 +185,18 @@ body {
     border: 1px solid var(--main-btn-color);
     border-radius: .25rem;
     padding: 3%;
+    margin-top: -15%;
 }
 
 .confirmation-container {
     display: flex;
     flex-wrap: wrap;
-    width: 600px;
+    max-width: 600px;
+    max-height: 600px;
+    min-height: 400px;
     border: 1px solid var(--hover-border-color);
     padding: 2%;
+    margin-top: -15%;
 }
 
 .confirmation-container .create-survey {
@@ -197,9 +206,13 @@ body {
         align-self: flex-end;
         height: 45px;
         margin-left: 5%;
+        margin-bottom: 5%;
 
     }
 
+.survey-confirmation {
+    height: 100%;
+}
 
 
 .confirmation-title {
@@ -404,7 +417,7 @@ body {
 
 
 /* Modal Footer */
-.modalfooter {
+/* .modalfooter {
     height: 50px;
     position: relative;
     margin-top: -50px;
@@ -427,6 +440,10 @@ body {
 .modalfooter-img {
     width: 100%;
     max-height: 50px;
+} */
+
+.modalpage-container .footer {
+    margin-top: 0;
 }
 
 .input-emoji-combo {
@@ -443,7 +460,7 @@ body {
     width: 75%;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 420px) {
     .title-label {
         margin-left: 0;
     }
@@ -451,6 +468,7 @@ body {
     .footer-buttons {
         display: flex;
         flex-direction: column;
+        margin-bottom: 10%;
     }
 
     .footer-buttons .pull-right {
@@ -467,10 +485,30 @@ body {
     .survey-schedule {
         margin: 0 2%;
     }
+    .confirmation-container .create-survey {
+        width: 54%;
+        margin-left: 23%;
+        margin-bottom: 2%;
+    }
+
+    .multi-step {
+        margin-top: -29%;
+    }
+    .survey-schedule {
+        margin-top: 5%;
+    }
+
+    .confirmation-container {
+        margin-top: 28%;
+    }
+
+    .modalpage-container .footer {
+        display: none;
+    }
     
 }
 
-@media (max-width: 600px) {
+@media (max-width: 600px) and (min-width: 420px) {
     .title-label {
         margin-left: 0;
     }
@@ -489,10 +527,24 @@ body {
 
     .confirmation-container {
         width: 98%;
+        margin-top: -30%;
     }
 
     .confirmation-container .create-survey {
-        width: 52%;
-        margin-left: 24%;
+        width: 54%;
+        margin-left: 23%;
+        margin-top: 7%;
+    }
+
+    .survey-prefeels {
+        margin-top: -60%;
+    }
+
+    .survey-title {
+        margin-top: -70%;
+    }
+
+    .survey-schedule {
+        margin-top: -50%;
     }
 }

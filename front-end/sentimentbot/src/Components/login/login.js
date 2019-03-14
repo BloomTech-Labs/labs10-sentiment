@@ -9,6 +9,7 @@ class Login extends React.Component {
     this.props.auth.logout();
   }
 
+
   // componentDidMount() {
   //   const { renewSession } = this.props.auth;
 
@@ -18,6 +19,12 @@ class Login extends React.Component {
   // }
 
   render() {
+    // let options = {
+    //   theme: {
+    //     logo: 'https://i.imgur.com/eyYdCvf.jpg',
+    //     primaryColor: '#02C8A7'
+    //   }
+    // };
     return (
       <div className="login-container">
         <button onClick={this.login.bind(this)} className="btn-feel-3">

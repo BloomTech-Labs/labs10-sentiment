@@ -11,6 +11,7 @@ import AccountSettings from './accountSettings/accountSettings';
 import Profile from "./myProfile/myProfile";
 import NavBar from './NavBar/NavBar';
 
+
 class App extends Component {
   getProfile() {
     this.props.auth.getProfile()
@@ -18,19 +19,19 @@ class App extends Component {
 
   render() {
     return (
-      <Router history={history}>
-        <div className="App">
-          <div>
-            <NavBar />
-            <Route exact path="/home" component={Home} />
-            <Route path="/billing" component={Billing} />
-            <Route path="/profile" component={Profile} />
-            <Route path="/survey" component={Survey} />
-            <Route path="/reports" component={Reports} />
-            <Route path="/accountset" component={AccountSettings} />
+        <Router history={history}>
+          <div className="App">
+            <div>
+              <NavBar />
+              <Route exact path="/home" component={Home} />
+              <Route path="/billing" component={Billing} />
+              <Route path="/profile" component={Profile} />
+              <Route path="/survey" component={Survey} />
+              <Route path="/reports" component={Reports} />
+              <Route path="/accountset" component={AccountSettings} />
+            </div>
           </div>
-        </div>
-      </Router>
+        </Router>
     );
   }
 }

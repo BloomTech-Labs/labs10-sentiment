@@ -55,7 +55,7 @@ class ModalSchedule extends React.Component {
             {/* <div className="survey-instructions">
                 <p className="instruction-p">Set up a schedule for your survey to be sent out!</p>
             </div> */}
-            <p>Step 3: Schedule a time for your survey to be sent out.</p>
+            <p>Step 3/4: Schedule a time for your survey to be sent out.</p>
             <div className="survey-inputbox">
                 <label className="survey-inputlabel">Recurrence</label>
                 <select id="dailyWeeklyMonthly" value={this.props.state.dailyWeeklyMonthly} onChange={this.props.onChangeDropDown}>

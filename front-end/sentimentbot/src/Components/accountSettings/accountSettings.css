@@ -1,15 +1,17 @@
 /* Standard Page CSS */
 
-.page-container {
+.accsetpage-container {
     margin: 0;
     display: flex;
     flex-direction: column;
-    overflow-y: scroll;
+    height: 1208px;
+    background-color: var(--main-bg-color); 
 }
 
 .settings-container {
-    height: 935px;
     padding-bottom: 50px;
+    margin: 0 auto; 
+    
 }
 
 
@@ -55,7 +57,7 @@ input[type=password]:focus {
     border: none;
     font-size: .8rem;
     width: 30%;
-    height: 30px;
+    height: 40px;
     display: flex;
     justify-content: center;
 }

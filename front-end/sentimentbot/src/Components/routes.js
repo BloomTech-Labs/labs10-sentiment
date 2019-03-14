@@ -20,7 +20,7 @@ import TeamList from "../Components/teamlist/teamList";
 import Loading from './myProfile/loading';
 import EmojiLoading from './Survey/loading';
 import SurveySubmitLoading from './Survey/surveysubmitloading';
-
+import FooterPage from "./Footer/footer-test";
 
 const auth = new Auth();
 
@@ -106,6 +106,7 @@ export const makeMainRoutes = () => {
             path="/surveysubmitloading"
             render={props => <SurveySubmitLoading {...props} auth={auth} />}
           />
+          <FooterPage />
         </div>
       </Router>
     </Provider>
