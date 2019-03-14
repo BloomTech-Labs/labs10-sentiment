@@ -76,7 +76,6 @@ class TeamList extends React.Component {
   }
 
   render() {
-    const uri = "https://sentimentbot.netlify.com/authorization";
     if (this.state.loading === true || this.props.singleTeams.length < 1) {
       return <img className="loadinggif" src={loadinggif} alt="loading" />
     } else if (this.props.singleTeams.length > 0) {

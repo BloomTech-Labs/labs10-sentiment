@@ -160,7 +160,6 @@ class ModalSchedule extends React.Component {
                 <option value="PST">pst</option>
                 </select>
             </div>
-            <button className="create-survey" onClick={this.props.createSurvey}>Create Survey</button>
           {/* </ModalBody>
           <ModalFooter>
             <Button color="primary" onClick={this.toggle}>Return</Button>{' '}

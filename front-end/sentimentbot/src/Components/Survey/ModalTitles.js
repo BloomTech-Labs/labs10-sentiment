@@ -19,11 +19,7 @@ class SurveyTitles extends React.Component {
       modal: !prevState.modal
     }));
   }
-  onChangeHandler = event => {
-    this.setState({
-      [event.target.name]: event.target.value
-    });
-  };
+
 
   render() {
     return (
@@ -32,7 +28,7 @@ class SurveyTitles extends React.Component {
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}>Survey Title and Description</ModalHeader>
           <ModalBody> */}
-          <p>Step 1: Enter a Title and a Description or Question.</p>
+          <p>Step 1/4: Enter a Title and a Question.</p>
                 <div className="survey-inputbox">
                   <label className="survey-inputlabel title-label">Title</label>
                   <input
