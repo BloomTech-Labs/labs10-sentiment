@@ -31,8 +31,9 @@ class SurveyTitles extends React.Component {
                 <PreFeelingsChosen state={this.props.state} />
                 <div className="confirmation-frequency"><p>Frequency:</p>{this.props.state.dailyWeeklyMonthly}</div>
                 <div className="confirmation-time"><p>Time:</p>{this.props.state.hour}:{this.props.state.min} {this.props.state.amPm} {this.props.state.timeZone}</div>
-                </div>
                 <button className="create-survey" onClick={this.props.createSurvey}>Create Survey</button>
+                </div>
+                
       </div>
     );
   }
