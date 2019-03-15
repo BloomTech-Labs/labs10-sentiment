@@ -274,7 +274,7 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                                                 arrayOptions
                                               );
                                               let message = {
-                                                "is_app_unfurl": true,
+                                                is_app_unfurl: true,
                                                 // "original_message": {
                                                 attachments: [
                                                   {
@@ -283,14 +283,13 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                                                     pretext: `Survey #${survey_id}`,
                                                     // fallback:
                                                     //   "Shame... buttons aren't supported in this land",
-                                                    callback_id:
-                                                      `button_tutorial ${survey_id}`,
+                                                    callback_id: `button_tutorial ${survey_id}`,
                                                     color: "#3AA3E3",
                                                     attachment_type: "default",
                                                     actions: arrayOptions
                                                   }
                                                 ]
-                                              // }
+                                                // }
                                               };
                                               // console.log("message", message);
                                               sendMessageToSlackResponseURL(
@@ -336,7 +335,7 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
         })
         .catch(err => console.log(err));
     }
-  } 
+  }
   // else if (reqBody.callback_id === "button_tutorial") {
   //   res.status(200).end(); // best practice to respond with 200 status
   //   let actionJSONPayload = JSON.parse(req.body.payload); // parse URL-encoded payload JSON string
@@ -349,9 +348,9 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
   //       actionJSONPayload.actions[0].name,
   //     replace_original: false
   //   };
-    // console.log("actionJSONPayload", actionJSONPayload);
+  // console.log("actionJSONPayload", actionJSONPayload);
   //   sendMessageToSlackResponseURL(actionJSONPayload.response_url, message);
-  // } 
+  // }
   else if (reqBody.message === true) {
     let surveyId = reqBody.survey_id;
     console.log("surveyId", surveyId);
@@ -421,8 +420,9 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
     console.log("jsonPayload", jsonPayload);
     /////////////////////////////////////////////
     console.log("jsonPayload time stamp", jsonPayload.message_ts);
-    // console.log("surveyIdDep", surveyIdDep);
-    let SurveyID;
+
+    let SurveyID = Number(callbackIDSlash.split(" ")[1]);
+    console.log("SurveyID", SurveyID);
     let teamID = jsonPayload.team.id;
     console.log(teamID);
     dbAuth
@@ -435,122 +435,114 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
         /////////////////////////////////////////////////////////////////////////////
 
         if (callbackIDSlash.includes("button_tutorial")) {
-          dbSurveys
-            .getManagerID(buttonManagerID)
+          // dbSurveys
+          //   .getManagerID(buttonManagerID)
+          //   .then(data => {
+          //     SurveyID = Math.max.apply(
+          //       Math,
+          //       data.map(function(o) {
+          //         return o.id;
+          //       })
+          //     );
+          ///////////////////////////////////////////////////////////////////////////////////////////
+
+          dbAuth
+            .getBySlackUserId(jsonPayload.user.id)
             .then(data => {
-              SurveyID = Math.max.apply(
-                Math,
-                data.map(function(o) {
-                  return o.id;
-                })
-              );
-              ///////////////////////////////////////////////////////////////////////////////////////////
-
-              dbAuth
-                .getBySlackUserId(jsonPayload.user.id)
+              console.log("getBySlackUserId", data);
+              let id = data[0].member_id;
+              dbTeamMembers
+                .getID(id)
                 .then(data => {
-                  console.log("getBySlackUserId", data);
-                  let id = data[0].member_id;
-                  dbTeamMembers
-                    .getID(id)
-                    .then(data => {
-                      console.log("data member", data);
-                      if (data[0].type === "manager") {
-                        res.json(`Manager's Cannot Respond to Survey's!`);
-                      } else {
-                        dbSurveys
-                          .getID(SurveyID)
-                          .then(data => {
-                            if (data.length > 0) {
-                              console.log("data survey id for time", data);
-                              let putInfo;
-                              let survey_time_stamp;
-                              if (data[0].survey_time_stamp === null) {
-                                putInfo = {
-                                  survey_time_stamp: jsonPayload.message_ts
-                                };
-                                survey_time_stamp = jsonPayload.message_ts;
-                              } else {
-                                putInfo = {
-                                  survey_time_stamp: data[0].survey_time_stamp
-                                };
-                                survey_time_stamp = data[0].survey_time_stamp;
-                              }
+                  console.log("data member", data);
+                  if (data[0].type === "manager") {
+                    res.json(`Manager's Cannot Respond to Survey's!`);
+                  } else {
+                    dbSurveys
+                      .getID(SurveyID)
+                      .then(data => {
+                        if (data.length > 0) {
+                          console.log("data survey id for time", data);
+                          let putInfo;
+                          let survey_time_stamp;
+                          if (data[0].survey_time_stamp === null) {
+                            putInfo = {
+                              survey_time_stamp: jsonPayload.message_ts
+                            };
+                            survey_time_stamp = jsonPayload.message_ts;
+                          } else {
+                            putInfo = {
+                              survey_time_stamp: data[0].survey_time_stamp
+                            };
+                            survey_time_stamp = data[0].survey_time_stamp;
+                          }
 
-                              dbSurveys
-                                .update(SurveyID, putInfo)
-                                .then(() => {
-                                  dbAuth
-                                    .getBySlackUserId(userIdSlack)
+                          dbSurveys
+                            .update(SurveyID, putInfo)
+                            .then(() => {
+                              dbAuth
+                                .getBySlackUserId(userIdSlack)
+                                .then(data => {
+                                  console.log("data slack user id", data[0]);
+                                  let team_member_id = data[0].member_id;
+                                  console.log("team_member_id", team_member_id);
+                                  let postFeel;
+                                  if (callbackIDSlash === "button_tutorial") {
+                                    postFeel = {
+                                      feeling_text:
+                                        jsonPayload.actions[0].value,
+                                      team_member_id: team_member_id,
+                                      survey_time_stamp: survey_time_stamp
+                                    };
+                                  } else {
+                                    postFeel = {
+                                      feeling_text:
+                                        jsonPayload.actions[0]
+                                          .selected_options[0].value,
+                                      team_member_id: team_member_id,
+                                      survey_time_stamp: survey_time_stamp
+                                    };
+                                  }
+
+                                  console.log("postFeel", postFeel);
+                                  dbFeelings
+                                    .getByMemberAndSurveyTimeStamp(
+                                      team_member_id,
+                                      survey_time_stamp
+                                    )
                                     .then(data => {
-                                      console.log(
-                                        "data slack user id",
-                                        data[0]
-                                      );
-                                      let team_member_id = data[0].member_id;
-                                      console.log(
-                                        "team_member_id",
-                                        team_member_id
-                                      );
-                                      let postFeel;
-                                      if (
-                                        callbackIDSlash === "button_tutorial"
-                                      ) {
-                                        postFeel = {
-                                          feeling_text:
-                                            jsonPayload.actions[0].value,
-                                          team_member_id: team_member_id,
-                                          survey_time_stamp: survey_time_stamp
-                                        };
-                                      } else {
-                                        postFeel = {
-                                          feeling_text:
-                                            jsonPayload.actions[0]
-                                              .selected_options[0].value,
-                                          team_member_id: team_member_id,
-                                          survey_time_stamp: survey_time_stamp
-                                        };
-                                      }
-
-                                      console.log("postFeel", postFeel);
+                                      console.log("data mem sur", data);
                                       dbFeelings
-                                        .getByMemberAndSurveyTimeStamp(
-                                          team_member_id,
-                                          survey_time_stamp
-                                        )
-                                        .then(data => {
-                                          console.log("data mem sur", data);
-                                          dbFeelings
-                                            .insert(postFeel)
-                                            .then(() => {
-                                              res.json(
-                                                `Submited Feeling: ${
-                                                  postFeel.feeling_text
-                                                }`
-                                              );
-                                            })
-                                            .catch(serverErrorPost(res));
+                                        .insert(postFeel)
+                                        .then(() => {
+                                          res.json(
+                                            `Submited Feeling: ${
+                                              postFeel.feeling_text
+                                            }`
+                                          );
                                         })
-                                        .catch(serverErrorGet(res));
+                                        .catch(serverErrorPost(res));
                                     })
                                     .catch(serverErrorGet(res));
                                 })
-                                .catch(err => console.log(err));
-                            } else {
-                              console.log({
-                                error: "survey does not exist"
-                              });
-                            }
-                          })
-                          .catch(err => console.log(err));
-                      }
-                    })
-                    .catch(err => console.log(err));
+                                .catch(serverErrorGet(res));
+                            })
+                            .catch(err => console.log(err));
+                        } else {
+                          console.log({
+                            error: "survey does not exist"
+                          });
+                        }
+                      })
+                      .catch(err => console.log(err));
+                  }
                 })
                 .catch(err => console.log(err));
-              /////////////////////////////////////////////////////////////////////////////
             })
-            .catch();
+            .catch(err => console.log(err));
+          /////////////////////////////////////////////////////////////////////////////
+          // })
+          // .catch();
         } else {
           console.log(
             "jsonPayload.original_message",
@@ -738,11 +730,11 @@ router.post("/2", (req, res) => {
 
 router.get("/test/auth", (req, res) => {
   dbAuth
-    .getBySlackTeamId('TG99JB3JL')
-    .then(data=>{
+    .getBySlackTeamId("TG99JB3JL")
+    .then(data => {
       res.status(200).json(data);
     })
-    .catch(err=>{
+    .catch(err => {
       res.status(400).json(err);
     });
 });
