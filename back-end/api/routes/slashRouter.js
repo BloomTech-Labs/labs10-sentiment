@@ -279,8 +279,8 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                                                     title: `${title}`,
                                                     text: `${description}`,
                                                     pretext: `Survey #${survey_id}`,
-                                                    fallback:
-                                                      "Shame... buttons aren't supported in this land",
+                                                    // fallback:
+                                                    //   "Shame... buttons aren't supported in this land",
                                                     callback_id:
                                                       "button_tutorial",
                                                     color: "#3AA3E3",
@@ -378,14 +378,15 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
         } else {
           let message = {
             channel: channel_id,
+            response_type: "ephemeral",
             as_user: false,
             attachments: [
               {
                 title: `${title}`,
                 text: `${description}`,
                 pretext: `Survey #${surveyId}`,
-                fallback:
-                  "If you could read this message, you'd be picking a feeling right now.",
+                // fallback:
+                //   "If you could read this message, you'd be picking a feeling right now.",
                 color: "#3AA3E3",
                 attachment_type: "default",
                 callback_id: "feeling_menu",
