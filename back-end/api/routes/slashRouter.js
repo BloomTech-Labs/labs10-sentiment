@@ -145,7 +145,7 @@ router.post("/connect-channel-to-survey", urlencodedParser, (req, res) => {
     );
 });
 
-let surveyIdDep;
+// let surveyIdDep;
 
 router.post("/send-me-buttons", urlencodedParser, (req, res) => {
   // res.status(200).end(); // best practice to respond with empty 200 status code
@@ -274,6 +274,7 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                                                 arrayOptions
                                               );
                                               let message = {
+                                                "is_app_unfurl": true,
                                                 attachments: [
                                                   {
                                                     title: `${title}`,
