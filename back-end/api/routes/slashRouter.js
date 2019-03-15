@@ -626,7 +626,7 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                 return item.bot_access_token !== null
                   ? item.bot_access_token
                   : null;
-              });
+              })[0];
               console.log("botToken", botToken);
               dbAuth
                 .getBySlackUserId(slackUserID)
