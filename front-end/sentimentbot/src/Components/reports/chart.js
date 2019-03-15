@@ -305,10 +305,10 @@ class PieChart extends React.Component {
           for (let i = 0; i < this.count; i++) {
             let data = this.props.singleSurvey.data;
 
+            this.result = [];
             for (let i = 0; i < this.count; i++) {
               let testText = data[i].feeling_text;
               let breakTest = testText.split(" ");
-              this.result = [];
               for (let i = 0; i < breakTest.length; i++) {
                 if (breakTest[i].indexOf(":") === -1) {
                   let textP = breakTest[i] + " ";
@@ -409,27 +409,49 @@ class PieChart extends React.Component {
         this.emoji3 = [];
         this.emoji4 = [];
 
-        for (let i = 0; i < this.result.length; i++) {
-          if (this.emoji1.length === 0) {
+
+        for (let i = 0; i <= 10; i++) {
+          if (this.emoji1[i] === this.result[i] || this.emoji2[i] === this.result[i] || this.emoji3[i] === this.result[i] || this.emoji4[i] === this.result[i]) {
+            if (typeof this.result[i] === "string") {
+              console.log('Plus 2')
+              i += 2
+            } else {
+              console.log('Plus 1', this.result[i], i)
+              i += 0
+            }
+          } else if (this.emoji1.length === 0) {
             if (typeof this.result[i] === "string") {
               this.emoji1.push(this.result[i]);
               this.emoji1.push(this.result[i + 1]);
-              i = i + 2;
+              console.log(this.emoji1)
+              console.log(i)
+              console.log(this.result[i])
+              console.log(this.result)
+              i = i + 1;
             } else {
               this.emoji1 = this.result[i];
-              i = i + 1;
+              i = i + 0;
+              console.log(this.emoji1)
+              console.log(i)
+              console.log(this.result[i])
             }
           } else if (
-            this.emoji1[0] !== this.result[i] &&
-            this.emoji2.length === 0
-          ) {
+            this.emoji1[0] === this.result[i])
+          // this.emoji2.length === 0
+          {
             if (typeof this.result[i] === "string") {
-              this.emoji2.push(this.result[i]);
-              this.emoji2.push(this.result[i + 1]);
-              i = i + 2;
+              this.emoji2.push(this.result[4]);
+              this.emoji2.push(this.result[5]);
+              i = i + 1;
+              console.log(this.emoji2)
+              console.log(i)
+              console.log(this.result[i])
             } else {
               this.emoji2 = this.result[i];
-              i = i + 1;
+              i = i + 0;
+              console.log(this.emoji2)
+              console.log(i)
+              console.log(this.result[i])
             }
           } else if (
             this.emoji1[0] !== this.result[i] &&
@@ -439,10 +461,10 @@ class PieChart extends React.Component {
             if (typeof this.result[i] === "string") {
               this.emoji3.push(this.result[i]);
               this.emoji3.push(this.result[i + 1]);
-              i = i + 2;
+              i = i + 1;
             } else {
               this.emoji3 = this.result[i];
-              i = i + 1;
+              i = i + 0;
             }
           } else if (
             this.emoji1[0] !== this.result[i] &&
@@ -453,14 +475,15 @@ class PieChart extends React.Component {
             if (typeof this.result[i] === "string") {
               this.emoji4.push(this.result[i]);
               this.emoji4.push(this.result[i + 1]);
-              i = i + 2;
+              i = i + 1;
             } else {
               this.emoji4 = this.result[i];
-              i = i + 1;
+              i = i + 0;
             }
           }
         }
         console.log(this.emoji1, this.emoji2);
+        console.log(this.emoji3, this.emoji4)
       }
 
       this.responseArray = [];
