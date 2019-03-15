@@ -434,7 +434,7 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
 
         /////////////////////////////////////////////////////////////////////////////
 
-        if (callbackIDSlash === "button_tutorial") {
+        if (callbackIDSlash.includes("button_tutorial")) {
           dbSurveys
             .getManagerID(buttonManagerID)
             .then(data => {
