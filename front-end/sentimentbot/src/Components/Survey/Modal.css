@@ -46,7 +46,7 @@ body {
 .footer-buttons {
     display: flex;
     justify-content: space-evenly;
-    width: 50%;
+    width: 30%;
     align-items: center;
 }
 
@@ -61,11 +61,11 @@ body {
 }
 
 .footer-buttons .pull-right {
-    width: 40%;
+    width: 30%;
 }
 
 .footer-buttons .pull-left {
-    width: 40%;
+    width: 30%;
 }
 .footer-buttons .btn-primary:hover {
     background-color: var(--hover-color);
@@ -196,7 +196,8 @@ body {
     min-height: 400px;
     border: 1px solid var(--hover-border-color);
     padding: 2%;
-    margin-top: -15%;
+    margin-top: -7%;
+    border-radius: .25rem;
 }
 
 .confirmation-container .create-survey {
@@ -205,13 +206,14 @@ body {
         color: white;
         align-self: flex-end;
         height: 45px;
-        margin-left: 5%;
-        margin-bottom: 5%;
 
     }
 
 .survey-confirmation {
     height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 
@@ -468,7 +470,7 @@ body {
     .footer-buttons {
         display: flex;
         flex-direction: column;
-        margin-bottom: 10%;
+        /* margin-bottom: 10%; */
     }
 
     .footer-buttons .pull-right {
@@ -486,24 +488,38 @@ body {
         margin: 0 2%;
     }
     .confirmation-container .create-survey {
-        width: 54%;
-        margin-left: 23%;
-        margin-bottom: 2%;
+        width: 45%;
+        align-self: flex-end;
     }
 
-    .multi-step {
-        margin-top: -29%;
-    }
     .survey-schedule {
         margin-top: 5%;
     }
 
     .confirmation-container {
-        margin-top: 28%;
+        margin-top: 2%;
+        width: 98%;
     }
 
     .modalpage-container .footer {
         display: none;
+    }
+    .modalsurvey-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        height: 800px;
+    }
+
+    .survey-confirmation {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        height: 80%;
+    }
+
+    .modalsurvey-container .survey-header {
+        margin-top: 50%;
     }
     
 }
@@ -527,24 +543,44 @@ body {
 
     .confirmation-container {
         width: 98%;
-        margin-top: -30%;
+        margin-top: 1%;
+        
     }
 
     .confirmation-container .create-survey {
-        width: 54%;
-        margin-left: 23%;
-        margin-top: 7%;
+        width: 30%;
+        height: 20%;
+        align-self: flex-end;
     }
 
-    .survey-prefeels {
+    /* .survey-prefeels {
         margin-top: -60%;
-    }
+    } */
 
-    .survey-title {
+    /* .survey-title {
         margin-top: -70%;
-    }
+    } */
 
     .survey-schedule {
-        margin-top: -50%;
+        margin-top: .5%;
+    }
+
+    .modalsurvey-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .survey-confirmation {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        height: 80%;
+        width: 100%;
+    }
+
+    .modalsurvey-container {
+        margin-bottom: 0;
+        padding-bottom: 50px;
     }
 }
