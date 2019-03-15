@@ -275,6 +275,7 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                                               );
                                               let message = {
                                                 "is_app_unfurl": true,
+                                                "original_message": {
                                                 attachments: [
                                                   {
                                                     title: `${title}`,
@@ -289,6 +290,7 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                                                     actions: arrayOptions
                                                   }
                                                 ]
+                                              }
                                               };
                                               // console.log("message", message);
                                               sendMessageToSlackResponseURL(
