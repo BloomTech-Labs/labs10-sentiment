@@ -333,21 +333,23 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
         })
         .catch(err => console.log(err));
     }
-  } else if (reqBody.callback_id === "button_tutorial") {
-    res.status(200).end(); // best practice to respond with 200 status
-    let actionJSONPayload = JSON.parse(req.body.payload); // parse URL-encoded payload JSON string
-    let jsonbody = JSON.parse(req.body);
-    console.log("jsonbody", jsonbody);
-    let message = {
-      text:
-        actionJSONPayload.user.name +
-        " clicked: " +
-        actionJSONPayload.actions[0].name,
-      replace_original: false
-    };
+  } 
+  // else if (reqBody.callback_id === "button_tutorial") {
+  //   res.status(200).end(); // best practice to respond with 200 status
+  //   let actionJSONPayload = JSON.parse(req.body.payload); // parse URL-encoded payload JSON string
+  //   let jsonbody = JSON.parse(req.body);
+  //   console.log("jsonbody", jsonbody);
+  //   let message = {
+  //     text:
+  //       actionJSONPayload.user.name +
+  //       " clicked: " +
+  //       actionJSONPayload.actions[0].name,
+  //     replace_original: false
+  //   };
     // console.log("actionJSONPayload", actionJSONPayload);
-    sendMessageToSlackResponseURL(actionJSONPayload.response_url, message);
-  } else if (reqBody.message === true) {
+  //   sendMessageToSlackResponseURL(actionJSONPayload.response_url, message);
+  // } 
+  else if (reqBody.message === true) {
     let surveyId = reqBody.survey_id;
     console.log("surveyId", surveyId);
     // surveyIdDep = surveyId;
