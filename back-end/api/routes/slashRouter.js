@@ -192,6 +192,9 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                               let survey_id = data[z].survey_id;
                               let title = data[z].title;
                               let description = data[z].description;
+                              console.log("survey id", survey_id);
+                              console.log("title", title);
+                              console.log("description", description);
 
                               surveysActiveDb
                                 .getBySurveyID(survey_id)
@@ -216,10 +219,6 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                                     //     return item.description;
                                     //   }
                                     // });
-
-                                    console.log("survey id", survey_id);
-                                    console.log("title", title);
-                                    console.log("description", description);
 
                                     if (data.length === 0) {
                                       console.log({
