@@ -70,6 +70,24 @@ function postMessage(JSONmessage, token) {
   });
 }
 
+function postEphMessage(JSONmessage, token) {
+  let postOptions = {
+    uri: `https://slack.com/api/chat.postEphemeral`,
+    method: "POST",
+    headers: {
+      "Content-type": "application/json",
+      Authorization: `Bearer ${token}`
+    },
+    json: JSONmessage
+  };
+  request(postOptions, (error, response, body) => {
+    if (error) {
+      // handle errors as you see fit
+      res.json({ error: "Error." });
+    }
+  });
+}
+
 // '1551240654.863992',
 //  message_ts: '1551240449.011400',
 
@@ -593,7 +611,7 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
           console.log("ArrayS", ArrayS);
           console.log("SurveyID", SurveyID);
           console.log("jsonPayload.user.id", jsonPayload.user.id);
-        }
+        // }
 
         dbAuth
           .getBySlackUserId(jsonPayload.user.id)
@@ -693,7 +711,7 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
               .catch(err => console.log(err));
           })
           .catch(err => console.log(err));
-
+        }
         //////////////////////////////////////////////////////////////////////////////////////
       })
       .catch();
