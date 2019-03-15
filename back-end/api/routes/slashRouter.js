@@ -189,7 +189,7 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                             // let description = data[data.length - 1].description;
 
                             for (let z = 0; z < data.length; z++) {
-                              let survey_id = data[z].survey_id;
+                              let survey_id = data[z].id;
                               let title = data[z].title;
                               let description = data[z].description;
                               console.log("survey id", survey_id);
