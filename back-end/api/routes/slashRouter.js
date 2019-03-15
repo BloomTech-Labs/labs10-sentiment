@@ -521,7 +521,7 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                                   let team_member_id = data[0].member_id;
                                   console.log("team_member_id", team_member_id);
                                   let postFeel;
-                                  if (callbackIDSlash === "button_tutorial") {
+                                  if (callbackIDSlash.includes("button_tutorial")) {
                                     postFeel = {
                                       feeling_text:
                                         jsonPayload.actions[0].value,
