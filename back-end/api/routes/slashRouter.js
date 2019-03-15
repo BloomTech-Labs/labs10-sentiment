@@ -12,6 +12,7 @@ const dbSurveys = require("../database/helpers/surveysDb");
 const dbTeamMembers = require("../database/helpers/teamMembersDb");
 const surveyFeelingsDb = require("../database/helpers/surveysFeelingsDb");
 const preFeelingsDb = require("../database/helpers/preFeelingsDb");
+const surveysActiveDb = require("../database/helpers/surveysActiveDb");
 
 const {
   postSuccess,
@@ -187,141 +188,175 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                             // let title = data[data.length - 1].title;
                             // let description = data[data.length - 1].description;
 
-                            let survey_id = Math.max.apply(
-                              ////////////////////////want all survey's for loop????
-                              Math,
-                              data.map(function(o) {
-                                return o.id;
-                              })
-                            );
-                            let title = data.map(item => {
-                              if (item.id === survey_id) {
-                                return item.title;
-                              }
-                            });
-                            let description = data.map(item => {
-                              if (item.id === survey_id) {
-                                return item.description;
-                              }
-                            });
+                            for (let z = 0; z < data.length; z++) {
+                              let survey_id = data[z].survey_id;
+                              let title = data[z].title;
+                              let description = data[z].description;
 
-                            console.log("survey id", survey_id);
-                            if (data.length === 0) {
-                              console.log({
-                                error: `Survey with Manager Id: ${manager_id} does not exist.`
-                              });
-                            } else {
-                              surveyFeelingsDb
-                                .getSurveyID(survey_id)
+                              surveysActiveDb
+                                .getBySurveyID(survey_id)
                                 .then(data => {
-                                  // console.log(
-                                  //   "survey feeling array slash",
-                                  //   data
-                                  // );
-                                  let feelingTextArray = [];
-                                  for (let j = 0; j < data.length; j++) {
-                                    let { feelings_id } = data[j];
-                                    let max = data.length - 1;
-                                    // console.log("feelings_id", feelings_id);
-                                    preFeelingsDb
-                                      .getID(feelings_id)
-                                      .then(data => {
-                                        // console.log("pre feeling array", data);
-                                        if (data.length === 0) {
-                                          console.log({
-                                            error: `Pre Feeling with Id: ${feelings_id} does not exist.`
-                                          });
-                                        } else if (
-                                          data.length !== 0 &&
-                                          j < max
-                                        ) {
-                                          let feeling_text =
-                                            data[0].feeling_text;
-                                          feelingTextArray.push(feeling_text);
-                                        } else if (
-                                          data.length !== 0 &&
-                                          j === max
-                                        ) {
-                                          let feeling_text =
-                                            data[0].feeling_text;
-                                          feelingTextArray.push(feeling_text);
+                                  let active = data[0].active;
+                                  console.log("active", active);
+                                  if (active) {
+                                    // let survey_id = Math.max.apply(
+                                    //   ////////////////////////want all survey's for loop????
+                                    //   Math,
+                                    //   data.map(function(o) {
+                                    //     return o.id;
+                                    //   })
+                                    // );
+                                    // let title = data.map(item => {
+                                    //   if (item.id === survey_id) {
+                                    //     return item.title;
+                                    //   }
+                                    // });
+                                    // let description = data.map(item => {
+                                    //   if (item.id === survey_id) {
+                                    //     return item.description;
+                                    //   }
+                                    // });
+
+                                    console.log("survey id", survey_id);
+                                    console.log("title", title);
+                                    console.log("description", description);
+
+                                    if (data.length === 0) {
+                                      console.log({
+                                        error: `Survey with Manager Id: ${manager_id} does not exist.`
+                                      });
+                                    } else {
+                                      surveyFeelingsDb
+                                        .getSurveyID(survey_id)
+                                        .then(data => {
                                           // console.log(
-                                          //   "feelingTextArray",
-                                          //   feelingTextArray
+                                          //   "survey feeling array slash",
+                                          //   data
                                           // );
-
-                                          let arrayOptions = [];
+                                          let feelingTextArray = [];
                                           for (
-                                            let t = 0;
-                                            t < feelingTextArray.length;
-                                            t++
+                                            let j = 0;
+                                            j < data.length;
+                                            j++
                                           ) {
-                                            let max2 =
-                                              feelingTextArray.length - 1;
-                                            if (t === max2) {
-                                              let value = {
-                                                name: feelingTextArray[t],
-                                                text: feelingTextArray[t],
-                                                type: "button",
-                                                value: feelingTextArray[t]
-                                              };
-                                              // console.log("value", value);
-                                              arrayOptions.push(value);
-                                              ///////////////////////////////////////////////////////////////////
+                                            let { feelings_id } = data[j];
+                                            let max = data.length - 1;
+                                            // console.log("feelings_id", feelings_id);
+                                            preFeelingsDb
+                                              .getID(feelings_id)
+                                              .then(data => {
+                                                // console.log("pre feeling array", data);
+                                                if (data.length === 0) {
+                                                  console.log({
+                                                    error: `Pre Feeling with Id: ${feelings_id} does not exist.`
+                                                  });
+                                                } else if (
+                                                  data.length !== 0 &&
+                                                  j < max
+                                                ) {
+                                                  let feeling_text =
+                                                    data[0].feeling_text;
+                                                  feelingTextArray.push(
+                                                    feeling_text
+                                                  );
+                                                } else if (
+                                                  data.length !== 0 &&
+                                                  j === max
+                                                ) {
+                                                  let feeling_text =
+                                                    data[0].feeling_text;
+                                                  feelingTextArray.push(
+                                                    feeling_text
+                                                  );
+                                                  // console.log(
+                                                  //   "feelingTextArray",
+                                                  //   feelingTextArray
+                                                  // );
 
-                                              console.log(
-                                                "arrayOptions",
-                                                arrayOptions
-                                              );
-                                              let message = {
-                                                is_app_unfurl: true,
-                                                // "original_message": {
-                                                attachments: [
-                                                  {
-                                                    title: `${title}`,
-                                                    text: `${description}`,
-                                                    pretext: `Survey #${survey_id}`,
-                                                    // fallback:
-                                                    //   "Shame... buttons aren't supported in this land",
-                                                    callback_id: `button_tutorial ${survey_id}`,
-                                                    color: "#3AA3E3",
-                                                    attachment_type: "default",
-                                                    actions: arrayOptions
+                                                  let arrayOptions = [];
+                                                  for (
+                                                    let t = 0;
+                                                    t < feelingTextArray.length;
+                                                    t++
+                                                  ) {
+                                                    let max2 =
+                                                      feelingTextArray.length -
+                                                      1;
+                                                    if (t === max2) {
+                                                      let value = {
+                                                        name:
+                                                          feelingTextArray[t],
+                                                        text:
+                                                          feelingTextArray[t],
+                                                        type: "button",
+                                                        value:
+                                                          feelingTextArray[t]
+                                                      };
+                                                      // console.log("value", value);
+                                                      arrayOptions.push(value);
+                                                      ///////////////////////////////////////////////////////////////////
+
+                                                      console.log(
+                                                        "arrayOptions",
+                                                        arrayOptions
+                                                      );
+                                                      let message = {
+                                                        is_app_unfurl: true,
+                                                        // "original_message": {
+                                                        attachments: [
+                                                          {
+                                                            title: `${title}`,
+                                                            text: `${description}`,
+                                                            pretext: `Survey #${survey_id}`,
+                                                            // fallback:
+                                                            //   "Shame... buttons aren't supported in this land",
+                                                            callback_id: `button_tutorial ${survey_id}`,
+                                                            color: "#3AA3E3",
+                                                            attachment_type:
+                                                              "default",
+                                                            actions: arrayOptions
+                                                          }
+                                                        ]
+                                                        // }
+                                                      };
+                                                      // console.log("message", message);
+                                                      sendMessageToSlackResponseURL(
+                                                        responseURL,
+                                                        message
+                                                      );
+
+                                                      ///////////////////////////////////////////////////////////////////
+                                                    } else {
+                                                      let value = {
+                                                        name:
+                                                          feelingTextArray[t],
+                                                        text:
+                                                          feelingTextArray[t],
+                                                        type: "button",
+                                                        value:
+                                                          feelingTextArray[t]
+                                                      };
+                                                      // console.log("value", value);
+                                                      arrayOptions.push(value);
+                                                    }
                                                   }
-                                                ]
-                                                // }
-                                              };
-                                              // console.log("message", message);
-                                              sendMessageToSlackResponseURL(
-                                                responseURL,
-                                                message
-                                              );
-
-                                              ///////////////////////////////////////////////////////////////////
-                                            } else {
-                                              let value = {
-                                                name: feelingTextArray[t],
-                                                text: feelingTextArray[t],
-                                                type: "button",
-                                                value: feelingTextArray[t]
-                                              };
-                                              // console.log("value", value);
-                                              arrayOptions.push(value);
-                                            }
+                                                }
+                                              })
+                                              .catch(err => console.log(err));
                                           }
-                                        }
-                                      })
-                                      .catch(err => console.log(err));
+                                          //     })
+                                          //     .then(data => {
+                                          //       // console.log("data", data);
+                                          //     })
+                                          //     .then(() => {})
+                                          //     .catch(err => console.log(err));
+                                          // }
+                                        })
+                                        .catch(err => console.log(err));
+                                    }
                                   }
-                                  //     })
-                                  //     .then(data => {
-                                  //       // console.log("data", data);
-                                  //     })
-                                  //     .then(() => {})
-                                  //     .catch(err => console.log(err));
-                                  // }
                                 })
-                                .catch(err => console.log(err));
+                                .catch();
                             }
                           })
                           .catch(err => console.log(err));
