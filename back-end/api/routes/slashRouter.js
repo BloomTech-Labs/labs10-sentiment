@@ -336,6 +336,8 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
   } else if (reqBody.callback_id === "button_tutorial") {
     res.status(200).end(); // best practice to respond with 200 status
     let actionJSONPayload = JSON.parse(req.body.payload); // parse URL-encoded payload JSON string
+    let jsonbody = JSON.parse(req.body);
+    console.log("jsonbody", jsonbody);
     let message = {
       text:
         actionJSONPayload.user.name +
