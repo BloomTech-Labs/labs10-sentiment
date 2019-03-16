@@ -205,7 +205,8 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                           .then(data => {
                             // let title = data[data.length - 1].title;
                             // let description = data[data.length - 1].description;
-
+                            let count = 1;
+                            let length = data.length;
                             for (let z = 0; z < data.length; z++) {
                               let survey_id = data[z].id;
                               let title = data[z].title;
@@ -219,10 +220,14 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                                 .then(data => {
                                   let active = data[0].active;
                                   console.log("active", active);
-                                  if (!active) {
-                                    let slackChannelID = reqBody.channel_id;
-                                    let slackUserID = reqBody.user_id;
-                                    let teamID = reqBody.team_id;
+                                  let slackChannelID = reqBody.channel_id;
+                                  let slackUserID = reqBody.user_id;
+                                  let teamID = reqBody.team_id;
+                                  if (!active && count < length) {
+                                    count += 1;
+                                    console.log("count", count);
+                                  } else if (!active && count === length) {
+                                    console.log("count", count);
                                     dbAuth
                                       .getBySlackTeamIdSTD(teamID)
                                       .then(data => {
@@ -232,14 +237,11 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                                             : null;
                                         })[0];
                                         console.log("botToken", botToken);
-
                                         let message3 = {
                                           channel: slackChannelID,
                                           user: slackUserID,
-                                          text:
-                                            "Manager's Cannot Respond to Survey's!"
+                                          text: "All Survey's are Deactivated!"
                                         };
-
                                         postEphMessage(message3, botToken);
                                       })
                                       .catch();
