@@ -205,7 +205,8 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                           .then(data => {
                             // let title = data[data.length - 1].title;
                             // let description = data[data.length - 1].description;
-
+                            let count = 1;
+                            let length = data.length;
                             for (let z = 0; z < data.length; z++) {
                               let survey_id = data[z].id;
                               let title = data[z].title;
@@ -219,25 +220,32 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
                                 .then(data => {
                                   let active = data[0].active;
                                   console.log("active", active);
-                                  if (active) {
-                                    // let survey_id = Math.max.apply(
-                                    //   ////////////////////////want all survey's for loop????
-                                    //   Math,
-                                    //   data.map(function(o) {
-                                    //     return o.id;
-                                    //   })
-                                    // );
-                                    // let title = data.map(item => {
-                                    //   if (item.id === survey_id) {
-                                    //     return item.title;
-                                    //   }
-                                    // });
-                                    // let description = data.map(item => {
-                                    //   if (item.id === survey_id) {
-                                    //     return item.description;
-                                    //   }
-                                    // });
-
+                                  let slackChannelID = reqBody.channel_id;
+                                  let slackUserID = reqBody.user_id;
+                                  let teamID = reqBody.team_id;
+                                  if (!active && count < length) {
+                                    count += 1;
+                                    console.log("count", count);
+                                  } else if (!active && count === length) {
+                                    console.log("count", count);
+                                    dbAuth
+                                      .getBySlackTeamIdSTD(teamID)
+                                      .then(data => {
+                                        let botToken = data.map(item => {
+                                          return item.bot_access_token !== null
+                                            ? item.bot_access_token
+                                            : null;
+                                        })[0];
+                                        console.log("botToken", botToken);
+                                        let message3 = {
+                                          channel: slackChannelID,
+                                          user: slackUserID,
+                                          text: "All Survey's are Deactivated!"
+                                        };
+                                        postEphMessage(message3, botToken);
+                                      })
+                                      .catch();
+                                  } else if (active) {
                                     if (data.length === 0) {
                                       console.log({
                                         error: `Survey with Manager Id: ${manager_id} does not exist.`
