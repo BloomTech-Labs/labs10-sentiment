@@ -1,0 +1,13 @@
+.our-modals {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+.ourmodal-boxes {
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    margin: 10px;
+}
