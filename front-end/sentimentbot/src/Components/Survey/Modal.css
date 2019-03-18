@@ -108,8 +108,8 @@ body {
     align-items: center;
     justify-content: center;
     margin-bottom: 10%;
-    min-height: 100%;
-    max-height: 110%;
+    min-height: 110%;
+    /* max-height: 110%; */
 }
 
 .progtrckr-todo {
@@ -184,7 +184,7 @@ body {
     flex-direction: column;
     border: 1px solid var(--main-btn-color);
     border-radius: .25rem;
-    padding: 3%;
+    padding: 1.5%;
     margin-top: -15%;
 }
 
@@ -195,7 +195,7 @@ body {
     max-height: 600px;
     min-height: 400px;
     border: 1px solid var(--hover-border-color);
-    padding: 2%;
+    padding: 1%;
     margin-top: -7%;
     border-radius: .25rem;
 }
@@ -521,6 +521,10 @@ body {
     .modalsurvey-container .survey-header {
         margin-top: 50%;
     }
+
+    .multi-step {
+        min-height: 100%;
+    }
     
 }
 
@@ -582,5 +586,9 @@ body {
     .modalsurvey-container {
         margin-bottom: 0;
         padding-bottom: 50px;
+    }
+
+    .multi-step {
+        min-height: 100%;
     }
 }
