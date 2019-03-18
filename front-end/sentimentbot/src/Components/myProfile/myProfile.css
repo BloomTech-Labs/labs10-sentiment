@@ -11,10 +11,8 @@
     padding-bottom: 50px;
     margin: 0 auto; 
     background-color: var(--main-bg-color); 
+    height: 100%;
 }
-
-
-/* Profile CSS */
 
 .loadinggif {
     position: absolute;
@@ -33,7 +31,7 @@
     margin: 10px;
     max-width: 100%;
     width: 160px;
-    text-align: center;
+    justify-content: center;
     padding: 1rem;
     color: white;
     background-color: var(--main-btn-color);
@@ -47,21 +45,7 @@
     background-color: var(--hover-color);
     border: 1px solid var(--hover-border-color);
 }
-/* #profilepage-container {
-  min-height: 100vh;
-  margin: 0 auto;
-  
-  display: flex;
-  flex-direction: column;
-}
 
-.main-container {
-  border: 1px solid orange;
-  width: 70%;
-  margin-left: auto;
-  margin-right: auto;
-  padding-bottom: 50px;
-} */
 
 .main-container h1 {
     font-family: var(--headers-font-style);
@@ -90,11 +74,6 @@
     flex-direction: column;
     justify-content: center;
 }
-.secondcolumn {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
 
 .sub-container-1 {
     display: flex;
@@ -105,24 +84,24 @@
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    width: 84%;
+    width: 80%;
 }
 
 .sub-container-2 img {
     width: 12rem;
     height: 3.5rem;
+    
 }
 
 .sub-container-2 a {
     width: 12rem;
     height: 3.5rem;
+    
 }
+.team-wordbox {
+    margin-top: 55px;
 
-
-/* .welcome-container {
-  font-size: 4rem;
-} */
-
+}
 .reactions {
     width: 90%;
     height: 250px;
@@ -148,7 +127,6 @@
 .btn-div {
     margin-top: 2rem;
     width: 80%;
-    /* height: 5rem; */
 }
 
 .btn-feel {
@@ -171,7 +149,7 @@
 .sub-container-3 {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     align-items: center;
     width: 80%;
 }
@@ -283,12 +261,11 @@
     font-weight: bold;
     font-size: 1.2rem;
 }
+/* .secondcolumn {
+    border: 1px red solid;
+} */
 
 @media (max-width: 900px) {
-    .optional-text{
-        margin-top: 4.5rem;
-        width:100%;
-    }
     .div-create-survey{
         margin-top: 6rem;
     }
@@ -296,17 +273,14 @@
         margin-left: auto;
         margin-right: auto;
         width: 70%;
-        height: 535px;
         padding-bottom: 50px;
         margin-top: 2rem;
       }
       
     h1 {
-        /* text-align: center; */
         font-size: 3rem;
     }
     h2 {
-        /* text-align: center; */
         font-size: 1.4rem;
     }
     h3 {
@@ -315,21 +289,17 @@
     .sub-container-2 a {
         text-align: center;
     }
-    /* .sub-container-2 img {
-    width: 100%;
-    height: 6.5rem;
-  } */
+   
     .sub-container-1 {
         flex-direction: column;
         align-items: center;
     }
     .sub-container-2 {
         width: 100%;
-        height: 12rem;
     }
-    .happy {
+    /* .happy {
         display: none;
-    }
+    } */
     .btn-feel {
         width: 100%;
     }
@@ -337,21 +307,21 @@
         justify-content: center;
         margin-bottom: 1rem;
     }
+    .secondcolumn {
+        display: flex;
+        flex-direction: row;
+    }
 }
 
 @media (max-width: 600px) {
-    .optional-text{
-        margin-top: 8rem;
-        width:100%;
-    }
     .div-create-survey{
         margin-top: 8rem;
     }
     .profilecontent-container {
         margin-left: auto;
         margin-right: auto;
-        width: 70%;
-        height: 600px;
+        width: 100%;
+
         padding-bottom: 50px;
         margin-top: 2rem;
       }
@@ -370,22 +340,17 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        width: 100%;
     }
-    /* .sub-container-2 img {
-      width: 100%;
-      height: 6.5rem;
-    } */
+   
     .sub-container-1 {
         flex-direction: column;
         align-items: center;
     }
-    .sub-container-2 {
-        width: 100%;
-        height: 12rem;
-    }
-    .happy {
+   
+    /* .happy {
         display: none;
-    }
+    } */
     .sub-container-5 {
         flex-direction: column;
     }
@@ -396,8 +361,15 @@
     .main-container {
         width: 100%;
     }
-
-    .reactions {
+.secondcolumn {
+    display: flex;
+    flex-direction: row;
+}
+    /* .reactions {
         width: 94%;
+        margin-top: -100px;
     }
+    #gotosurveymaker {
+        margin-top: -150px;
+    } */
 }
