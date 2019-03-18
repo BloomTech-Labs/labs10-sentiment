@@ -41,6 +41,12 @@
     cursor: pointer;
 }
 
+#gotosurveymaker:hover {
+    background-color: var(--hover-color);
+    border: 1px solid var(--hover-border-color);
+}
+
+
 .main-container h1 {
     font-family: var(--headers-font-style);
     font-size: 4rem !important;

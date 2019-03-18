@@ -438,7 +438,7 @@ class Profile extends React.Component {
       );
     } else if (view === "create") {
       return (
-        <div className="page-container" className="background-color">
+        <div className="page-container background-color">
           <div className="profilecontent-container">
             {/* <p>Loading...</p> */}
             <NavBar />
