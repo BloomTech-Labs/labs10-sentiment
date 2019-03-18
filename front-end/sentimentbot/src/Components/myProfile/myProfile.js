@@ -277,7 +277,7 @@ class Profile extends React.Component {
               {" "}
               <h1 className="welcome-container" style={{fontFamily: 'Roboto Slab, serif', fontSize: '4rem', marginTop: '4%' }}>
                 Welcome, {this.props.singleTeamMembers[0].firstName}!
-              </h1>
+                </h1>
               <div className="sub-container-1">
                 <div className="sub-container-2">
                   {this.props.managers.length === 0 ? (
@@ -325,7 +325,7 @@ class Profile extends React.Component {
                   )
                   ): (null)
                   }
-                  <h3>Team: {this.props.singleTeams[0].name}</h3>
+                  <h3 className="team-wordbox">Team: {this.props.singleTeams[0].name}</h3>
                 </div>
                 <div className="secondcolumn">
                   <img
@@ -341,8 +341,6 @@ class Profile extends React.Component {
                 </div>
               </div>   
             </div>
-            
-
             <div className="reactions">
               {this.props.singleTeamMembers[0].type === "manager" ? (
                 <p>Your Surveys:</p>
