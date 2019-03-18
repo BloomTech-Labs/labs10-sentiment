@@ -2,11 +2,19 @@ import React from "react";
 import Login from './login/login'
 import Auth from "./Auth/auth";
 import "./home.css";
-import { Card, CardText, CardBody,
-  CardTitle, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem  } from 'reactstrap';
+import { 
+  Card, 
+  CardText, 
+  CardBody,
+  CardTitle, 
+  ButtonDropdown, 
+  DropdownToggle, 
+  DropdownMenu, 
+  DropdownItem  } from 'reactstrap';
+  // import Awe from "../../PNG/nobackgroundAwe.png";
   import NavBar from "./NavBar/NavBar";
-  import MoodbotCarousel from '../Components/Survey/Carousel/carousel'
-
+  import MoodbotCarousel from '../Components/Survey/Carousel/carousel';
+import CreatorPage from "./CreatorPage/creatorPage";
 
 class Home extends React.Component {
   constructor(props) {
@@ -17,7 +25,6 @@ class Home extends React.Component {
       dropdownOpen2:false,
       dropdownOpen3:false,
       dropdownOpen4:false,
-      
     };
 
     this.toggle = this.toggle.bind(this);
@@ -27,9 +34,9 @@ class Home extends React.Component {
     this.toggle3 = this.toggle3.bind(this);
 
     this.toggle4 = this.toggle4.bind(this);
+
    
   }
-
 
   toggle() {
     this.setState({
@@ -54,6 +61,7 @@ toggle4() {
     dropdownOpen4: !this.state.dropdownOpen4
   });
 }
+
 
   // componentDidMount() {
   //   // change this line to grab the id passed on the URL
@@ -131,41 +139,45 @@ toggle4() {
         </DropdownToggle>
         <DropdownMenu>
           <DropdownItem className="dropDown" header>Mood is a Slack bot which helps your team facilitating progress reporting.</DropdownItem>
-          
         </DropdownMenu>
       </ButtonDropdown>
-<br></br>
+      <br></br>
       <ButtonDropdown isOpen={this.state.dropdownOpen2} toggle={this.toggle2}>
         <DropdownToggle className="faqButton" caret>
           How do I install Mood?
         </DropdownToggle>
         <DropdownMenu>
-          <DropdownItem className="dropDown" header>Click the Add to Slack button on the profile page once you have signed up!</DropdownItem>
-          
+          <DropdownItem className="dropDown" header>Click the Add to Slack button on the profile page once you have signed up!</DropdownItem> 
         </DropdownMenu>
       </ButtonDropdown>
       <br></br>
-
       <ButtonDropdown isOpen={this.state.dropdownOpen3} toggle={this.toggle3}>
         <DropdownToggle className="faqButton" caret>
          Is there a survey limit? 
         </DropdownToggle>
         <DropdownMenu>
           <DropdownItem className="dropDown" header>You are able to create as many surveys as needed.</DropdownItem>
-          
         </DropdownMenu>
-      </ButtonDropdown> <br></br>
-
+      </ButtonDropdown> 
+      <br></br>
       <ButtonDropdown isOpen={this.state.dropdownOpen4} toggle={this.toggle4}>
         <DropdownToggle className="faqButton" caret>
           How much does Mood cost?
         </DropdownToggle>
         <DropdownMenu>
           <DropdownItem className="dropDown" header>We offer competitive pricing tiers to meet the needs of individual clients.</DropdownItem>
-          
         </DropdownMenu>
-      </ButtonDropdown> <br></br>
-      </div> <br></br> <br></br>
+      </ButtonDropdown> 
+      <br></br> 
+      </div>
+      <br></br> <br></br>  
+      <div className="creator-box">
+        <h5 className="creator-header">The Creators of M.O.O.D</h5>
+        <div className="creatormodal-button">
+          <CreatorPage />
+        </div>
+      </div>
+      <br></br>
       </div>
       </div>
       </div>
@@ -173,5 +185,5 @@ toggle4() {
   }
 }
 
-
 export default Home;
+

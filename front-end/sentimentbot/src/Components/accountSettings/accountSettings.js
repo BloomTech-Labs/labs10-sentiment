@@ -20,7 +20,7 @@ import "./accountSettings.css";
 import loadinggif from "../callback/loading.svg";
 import SideBanner from "../PNG/MOODsideBANNER.png";
 
-import { Col, FormGroup, Label, Input } from "reactstrap";
+import { Col, FormGroup, Input } from "reactstrap";
 
 class accountSettings extends React.Component {
   constructor(props) {

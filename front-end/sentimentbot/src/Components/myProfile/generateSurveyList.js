@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import { getSurvey, changeSurveyActivity } from "../../actions";
-import { Emoji } from "emoji-mart";
 import "../history";
 import "./myProfile.css";
 
