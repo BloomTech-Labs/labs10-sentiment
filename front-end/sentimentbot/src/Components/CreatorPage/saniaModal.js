@@ -22,7 +22,7 @@ class SaniaModal extends React.Component {
 render() {
     return (
         <div>
-        <Button color="secondary" onClick={this.toggle}>{this.props.buttonLabel}</Button>
+        <Button color="secondary" onClick={this.toggle}>Meet Me!</Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}>Sania</ModalHeader>
           <ModalBody>

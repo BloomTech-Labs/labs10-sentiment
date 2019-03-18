@@ -20,3 +20,15 @@
     justify-content: center;
     color: purple;
 }
+
+.austin-link-container {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.austin-modal-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
