@@ -335,7 +335,7 @@ class Profile extends React.Component {
                     width="58"
                     height="58"
                   />
-                  <div className="div-create-survey">
+                  <div >
                     {localStorage.getItem('type') === 'manager' ? (<div id="gotosurveymaker" onClick={this.goToSurveyMaker}>Create Survey</div> ) : (null)}
                   </div>
                 </div>

@@ -32,7 +32,6 @@
     max-width: 100%;
     width: 160px;
     justify-content: center;
-    border: 1px solid green;
     padding: 1rem;
     color: white;
     background-color: var(--main-btn-color);
@@ -256,6 +255,9 @@
     font-weight: bold;
     font-size: 1.2rem;
 }
+/* .secondcolumn {
+    border: 1px red solid;
+} */
 
 @media (max-width: 900px) {
     .div-create-survey{
@@ -289,15 +291,19 @@
     .sub-container-2 {
         width: 100%;
     }
-    .happy {
+    /* .happy {
         display: none;
-    }
+    } */
     .btn-feel {
         width: 100%;
     }
     .sub-container-3 {
         justify-content: center;
         margin-bottom: 1rem;
+    }
+    .secondcolumn {
+        display: flex;
+        flex-direction: row;
     }
 }
 
@@ -336,9 +342,9 @@
         align-items: center;
     }
    
-    .happy {
+    /* .happy {
         display: none;
-    }
+    } */
     .sub-container-5 {
         flex-direction: column;
     }
@@ -349,9 +355,15 @@
     .main-container {
         width: 100%;
     }
-
-    .reactions {
+.secondcolumn {
+    display: flex;
+    flex-direction: row;
+}
+    /* .reactions {
         width: 94%;
         margin-top: -100px;
     }
+    #gotosurveymaker {
+        margin-top: -150px;
+    } */
 }
