@@ -5,22 +5,22 @@
     display: flex;
     flex-direction: column;
     height: 1208px;
-    background-color: var(--main-bg-color); 
+    background-color: var(--main-bg-color);
 }
 
 .settings-container {
-    
-    margin: 0 auto; 
+    margin: 0 auto;
     max-width: 900px;
     width: 100%;
- 
 }
+
 .accsetcontent-container {
     width: 100%;
     border: 2px solid var(--hover-border-color);
-    border-radius: .25rem; 
-    overflow:hidden;
+    border-radius: .25rem;
+    overflow: hidden;
 }
+
 .sidebanner-box {
     display: flex;
     justify-content: center;
@@ -60,12 +60,14 @@ input[type=password]:focus {
     display: flex;
     justify-content: flex-start;
 }
+
 .accbuttons-box {
     display: flex;
-     flex-direction: row;
-     justify-content: center;
-     padding: 5px;
+    flex-direction: row;
+    justify-content: center;
+    padding: 5px;
 }
+
 .btn-style {
     color: white;
     text-transform: uppercase;
@@ -86,12 +88,14 @@ input[type=password]:focus {
     background-color: var(--hover-color);
     border: 1px solid var(--hover-border-color);
 }
+
 .resetwords-box {
     margin: 10px;
     padding: 10px;
     display: flex;
     justify-content: center;
 }
+
 .reset {
     margin-top: 20px;
 }
@@ -132,8 +136,6 @@ input[type=password]:focus {
     justify-content: center;    
     margin-top: -4%;
 } */
-
-
 
 @media (max-width: 900px) {
     /* .account-form {
@@ -183,7 +185,15 @@ input[type=password]:focus {
         margin-left: 5%;
     }
     .settings-container {
-        
         width: 100%;
+    }
+}
+
+@media (max-width: 420px) {
+    .settings-header {
+        font-size: 3.5rem;
+        margin: 0 auto;
+        margin-top: 5%;
+        margin-bottom: 5%;
     }
 }
