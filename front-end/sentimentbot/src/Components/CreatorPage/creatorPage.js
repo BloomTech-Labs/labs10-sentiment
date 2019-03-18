@@ -1,6 +1,7 @@
 import React from 'react'
 import { Modal, ModalHeader, ModalBody, Button, ModalFooter } from 'reactstrap';
 import "./creatorpage.css"
+import Happy from "../PNG/nobackgroundHappy.png";
 import AustinModal from './austinModal.js';
 import JosephModal from './josephModal.js';
 import MichelleModal from './michelleModal.js';
@@ -28,7 +29,8 @@ class CreatorPage extends React.Component {
   render() {
     return (
             <div>
-            <Button color="secondary" onClick={this.toggle}>{this.props.buttonLabel}</Button>
+            <img className="creator-button" src={Happy} alt="happy" width="100" height="100" onClick={this.toggle} />
+            {/* <Button color="secondary" onClick={this.toggle}>{this.props.buttonLabel}</Button> */}
             <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
             <ModalHeader toggle={this.toggle}>Meet the Creators</ModalHeader>
             <ModalBody>

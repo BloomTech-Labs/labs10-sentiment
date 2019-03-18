@@ -11,3 +11,12 @@
     flex-direction: row;
     margin: 10px;
 }
+.creator-button {
+    cursor: pointer;
+}
+.michelles-modalwords {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: purple;
+}
