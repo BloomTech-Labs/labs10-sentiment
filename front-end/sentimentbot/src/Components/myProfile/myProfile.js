@@ -321,7 +321,7 @@ class Profile extends React.Component {
                   this.props.singleTeamMembers[0].type === "manager" ? (
                   <h2>Once you're connected to a slack work space, connect your mood bot to a channel with the slash command: <span className="span">/connect_channel_to_survey</span></h2>
                   ) : (
-                    <h2>Hint once connect to a slack workspace, you can use the slash command: <span className="span">/send-me-buttons</span> to receive existing surveys!</h2>
+                    <h2>Hint once connected to a slack workspace, you can use the slash command: <span className="span">/send-me-buttons</span> to receive existing surveys!</h2>
                   )
                   ): (null)
                   }
@@ -336,7 +336,7 @@ class Profile extends React.Component {
                     height="58"
                   />
                   <div className="div-create-survey">
-                    <div id="gotosurveymaker" onClick={this.goToSurveyMaker}>Create Survey</div>
+                    {localStorage.getItem('type') === 'manager' ? (<div id="gotosurveymaker" onClick={this.goToSurveyMaker}>Create Survey</div> ) : (null)}
                   </div>
                 </div>
               </div>   
