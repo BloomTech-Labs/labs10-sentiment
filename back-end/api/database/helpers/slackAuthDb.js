@@ -27,6 +27,12 @@ module.exports = {
         }
       });
   },
+  getBySlackTeamIdSTD: function(team_id) {
+    return db(table).where({ team_id: team_id });
+  },
+  getByBotId: function(bot_user_id) {
+    return db(table).where("bot_user_id", bot_user_id);
+  },
   insert: function(post) {
     return db(table)
       .insert(post)
