@@ -57,6 +57,7 @@
 .joseph-link-container a:hover {
     color: #62158F;
 }
+
 .saniamodal-box {
     display: flex;
     flex-direction: column;
@@ -66,3 +67,12 @@
     display: flex;
     justify-content: center;
 }
+
+a span.screen-reader-text {
+    clip: rect(1px, 1px, 1px, 1px);
+      position: absolute !important;
+      height: 1px;
+      width: 1px;
+      overflow: hidden;
+  }
+
