@@ -76,7 +76,9 @@
 
 .faqButton {
   color: #d0e9e5 !important;
+  max-width: 500px;
   width: 500px;
+  
 }
 
 .dropDown {
@@ -191,6 +193,9 @@
     font-size: 1.2rem;
     text-align: center;
   }
+  .faqButton {
+    width: 400px;
+  }
 }
 
 @media (max-width: 420px) {
@@ -199,11 +204,17 @@
   }
 
   .home-container .restofPage .faq .btn-group {
-    width: 400px;
+    /* width: 400px; */
+    width: 100%;
   }
 
   .home-container .restofPage .faq .btn-group .dropdown-menu {
-    width: 400px;
+    /* width: 400px; */
+    width: 100%;
     overflow: scroll;
+  }
+  .faqButton {
+    max-width: 400px;
+    width: 100%;
   }
 }

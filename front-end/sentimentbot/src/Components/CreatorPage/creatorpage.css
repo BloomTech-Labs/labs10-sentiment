@@ -21,6 +21,15 @@
     justify-content: center;
     color: purple;
 }
+.michelles-links {
+    display: flex;
+    justify-content: space-evenly;
+
+}
+.michelles-bot {
+    display: flex;
+    justify-content: center;
+}
 
 .austin-link-container {
     display: flex;

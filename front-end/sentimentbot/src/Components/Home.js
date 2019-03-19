@@ -102,7 +102,9 @@ toggle4() {
             Hello, I am the Miniature Organization Observation Drone, or M.O.O.D.
             Let me help you enjoy working with your team.
           </h1>
-          <Login auth={auth} />
+          <div >
+            {localStorage.getItem('isLoggedIn') ? (null) : <Login auth={auth} />}
+          </div>
         </div>
         <MoodbotCarousel />
         {/* <div className="home-container-img">
