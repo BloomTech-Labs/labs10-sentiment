@@ -2,25 +2,25 @@
 
 ## Front End
 
-### Front end was built with create-react-app. To run a local server,
+##### Front end was built with create-react-app. To run a local server,
 
-### yarn start must be run inside of the sentiment bot file.
+##### yarn start must be run inside of the sentiment bot file.
 
-### Redux is being used to manage state.
+##### Redux is being used to manage state.
 
-### Notable APIs in use are Stripe, Auth0, and Slack.
+##### Notable APIs in use are Stripe, Auth0, and Slack.
 
-### Hosted on Netlify.
+##### Hosted on Netlify.
 
 ## Back End
 
-### Backend built with Express and NodeJS
+##### Backend built with Express and NodeJS
 
-### Notable APIs in use are Stripe.
+##### Notable APIs in use are Stripe.
 
-### Hosted on heroku.
+## Hosted on heroku.
 
-## GET : [
+### GET : [
 
 | Method | Endpoint      | Description                                                                                                                                                                                                                                                                                         |
 | ------ | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -38,20 +38,20 @@
 | GET    | /api/survey_feelings | responds with [[{data}]  |
 | GET    | /api/survey_feelings/:id | responds with [[{data}] |
 
-## POST : [
+### POST : [
 
 | Method | Endpoint      | Description                                                                                                                                                                                                                                                                                         |
 | ------ | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | POST    | /api/feelings | responds with: [{}]  |
 | POST    | /api/managers | responds with: [{}]  |
 
-## PUT : [
+### PUT : [
 
 | Method | Endpoint      | Description                                                                                                                                                                                                                                                                                         |
 | ------ | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | PUT    | /api/feelings/:id | responds with [[{data}]  |
 
-## DELETE : [
+### DELETE : [
 
 | Method | Endpoint      | Description                                                                                                                                                                                                                                                                                         |
 | ------ | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
