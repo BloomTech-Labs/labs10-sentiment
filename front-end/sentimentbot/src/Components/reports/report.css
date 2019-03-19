@@ -93,6 +93,14 @@
         border: 1px solid var(--hover-border-color);
     }
 
+    .pie-container {
+        margin-top: 1.5%;
+        width: 40%;
+    }
+    .pie-container p {
+        text-align: center;
+    }
+
 
     .pie-chart-words {
         display: flex;
@@ -196,6 +204,10 @@
             border: 1px solid var(--hover-border-color);
         }
 
+        .pie-container {
+            width: 20%;
+        }
+
         .pie-chart-main {
             margin-left: 15%;
         }
@@ -284,6 +296,10 @@
             color: var(--hover-font-color);
             background-color: var(--hover-color);
             border: 1px solid var(--hover-border-color);
+        }
+
+        .pie-container {
+            width: 20%;
         }
 
         .pie-chart-words {
@@ -559,11 +575,4 @@
         flex-wrap: wrap;
         border: 2px solid #02C8A7;
         border-radius: 8px;
-    }
-    .pie-container {
-        margin-top: 1.5%;
-        width: 40%;
-    }
-    .pie-container p {
-        text-align: center;
     }
