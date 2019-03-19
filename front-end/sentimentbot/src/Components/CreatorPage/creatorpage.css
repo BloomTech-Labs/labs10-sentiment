@@ -57,3 +57,12 @@
 .joseph-link-container a:hover {
     color: #62158F;
 }
+.saniamodal-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.saniabot {
+    display: flex;
+    justify-content: center;
+}
