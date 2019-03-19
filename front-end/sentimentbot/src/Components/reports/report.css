@@ -26,7 +26,7 @@
     margin: 0 auto;
     display: flex;
     flex-direction: column; 
-    height: 1865px;
+    height: 1920px;
   }
 
   .main-reports-container { 
@@ -299,7 +299,7 @@
         }
 
         .pie-container {
-            width: 20%;
+            width: 10%;
         }
 
         .pie-chart-words {
@@ -355,7 +355,7 @@
         }
         
     }
-    @media (max-width: 420px) {
+    @media (max-width: 460px) {
         .reports-container {
             width: 100%;
             display: flex;
@@ -422,6 +422,11 @@
             background-color: var(--hover-color);
             border: 1px solid var(--hover-border-color);
         }
+
+        .pie-container {
+            width: 10%;
+        }
+        
         .pie-container p {
             width: 90%;
             margin-top: 5%;
