@@ -332,6 +332,10 @@
   .bot-container img {
     display: none;
   }
+  .bot-container p {
+    text-align: center;
+  }
+
   .main-reports-container button {
     width: 70%;
     background-color: var(--main-btn-color);
@@ -426,6 +430,9 @@
     flex-wrap: wrap;
     justify-content: center;
   }
+  .bot-container p {
+    text-align: center;
+  }
   .combo-container p {
     padding: 4%;
   }
@@ -496,6 +503,10 @@
   .pie-container {
     width: 90%;
     margin-left: 15%;
+  }
+
+  .pie-container p {
+    margin-right: 20%;
   }
 
   /* .pie-chart-main {
