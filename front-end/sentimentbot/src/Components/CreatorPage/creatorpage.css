@@ -2,6 +2,7 @@
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
+    font-family: var(--p-font-style);
 }
 .ourmodal-boxes {
     margin-left: auto;
