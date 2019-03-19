@@ -126,7 +126,7 @@ toggle4() {
 
         <CardBody className="cardBody">
         <CardTitle className="cardTitle">Custom Emoji's </CardTitle>
-        <CardText className="cardText">Bring flair and improved user interaction using our curated collection of moodbots or uploading your own.</CardText>
+        <CardText className="cardText">Bring flair and improved user interaction using our curated collection of emojis.</CardText>
       </CardBody>
 
       <CardBody className="cardBody">
@@ -140,7 +140,7 @@ toggle4() {
           What is Mood?
         </DropdownToggle>
         <DropdownMenu>
-          <DropdownItem className="dropDown" header>Mood is a Slack bot which helps your team facilitating progress reporting.</DropdownItem>
+          <DropdownItem className="dropDown" header>Mood is a Slack bot which helps your team facilitate progress reports.</DropdownItem>
         </DropdownMenu>
       </ButtonDropdown>
       <br></br>
