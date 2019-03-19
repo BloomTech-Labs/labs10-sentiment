@@ -32,3 +32,18 @@
     flex-direction: column;
     align-items: center;
 }
+
+.joseph-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.joseph-link-container a {
+    color: #252525;
+    margin: 5px;
+}
+
+.joseph-link-container a:hover {
+    color: #62158F;
+}
