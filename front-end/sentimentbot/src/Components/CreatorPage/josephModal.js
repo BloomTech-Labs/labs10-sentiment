@@ -33,9 +33,15 @@ class JosephModal extends React.Component {
               <p>Thanks for checking out Sentiment Bot (aka MOOD).</p>
               <img src={Joseph} width="300" height="300" alt="joseph" />
               <div className="joseph-link-container">
-                <a className="fab fa-twitter-square fa-3x" href="https://twitter.com/_josepheastman" target="_blank"></a>
-                <a className="fab fa-github-square fa-3x" href="https://github.com/josepheastman" target="_blank"></a>
-                <a className="fab fa-linkedin fa-3x" href="https://www.linkedin.com/in/joseph-eastman/" target="_blank"></a>
+                <a className="fab fa-twitter-square fa-3x" href="https://twitter.com/_josepheastman" target="_blank">
+                  <span className="screen-reader-text">Link to my twitter</span>
+                </a>
+                <a className="fab fa-github-square fa-3x" href="https://github.com/josepheastman" target="_blank">
+                  <span className="screen-reader-text">Link to my github</span>
+                </a>
+                <a className="fab fa-linkedin fa-3x" href="https://www.linkedin.com/in/joseph-eastman/" target="_blank">
+                  <span className="screen-reader-text">Link to my linkedin</span>
+                </a>
               </div>
             </div>
           </ModalBody>
