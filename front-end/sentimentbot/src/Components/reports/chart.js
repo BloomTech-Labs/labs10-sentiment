@@ -548,8 +548,8 @@ class PieChart extends React.Component {
       let date = new Date(`${this.props.singleSurvey.response[0].created_at}`)
 
       const canvas = {
-        height: "600px",
-        width: "400px"
+        height: "400px",
+        width: "350px"
       };
 
       return (

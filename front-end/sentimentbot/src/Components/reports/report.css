@@ -1,587 +1,567 @@
 :root {
-    --main-bg-color: #F5F5F5;
-    --main-btn-color: #02C8A7;
-    --hover-color: #7cdbd5;
-    --hover-border-color: #02C8A7;
-    --hover-font-color: white;
-    --p-font-style: "Roboto", sans-serif;
-    --headers-font-style: 'Roboto Slab', serif;
+  --main-bg-color: #f5f5f5;
+  --main-btn-color: #02c8a7;
+  --hover-color: #7cdbd5;
+  --hover-border-color: #02c8a7;
+  --hover-font-color: white;
+  --p-font-style: "Roboto", sans-serif;
+  --headers-font-style: "Roboto Slab", serif;
 }
 
 .routes-div h1 {
-    font-family: var(--headers-font-style);
+  font-family: var(--headers-font-style);
 }
 .routes-div h2 {
-    font-family: var(--headers-font-style);
+  font-family: var(--headers-font-style);
 }
 .routes-div h3 {
-    font-family: var(--headers-font-style);
+  font-family: var(--headers-font-style);
 }
 .routes-div p {
-    font-family: var(--p-font-style);
+  font-family: var(--p-font-style);
 }
 /* Standard Page CSS */
 .reportspage-container {
-    background-color: var(--main-bg-color);
-    margin: 0 auto;
-    display: flex;
+  background-color: var(--main-bg-color);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  height: 1920px;
+}
 
-    flex-direction: column; 
-    height: 1920px;
-  }
+.main-reports-container {
+  padding-bottom: 50px;
+  margin: 0 auto;
+  margin-top: 3% auto;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  background-color: var(--main-bg-color);
+}
 
-
-  .main-reports-container { 
-    padding-bottom: 50px;
-    margin: 0 auto;
-    margin-top: 3% auto;
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    background-color: var(--main-bg-color); 
-  }
-
-  .main-reports-container .generateReport { 
-    width: 50%;
-    margin: 0 auto;
-  }
-
-/* .background-color {
-    background-color: var(--main-bg-color);
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    overflow: scroll;
-} */
-
-/* .main-reports-container {
-        width: 80%;
-        margin: 0 auto;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    } */
-
-    p {
-        font-family: var(--p-font-style);
-    }
-
-    .main-reports-container h2 {
-        margin-top: 3%;
-        margin-left: 10px;
-        font-size: 3.5rem;
-        font-family: var(--headers-font-style);
-        color: black;
-    }
+.main-reports-container .generateReport {
+  width: 50%;
+  margin: 0 auto;
+}
 
 .main-reports-container .generateReport h2 {
-        margin-top: 5%;
-        font-size: 4rem;
-        text-align: center;
-    }
+  margin-top: 7%;
+  font-size: 4rem;
+  font-family: var(--headers-font-style);
+}
 
-    .main-reports-container button {
-        width: 40%;
-        background-color: var(--main-btn-color);
-        color: white;
-        margin: 3%;
-        border-radius: .25rem;
-    }
+.main-reports-container button {
+  width: 40%;
+  background-color: var(--main-btn-color);
+  color: white;
+  margin: 3%;
+  border-radius: 0.25rem;
+}
 
-    .main-reports-container-button:hover {
-        color: var(--hover-font-color);
-        background-color: var(--hover-color);
-        border: 1px solid var(--hover-border-color);
-    }
+.main-reports-container-button:hover {
+  color: var(--hover-font-color);
+  background-color: var(--hover-color);
+  border: 1px solid var(--hover-border-color);
+}
 
-    .pie-container {
-        margin-top: 1.5%;
-        width: 40%;
-    }
-    .pie-container p {
-        text-align: center;
-    }
+.pie-container {
+  margin-top: 1.5%;
+  width: 40%;
+}
+.pie-container p {
+  text-align: center;
+}
+
+.pie-chart-words {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.pie-chart-words h2 {
+  font-size: 2rem;
+  font-family: var(--headers-font-style);
+  margin-top: 10%;
+}
+
+.pie-chart-words h3 {
+  font-size: 1.2rem;
+  font-family: var(--headers-font-style);
+}
+
+.responses {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.response1 {
+  background-color: #ff6384;
+  width: 80%;
+  text-align: center;
+  height: 30px;
+}
+
+.response2 {
+  background-color: #36a2eb;
+  width: 80%;
+  text-align: center;
+  margin-top: 3%;
+}
+
+.response3 {
+  background-color: #ffce56;
+  width: 80%;
+  text-align: center;
+  margin-top: 3%;
+}
+
+.response4 {
+  background-color: #d7d7d7;
+  width: 80%;
+  text-align: center;
+  margin-top: 3%;
+}
+
+.reports-container {
+  width: 98%;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  font-family: var(--p-font-style);
+}
+.bot-container img {
+  height: 12rem;
+  width: 10rem;
+  align-self: flex-end;
+}
+.bot-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.bot-container p {
+  font-size: 1.3rem;
+}
+.report-button-combo {
+  display: flex;
+  flex-wrap: wrap;
+  width: 300px;
+  height: 200px;
+  justify-content: center;
+  align-items: center;
+}
+.report-button-combo p {
+  text-align: center;
+  margin: 2%;
+  padding: 2%;
+  font-size: 1.4rem;
+}
+.report-button-combo button {
+  width: 80%;
+  height: 25%;
+  background-color: var(--main-btn-color);
+  color: white;
+  border-radius: 0.25rem;
+}
+.report-button-combo button:hover {
+  color: var(--hover-font-color);
+  background-color: var(--hover-color);
+  border: 1px solid var(--hover-border-color);
+}
+.combo-container-button {
+  margin: 10% auto;
+  width: 40%;
+  height: 40px;
+  background-color: var(--main-btn-color);
+  color: white;
+  border-radius: 0.25rem;
+}
+.combo-container-button:hover {
+  color: var(--hover-font-color);
+  background-color: var(--hover-color);
+  border: 1px solid var(--hover-border-color);
+}
+.combo-container {
+  width: 100%;
+  height: 380px;
+  overflow: auto;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  border: 2px solid #02c8a7;
+  border-radius: .25rem;
+}
 
 
-    .pie-chart-words {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
+@media (max-width: 1000px) and (min-width: 600px) {
 
-    .pie-chart-words h2 {
-        font-size: 2rem;
-        font-family: var(--headers-font-style);
-        margin-top: 10%;
-    }
+  .main-reports-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .pie-container {
+    width: 50%;
+    margin-left: 28%;
+    margin-right: 25%;
+  }
 
-    .pie-chart-words h3 {
-        font-size: 1.2rem;
-        font-family: var(--headers-font-style);
-    }
+  .main-reports-container .generateReport {
+    width: 90%;
+  }
 
-    .reports-container {
-        width: 420px;
-    }
+  .footer-img {
+    display: none;
+  }
+}
 
-    .responses {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-    }
+/* @media (max-width: 600px) {
 
-    .response1 {
-        background-color: #FF6384;
-        width: 80%;
-        text-align: center;
-        height: 30px;
-    }
+  .main-reports-container h2 {
+    font-size: 4rem;
+  }
+  .main-reports-container button {
+    width: 70%;
+    background-color: var(--main-btn-color);
+    color: white;
+    margin: 5% 0;
+    border-radius: 0.25rem;
+  }
+  .main-reports-container-button:hover {
+    color: var(--hover-font-color);
+    background-color: var(--hover-color);
+    border: 1px solid var(--hover-border-color);
+  }
 
-    .response2 {
-        background-color: #36A2EB;
-        width: 80%;
-        text-align: center;
-        margin-top: 3%;
-    }
+  .reports-container {
+    width: 90%;
+  }
 
-    .response3 {
-        background-color: #FFCE56;
-        width: 80%;
-        text-align: center;
-        margin-top: 3%;
-    }
+  .pie-container {
+    width: 20%;
+  }
 
-    .response4 {
-        background-color: #d7d7d7;
-        width: 80%;
-        text-align: center;
-        margin-top: 3%;
-    }
+  .pie-chart-main {
+    margin-left: 15%;
+  }
 
-    .chartjs-size-monitor-shrink div {
-        width: 90%;
-        height: 90%;
-    }
+  .pie-chart-words {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .pie-chart-words h2 {
+    font-size: 2rem;
+  }
+  .pie-chart-words h3 {
+    font-size: 1.2rem;
+  }
+  .responses {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+  .response1 {
+    background-color: #ff6384;
+    width: 80%;
+    text-align: center;
+    height: 30px;
+  }
+  .response2 {
+    background-color: #36a2eb;
+    width: 80%;
+    text-align: center;
+    margin-top: 3%;
+  }
+  .response3 {
+    background-color: #ffce56;
+    width: 80%;
+    text-align: center;
+    margin-top: 3%;
+  }
+  .response4 {
+    background-color: #d7d7d7;
+    width: 80%;
+    text-align: center;
+    margin-top: 3%;
+  }
+  .chartjs-size-monitor-shrink div {
+    width: 90%;
+    height: 90%;
+  }
+  .generateReport {
+    background-color: var(--main-bg-color);
+    width: 50%;
+  }
+  .report-gif {
+    display: none;
+  }
+} */
+@media (max-width: 420px) {
+  .main-reports-container {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .main-reports-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .main-reports-container h2 {
+    font-size: 3rem;
+    margin-right: 4%;
+    margin-bottom: 5%;
+  }
 
+  .main-reports-container .generateReport {
+    width: 98%;
+  }
 
-    @media (max-width: 900px) {
-        .pie-container {
-            width: 20%;
-        }
+  .bot-container img {
+    display: none;
+  }
+  .main-reports-container button {
+    width: 70%;
+    background-color: var(--main-btn-color);
+    color: white;
+    margin: 5% 0;
+    border-radius: 0.25rem;
+  }
+  .main-reports-container-button:hover {
+    color: var(--hover-font-color);
+    background-color: var(--hover-color);
+    border: 1px solid var(--hover-border-color);
+  }
 
-        .pie-chart-main {
-            width: 300px;
-        }
-    }
+  .pie-container {
+    width: 100%;
+  }
 
-    @media (max-width: 600px) {
-        .main-reports-container {
-            /* width: 90%; */
-            /* margin: 0 auto; */
-            display: flex;
-            flex-direction: column;
-            /* justify-content: center; */
-            /* align-items: center; */
-            /* margin-left: 10px; */
-        }
-        .main-reports-container h2 {
-            font-size: 4rem;
-            /* margin-top: -200%; */
-            
-        }
-        .main-reports-container button {
-            width: 70%;
-            background-color: var(--main-btn-color);
-            color: white;
-            margin: 5% 0;
-            border-radius: .25rem;
-        }
-        .main-reports-container-button:hover {
-            color: var(--hover-font-color);
-            background-color: var(--hover-color);
-            border: 1px solid var(--hover-border-color);
-        }
+  .pie-chart-words {
+    width: 98%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .pie-chart-words h2 {
+    font-size: 2rem;
+  }
+  .pie-chart-words h3 {
+    font-size: 1.2rem;
+  }
 
-        .pie-container {
-            width: 20%;
-        }
+  .responses {
+    width: 98%;
+  }
+  .response1 {
+    background-color: #ff6384;
+    width: 45%;
+    height: 30px;
+  }
+  .response2 {
+    background-color: #36a2eb;
+    width: 45%;
+    height: 30px;
+    margin-top: 3%;
+  }
+  .response3 {
+    background-color: #ffce56;
+    width: 45%;
+    height: 30px;
+    margin-top: 3%;
+  }
+  .response4 {
+    background-color: #d7d7d7;
+    width: 45%;
+    height: 30px;
+    margin-top: 3%;
+  }
+  .chartjs-size-monitor-shrink div {
+    width: 90%;
+    height: 90%;
+  }
+}
+@media (max-width: 460px) and (min-width: 420px) {
+  .reports-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+  .main-reports-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .main-reports-container .generateReport {
+    width: 98%;
+  }
+  .generateReport h2 {
+    margin-top: 10%;
+    font-size: 2rem;
+    margin-bottom: 5%;
+  }
+  .generateReport .bot-container p {
+    font-size: 1.2rem;
+  }
+  .reports-container .bot-container img {
+    width: 60%;
+    height: 60%;
+    display: none;
+  }
+  .bot-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .combo-container p {
+    padding: 4%;
+  }
+  .report-button-combo {
+    display: flex;
+    flex-wrap: wrap;
+    width: 150px;
+    height: 150px;
+    margin: 5%;
+    justify-content: center;
+  }
+  .report-button-combo p {
+    text-align: center;
+    font-size: 1.1rem;
+  }
+  .report-button-combo button {
+    width: 100%;
+    background-color: var(--main-btn-color);
+    color: white;
+    border-radius: 0.25rem;
+  }
+  .report-button-combo button:hover {
+    color: var(--hover-font-color);
+    background-color: var(--hover-color);
+    border: 1px solid var(--hover-border-color);
+  }
+  .combo-container-button {
+    margin-left: 8%;
+    margin-top: 10%;
+    width: 100%;
+    height: 20%;
+    background-color: var(--main-btn-color);
+    color: white;
+    border-radius: 0.25rem;
+  }
+  .combo-container-button:hover {
+    color: var(--hover-font-color);
+    background-color: var(--hover-color);
+    border: 1px solid var(--hover-border-color);
+  }
 
-        .pie-chart-main {
-            margin-left: 15%;
-        }
+  .pie-container {
+    width: 100%;
+    margin-left: 5%;
+  }
 
-        .pie-chart-words {
-            width: 90%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-        .pie-chart-words h2 {
-            font-size: 2rem;
-        }
-        .pie-chart-words h3 {
-            font-size: 1.2rem;
-        }
-        .reports-container {
-            width: 420px;
-        }
-        .responses {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-        }
-        .response1 {
-            background-color: #FF6384;
-            width: 80%;
-            text-align: center;
-            height: 30px;
-        }
-        .response2 {
-            background-color: #36A2EB;
-            width: 80%;
-            text-align: center;
-            margin-top: 3%;
-        }
-        .response3 {
-            background-color: #FFCE56;
-            width: 80%;
-            text-align: center;
-            margin-top: 3%;
-        }
-        .response4 {
-            background-color: #d7d7d7;
-            width: 80%;
-            text-align: center;
-            margin-top: 3%;
-        }
-        .chartjs-size-monitor-shrink div {
-            width: 90%;
-            height: 90%;
-        }
-        .generateReport {
-            background-color: var(--main-bg-color);
-            width: 50%;
-        }
-        .report-gif {
-            display: none;
-        }
-    }
-    @media (max-width: 420px) {
-        .main-reports-container {
-            width: 90%;
-            margin: 0 auto;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        .main-reports-container h2 {
-            font-size: 3rem;
-            margin-right: 4%;
-            margin-top: -300%;
-        }
-        .main-reports-container button {
-            width: 70%;
-            background-color: var(--main-btn-color);
-            color: white;
-            margin: 5% 0;
-            border-radius: .25rem;
-        }
-        .main-reports-container-button:hover {
-            color: var(--hover-font-color);
-            background-color: var(--hover-color);
-            border: 1px solid var(--hover-border-color);
-        }
+  .pie-container p {
+    width: 90%;
+    margin-top: 5%;
+  }
+  .footer-img {
+    display: none;
+  }
+}
+@media (max-width: 600px) and (min-width: 460px) {
 
-        .pie-container {
-            width: 10%;
-        }
+  .main-reports-container {
+    display: flex;
+    flex-direction: column;
+  }
 
-        .pie-chart-words {
-            width: 90%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-        .pie-chart-words h2 {
-            font-size: 2rem;
-        }
-        .pie-chart-words h3 {
-            font-size: 1.2rem;
-        }
-        .reports-container {
-            width: 420px;
-        }
-        .responses {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-        }
-        .response1 {
-            background-color: #FF6384;
-            width: 45%;
-            height: 30px;
-        }
-        .response2 {
-            background-color: #36A2EB;
-            width: 45%;
-            height: 30px;
-            margin-top: 3%;
-        }
-        .response3 {
-            background-color: #FFCE56;
-            width: 45%;
-            height: 30px;
-            margin-top: 3%;
-        }
-        .response4 {
-            background-color: #d7d7d7;
-            width: 45%;
-            height: 30px;
-            margin-top: 3%;
-        }
-        .chartjs-size-monitor-shrink div {
-            width: 90%;
-            height: 90%;
-        }
-        
-    }
-    @media (max-width: 460px) {
-        .reports-container {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            flex-wrap: wrap;
-        }
-        .main-reports-container .generateReport {
-            width: 100%;
-        }
-        .generateReport h2 {
-            margin-top: 10%;
-            font-size: 2rem;
-        }
-        .generateReport .bot-container p {
-            font-size: 1.2rem;
-        }
-        .reports-container .bot-container img {
-            width: 60%;
-            height: 60%;
-            display: none;
-        }
-        .bot-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        .combo-container p {
-            padding: 4%;
-        }
-        .report-button-combo {
-            display: flex;
-            flex-wrap: wrap;
-            width: 150px;
-            height: 150px;
-            margin: 5%;
-            justify-content: center;
-        }
-        .report-button-combo p {
-            text-align: center;
-            font-size: 1.1rem;
-        }
-        .report-button-combo button {
-            width: 100%;
-            background-color: var(--main-btn-color);
-            color: white;
-            border-radius: .25rem;
-        }
-        .report-button-combo button:hover {
-            color: var(--hover-font-color);
-            background-color: var(--hover-color);
-            border: 1px solid var(--hover-border-color);
-        }
-        .combo-container-button {
-            margin-left: 8%;
-            margin-top: 10%;
-            width: 100%;
-            height: 20%;
-            background-color: var(--main-btn-color);
-            color: white;
-            border-radius: .25rem;
-        }
-        .combo-container-button:hover {
-            color: var(--hover-font-color);
-            background-color: var(--hover-color);
-            border: 1px solid var(--hover-border-color);
-        }
+  .main-reports-container .generateReport {
+    width: 98%;
+    -webkit-align-items: none;
+    align-items: none;
+  }
 
-        .pie-container {
-            width: 10%;
-        }
-        
-        .pie-container p {
-            width: 90%;
-            margin-top: 5%;
-        }
-        .footer-img {
-            display: none;
-        }
-    }
-    @media (max-width: 600px) and (min-width: 420px) {
-        .main-reports-container .generateReport {
-            width: 100%;
-            -webkit-align-items: none;
-            align-items: none;
-        }
+  .pie-container {
+    width: 90%;
+    margin-left: 15%;
+  }
 
-        .pie-chart-main {
-            margin-left: 50%;
-        }
+  /* .pie-chart-main {
+    margin-left: 50%;
+  } */
 
-        .generateReport .reports-container {
-            width: 100%;
-            display: flex;
-            flex-wrap: wrap;
-            margin-top: -167%;
-        }
-        .bot-container img {
-            display: none;
-        }
-        .footer-img {
-            display: none;
-        }
-        .bot-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-top: 180%;
-        }
-        .bot-container p {
-            text-align: center;
-            font-size: 1.6rem;
-        }
-        .report-button-combo {
-            display: flex;
-            flex-wrap: wrap;
-            width: 150px;
-            height: 150px;
-            margin: 5%;
-            justify-content: center;
-        }
-        .report-button-combo p {
-            text-align: center;
-            margin: 2%;
-            padding: 2%;
-            font-size: 1.2rem;
-        }
-        .report-button-combo button {
-            width: 100%;
-            height: 25%;
-            background-color: var(--main-btn-color);
-            color: white;
-            border-radius: .25rem;
-        }
-        .report-button-combo button:hover {
-            color: var(--hover-font-color);
-            background-color: var(--hover-color);
-            border: 1px solid var(--hover-border-color);
-        }
-        .combo-container-button {
-            margin-left: 8%;
-            margin-top: 10%;
-            width: 100%;
-            height: 40px;
-            background-color: var(--main-btn-color);
-            color: white;
-            border-radius: .25rem;
-        }
-        .combo-container-button:hover {
-            color: var(--hover-font-color);
-            background-color: var(--hover-color);
-            border: 1px solid var(--hover-border-color);
-        }
-
-    }
-    .reports-container {
-        max-width: 900px;
-        width: 80%;
-        margin: 0 auto;
-        display: flex;
-        flex-wrap: wrap;
-        font-family: var(--p-font-style);
-    }
-    .bot-container img {
-        /* width: 28%; */
-        height: 250px;
-    }
-    .bot-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-    }
-    .bot-container p {
-        text-align: center;
-        font-size: 2rem;
-    }
-    .report-button-combo {
-        display: flex;
-        flex-wrap: wrap;
-        width: 300px;
-        height: 200px;
-        justify-content: center;
-        align-items: center;
-    }
-    .report-button-combo p {
-        text-align: center;
-        margin: 2%;
-        padding: 2%;
-        font-size: 1.4rem;
-    }
-    .report-button-combo button {
-        width: 80%;
-        height: 25%;
-        background-color: var(--main-btn-color);
-        color: white;
-        border-radius: .25rem;
-    }
-    .report-button-combo button:hover {
-        color: var(--hover-font-color);
-        background-color: var(--hover-color);
-        border: 1px solid var(--hover-border-color);
-    }
-    .combo-container-button {
-        margin: 10% auto;
-        width: 40%;
-        height: 40px;
-        background-color: var(--main-btn-color);
-        color: white;
-        border-radius: .25rem;
-    }
-    .combo-container-button:hover {
-        color: var(--hover-font-color);
-        background-color: var(--hover-color);
-        border: 1px solid var(--hover-border-color);
-    }
-    .combo-container {
-        width: 90%;
-        height: 380px;
-        margin: 8% 4% 0 4%;
-        overflow: auto;
-        display: flex;
-        justify-content: space-evenly;
-        flex-wrap: wrap;
-        border: 2px solid #02C8A7;
-        border-radius: 8px;
-    }
+  .generateReport .reports-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: -167%;
+  }
+  .bot-container img {
+    display: none;
+  }
+  .footer-img {
+    display: none;
+  }
+  .bot-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 180%;
+  }
+  .bot-container p {
+    text-align: center;
+    font-size: 1.6rem;
+  }
+  .report-button-combo {
+    display: flex;
+    flex-wrap: wrap;
+    width: 150px;
+    height: 150px;
+    margin: 5%;
+    justify-content: center;
+  }
+  .report-button-combo p {
+    text-align: center;
+    margin: 2%;
+    padding: 2%;
+    font-size: 1.2rem;
+  }
+  .report-button-combo button {
+    width: 100%;
+    height: 25%;
+    background-color: var(--main-btn-color);
+    color: white;
+    border-radius: 0.25rem;
+  }
+  .report-button-combo button:hover {
+    color: var(--hover-font-color);
+    background-color: var(--hover-color);
+    border: 1px solid var(--hover-border-color);
+  }
+  .combo-container-button {
+    margin-left: 8%;
+    margin-top: 10%;
+    width: 100%;
+    height: 40px;
+    background-color: var(--main-btn-color);
+    color: white;
+    border-radius: 0.25rem;
+  }
+  .combo-container-button:hover {
+    color: var(--hover-font-color);
+    background-color: var(--hover-color);
+    border: 1px solid var(--hover-border-color);
+  }
+}
