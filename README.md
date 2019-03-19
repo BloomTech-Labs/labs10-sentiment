@@ -1,23 +1,27 @@
-#Labs10-Sentiment
+# Labs10-Sentiment
 
-##Front End
+## Front End
 
-###Front end was built with create-react-app. To run a local server,###yarn start must be run inside of the sentiment bot file.
-###Redux is being used to manage state.
+### Front end was built with create-react-app. To run a local server,
 
-###Notable APIs in use are Stripe, Auth0, and Slack.
+### yarn start must be run inside of the sentiment bot file.
 
-###Hosted on Netlify.
+### Redux is being used to manage state.
 
-##Back End
+### Notable APIs in use are Stripe, Auth0, and Slack.
 
-###Backend built with Express and NodeJS
+### Hosted on Netlify.
 
-###Notable APIs in use are Stripe.
+## Back End
 
-###Hosted on heroku.
+### Backend built with Express and NodeJS
 
-##GET : [
+### Notable APIs in use are Stripe.
+
+### Hosted on heroku.
+
+## GET : [
+
 /api/managers - responds with [
 [{data}]
 /api/members/:id - responds with [
@@ -59,7 +63,8 @@
 ]
 ]
 
-##POST : [
+## POST : [
+
 /api/feelings - responds with: [
 {}
 ]
@@ -68,13 +73,15 @@
 ]
 ]
 
-##PUT : [
+## PUT : [
+
 /api/feelings/:id - responds with [
 [{data}]
 ]
 ]
 
-##DELETE : [
+## DELETE : [
+
 /api/feelings/:id - responds with [
 [{data}]
 ]
