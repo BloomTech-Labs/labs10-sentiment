@@ -31,7 +31,7 @@
     margin: 10px;
     max-width: 100%;
     width: 160px;
-    justify-content: center;
+    text-align: center;
     padding: 1rem;
     color: white;
     background-color: var(--main-btn-color);
@@ -256,14 +256,22 @@
 
 .optional-text{
     margin-top: 1.2rem;
-    width:90%;
+    width: 90%;
     color: #02C8A7;
     font-weight: bold;
     font-size: 1.2rem;
 }
-/* .secondcolumn {
-    border: 1px red solid;
-} */
+
+.optional-text-2 {
+    margin-top: 1.2rem;
+    width: 90%;
+}
+.secondcolumn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
 
 @media (max-width: 900px) {
     .div-create-survey{
@@ -297,9 +305,9 @@
     .sub-container-2 {
         width: 100%;
     }
-    /* .happy {
+    .happy {
         display: none;
-    } */
+    }
     .btn-feel {
         width: 100%;
     }
@@ -348,9 +356,9 @@
         align-items: center;
     }
    
-    /* .happy {
+    .happy {
         display: none;
-    } */
+    }
     .sub-container-5 {
         flex-direction: column;
     }
