@@ -66,14 +66,13 @@
 }
 
 .youtube {
-  /* background-color: #02C8A7; */
-  /* border: 50px solid #02C8A7;
-  height: 400px;
-  margin-top: 100px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 iframe {  
-  margin-left: 35%;
   border: 35px solid #02C8A7;
   padding: 1px;
   margin-top: 6.5%;
@@ -201,10 +200,6 @@ iframe {
       width: 100%;
       padding: 2rem;
   }
-
-  iframe {  
-    margin-left: 6%;
-  }
 }
 
 @media (max-width: 600px) {
@@ -216,7 +211,6 @@ iframe {
     width: 400px;
   }
   iframe {  
-    margin-left: 6%;
     width: 90%;
   }
 }
