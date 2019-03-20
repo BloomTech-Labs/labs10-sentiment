@@ -28,7 +28,7 @@ Mood is an application that Creates a non-confrontational yet engaging way for e
 * **Joseph Eastman** - [josepheastman](https://github.com/josepheastman)
 * **Samuel Partner**  - [Zatara-Wrought](https://github.com/Zatara-Wrought)
 * **Thomas Claydon**  - [gittc100](https://github.com/gittc100)
-* **Tyrone CartWright**  - [Tyrone-Cartwright](https://github.com/Tyrone-Cartwright)
+* **Tyrone Cartwright**  - [Tyrone-Cartwright](https://github.com/Tyrone-Cartwright)
 * **Michelle Okagbue**  - [Mokagbue](https://github.com/Mokagbue)
 
 ## License
