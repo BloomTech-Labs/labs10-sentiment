@@ -4,6 +4,7 @@
   flex-direction: column;
   font-family: var(--p-font-style);
 }
+
 .ourmodal-boxes {
   margin-left: auto;
   margin-right: auto;
@@ -12,19 +13,25 @@
   flex-direction: row;
   margin: 10px;
 }
+
 .creator-button {
   cursor: pointer;
 }
+
 .michelles-modalwords {
   display: flex;
   flex-direction: column;
   justify-content: center;
   color: purple;
 }
+
 .michelles-links {
+
   display: flex;
   justify-content: space-evenly;
+
 }
+
 .michelles-bot {
   display: flex;
   justify-content: center;
@@ -68,6 +75,28 @@
 }
 
 a span.screen-reader-text {
+
+    
+}
+
+.tyrone-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tyrone-link-container a {
+    color: #0000FF;
+    margin: 5px;
+}
+
+.tyrone-link-container a:hover {
+    color: #FF0000;
+}
+
+  
+
+
   clip: rect(1px, 1px, 1px, 1px);
   position: absolute !important;
   height: 1px;
@@ -86,6 +115,7 @@ a span.screen-reader-text {
 .thomas-container p{
     text-align: center;
   }
+
 
 .thomas-link-container a {
   color: #252525;
