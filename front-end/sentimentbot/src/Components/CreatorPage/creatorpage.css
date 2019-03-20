@@ -59,7 +59,18 @@
 }
 
 .joseph-link-container a:hover {
-    color: #62158F;
+    color: #62158f;
+}
+
+.saniamodal-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.saniabot {
+    display: flex;
+    justify-content: center;
 }
 
 a span.screen-reader-text {
@@ -76,11 +87,6 @@ a span.screen-reader-text {
     align-items: center;
 }
 
-.tyrones-bot {
-    display: flex;
-    justify-content: center;
-}
-
 .tyrone-link-container a {
     color: #0000FF;
     margin: 5px;
@@ -88,4 +94,25 @@ a span.screen-reader-text {
 
 .tyrone-link-container a:hover {
     color: #FF0000;
+}
+
+.thomas-container {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70%;
+}
+
+.thomas-container p {
+    text-align: center;
+}
+
+.thomas-link-container a {
+    color: #252525;
+    margin: 5px;
+}
+
+.thomas-link-container a:hover {
+    color: #00ff00;
 }
