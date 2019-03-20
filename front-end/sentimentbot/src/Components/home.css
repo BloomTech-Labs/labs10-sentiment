@@ -1,8 +1,9 @@
 .home-container {
   margin: 0 auto;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
   display: flex;
   flex-direction: column;
+  background-color: var(--main-bg-color);
 }
 
 .landingIntro {
@@ -64,8 +65,22 @@
   font-family: var(--p-font-style);
 }
 
+.youtube {
+  /* background-color: #02C8A7; */
+  /* border: 50px solid #02C8A7;
+  height: 400px;
+  margin-top: 100px; */
+}
+
+iframe {  
+  margin-left: 35%;
+  border: 35px solid #02C8A7;
+  padding: 1px;
+  margin-top: 6.5%;
+}
+
 .faq {
-  margin-top: 15%;
+  margin-top: 8%;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -131,11 +146,11 @@
   justify-content: center;
   flex-direction: column;
   padding: 5px;
-  background: #02C8A7;
+  /* background: #02C8A7; */
 }
 .creator-header {
   font-size: 10pt;
-  color: white;
+  color: black;
   display: flex;
   justify-content: center; 
 }
@@ -186,6 +201,10 @@
       width: 100%;
       padding: 2rem;
   }
+
+  iframe {  
+    margin-left: 6%;
+  }
 }
 
 @media (max-width: 600px) {
@@ -195,6 +214,10 @@
   }
   .faqButton {
     width: 400px;
+  }
+  iframe {  
+    margin-left: 6%;
+    width: 90%;
   }
 }
 

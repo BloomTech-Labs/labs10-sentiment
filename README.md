@@ -1,24 +1,41 @@
 # Labs10-Sentiment
 
+Mood is an application that Creates a non-confrontational yet engaging way for employees to communicate with their managers. It Provides an effective method for teams to generate actionable feedback to improve working conditions, company culture, and productivity.
+
 ## Front End
 
-##### Front end was built with create-react-app. To run a local server,
+ Front end was built with create-react-app. To run a local server,
 
-##### yarn start must be run inside of the sentiment bot file.
+ yarn start must be run inside of the sentiment bot file.
 
-##### Redux is being used to manage state.
+ Redux is being used to manage state.
 
-##### Notable APIs in use are Stripe, Auth0, and Slack.
+ Notable APIs in use are Stripe, Auth0, and Slack.
 
-##### Hosted on Netlify.
+ Hosted on Netlify.
 
 ## Back End
 
-##### Backend built with Express and NodeJS
+ Backend built with Express and NodeJS
 
-##### Notable APIs in use are Stripe.
+ Notable APIs in use are Stripe.
 
-## Hosted on heroku.
+ Hosted on heroku.
+
+## Authors
+
+* **Austin Blake**  - [dyiar](https://github.com/dyiar)
+* **Joseph Eastman** - [josepheastman](https://github.com/josepheastman)
+* **Samuel Partner**  - [Zatara-Wrought](https://github.com/Zatara-Wrought)
+* **Thomas Claydon**  - [gittc100](https://github.com/gittc100)
+* **Tyrone CartWright**  - [Tyrone-Cartwright](https://github.com/Tyrone-Cartwright)
+* **Michelle Okagbue**  - [Mokagbue](https://github.com/Mokagbue)
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
+
+## Endpoints
 
 ### GET : [
 
