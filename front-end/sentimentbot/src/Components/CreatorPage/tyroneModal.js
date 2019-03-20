@@ -49,30 +49,37 @@ class TyroneModal extends React.Component {
                 If you'd like to connect, or learn more about me follow the
                 links below!
               </p>
-            </div>
-            <img src={Tyrone} width="300" height="300" alt="tyrone" />
-            <div className="tyrone-link-container">
-              <a
-                className="fab fa-twitter-square fa-3x"
-                href="https://twitter.com/this_GuyTyrone"
-                target="_blank"
-              >
-                Twitter
-              </a>
-              <a
-                className="fab fa-github-square fa-3x"
-                href="https://github.com/Tyrone-Cartwright"
-                target="_blank"
-              >
-                Github Repository
-              </a>
-              <a
-                className="fab fa-linkedin fa-3x"
-                href="https://www.linkedin.com/in/tyrone-cartwright-2370b444/"
-                target="_blank"
-              >
-                Linkedin
-              </a>
+              <div className="tyrones-bot">
+                <img src={Tyrone} width="300" height="300" alt="tyrone" />
+              </div>
+              <div className="tyrone-link-container">
+                <a
+                  className="fab fa-twitter-square fa-3x"
+                  href="https://twitter.com/this_GuyTyrone"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  <span className="screen-reader-text">Link to my twitter</span>
+                </a>
+                <a
+                  className="fab fa-github-square fa-3x"
+                  href="https://github.com/Tyrone-Cartwright"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  <span className="screen-reader-text">Link to my Github</span>
+                </a>
+                <a
+                  className="fab fa-linkedin fa-3x"
+                  href="https://www.linkedin.com/in/tyrone-cartwright-2370b444/"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  <span className="screen-reader-text">
+                    Link to my Linkedin
+                  </span>
+                </a>
+              </div>
             </div>
           </ModalBody>
           <ModalFooter>
