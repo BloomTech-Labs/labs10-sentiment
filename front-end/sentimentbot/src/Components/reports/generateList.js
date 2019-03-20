@@ -47,7 +47,7 @@ function GenerateList(props) {
         if (props.survey[i].survey_time_stamp === null) {
           // divs.push(<div key={i} className="report-button-combo"><p>Survey Title: {props.survey[i].title}</p><button onClick={() => generateReport(props.survey[i].survey_time_stamp)}>Generate</button></div>)
           // divs.shift()
-          i++
+          continue
         } else {
           divs.push(<div key={i} className="report-button-combo"><p>Survey Title: {props.survey[i].title}</p><button onClick={() => generateReport(props.survey[i].survey_time_stamp)}>Generate</button></div>)
         }
