@@ -58,6 +58,16 @@
     color: #62158F;
 }
 
+.saniamodal-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.saniabot {
+    display: flex;
+    justify-content: center;
+}
+
 a span.screen-reader-text {
     clip: rect(1px, 1px, 1px, 1px);
       position: absolute !important;
@@ -65,3 +75,4 @@ a span.screen-reader-text {
       width: 1px;
       overflow: hidden;
   }
+

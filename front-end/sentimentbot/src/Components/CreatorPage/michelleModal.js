@@ -33,8 +33,9 @@ render() {
                 Sentimentbot, but we renamed it MOOD.</p>
               <p>I have been on this coding journey for about a year now. It has been crazy, fun, stressful, and amazing!</p>
               <p>This is my first full scale project, I hope you enjoy MOOD as much we did creating it!</p>
-              <p>“You have brains in your head. You have feet in your shoes. You can steer yourself any direction you choose. You're on your own. And you know what you know. And YOU are the one who'll decide where to go...” 
-                ― Dr. Seuss - Oh, The Places You'll Go! -</p>
+              <p>“You have brains in your head. You have feet in your shoes. You can steer yourself any direction you choose. 
+                You're on your own. And you know what you know. And YOU are the one who'll decide where to go...”</p>
+                <p>― Dr. Seuss - Oh, The Places You'll Go! -</p>
               <div className="michelles-bot">
                 <img src={Michelle} width="300" height="300" alt="michelle" />
               </div>
