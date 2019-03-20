@@ -201,6 +201,10 @@ iframe {
       width: 100%;
       padding: 2rem;
   }
+
+  iframe {  
+    margin-left: 6%;
+  }
 }
 
 @media (max-width: 600px) {
@@ -210,6 +214,10 @@ iframe {
   }
   .faqButton {
     width: 400px;
+  }
+  iframe {  
+    margin-left: 6%;
+    width: 90%;
   }
 }
 
