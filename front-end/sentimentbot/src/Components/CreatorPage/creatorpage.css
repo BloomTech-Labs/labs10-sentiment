@@ -1,78 +1,97 @@
 .our-modals {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    font-family: var(--p-font-style);
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  font-family: var(--p-font-style);
 }
 .ourmodal-boxes {
-    margin-left: auto;
-    margin-right: auto;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-    margin: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  margin: 10px;
 }
 .creator-button {
-    cursor: pointer;
+  cursor: pointer;
 }
 .michelles-modalwords {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    color: purple;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: purple;
 }
 .michelles-links {
-    display: flex;
-    justify-content: space-evenly;
-
+  display: flex;
+  justify-content: space-evenly;
 }
 .michelles-bot {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .austin-link-container {
-    display: flex;
-    justify-content: space-evenly;
-    width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
 }
 
 .austin-modal-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .joseph-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .joseph-link-container a {
-    color: #252525;
-    margin: 5px;
+  color: #252525;
+  margin: 5px;
 }
 
 .joseph-link-container a:hover {
-    color: #62158F;
+  color: #62158f;
 }
 
 .saniamodal-box {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .saniabot {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 a span.screen-reader-text {
-    clip: rect(1px, 1px, 1px, 1px);
-      position: absolute !important;
-      height: 1px;
-      width: 1px;
-      overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+}
+
+.thomas-container {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 70%;
+}
+
+.thomas-container p{
+    text-align: center;
   }
 
+.thomas-link-container a {
+  color: #252525;
+  margin: 5px;
+}
+
+.thomas-link-container a:hover {
+  color: #00ff00;
+}
