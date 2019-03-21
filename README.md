@@ -56,8 +56,8 @@ Command: heroku config:add TZ="America/New_York" -a botsentiment
 
 ### GET : [
 
-| Method | Endpoint      | Description                                                                                                                                                                                                                                                                                     |
-| ------ | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Method | Endpoint      | Description                                                                   |
+| ------ | ------------- | ----------------------------------------------------------------------------- |
 | GET    | /api/team_members | responds with all team members and managers [{data}] |
 | GET    | /api/team_members/:id | responds with the team member/manager acossiated with the specified id [{data}] |
 | GET    | /api/team_members/Email/:email | responds with the team member/manager acossiated with the specified email [{data}] |
@@ -84,88 +84,36 @@ Command: heroku config:add TZ="America/New_York" -a botsentiment
 
 ### POST : [
 
-| Method | Endpoint      | Description         |     Body                                                                                                                                                                                                                                                                   |
-| ------ | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
+| Method | Endpoint      | Description                                                                   | body                  |
+| ------ | ------------- | ----------------------------------------------------------------------------- | --------------------- |
 
-| POST    | /api/team_members | Creates a new team member during initial registration, type and team_id to be determined later | {
-	"firstName": "string",
-	"lastName": "string",
-	"email": "string",
-	"phone": "string",
-	"type": null,
-	"team_id": null
-} |
-| POST    | /api/teams | Creates a new team | {
-	"name": "string",
-	"memberId": integer
-} |
-| POST    | /api/surveys | Creates a new survey with a recurring schedule | {
-	"title": "string",
-	"description": "string",
-	"manager_id": integer,
-	"dailyWeeklyMonthly": "string",
-    "hour": integer,
-    "amPm": "string",
-    "timeZone": "string",
-    "min": integer,
-    "preFeelingIdsArray": [ integers ]
-} |
-| POST    | /api/survey_feelings | Creates a new survey-feeling this is an intermediate table acossiating a survey to a pre set feeling | {
-	"survey_id": integer,
-	"feelings_id": integer
-}|
+| POST    | /api/team_members | Creates a new team member during initial registration, type and team_id to be determined later | {"firstName": "string", "lastName": "string", "email": "string", "phone": "string", "type": null, "team_id": null}|
+| POST    | /api/teams | Creates a new team |{"name": "string", "memberId": integer}|
+| POST    | /api/surveys | Creates a new survey with a recurring schedule |{"title": "string", "description": "string", "manager_id": integer, "dailyWeeklyMonthly": "string", "hour": integer, "amPm": "string", "timeZone": "string", "min": integer, "preFeelingIdsArray": [ integers ]}|
+| POST    | /api/survey_feelings | Creates a new survey-feeling this is an intermediate table acossiating a survey to a pre set feeling |{"survey_id": integer, "feelings_id": integer}|
 | POST    | /api/slash/connect-channel-to-survey | when you place the slash command /connect-channel-to-survey inside the slack channel you will update your users slack auth with the appropriate slack channel id| ---|
 | POST    | /api/slash/send-me-buttons | this is route containing the process for posting surveys to slack, use slash command /send-me-buttons inorder to respond to active survey's | ---|
-| POST    | /api/pre-set-feelings | Creates a new pre set feeling | {
-	"feeling_text": "string"
-}|
-| POST    | /api/feelings | Creates a new feeling | {
-	"feeling_text": "string",
-	"team_member_id": integer
-}|
+| POST    | /api/pre-set-feelings | Creates a new pre set feeling |{"feeling_text": "string"}|
+| POST    | /api/feelings | Creates a new feeling |{"feeling_text": "string", "team_member_id": integer}|
 
 
 ### PUT : [
 
-| Method | Endpoint      | Description     |     Body                                                                                                                                                                                                                                                                                        |
-| ------ | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------- |
-| PUT    | /api/team_members/:id | Update team member acossiated with specified id |{
-	"firstName": "string",
-	"lastName": "string",
-	"email": "string",
-	"phone": "string",
-	"type": "string",
-	"team_id": integer
-}|
-| PUT    | /api/team_members/:id/join | Update team member acossiated with specified team id (During Join a Team Process) |{
-	"team_code": integer
-}|
-| PUT    | /api/teams/:id | Update team acossiated with specified id |{
-	"name": "string",
-	"team_code": integer
-}|
-| PUT    | /api/surveys/:id | Update survey acossiated with specified id |{
-	"title": "string",
-	"description": "string",
-	"manager_id": integer
-}|
-| PUT    | /api/survey_feelings/:id | Update survey_feeling acossiated with specified id |{
-	"survey_id": integer,
-	"feelings_id": integer
-}|
+| Method | Endpoint      | Description                                                                   | body                  |
+| ------ | ------------- | ----------------------------------------------------------------------------- | --------------------- |
+| PUT    | /api/team_members/:id | Update team member acossiated with specified id |{ "firstName": "string", "lastName": "string", "email": "string", "phone": "string", "type": "string", "team_id": integer }|
+| PUT    | /api/team_members/:id/join | Update team member acossiated with specified team id (During Join a Team Process) |{ "team_code": integer }|
+| PUT    | /api/teams/:id | Update team acossiated with specified id |{"name": "string", "team_code": integer}|
+| PUT    | /api/surveys/:id | Update survey acossiated with specified id |{"title": "string", "description": "string", "manager_id": integer}|
+| PUT    | /api/survey_feelings/:id | Update survey_feeling acossiated with specified id |{"survey_id": integer, "feelings_id": integer}|
 | PUT    | /api/slackauth/slackAuth/:id | Not Implemented |
-| PUT    | /api/pre-set-feelings/:id | Update pre set feeling acossiated with specified id |{  
-	"feeling_text": "string"
-}|
-| PUT    | /api/feelings/:id | Update feeling acossiated with specified id |{
-    "feeling_text": "string".
-    "team_member_id": integer
-}|
+| PUT    | /api/pre-set-feelings/:id | Update pre set feeling acossiated with specified id |{"feeling_text": "string"}|
+| PUT    | /api/feelings/:id | Update feeling acossiated with specified id |{"feeling_text": "string", "team_member_id": integer}|
 
 ### DELETE : [
 
-| Method | Endpoint      | Description                                                                                                                                                                                                                                                                                         |
-| ------ | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Method | Endpoint      | Description                                                                   |
+| ------ | ------------- | ----------------------------------------------------------------------------- |
 | DELETE    | /api/team_members/:id | Deletes member with acossiated id |
 | DELETE    | /api/teams/:id | Deletes team with acossiated id |
 | DELETE    | /api/surveys/:id | Deletes survey with acossiated id |
