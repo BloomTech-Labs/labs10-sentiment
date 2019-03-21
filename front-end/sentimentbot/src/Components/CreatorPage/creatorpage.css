@@ -12,6 +12,19 @@
     justify-content: space-between;
     flex-direction: row;
     margin: 10px;
+    background-color: var(--main-bg-color);
+}
+
+.modal-header {
+    background-color: var(--main-bg-color);
+}
+
+.modal-body {
+    background-color: var(--main-bg-color);
+}
+
+.modal-footer {
+    background-color: var(--main-bg-color);
 }
 
 .creator-button {

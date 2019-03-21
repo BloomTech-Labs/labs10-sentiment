@@ -135,7 +135,7 @@ class Home extends React.Component {
                 <CardText className="cardText">Meaningful graphs to dial it back and see the bigger picture.</CardText>
               </CardBody>
             </Card>
-            <div className="youtube"><iframe width="560" height="315" src="https://www.youtube.com/embed/bLy1kzb0A_s" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+            <div className="youtube"><iframe width="560" height="315" title="mood-walkthrough" src="https://www.youtube.com/embed/bLy1kzb0A_s" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
             <div className="faq"> FAQ <br></br> <br></br>
               <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                 <DropdownToggle className="faqButton" caret>
