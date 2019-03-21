@@ -29,11 +29,11 @@ const {
 //routes for slash commands through Slack API//
 router.use(bodyParser.urlencoded({ extended: true }));
 
-router.get("/", (req, res) => {
-  db.get()
-    .then(getSuccess(res))
-    .catch(serverErrorGet(res));
-});
+// router.get("/", (req, res) => {
+//   db.get()
+//     .then(getSuccess(res))
+//     .catch(serverErrorGet(res));
+// });
 
 function sendMessageToSlackResponseURL(responseURL, JSONmessage) {
   let postOptions = {
@@ -769,62 +769,62 @@ router.post("/send-me-buttons", urlencodedParser, (req, res) => {
 //   sendMessageToSlackResponseURL(actionJSONPayload.response_url, message);
 // });
 
-router.post("/", (req, res) => {
-  // let response = req;
-  // console.log({response: response});
-  // let postInfo = { slash: response };
-  // db.insert(postInfo)
-  //   .then(postSuccess(res))
-  //   .catch(err => {
-  //     res.status(422).json(err);
-  //   });
-  let userName = req.body.user_name;
-  console.log(req.body);
-  let botPayload = {
-    response_type: "in_channel",
-    text: `Hello ${userName}, welcome to the Moodbot Slack channel!!`
-  };
+// router.post("/", (req, res) => {
+//   // let response = req;
+//   // console.log({response: response});
+//   // let postInfo = { slash: response };
+//   // db.insert(postInfo)
+//   //   .then(postSuccess(res))
+//   //   .catch(err => {
+//   //     res.status(422).json(err);
+//   //   });
+//   let userName = req.body.user_name;
+//   console.log(req.body);
+//   let botPayload = {
+//     response_type: "in_channel",
+//     text: `Hello ${userName}, welcome to the Moodbot Slack channel!!`
+//   };
 
-  if (userName !== "slackbot") {
-    return res.status(200).json(botPayload);
-  } else {
-    return res.status(200).end();
-  }
-});
+//   if (userName !== "slackbot") {
+//     return res.status(200).json(botPayload);
+//   } else {
+//     return res.status(200).end();
+//   }
+// });
 
-router.post("/2", (req, res) => {
-  // let response = req;
-  // console.log({response: response});
-  // let postInfo = { slash: response };
-  // db.insert(postInfo)
-  //   .then(postSuccess(res))
-  //   .catch(err => {
-  //     res.status(422).json(err);
-  //   });
-  let userName = req.body.user_name;
-  console.log(req.body);
-  let botPayload = {
-    response_type: "in_channel",
-    text: `${userName}, the mood is Great!!`
-  };
+// router.post("/2", (req, res) => {
+//   // let response = req;
+//   // console.log({response: response});
+//   // let postInfo = { slash: response };
+//   // db.insert(postInfo)
+//   //   .then(postSuccess(res))
+//   //   .catch(err => {
+//   //     res.status(422).json(err);
+//   //   });
+//   let userName = req.body.user_name;
+//   console.log(req.body);
+//   let botPayload = {
+//     response_type: "in_channel",
+//     text: `${userName}, the mood is Great!!`
+//   };
 
-  if (userName !== "slackbot") {
-    return res.status(200).json(botPayload);
-  } else {
-    return res.status(200).end();
-  }
-});
+//   if (userName !== "slackbot") {
+//     return res.status(200).json(botPayload);
+//   } else {
+//     return res.status(200).end();
+//   }
+// });
 
-router.get("/test/auth", (req, res) => {
-  dbAuth
-    .getBySlackTeamId("TG99JB3JL")
-    .then(data => {
-      res.status(200).json(data);
-    })
-    .catch(err => {
-      res.status(400).json(err);
-    });
-});
+// router.get("/test/auth", (req, res) => {
+//   dbAuth
+//     .getBySlackTeamId("TG99JB3JL")
+//     .then(data => {
+//       res.status(200).json(data);
+//     })
+//     .catch(err => {
+//       res.status(400).json(err);
+//     });
+// });
 
 module.exports = router;
 
