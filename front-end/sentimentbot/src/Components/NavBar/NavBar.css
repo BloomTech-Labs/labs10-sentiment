@@ -72,4 +72,8 @@
     .navbar-nav {
         align-items: flex-start;
     }
+
+    .navbar-collapse .dropdown {
+        padding-bottom: 5%;
+    }
 }
