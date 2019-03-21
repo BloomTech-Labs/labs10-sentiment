@@ -40,10 +40,6 @@ class NavBar extends React.Component {
       backgroundColor: "#02C8A7"
     };
 
-    const whiteBackground = {
-      backgroundColor: "white"
-    }
-
     const fontColor = {
       color: "white"
     };
@@ -115,7 +111,7 @@ class NavBar extends React.Component {
         ) : (
             <Navbar expand="md">
               <NavbarBrand href="/home"><img className="navbot" src={Eh} alt="ehbot" /></NavbarBrand>
-              <NavbarToggler onClick={this.toggle} style={whiteBackground} />
+              <NavbarToggler onClick={this.toggle} />
               <Collapse isOpen={this.state.isOpen} navbar>
                 <Nav className="ml-auto" navbar>
                   <NavItem>
