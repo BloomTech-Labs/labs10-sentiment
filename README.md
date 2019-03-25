@@ -1,6 +1,6 @@
 # Labs10-Sentiment
 
-Mood is an application that Creates a non-confrontational yet engaging way for employees to communicate with their managers. It Provides an effective method for teams to generate actionable feedback to improve working conditions, company culture, and productivity.
+Mood is an application that creates a non-confrontational yet engaging way for employees to communicate with their managers. It Provides an effective method for teams to generate actionable feedback to improve working conditions, company culture, and productivity.
 
 ## Front End
 
