@@ -59,34 +59,31 @@ Command: heroku config:add TZ="America/New_York" -a botsentiment
 | Method | Endpoint      | Description                                                                   |
 | ------ | ------------- | ----------------------------------------------------------------------------- |
 | GET    | /api/team_members | responds with all team members and managers [{data}] |
-| GET    | /api/team_members/:id | responds with the team member/manager acossiated with the specified id [{data}] |
-| GET    | /api/team_members/Email/:email | responds with the team member/manager acossiated with the specified email [{data}] |
+| GET    | /api/team_members/:id | responds with the team member/manager associated with the specified id [{data}] |
+| GET    | /api/team_members/Email/:email | responds with the team member/manager associated with the specified email [{data}] |
 | GET    | /api/teams  | responds with all teams [{data}]  |
-| GET    | /api/teams/:id | responds with a team acossiated with the specified id [{data}] |
+| GET    | /api/teams/:id | responds with a team associated with the specified id [{data}] |
 | GET    | /api/surveys/manager/:id | responds with all survey's [{data}]  |
-| GET    | /api/surveys/:id |  responds with a survey acossiated with the specified id [{data}]  |
-| GET    | /api/surveys/changeActivity/:id |  changes the activity of a survey to inactive acossiated with the specified id [{data}] |
+| GET    | /api/surveys/:id |  responds with a survey associated with the specified id [{data}]  |
+| GET    | /api/surveys/changeActivity/:id |  changes the activity of a survey to inactive associated with the specified id [{data}] |
 | GET    | /api/survey_active | responds with all survey's activity info in the Data Base [{data}]  |      
 | GET    | /api/survey_feelings | responds with all survey feelings in the Data Base [{data}]  |
-| GET    | /api/survey_feelings/:id | responds with survey feeling acossiated with specified survey feeling id [{data}] |   
+| GET    | /api/survey_feelings/:id | responds with survey feeling associated with specified survey feeling id [{data}] |   
 | GET    | /api/slackauth | Process for Slack Authorization Returns to Netlify |   
 | GET    | /api/slackauth/all | responds with all Slack Auth Table's in the Data Base [{data}]  | 
-| GET    | /api/slackauth/:id | responds with slack auth acossiated with specified slack auth id [{data}] |  
-| GET    | /api/slackauth/single/:id | responds with slack auth acossiated with specified slack auth member_id [{data}] |  
+| GET    | /api/slackauth/:id | responds with slack auth associated with specified slack auth id [{data}] |  
+| GET    | /api/slackauth/single/:id | responds with slack auth associated with specified slack auth member_id [{data}] |  
 | GET    | /api/pre-set-feelings | responds with all pre set feelings in the  Data Base [{data}]  |
-| GET    | /api/pre-set-feelings/:id | responds with pre set feeling acossiated with specified pre set feeling id [{data}] |   
+| GET    | /api/pre-set-feelings/:id | responds with pre set feeling associated with specified pre set feeling id [{data}] |   
 | GET    | /api/feelings| responds with all feelings in the Data Base [{data}]  |
-| GET    | /api/feelings/:id | responds with feeling acossiated with specified feeling id [{data}]  |
-| GET    | /api/feelings/:team_id | responds with feelings acossiated with specified team id [{data}]  |
-| GET    | /api/feelings/myfeelings/:id | responds with all feelings acossiated with specified team-member [{data}] |
-
-
+| GET    | /api/feelings/:id | responds with feeling associated with specified feeling id [{data}]  |
+| GET    | /api/feelings/:team_id | responds with feelings associated with specified team id [{data}]  |
+| GET    | /api/feelings/myfeelings/:id | responds with all feelings associated with specified team-member [{data}] |
 
 ### POST : [
 
 | Method | Endpoint      | Description                                                                   | body                  |
 | ------ | ------------- | ----------------------------------------------------------------------------- | --------------------- |
-
 | POST    | /api/team_members | Creates a new team member during initial registration, type and team_id to be determined later | {"firstName": "string", "lastName": "string", "email": "string", "phone": "string", "type": null, "team_id": null}|
 | POST    | /api/teams | Creates a new team |{"name": "string", "memberId": integer}|
 | POST    | /api/surveys | Creates a new survey with a recurring schedule |{"title": "string", "description": "string", "manager_id": integer, "dailyWeeklyMonthly": "string", "hour": integer, "amPm": "string", "timeZone": "string", "min": integer, "preFeelingIdsArray": [ integers ]}|
@@ -101,23 +98,23 @@ Command: heroku config:add TZ="America/New_York" -a botsentiment
 
 | Method | Endpoint      | Description                                                                   | body                  |
 | ------ | ------------- | ----------------------------------------------------------------------------- | --------------------- |
-| PUT    | /api/team_members/:id | Update team member acossiated with specified id |{ "firstName": "string", "lastName": "string", "email": "string", "phone": "string", "type": "string", "team_id": integer }|
-| PUT    | /api/team_members/:id/join | Update team member acossiated with specified team id (During Join a Team Process) |{ "team_code": integer }|
-| PUT    | /api/teams/:id | Update team acossiated with specified id |{"name": "string", "team_code": integer}|
-| PUT    | /api/surveys/:id | Update survey acossiated with specified id |{"title": "string", "description": "string", "manager_id": integer}|
-| PUT    | /api/survey_feelings/:id | Update survey_feeling acossiated with specified id |{"survey_id": integer, "feelings_id": integer}|
+| PUT    | /api/team_members/:id | Update team member associated with specified id |{ "firstName": "string", "lastName": "string", "email": "string", "phone": "string", "type": "string", "team_id": integer }|
+| PUT    | /api/team_members/:id/join | Update team member associated with specified team id (During Join a Team Process) |{ "team_code": integer }|
+| PUT    | /api/teams/:id | Update team associated with specified id |{"name": "string", "team_code": integer}|
+| PUT    | /api/surveys/:id | Update survey associated with specified id |{"title": "string", "description": "string", "manager_id": integer}|
+| PUT    | /api/survey_feelings/:id | Update survey_feeling associated with specified id |{"survey_id": integer, "feelings_id": integer}|
 | PUT    | /api/slackauth/slackAuth/:id | Not Implemented |
-| PUT    | /api/pre-set-feelings/:id | Update pre set feeling acossiated with specified id |{"feeling_text": "string"}|
-| PUT    | /api/feelings/:id | Update feeling acossiated with specified id |{"feeling_text": "string", "team_member_id": integer}|
+| PUT    | /api/pre-set-feelings/:id | Update pre set feeling associated with specified id |{"feeling_text": "string"}|
+| PUT    | /api/feelings/:id | Update feeling associated with specified id |{"feeling_text": "string", "team_member_id": integer}|
 
 ### DELETE : [
 
 | Method | Endpoint      | Description                                                                   |
 | ------ | ------------- | ----------------------------------------------------------------------------- |
-| DELETE    | /api/team_members/:id | Deletes member with acossiated id |
-| DELETE    | /api/teams/:id | Deletes team with acossiated id |
-| DELETE    | /api/surveys/:id | Deletes survey with acossiated id |
-| DELETE    | /api/survey_feelings/:id | Deletes survey_feeling with acossiated id |
-| DELETE    | /api/slackauth/slackAuth/:id | Deletes slack auth with acossiated id |
-| DELETE    | /api/pre-set-feelings/:id | Deletes pre set feeling with acossiated id |
-| DELETE    | /api/feelings/:id | Deletes feeling with acossiated id |
+| DELETE    | /api/team_members/:id | Deletes member with associated id |
+| DELETE    | /api/teams/:id | Deletes team with associated id |
+| DELETE    | /api/surveys/:id | Deletes survey with associated id |
+| DELETE    | /api/survey_feelings/:id | Deletes survey_feeling with associated id |
+| DELETE    | /api/slackauth/slackAuth/:id | Deletes slack auth with associated id |
+| DELETE    | /api/pre-set-feelings/:id | Deletes pre set feeling with associated id |
+| DELETE    | /api/feelings/:id | Deletes feeling with associated id |
